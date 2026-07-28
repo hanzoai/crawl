@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fabLink = document.createElement('a');
     fabLink.className = 'floating-ask-ai-button';
     fabLink.href = askAiPagePath; // Construct the correct URL
-    fabLink.title = 'Ask Crawl4AI Assistant';
-    fabLink.setAttribute('aria-label', 'Ask Crawl4AI Assistant');
+    fabLink.title = 'Ask Crawl Assistant';
+    fabLink.setAttribute('aria-label', 'Ask Crawl Assistant');
 
     // Add content (using SVG icon for better visuals)
     fabLink.innerHTML = `

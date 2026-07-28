@@ -34,14 +34,14 @@ jobs:
       - name: Check version consistency
         run: |
           TAG_VERSION=${{ steps.get_version.outputs.VERSION }}
-          PACKAGE_VERSION=$(python -c "from crawl4ai.__version__ import __version__; print(__version__)")
+          PACKAGE_VERSION=$(python -c "from crawl.__version__ import __version__; print(__version__)")
 
           echo "Tag version: $TAG_VERSION"
           echo "Package version: $PACKAGE_VERSION"
 
           if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
             echo "❌ Version mismatch! Tag: $TAG_VERSION, Package: $PACKAGE_VERSION"
-            echo "Please update crawl4ai/__version__.py to match the tag version"
+            echo "Please update crawl/__version__.py to match the tag version"
             exit 1
           fi
           echo "✅ Version check passed: $TAG_VERSION"
@@ -64,7 +64,7 @@ jobs:
         run: |
           echo "📦 Uploading to PyPI..."
           twine upload dist/*
-          echo "✅ Package uploaded to https://pypi.org/project/crawl4ai/"
+          echo "✅ Package uploaded to https://pypi.org/project/crawl/"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -72,19 +72,19 @@ jobs:
           tag_name: v${{ steps.get_version.outputs.VERSION }}
           name: Release v${{ steps.get_version.outputs.VERSION }}
           body: |
-            ## 🎉 Crawl4AI v${{ steps.get_version.outputs.VERSION }} Released!
+            ## 🎉 Crawl v${{ steps.get_version.outputs.VERSION }} Released!
 
             ### 📦 Installation
 
             **PyPI:**
             ```bash
-            pip install crawl4ai==${{ steps.get_version.outputs.VERSION }}
+            pip install crawl==${{ steps.get_version.outputs.VERSION }}
             ```
 
             **Docker:**
             ```bash
-            docker pull unclecode/crawl4ai:${{ steps.get_version.outputs.VERSION }}
-            docker pull unclecode/crawl4ai:latest
+            docker pull hanzoai/crawl:${{ steps.get_version.outputs.VERSION }}
+            docker pull hanzoai/crawl:latest
             ```
 
             **Note:** Docker images are being built and will be available shortly.
@@ -102,8 +102,8 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📦 PyPI Package" >> $GITHUB_STEP_SUMMARY
           echo "- Version: ${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_STEP_SUMMARY
-          echo "- URL: https://pypi.org/project/crawl4ai/" >> $GITHUB_STEP_SUMMARY
-          echo "- Install: \`pip install crawl4ai==${{ steps.get_version.outputs.VERSION }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- URL: https://pypi.org/project/crawl/" >> $GITHUB_STEP_SUMMARY
+          echo "- Install: \`pip install crawl==${{ steps.get_version.outputs.VERSION }}\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📋 GitHub Release" >> $GITHUB_STEP_SUMMARY
           echo "- https://github.com/${{ github.repository }}/releases/tag/v${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_STEP_SUMMARY

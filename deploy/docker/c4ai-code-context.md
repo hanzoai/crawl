@@ -1,8 +1,8 @@
-# Crawl4AI Code Context
+# Crawl Code Context
 
 Generated on 2025-04-21
 
-## File: crawl4ai/async_configs.py
+## File: crawl/async_configs.py
 
 ```py
 import os
@@ -130,11 +130,11 @@ def from_serializable_dict(data: Any) -> Any:
         if data["type"] == "dict" and "value" in data:
             return {k: from_serializable_dict(v) for k, v in data["value"].items()}
 
-        # Import from crawl4ai for class instances
-        import crawl4ai
+        # Import from crawl for class instances
+        import crawl
 
-        if hasattr(crawl4ai, data["type"]):
-            cls = getattr(crawl4ai, data["type"])
+        if hasattr(crawl, data["type"]):
+            cls = getattr(crawl, data["type"])
 
             # Handle Enum
             if issubclass(cls, Enum):
@@ -1346,10 +1346,10 @@ class LLMConfig:
 ```
 
 
-## File: crawl4ai/async_webcrawler.py
+## File: crawl/async_webcrawler.py
 
 ```py
-from .__version__ import __version__ as crawl4ai_version
+from .__version__ import __version__ as crawl_version
 import os
 import sys
 import time
@@ -1430,7 +1430,7 @@ class AsyncWebCrawler:
         browser_config (BrowserConfig): Configuration object for browser settings.
         crawler_strategy (AsyncCrawlerStrategy): Strategy for crawling web pages.
         logger (AsyncLogger): Logger instance for recording events and errors.
-        crawl4ai_folder (str): Directory for storing cache.
+        crawl_folder (str): Directory for storing cache.
         base_directory (str): Base directory for storing cache.
         ready (bool): Whether the crawler is ready for use.
 
@@ -1486,7 +1486,7 @@ class AsyncWebCrawler:
 
         # Initialize logger first since other components may need it
         self.logger = logger or AsyncLogger(
-            log_file=os.path.join(base_directory, ".crawl4ai", "crawler.log"),
+            log_file=os.path.join(base_directory, ".crawl", "crawler.log"),
             verbose=self.browser_config.verbose,
             tag_width=10,
         )
@@ -1504,9 +1504,9 @@ class AsyncWebCrawler:
         self._lock = asyncio.Lock() if thread_safe else None
 
         # Initialize directories
-        self.crawl4ai_folder = os.path.join(base_directory, ".crawl4ai")
-        os.makedirs(self.crawl4ai_folder, exist_ok=True)
-        os.makedirs(f"{self.crawl4ai_folder}/cache", exist_ok=True)
+        self.crawl_folder = os.path.join(base_directory, ".crawl")
+        os.makedirs(self.crawl_folder, exist_ok=True)
+        os.makedirs(f"{self.crawl_folder}/cache", exist_ok=True)
 
         # Initialize robots parser
         self.robots_parser = RobotsParser()
@@ -1525,7 +1525,7 @@ class AsyncWebCrawler:
             AsyncWebCrawler: The initialized crawler instance
         """
         await self.crawler_strategy.__aenter__()
-        self.logger.info(f"Crawl4AI {crawl4ai_version}", tag="INIT")
+        self.logger.info(f"Crawl {crawl_version}", tag="INIT")
         self.ready = True
         return self
 
@@ -2106,7 +2106,7 @@ class AsyncWebCrawler:
 ```
 
 
-## File: crawl4ai/cli.py
+## File: crawl/cli.py
 
 ```py
 import click
@@ -2124,7 +2124,7 @@ from rich.table import Table
 from rich.panel import Panel
 from rich.prompt import Prompt, Confirm
 
-from crawl4ai import (
+from crawl import (
     CacheMode,
     AsyncWebCrawler, 
     CrawlResult,
@@ -2140,7 +2140,7 @@ from crawl4ai import (
     DefaultMarkdownGenerator,
     LLMConfig
 )
-from crawl4ai.config import USER_SETTINGS
+from crawl.config import USER_SETTINGS
 from litellm import completion
 from pathlib import Path
 
@@ -2149,7 +2149,7 @@ from pathlib import Path
 console = Console()
 
 def get_global_config() -> dict:
-    config_dir = Path.home() / ".crawl4ai"
+    config_dir = Path.home() / ".crawl"
     config_file = config_dir / "global.yml"
     
     if not config_file.exists():
@@ -2160,7 +2160,7 @@ def get_global_config() -> dict:
         return yaml.safe_load(f) or {}
 
 def save_global_config(config: dict):
-    config_file = Path.home() / ".crawl4ai" / "global.yml"
+    config_file = Path.home() / ".crawl" / "global.yml"
     with open(config_file, "w") as f:
         yaml.dump(config, f)
 
@@ -2185,7 +2185,7 @@ def setup_llm_config() -> tuple[str, str]:
         config["DEFAULT_LLM_PROVIDER"] = provider
         config["DEFAULT_LLM_PROVIDER_TOKEN"] = token
         save_global_config(config)
-        click.echo("\nConfiguration saved to ~/.crawl4ai/global.yml")
+        click.echo("\nConfiguration saved to ~/.crawl/global.yml")
     
     return provider, token
 
@@ -2270,7 +2270,7 @@ async def run_crawler(url: str, browser_cfg: BrowserConfig, crawler_cfg: Crawler
 
 def show_examples():
     examples = """
-🚀 Crawl4AI CLI Examples
+🚀 Crawl CLI Examples
 
 1️⃣  Basic Usage:
     # Simple crawl with default settings
@@ -2422,7 +2422,7 @@ llm_schema.json:
         -c "css_selector=.dashboard-content" \\
         -o markdown
 
-For more documentation visit: https://github.com/unclecode/crawl4ai
+For more documentation visit: https://github.com/hanzoai/crawl
 
 8️⃣  Q&A with LLM:
     # Ask a question about the content
@@ -2440,7 +2440,7 @@ For more documentation visit: https://github.com/unclecode/crawl4ai
         -q "What are the pros and cons mentioned?"
 
     Note: First time using -q will prompt for LLM provider and API token.
-    These will be saved in ~/.crawl4ai/global.yml for future use.
+    These will be saved in ~/.crawl/global.yml for future use.
     
     Supported provider format: 'company/model'
     Examples:
@@ -2729,15 +2729,15 @@ async def manage_profiles():
 
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})
 def cli():
-    """Crawl4AI CLI - Web content extraction and browser profile management tool"""
+    """Crawl CLI - Web content extraction and browser profile management tool"""
     pass
 
 
 @cli.group("browser")
 def browser_cmd():
-    """Manage browser instances for Crawl4AI
+    """Manage browser instances for Crawl
     
-    Commands to manage browser instances for Crawl4AI, including:
+    Commands to manage browser instances for Crawl, including:
     - status - Check status of the builtin browser
     - start - Start a new builtin browser
     - stop - Stop the running builtin browser
@@ -2785,7 +2785,7 @@ def browser_status_cmd():
 def browser_start_cmd(browser_type: str, port: int, headless: bool):
     """Start a builtin browser instance
     
-    This will start a persistent browser instance that can be used by Crawl4AI
+    This will start a persistent browser instance that can be used by Crawl
     by setting browser_mode="builtin" in BrowserConfig.
     """
     profiler = BrowserProfiler()
@@ -3338,7 +3338,7 @@ def config_list_cmd():
     """List all configuration settings"""
     config = get_global_config()
     
-    table = Table(title="Crawl4AI Configuration", show_header=True, header_style="bold cyan", border_style="blue")
+    table = Table(title="Crawl Configuration", show_header=True, header_style="bold cyan", border_style="blue")
     table.add_column("Setting", style="cyan")
     table.add_column("Value", style="green")
     table.add_column("Default", style="yellow")
@@ -3467,7 +3467,7 @@ def profiles_cmd():
 def default(url: str, example: bool, browser_config: str, crawler_config: str, filter_config: str, 
         extraction_config: str, json_extract: str, schema: str, browser: Dict, crawler: Dict,
         output: str, bypass_cache: bool, question: str, verbose: bool, profile: str):
-    """Crawl4AI CLI - Web content extraction tool
+    """Crawl CLI - Web content extraction tool
 
     Simple Usage:
         crwl https://example.com
@@ -3530,7 +3530,7 @@ if __name__ == "__main__":
 ```
 
 
-## File: crawl4ai/extraction_strategy.py
+## File: crawl/extraction_strategy.py
 
 ```py
 from abc import ABC, abstractmethod
@@ -5207,7 +5207,7 @@ class JsonXPathExtractionStrategy(JsonElementExtractionStrategy):
 ```
 
 
-## File: crawl4ai/models.py
+## File: crawl/models.py
 
 ```py
 from pydantic import BaseModel, HttpUrl, PrivateAttr
@@ -5583,7 +5583,7 @@ class ScrapingResult(BaseModel):
 ```
 
 
-## File: crawl4ai/content_filter_strategy.py
+## File: crawl/content_filter_strategy.py
 
 ```py
 import inspect
@@ -6662,7 +6662,7 @@ class LLMContentFilter(RelevantContentFilter):
 ```
 
 
-## File: crawl4ai/markdown_generation_strategy.py
+## File: crawl/markdown_generation_strategy.py
 
 ```py
 from abc import ABC, abstractmethod
@@ -6929,7 +6929,7 @@ class DefaultMarkdownGenerator(MarkdownGenerationStrategy):
 ```
 
 
-## File: crawl4ai/browser_manager.py
+## File: crawl/browser_manager.py
 
 ```py
 import asyncio
@@ -7299,7 +7299,7 @@ class ManagedBrowser:
         
         Example:
             ```python
-            from crawl4ai.browser_profiler import BrowserProfiler
+            from crawl.browser_profiler import BrowserProfiler
             
             profiler = BrowserProfiler()
             profile_path = await profiler.create_profile(profile_name="my-login-profile")
@@ -7316,13 +7316,13 @@ class ManagedBrowser:
         """
         This method has been moved to the BrowserProfiler class.
         
-        Lists all available browser profiles in the Crawl4AI profiles directory.
+        Lists all available browser profiles in the Crawl profiles directory.
         
         Please use BrowserProfiler.list_profiles() instead.
         
         Example:
             ```python
-            from crawl4ai.browser_profiler import BrowserProfiler
+            from crawl.browser_profiler import BrowserProfiler
             
             profiler = BrowserProfiler()
             profiles = profiler.list_profiles()
@@ -7345,7 +7345,7 @@ class ManagedBrowser:
         
         Example:
             ```python
-            from crawl4ai.browser_profiler import BrowserProfiler
+            from crawl.browser_profiler import BrowserProfiler
             
             profiler = BrowserProfiler()
             success = profiler.delete_profile("my-profile")
@@ -7606,7 +7606,7 @@ class BrowserManager:
                     "value": "true",
                     "url": crawlerRunConfig.url
                     if crawlerRunConfig and crawlerRunConfig.url
-                    else "https://crawl4ai.com/",
+                    else "https://crawl.hanzo.ai/",
                 }
             ]
         )
@@ -7886,7 +7886,7 @@ class BrowserManager:
 ```py
 import os, sys
 
-from crawl4ai import LLMConfig
+from crawl import LLMConfig
 
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -7899,20 +7899,20 @@ import re
 from typing import Dict
 from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field
-from crawl4ai import AsyncWebCrawler, CacheMode, BrowserConfig, CrawlerRunConfig
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai import (
+from crawl import AsyncWebCrawler, CacheMode, BrowserConfig, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl import (
     JsonCssExtractionStrategy,
     LLMExtractionStrategy,
 )
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-print("Crawl4AI: Advanced Web Crawling and Data Extraction")
-print("GitHub Repository: https://github.com/unclecode/crawl4ai")
+print("Crawl: Advanced Web Crawling and Data Extraction")
+print("GitHub Repository: https://github.com/hanzoai/crawl")
 print("Twitter: @unclecode")
-print("Website: https://crawl4ai.com")
+print("Website: https://crawl.hanzo.ai")
 
 
 # Basic Example - Simple Crawl
@@ -8024,7 +8024,7 @@ async def custom_hook_workflow(verbose=True):
         )
 
         # Perform the crawl operation
-        result = await crawler.arun(url="https://crawl4ai.com")
+        result = await crawler.arun(url="https://crawl.hanzo.ai")
         print(result.markdown.raw_markdown[:500].replace("\n", " -- "))
 
 
@@ -8302,7 +8302,7 @@ async def crawl_dynamic_content_pages_method_2():
 
 
 async def cosine_similarity_extraction():
-    from crawl4ai import CosineStrategy
+    from crawl import CosineStrategy
     crawl_config = CrawlerRunConfig(
         cache_mode=CacheMode.BYPASS,
         extraction_strategy=CosineStrategy(
@@ -8459,16 +8459,16 @@ import json
 import base64
 from pathlib import Path
 from typing import List
-from crawl4ai import ProxyConfig
+from crawl import ProxyConfig
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode, CrawlResult
-from crawl4ai import RoundRobinProxyStrategy
-from crawl4ai import JsonCssExtractionStrategy, LLMExtractionStrategy
-from crawl4ai import LLMConfig
-from crawl4ai import PruningContentFilter, BM25ContentFilter
-from crawl4ai import DefaultMarkdownGenerator
-from crawl4ai import BFSDeepCrawlStrategy, DomainFilter, FilterChain
-from crawl4ai import BrowserConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode, CrawlResult
+from crawl import RoundRobinProxyStrategy
+from crawl import JsonCssExtractionStrategy, LLMExtractionStrategy
+from crawl import LLMConfig
+from crawl import PruningContentFilter, BM25ContentFilter
+from crawl import DefaultMarkdownGenerator
+from crawl import BFSDeepCrawlStrategy, DomainFilter, FilterChain
+from crawl import BrowserConfig
 
 __cur_dir__ = Path(__file__).parent
 
@@ -8636,7 +8636,7 @@ async def demo_deep_crawl():
     """Deep crawling with BFS strategy"""
     print("\n=== 6. Deep Crawling ===")
 
-    filter_chain = FilterChain([DomainFilter(allowed_domains=["crawl4ai.com"])])
+    filter_chain = FilterChain([DomainFilter(allowed_domains=["crawl.hanzo.ai"])])
 
     deep_crawl_strategy = BFSDeepCrawlStrategy(
         max_depth=1, max_pages=5, filter_chain=filter_chain
@@ -8644,7 +8644,7 @@ async def demo_deep_crawl():
 
     async with AsyncWebCrawler() as crawler:
         results: List[CrawlResult] = await crawler.arun(
-            url="https://docs.crawl4ai.com",
+            url="https://docs.hanzo.ai",
             config=CrawlerRunConfig(deep_crawl_strategy=deep_crawl_strategy),
         )
 
@@ -8812,7 +8812,7 @@ async def demo_raw_html_and_file():
     raw_html = """
     <html><body>
         <h1>Sample Article</h1>
-        <p>This is sample content for testing Crawl4AI's raw HTML processing.</p>
+        <p>This is sample content for testing Crawl's raw HTML processing.</p>
     </body></html>
     """
 
@@ -8843,7 +8843,7 @@ async def demo_raw_html_and_file():
 
 async def main():
     """Run all demo functions sequentially"""
-    print("=== Comprehensive Crawl4AI Demo ===")
+    print("=== Comprehensive Crawl Demo ===")
     print("Note: Some examples require API keys or other configurations")
 
     # Run all demos
@@ -8878,7 +8878,7 @@ import asyncio
 import time
 from rich import print
 from rich.table import Table
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,
@@ -9018,7 +9018,7 @@ if __name__ == "__main__":
 
 ```py
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,
@@ -9074,7 +9074,7 @@ if __name__ == "__main__":
 ## File: docs/examples/hooks_example.py
 
 ```py
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from playwright.async_api import Page, BrowserContext
 
 
@@ -9197,7 +9197,7 @@ if __name__ == "__main__":
 
 
 
-## File: crawl4ai/deep_crawling/__init__.py
+## File: crawl/deep_crawling/__init__.py
 
 ```py
 # deep_crawling/__init__.py
@@ -9251,7 +9251,7 @@ __all__ = [
 ```
 
 
-## File: crawl4ai/deep_crawling/base_strategy.py
+## File: crawl/deep_crawling/base_strategy.py
 
 ```py
 from __future__ import annotations
@@ -9417,7 +9417,7 @@ class DeepCrawlStrategy(ABC):
 ```
 
 
-## File: crawl4ai/deep_crawling/bff_strategy.py
+## File: crawl/deep_crawling/bff_strategy.py
 
 ```py
 # best_first_crawling_strategy.py
@@ -9679,7 +9679,7 @@ class BestFirstCrawlingStrategy(DeepCrawlStrategy):
 ```
 
 
-## File: crawl4ai/deep_crawling/bfs_strategy.py
+## File: crawl/deep_crawling/bfs_strategy.py
 
 ```py
 # bfs_deep_crawl_strategy.py
@@ -9931,7 +9931,7 @@ class BFSDeepCrawlStrategy(DeepCrawlStrategy):
 ```
 
 
-## File: crawl4ai/deep_crawling/filters.py
+## File: crawl/deep_crawling/filters.py
 
 ```py
 from abc import ABC, abstractmethod
@@ -10604,7 +10604,7 @@ class SEOFilter(URLFilter):
 ```
 
 
-## File: crawl4ai/deep_crawling/scorers.py
+## File: crawl/deep_crawling/scorers.py
 
 ```py
 from abc import ABC, abstractmethod
@@ -11135,10 +11135,10 @@ class DomainAuthorityScorer(URLScorer):
 import asyncio
 import time
 
-from crawl4ai import CrawlerRunConfig, AsyncWebCrawler, CacheMode
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
-from crawl4ai.deep_crawling.filters import (
+from crawl import CrawlerRunConfig, AsyncWebCrawler, CacheMode
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
+from crawl.deep_crawling.filters import (
     FilterChain,
     URLPatternFilter,
     DomainFilter,
@@ -11146,7 +11146,7 @@ from crawl4ai.deep_crawling.filters import (
     ContentRelevanceFilter,
     SEOFilter,
 )
-from crawl4ai.deep_crawling.scorers import (
+from crawl.deep_crawling.scorers import (
     KeywordRelevanceScorer,
 )
 
@@ -11174,7 +11174,7 @@ async def basic_deep_crawl():
 
     async with AsyncWebCrawler() as crawler:
         start_time = time.perf_counter()
-        results = await crawler.arun(url="https://docs.crawl4ai.com", config=config)
+        results = await crawler.arun(url="https://docs.hanzo.ai", config=config)
 
         # Group results by depth to visualize the crawl tree
         pages_by_depth = {}
@@ -11226,7 +11226,7 @@ async def stream_vs_nonstream():
 
         start_time = time.perf_counter()
         results = await crawler.arun(
-            url="https://docs.crawl4ai.com", config=non_stream_config
+            url="https://docs.hanzo.ai", config=non_stream_config
         )
 
         print(f"  ✅ Received all {len(results)} results at once")
@@ -11244,7 +11244,7 @@ async def stream_vs_nonstream():
         first_result_time = None
 
         async for result in await crawler.arun(
-            url="https://docs.crawl4ai.com", config=stream_config
+            url="https://docs.hanzo.ai", config=stream_config
         ):
             result_count += 1
             if result_count == 1:
@@ -11291,7 +11291,7 @@ async def filters_and_scorers():
             verbose=True,
         )
 
-        results = await crawler.arun(url="https://docs.crawl4ai.com", config=config)
+        results = await crawler.arun(url="https://docs.hanzo.ai", config=config)
 
         print(f"  ✅ Crawled {len(results)} pages matching '*core*'")
         for result in results[:3]:  # Show first 3 results
@@ -11359,7 +11359,7 @@ async def filters_and_scorers():
 
         results = []
         async for result in await crawler.arun(
-            url="https://docs.crawl4ai.com", config=config
+            url="https://docs.hanzo.ai", config=config
         ):
             results.append(result)
             score = result.metadata.get("score")
@@ -11400,7 +11400,7 @@ async def advanced_filters():
             cache_mode=CacheMode.BYPASS,
         )
 
-        results = await crawler.arun(url="https://docs.crawl4ai.com", config=config)
+        results = await crawler.arun(url="https://docs.hanzo.ai", config=config)
 
         print(f"  ✅ Found {len(results)} pages with relevant keywords")
         for result in results:
@@ -11424,7 +11424,7 @@ async def advanced_filters():
             cache_mode=CacheMode.BYPASS,
         )
 
-        results = await crawler.arun(url="https://docs.crawl4ai.com", config=config)
+        results = await crawler.arun(url="https://docs.hanzo.ai", config=config)
 
         print(f"  ✅ Found {len(results)} pages")
         for result in results:
@@ -11443,7 +11443,7 @@ async def max_pages_and_thresholds():
     """
     print("\n===== MAX PAGES AND SCORE THRESHOLDS =====")
     
-    from crawl4ai.deep_crawling import DFSDeepCrawlStrategy
+    from crawl.deep_crawling import DFSDeepCrawlStrategy
     
     async with AsyncWebCrawler() as crawler:
         # Define a common keyword scorer for all examples
@@ -11468,7 +11468,7 @@ async def max_pages_and_thresholds():
             cache_mode=CacheMode.BYPASS,
         )
         
-        results = await crawler.arun(url="https://docs.crawl4ai.com", config=bfs_config)
+        results = await crawler.arun(url="https://docs.hanzo.ai", config=bfs_config)
         
         print(f"  ✅ Crawled exactly {len(results)} pages as specified by max_pages")
         for result in results:
@@ -11492,7 +11492,7 @@ async def max_pages_and_thresholds():
             cache_mode=CacheMode.BYPASS,
         )
         
-        results = await crawler.arun(url="https://docs.crawl4ai.com", config=dfs_config)
+        results = await crawler.arun(url="https://docs.hanzo.ai", config=dfs_config)
         
         print(f"  ✅ Crawled {len(results)} pages with scores above threshold")
         for result in results:
@@ -11518,7 +11518,7 @@ async def max_pages_and_thresholds():
         )
         
         results = []
-        async for result in await crawler.arun(url="https://docs.crawl4ai.com", config=bf_config):
+        async for result in await crawler.arun(url="https://docs.hanzo.ai", config=bf_config):
             results.append(result)
             score = result.metadata.get("score", 0)
             depth = result.metadata.get("depth", 0)
@@ -11544,8 +11544,8 @@ async def wrap_up():
     filter_chain = FilterChain(
         [
             DomainFilter(
-                allowed_domains=["docs.crawl4ai.com"],
-                blocked_domains=["old.docs.crawl4ai.com"],
+                allowed_domains=["docs.hanzo.ai"],
+                blocked_domains=["old.docs.hanzo.ai"],
             ),
             URLPatternFilter(patterns=["*core*", "*advanced*", "*blog*"]),
             ContentTypeFilter(allowed_types=["text/html"]),
@@ -11575,7 +11575,7 @@ async def wrap_up():
 
     async with AsyncWebCrawler() as crawler:
         async for result in await crawler.arun(
-            url="https://docs.crawl4ai.com", config=config
+            url="https://docs.hanzo.ai", config=config
         ):
             results.append(result)
             score = result.metadata.get("score", 0)
@@ -11604,10 +11604,10 @@ async def run_tutorial():
     """
     Executes all tutorial sections in sequence.
     """
-    print("\n🚀 CRAWL4AI DEEP CRAWLING TUTORIAL 🚀")
+    print("\n🚀 CRAWL DEEP CRAWLING TUTORIAL 🚀")
     print("======================================")
     print("This tutorial will walk you through deep crawling techniques,")
-    print("from basic to advanced, using the Crawl4AI library.")
+    print("from basic to advanced, using the Crawl library.")
 
     # Define sections - uncomment to run specific parts during development
     tutorial_sections = [
@@ -11623,8 +11623,8 @@ async def run_tutorial():
         await section()
 
     print("\n🎉 TUTORIAL COMPLETE! 🎉")
-    print("You now have a comprehensive understanding of deep crawling with Crawl4AI.")
-    print("For more information, check out https://docs.crawl4ai.com")
+    print("You now have a comprehensive understanding of deep crawling with Crawl.")
+    print("For more information, check out https://docs.hanzo.ai")
 
 # Execute the tutorial when run directly
 if __name__ == "__main__":

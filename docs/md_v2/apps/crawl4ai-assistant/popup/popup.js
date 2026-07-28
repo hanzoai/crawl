@@ -1,4 +1,4 @@
-// Popup script for Crawl4AI Assistant
+// Popup script for Crawl Assistant
 let activeMode = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchGitHubStars() {
   try {
-    const response = await fetch('https://api.github.com/repos/unclecode/crawl4ai');
+    const response = await fetch('https://api.github.com/repos/hanzoai/crawl');
     const data = await response.json();
     const stars = data.stargazers_count;
     

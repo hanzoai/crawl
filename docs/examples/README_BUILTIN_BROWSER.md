@@ -1,10 +1,10 @@
-# Builtin Browser in Crawl4AI
+# Builtin Browser in Crawl
 
-This document explains the builtin browser feature in Crawl4AI and how to use it effectively.
+This document explains the builtin browser feature in Crawl and how to use it effectively.
 
 ## What is the Builtin Browser?
 
-The builtin browser is a persistent Chrome instance that Crawl4AI manages for you. It runs in the background and can be used by multiple crawling operations, eliminating the need to start and stop browsers for each crawl.
+The builtin browser is a persistent Chrome instance that Crawl manages for you. It runs in the background and can be used by multiple crawling operations, eliminating the need to start and stop browsers for each crawl.
 
 Benefits include:
 - **Faster startup times** - The browser is already running, so your scripts start faster
@@ -20,7 +20,7 @@ Benefits include:
 Using the builtin browser in your code is simple:
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 # Create browser config with builtin mode
 browser_config = BrowserConfig(
@@ -78,7 +78,7 @@ crwl https://example.com -b "browser_mode=builtin"
    - This means it's ready for the next crawl
    - You can manage it via the CLI commands
 
-3. During installation, Crawl4AI attempts to create a builtin browser automatically
+3. During installation, Crawl attempts to create a builtin browser automatically
 
 ## Example
 
@@ -117,7 +117,7 @@ If you encounter issues:
    crwl browser restart
    ```
 
-3. If problems persist, stop it and let Crawl4AI start a fresh one:
+3. If problems persist, stop it and let Crawl start a fresh one:
    ```
    crwl browser stop
    ```

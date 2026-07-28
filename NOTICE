@@ -1,0 +1,16 @@
+Hanzo Crawl
+Copyright 2026 Hanzo AI, Inc.
+
+This product includes software developed by the Crawl4AI project
+(https://github.com/unclecode/crawl4ai), Copyright 2024-2026 UncleCode,
+licensed under the Apache License, Version 2.0.
+
+Hanzo Crawl is a fork. It has been rebranded and adapted for the Hanzo stack:
+the Python package was renamed crawl4ai -> crawl, hosts point at crawl.hanzo.ai,
+CI builds multi-architecture images to ghcr.io/hanzoai/crawl on Hanzo's own
+runners, and secrets resolve through Hanzo KMS.
+
+The full upstream history is preserved in this repository's git log, and the
+upstream remains available as the `upstream` remote. Original attribution files
+(LICENSE, CONTRIBUTORS.md, SECURITY-CREDITS.md, SPONSORS.md) are carried forward
+unmodified.

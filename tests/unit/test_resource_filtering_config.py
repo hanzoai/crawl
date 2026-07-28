@@ -5,7 +5,7 @@ No browser or network required.
 """
 
 import pytest
-from crawl4ai.async_configs import BrowserConfig
+from crawl.async_configs import BrowserConfig
 
 
 @pytest.fixture(autouse=True)

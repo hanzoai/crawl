@@ -1,10 +1,10 @@
-# 🚀 Crawl4AI v0.7.0: The Adaptive Intelligence Update
+# 🚀 Crawl v0.7.0: The Adaptive Intelligence Update
 
 *January 28, 2025 • 10 min read*
 
 ---
 
-Today I'm releasing Crawl4AI v0.7.0—the Adaptive Intelligence Update. This release introduces fundamental improvements in how Crawl4AI handles modern web complexity through adaptive learning, intelligent content discovery, and advanced extraction capabilities.
+Today I'm releasing Crawl v0.7.0—the Adaptive Intelligence Update. This release introduces fundamental improvements in how Crawl handles modern web complexity through adaptive learning, intelligent content discovery, and advanced extraction capabilities.
 
 ## 🎯 What's New at a Glance
 
@@ -29,7 +29,7 @@ The Adaptive Crawler maintains a persistent state for each domain, tracking:
 - Extraction confidence scores
 
 ```python
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
 import asyncio
 
 async def main():
@@ -81,7 +81,7 @@ asyncio.run(main())
 ### Implementation Details
 
 ```python
-from crawl4ai import VirtualScrollConfig
+from crawl import VirtualScrollConfig
 
 # For social media feeds (Twitter/X style)
 twitter_config = VirtualScrollConfig(
@@ -152,8 +152,8 @@ async with AsyncWebCrawler() as crawler:
 
 ```python
 import asyncio
-from crawl4ai import CrawlerRunConfig, CacheMode, AsyncWebCrawler
-from crawl4ai.adaptive_crawler import LinkPreviewConfig
+from crawl import CrawlerRunConfig, CacheMode, AsyncWebCrawler
+from crawl.adaptive_crawler import LinkPreviewConfig
 
 async def main():
     # Configure intelligent link analysis
@@ -222,7 +222,7 @@ asyncio.run(main())
 
 ```python
 import asyncio
-from crawl4ai import AsyncUrlSeeder, SeedingConfig
+from crawl import AsyncUrlSeeder, SeedingConfig
 
 async def main():
     async with AsyncUrlSeeder() as seeder:
@@ -303,18 +303,18 @@ for url in urls:
 ### Migration Guide
 ```python
 # Old (v0.6.x)
-from crawl4ai import CrawlerConfig
+from crawl import CrawlerConfig
 config = CrawlerConfig(timeout=30000)
 
 # New (v0.7.0)
-from crawl4ai import CrawlerRunConfig, BrowserConfig
+from crawl import CrawlerRunConfig, BrowserConfig
 browser_config = BrowserConfig(timeout=30000)
 run_config = CrawlerRunConfig(cache_mode=CacheMode.BYPASS)
 ```
 
 ## 🤖 Coming Soon: Intelligent Web Automation
 
-I'm currently working on bringing advanced automation capabilities to Crawl4AI. This includes:
+I'm currently working on bringing advanced automation capabilities to Crawl. This includes:
 
 - **Crawl Agents**: Autonomous crawlers that understand your goals and adapt their strategies
 - **Auto JS Generation**: Automatic JavaScript code generation for complex interactions
@@ -326,18 +326,18 @@ These features are under active development and will revolutionize how we approa
 ## 🚀 Get Started
 
 ```bash
-pip install crawl4ai==0.7.0
+pip install crawl==0.7.0
 ```
 
-Check out the [updated documentation](https://docs.crawl4ai.com).
+Check out the [updated documentation](https://docs.hanzo.ai).
 
 Questions? Issues? I'm always listening:
-- GitHub: [github.com/unclecode/crawl4ai](https://github.com/unclecode/crawl4ai)
-- Discord: [discord.gg/crawl4ai](https://discord.gg/jP8KfhDhyN)
+- GitHub: [github.com/hanzoai/crawl](https://github.com/hanzoai/crawl)
+- Discord: [discord.gg/crawl](https://discord.gg/jP8KfhDhyN)
 - Twitter: [@unclecode](https://x.com/unclecode)
 
 Happy crawling! 🕷️
 
 ---
 
-*P.S. If you're using Crawl4AI in production, I'd love to hear about it. Your use cases inspire the next features.*
+*P.S. If you're using Crawl in production, I'd love to hear about it. Your use cases inspire the next features.*

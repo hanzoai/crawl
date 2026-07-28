@@ -1,5 +1,5 @@
 """
-Tests for type annotation correctness across the crawl4ai public API.
+Tests for type annotation correctness across the crawl public API.
 
 Catches issues like #1898 where arun() was annotated as returning
 RunManyReturn (includes AsyncGenerator) but actually always returns
@@ -51,7 +51,7 @@ class TestReturnTypeAnnotations:
         #1898: arun() always returns CrawlResultContainer, never AsyncGenerator.
         The return type should NOT include AsyncGenerator.
         """
-        from crawl4ai import AsyncWebCrawler
+        from crawl import AsyncWebCrawler
         ret = self._get_return_annotation(AsyncWebCrawler, "arun")
         assert ret is not None, "arun() has no return type annotation"
 
@@ -69,13 +69,13 @@ class TestReturnTypeAnnotations:
 
     def test_arun_many_return_type_exists(self):
         """arun_many() should have a return type annotation."""
-        from crawl4ai import AsyncWebCrawler
+        from crawl import AsyncWebCrawler
         ret = self._get_return_annotation(AsyncWebCrawler, "arun_many")
         assert ret is not None, "arun_many() has no return type annotation"
 
     def test_aprocess_html_return_type_exists(self):
         """aprocess_html() should have a return type annotation."""
-        from crawl4ai import AsyncWebCrawler
+        from crawl import AsyncWebCrawler
         ret = self._get_return_annotation(AsyncWebCrawler, "aprocess_html")
         assert ret is not None, "aprocess_html() has no return type annotation"
 
@@ -99,7 +99,7 @@ class TestParameterAnnotations:
 
     def test_arun_params_annotated(self):
         """arun() public params should have type annotations."""
-        from crawl4ai import AsyncWebCrawler
+        from crawl import AsyncWebCrawler
         untyped = self._get_untyped_params(AsyncWebCrawler, "arun")
         # Allow **kwargs to be untyped, but core params should be typed
         assert "url" not in untyped, "arun(url=...) missing type annotation"
@@ -107,7 +107,7 @@ class TestParameterAnnotations:
 
     def test_arun_many_params_annotated(self):
         """arun_many() public params should have type annotations."""
-        from crawl4ai import AsyncWebCrawler
+        from crawl import AsyncWebCrawler
         untyped = self._get_untyped_params(AsyncWebCrawler, "arun_many")
         assert "urls" not in untyped, "arun_many(urls=...) missing type annotation"
 
@@ -122,8 +122,8 @@ class TestAnnotationConsistency:
         Whatever arun()'s return annotation says, verify that
         CrawlResultContainer is compatible with it.
         """
-        from crawl4ai import AsyncWebCrawler
-        from crawl4ai.models import CrawlResultContainer
+        from crawl import AsyncWebCrawler
+        from crawl.models import CrawlResultContainer
 
         hints = typing.get_type_hints(AsyncWebCrawler.arun)
         ret = hints.get("return")
@@ -155,7 +155,7 @@ class TestAnnotationConsistency:
         CrawlerRunConfig.__init__ params should become attributes.
         Catches cases where a param is added to __init__ but not stored.
         """
-        from crawl4ai import CrawlerRunConfig
+        from crawl import CrawlerRunConfig
 
         sig = inspect.signature(CrawlerRunConfig.__init__)
         config = CrawlerRunConfig()
@@ -178,17 +178,17 @@ class TestPublicAPIExports:
     """Verify that types referenced in public annotations are importable."""
 
     def test_crawl_result_importable(self):
-        from crawl4ai import CrawlResult
+        from crawl import CrawlResult
         assert CrawlResult is not None
 
     def test_crawl_result_container_importable(self):
-        from crawl4ai.models import CrawlResultContainer
+        from crawl.models import CrawlResultContainer
         assert CrawlResultContainer is not None
 
     def test_run_many_return_importable(self):
-        from crawl4ai.models import RunManyReturn
+        from crawl.models import RunManyReturn
         assert RunManyReturn is not None
 
     def test_markdown_generation_result_importable(self):
-        from crawl4ai import MarkdownGenerationResult
+        from crawl import MarkdownGenerationResult
         assert MarkdownGenerationResult is not None

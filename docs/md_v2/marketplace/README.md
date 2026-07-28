@@ -1,6 +1,6 @@
-# Crawl4AI Marketplace
+# Crawl Marketplace
 
-A terminal-themed marketplace for tools, integrations, and resources related to Crawl4AI.
+A terminal-themed marketplace for tools, integrations, and resources related to Crawl.
 
 ## Setup
 
@@ -49,10 +49,10 @@ The marketplace uses SQLite with automatic migration from `schema.yaml`. Tables 
 ## Features
 
 - **Smart caching**: LocalStorage with TTL (1 hour)
-- **Terminal theme**: Consistent with Crawl4AI branding
+- **Terminal theme**: Consistent with Crawl branding
 - **Responsive design**: Works on all devices
 - **Fast search**: Debounced with 300ms delay
-- **CORS protected**: Only crawl4ai.com and localhost
+- **CORS protected**: Only crawl.hanzo.ai and localhost
 
 ## Admin Panel
 

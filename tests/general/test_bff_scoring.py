@@ -7,9 +7,9 @@ This test crawls a real website and shows that:
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.deep_crawling import BestFirstCrawlingStrategy
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.deep_crawling import BestFirstCrawlingStrategy
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 async def test_best_first_strategy():
     """Test BestFirstCrawlingStrategy with keyword scoring"""

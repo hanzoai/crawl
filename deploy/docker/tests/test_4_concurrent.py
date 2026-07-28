@@ -14,8 +14,8 @@ from threading import Thread, Event
 from collections import defaultdict
 
 # Config
-IMAGE = "crawl4ai-local:latest"
-CONTAINER_NAME = "crawl4ai-test"
+IMAGE = "crawl-local:latest"
+CONTAINER_NAME = "crawl-test"
 PORT = 11235
 LOAD_LEVELS = [
     {"name": "Light", "concurrent": 10, "requests": 20},

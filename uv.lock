@@ -474,7 +474,7 @@ wheels = [
 ]
 
 [[package]]
-name = "crawl4ai"
+name = "crawl"
 source = { editable = "." }
 dependencies = [
     { name = "aiofiles" },
@@ -548,7 +548,7 @@ transformer = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "crawl4ai" },
+    { name = "crawl" },
 ]
 
 [package.metadata]
@@ -611,7 +611,7 @@ requires-dist = [
 provides-extras = ["pdf", "torch", "transformer", "cosine", "sync", "all"]
 
 [package.metadata.requires-dev]
-dev = [{ name = "crawl4ai", editable = "." }]
+dev = [{ name = "crawl", editable = "." }]
 
 [[package]]
 name = "cryptography"

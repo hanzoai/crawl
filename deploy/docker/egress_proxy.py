@@ -23,7 +23,7 @@ from urllib.parse import urlsplit
 
 from egress_broker import EgressBlocked, resolve_and_pin
 
-logger = logging.getLogger("crawl4ai.egress")
+logger = logging.getLogger("crawl.egress")
 
 _CONNECT_OK = b"HTTP/1.1 200 Connection established\r\n\r\n"
 _BLOCKED = b"HTTP/1.1 403 Forbidden\r\nContent-Length: 11\r\n\r\nURL blocked"

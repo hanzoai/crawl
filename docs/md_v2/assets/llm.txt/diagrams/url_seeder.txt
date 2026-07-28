@@ -438,4 +438,4 @@ graph TB
     style CB3 fill:#f3e5f5
 ```
 
-**📖 Learn more:** [URL Seeding Guide](https://docs.crawl4ai.com/core/url-seeding/), [Performance Optimization](https://docs.crawl4ai.com/advanced/optimization/), [Multi-URL Crawling](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [URL Seeding Guide](https://docs.hanzo.ai/core/url-seeding/), [Performance Optimization](https://docs.hanzo.ai/advanced/optimization/), [Multi-URL Crawling](https://docs.hanzo.ai/advanced/multi-url-crawling/)

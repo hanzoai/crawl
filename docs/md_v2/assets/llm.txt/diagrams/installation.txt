@@ -1,6 +1,6 @@
 ## Installation Workflows and Architecture
 
-Visual representations of Crawl4AI installation processes, deployment options, and system interactions.
+Visual representations of Crawl installation processes, deployment options, and system interactions.
 
 ### Installation Decision Flow
 
@@ -13,22 +13,22 @@ flowchart TD
     B -->|Research/Testing| E[Google Colab]
     B -->|CI/CD Pipeline| F[Automated Setup]
     
-    C --> C1[pip install crawl4ai]
-    C1 --> C2[crawl4ai-setup]
+    C --> C1[pip install crawl]
+    C1 --> C2[crawl-setup]
     C2 --> C3{Need Advanced Features?}
     
     C3 -->|No| C4[Basic Installation Complete]
-    C3 -->|Text Clustering| C5[pip install crawl4ai with torch]
-    C3 -->|Transformers| C6[pip install crawl4ai with transformer]
-    C3 -->|All Features| C7[pip install crawl4ai with all]
+    C3 -->|Text Clustering| C5[pip install crawl with torch]
+    C3 -->|Transformers| C6[pip install crawl with transformer]
+    C3 -->|All Features| C7[pip install crawl with all]
     
-    C5 --> C8[crawl4ai-download-models]
+    C5 --> C8[crawl-download-models]
     C6 --> C8
     C7 --> C8
     C8 --> C9[Advanced Installation Complete]
     
     D --> D1{Deployment Method?}
-    D1 -->|Pre-built Image| D2[docker pull unclecode/crawl4ai]
+    D1 -->|Pre-built Image| D2[docker pull hanzoai/crawl]
     D1 -->|Docker Compose| D3[Clone repo + docker compose]
     D1 -->|Custom Build| D4[docker buildx build]
     
@@ -47,7 +47,7 @@ flowchart TD
     F1 --> F2[Automated setup scripts]
     F2 --> F3[CI/CD Integration Complete]
     
-    C4 --> G[Verify with crawl4ai-doctor]
+    C4 --> G[Verify with crawl-doctor]
     C9 --> G
     D7 --> H[Health check via API]
     E4 --> I[Run test crawl]
@@ -76,15 +76,15 @@ sequenceDiagram
     participant Playwright
     participant Crawler
     
-    User->>PyPI: pip install crawl4ai
+    User->>PyPI: pip install crawl
     PyPI-->>User: Package downloaded
     
-    User->>System: crawl4ai-setup
+    User->>System: crawl-setup
     System->>Playwright: Install browser binaries
     Playwright-->>System: Chromium, Firefox installed
     System-->>User: Setup complete
     
-    User->>System: crawl4ai-doctor
+    User->>System: crawl-doctor
     System->>System: Check Python version
     System->>System: Verify Playwright installation
     System->>System: Test browser launch
@@ -102,7 +102,7 @@ sequenceDiagram
 ```mermaid
 graph TB
     subgraph "Host System"
-        A[Docker Engine] --> B[Crawl4AI Container]
+        A[Docker Engine] --> B[Crawl Container]
         C[.llm.env File] --> B
         D[Port 11235] --> B
     end
@@ -148,25 +148,25 @@ graph TB
 stateDiagram-v2
     [*] --> BasicInstall
     
-    BasicInstall --> FeatureChoice: crawl4ai installed
+    BasicInstall --> FeatureChoice: crawl installed
     
     FeatureChoice --> TorchInstall: Need text clustering
     FeatureChoice --> TransformerInstall: Need HuggingFace models
     FeatureChoice --> AllInstall: Need everything
     FeatureChoice --> Complete: Basic features sufficient
     
-    TorchInstall --> TorchSetup: pip install crawl4ai with torch
-    TransformerInstall --> TransformerSetup: pip install crawl4ai with transformer  
-    AllInstall --> AllSetup: pip install crawl4ai with all
+    TorchInstall --> TorchSetup: pip install crawl with torch
+    TransformerInstall --> TransformerSetup: pip install crawl with transformer  
+    AllInstall --> AllSetup: pip install crawl with all
     
-    TorchSetup --> ModelDownload: crawl4ai-setup
-    TransformerSetup --> ModelDownload: crawl4ai-setup
-    AllSetup --> ModelDownload: crawl4ai-setup
+    TorchSetup --> ModelDownload: crawl-setup
+    TransformerSetup --> ModelDownload: crawl-setup
+    AllSetup --> ModelDownload: crawl-setup
     
-    ModelDownload --> PreDownload: crawl4ai-download-models
+    ModelDownload --> PreDownload: crawl-download-models
     PreDownload --> Complete: All models cached
     
-    Complete --> Verification: crawl4ai-doctor
+    Complete --> Verification: crawl-doctor
     Verification --> [*]: Installation verified
     
     note right of TorchInstall : PyTorch for semantic operations
@@ -277,7 +277,7 @@ sequenceDiagram
     Docker->>Registry: Push multi-arch manifest
     Registry-->>Docker: Build complete
     
-    User->>Registry: docker pull unclecode/crawl4ai
+    User->>Registry: docker pull hanzoai/crawl
     Registry-->>User: Download appropriate architecture
     
     User->>Docker: docker run with configuration
@@ -291,7 +291,7 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[Installation Complete] --> B[Run crawl4ai-doctor]
+    A[Installation Complete] --> B[Run crawl-doctor]
     
     B --> C{Python Version Check}
     C -->|✓ 3.10+| D{Playwright Check}
@@ -299,7 +299,7 @@ flowchart TD
     C1 --> D
     
     D -->|✓ Installed| E{Browser Binaries}
-    D -->|✗ Missing| D1[Run crawl4ai-setup]
+    D -->|✗ Missing| D1[Run crawl-setup]
     D1 --> E
     
     E -->|✓ Available| F{Test Browser Launch}
@@ -365,4 +365,4 @@ graph TD
     style D1 fill:#e3f2fd
 ```
 
-**📖 Learn more:** [Installation Guide](https://docs.crawl4ai.com/core/installation/), [Docker Deployment](https://docs.crawl4ai.com/core/docker-deployment/), [System Requirements](https://docs.crawl4ai.com/core/installation/#prerequisites)
+**📖 Learn more:** [Installation Guide](https://docs.hanzo.ai/core/installation/), [Docker Deployment](https://docs.hanzo.ai/core/docker-deployment/), [System Requirements](https://docs.hanzo.ai/core/installation/#prerequisites)

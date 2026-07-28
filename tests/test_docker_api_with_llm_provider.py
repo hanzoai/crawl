@@ -104,7 +104,7 @@ def test_playground():
     print()
 
 if __name__ == "__main__":
-    print("=== Crawl4AI Docker API Tests ===\n")
+    print("=== Crawl Docker API Tests ===\n")
     print(f"Testing API at {BASE_URL}\n")
     
     # Wait a bit for server to be fully ready

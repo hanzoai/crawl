@@ -26,8 +26,8 @@ import time
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.browser_manager import BrowserManager
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.browser_manager import BrowserManager
 
 PASS = 0
 FAIL = 0

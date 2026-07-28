@@ -1,5 +1,5 @@
-from crawl4ai.llmtxt import AsyncLLMTextManager  # Changed to AsyncLLMTextManager
-from crawl4ai.async_logger import AsyncLogger
+from crawl.llmtxt import AsyncLLMTextManager  # Changed to AsyncLLMTextManager
+from crawl.async_logger import AsyncLogger
 from pathlib import Path
 import asyncio
 
@@ -30,7 +30,7 @@ async def main():
         force_generate_facts=False, clear_bm25_cache=False
     )
 
-    # Test some relevant queries about Crawl4AI
+    # Test some relevant queries about Crawl
     test_queries = [
         "How is using the `arun_many` method?",
     ]

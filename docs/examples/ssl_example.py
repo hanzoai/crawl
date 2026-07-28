@@ -1,8 +1,8 @@
-"""Example showing how to work with SSL certificates in Crawl4AI."""
+"""Example showing how to work with SSL certificates in Crawl."""
 
 import asyncio
 import os
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 # Create tmp directory if it doesn't exist
 parent_dir = os.path.dirname(

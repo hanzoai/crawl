@@ -8,7 +8,7 @@
 
 Picture this: You hand someone a dictionary and ask them to write poetry. They know every word, its spelling, its definition—but do they know how words dance together? How certain combinations evoke emotion while others fall flat? This is exactly what we're doing when we throw API documentation at our AI assistants and expect magic.
 
-I've spent countless hours watching my AI coding assistant struggle with my own library, Crawl4AI. Despite feeding it comprehensive documentation, it would generate code that was *technically* correct but practically useless. Like a tourist speaking from a phrasebook—grammatically sound, culturally tone-deaf.
+I've spent countless hours watching my AI coding assistant struggle with my own library, Crawl. Despite feeding it comprehensive documentation, it would generate code that was *technically* correct but practically useless. Like a tourist speaking from a phrasebook—grammatically sound, culturally tone-deaf.
 
 ## Enter the Three-Dimensional Context Protocol
 
@@ -51,7 +51,7 @@ This is your API reference—the facts, the parameters, the return types. It's t
 
 ## Why Async-First Architecture?
 
-Crawl4AI uses AsyncWebCrawler as its primary interface because modern web 
+Crawl uses AsyncWebCrawler as its primary interface because modern web 
 scraping demands concurrency. Here's the thinking:
 
 1. **Network I/O is slow**: Waiting synchronously wastes 90% of execution time
@@ -133,7 +133,7 @@ Together, they create wisdom.
 
 ## Beyond Manual Documentation
 
-Now, here's where it gets interesting. I didn't hand-craft thousands of lines of structured documentation for Crawl4AI. Who has that kind of time? Instead, I built a tool that:
+Now, here's where it gets interesting. I didn't hand-craft thousands of lines of structured documentation for Crawl. Who has that kind of time? Instead, I built a tool that:
 
 1. Analyzes your codebase
 2. Extracts API signatures and structures (Memory)
@@ -141,7 +141,7 @@ Now, here's where it gets interesting. I didn't hand-craft thousands of lines of
 4. Collects real-world usage from tests and examples (Examples)
 5. Generates structured LLM context files
 
-The beauty? This tool is becoming part of Crawl4AI itself. Because if we're going to revolutionize how AI understands our code, we might as well automate it.
+The beauty? This tool is becoming part of Crawl itself. Because if we're going to revolutionize how AI understands our code, we might as well automate it.
 
 ## The Protocol, Not the Prescription
 
@@ -153,7 +153,7 @@ How you deliver those is up to you. The protocol just ensures nothing important 
 
 ## Try It Yourself
 
-Curious about implementing this for your own library? The context generation tool will be open-sourced as part of Crawl4AI. If you're interested in early access or want to discuss the approach, drop me a DM on X [@unclecode](https://twitter.com/unclecode).
+Curious about implementing this for your own library? The context generation tool will be open-sourced as part of Crawl. If you're interested in early access or want to discuss the approach, drop me a DM on X [@unclecode](https://twitter.com/unclecode).
 
 Because let's face it: if we're going to live in a world where AI writes half our code, we might as well teach it properly.
 
@@ -172,7 +172,7 @@ And wisdom, not information, is what makes great developers—human or artificia
 
 ---
 
-*Want to see this in action? Check out the [Crawl4AI LLM Context Builder](/core/llmtxt/) and experience the difference structured context makes.*
+*Want to see this in action? Check out the [Crawl LLM Context Builder](/core/llmtxt/) and experience the difference structured context makes.*
 
 <style>
 /* Custom styles for this article */

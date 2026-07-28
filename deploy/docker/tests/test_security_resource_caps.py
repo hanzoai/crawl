@@ -33,8 +33,8 @@ class TestBodySizeLimit:
 class TestDeepCrawlClamp:
     def test_infinite_max_pages_clamped(self):
         from governor import clamp_deep_crawl, DEFAULT_MAX_PAGES
-        from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
-        from crawl4ai import CrawlerRunConfig
+        from crawl.deep_crawling import BFSDeepCrawlStrategy
+        from crawl import CrawlerRunConfig
 
         strat = BFSDeepCrawlStrategy(max_depth=99)  # max_pages defaults to infinity
         cfg = CrawlerRunConfig(deep_crawl_strategy=strat)
@@ -44,7 +44,7 @@ class TestDeepCrawlClamp:
 
     def test_no_deep_crawl_is_noop(self):
         from governor import clamp_deep_crawl
-        from crawl4ai import CrawlerRunConfig
+        from crawl import CrawlerRunConfig
         cfg = CrawlerRunConfig()
         clamp_deep_crawl(cfg)  # must not raise
         assert cfg.deep_crawl_strategy is None
@@ -53,7 +53,7 @@ class TestDeepCrawlClamp:
 class TestUntrustedDeepCrawlStillForbidden:
     def test_request_cannot_set_deep_crawl(self):
         # The clamp is defense in depth; the primary control is R2 rejecting it.
-        from crawl4ai.async_configs import CrawlerRunConfig, Provenance, UntrustedConfigError
+        from crawl.async_configs import CrawlerRunConfig, Provenance, UntrustedConfigError
         with pytest.raises(UntrustedConfigError):
             CrawlerRunConfig.load(
                 {"deep_crawl_strategy": {"type": "BFSDeepCrawlStrategy", "params": {"max_depth": 9}}},

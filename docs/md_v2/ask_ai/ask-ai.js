@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 \`\`\`python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -276,7 +276,7 @@ A code snippet: \`crawler.run()\`. Check the [quickstart](/core/quickstart).`;
         isThinking = thinking;
         sendButton.disabled = thinking;
         chatInput.disabled = thinking;
-        chatInput.placeholder = thinking ? "AI is responding..." : "Ask about Crawl4AI...";
+        chatInput.placeholder = thinking ? "AI is responding..." : "Ask about Crawl...";
         // Stop any existing stream if we start thinking again (e.g., rapid resend)
         if (thinking && streamInterval) {
             clearInterval(streamInterval);
@@ -362,7 +362,7 @@ A code snippet: \`crawler.run()\`. Check the [quickstart](/core/quickstart).`;
         if (!isFromQuery) {
             // Show welcome only if manually started
             // chatMessages.innerHTML =
-            //     '<div class="message ai-message welcome-message">Started a new chat! Ask me anything about Crawl4AI.</div>';
+            //     '<div class="message ai-message welcome-message">Started a new chat! Ask me anything about Crawl.</div>';
             chatMessages.innerHTML =
                 '<div class="message ai-message welcome-message">We will launch this feature very soon.</div>';
         }

@@ -1,6 +1,6 @@
 """Test for browser_context_id and target_id parameters.
 
-These tests verify that Crawl4AI can connect to and use pre-created
+These tests verify that Crawl can connect to and use pre-created
 browser contexts, which is essential for cloud browser services that
 pre-create isolated contexts for each user.
 
@@ -8,8 +8,8 @@ The flow being tested:
 1. Start a browser with CDP
 2. Create a context via raw CDP commands (simulating cloud service)
 3. Create a page/target in that context
-4. Have Crawl4AI connect using browser_context_id and target_id
-5. Verify Crawl4AI uses the existing context/page instead of creating new ones
+4. Have Crawl connect using browser_context_id and target_id
+5. Verify Crawl uses the existing context/page instead of creating new ones
 """
 
 import asyncio
@@ -22,9 +22,9 @@ import websockets
 if __name__ == "__main__":
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from crawl4ai.browser_manager import BrowserManager, ManagedBrowser
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_logger import AsyncLogger
+from crawl.browser_manager import BrowserManager, ManagedBrowser
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_logger import AsyncLogger
 
 # Create a logger for clear terminal output
 logger = AsyncLogger(verbose=True, log_file=None)
@@ -207,12 +207,12 @@ async def test_browser_context_id_basic():
 
 async def test_pre_created_context_usage():
     """
-    Test that Crawl4AI uses a pre-created browser context instead of creating a new one.
+    Test that Crawl uses a pre-created browser context instead of creating a new one.
 
     This simulates the cloud browser service flow:
     1. Start browser with CDP
     2. Create context via raw CDP (simulating cloud service)
-    3. Have Crawl4AI connect with browser_context_id
+    3. Have Crawl connect with browser_context_id
     4. Verify it uses existing context
     """
     logger.info("Testing pre-created context usage", tag="TEST")

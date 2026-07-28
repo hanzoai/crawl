@@ -4,16 +4,16 @@ import json
 import base64
 from pathlib import Path
 from typing import List
-from crawl4ai import ProxyConfig
+from crawl import ProxyConfig
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode, CrawlResult
-from crawl4ai import RoundRobinProxyStrategy
-from crawl4ai import JsonCssExtractionStrategy, LLMExtractionStrategy
-from crawl4ai import LLMConfig
-from crawl4ai import PruningContentFilter, BM25ContentFilter
-from crawl4ai import DefaultMarkdownGenerator
-from crawl4ai import BFSDeepCrawlStrategy, DomainFilter, FilterChain
-from crawl4ai import BrowserConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode, CrawlResult
+from crawl import RoundRobinProxyStrategy
+from crawl import JsonCssExtractionStrategy, LLMExtractionStrategy
+from crawl import LLMConfig
+from crawl import PruningContentFilter, BM25ContentFilter
+from crawl import DefaultMarkdownGenerator
+from crawl import BFSDeepCrawlStrategy, DomainFilter, FilterChain
+from crawl import BrowserConfig
 
 __cur_dir__ = Path(__file__).parent
 
@@ -181,7 +181,7 @@ async def demo_deep_crawl():
     """Deep crawling with BFS strategy"""
     print("\n=== 6. Deep Crawling ===")
 
-    filter_chain = FilterChain([DomainFilter(allowed_domains=["crawl4ai.com"])])
+    filter_chain = FilterChain([DomainFilter(allowed_domains=["crawl.hanzo.ai"])])
 
     deep_crawl_strategy = BFSDeepCrawlStrategy(
         max_depth=1, max_pages=5, filter_chain=filter_chain
@@ -189,7 +189,7 @@ async def demo_deep_crawl():
 
     async with AsyncWebCrawler() as crawler:
         results: List[CrawlResult] = await crawler.arun(
-            url="https://docs.crawl4ai.com",
+            url="https://docs.hanzo.ai",
             config=CrawlerRunConfig(deep_crawl_strategy=deep_crawl_strategy),
         )
 
@@ -357,7 +357,7 @@ async def demo_raw_html_and_file():
     raw_html = """
     <html><body>
         <h1>Sample Article</h1>
-        <p>This is sample content for testing Crawl4AI's raw HTML processing.</p>
+        <p>This is sample content for testing Crawl's raw HTML processing.</p>
     </body></html>
     """
 
@@ -388,7 +388,7 @@ async def demo_raw_html_and_file():
 
 async def main():
     """Run all demo functions sequentially"""
-    print("=== Comprehensive Crawl4AI Demo ===")
+    print("=== Comprehensive Crawl Demo ===")
     print("Note: Some examples require API keys or other configurations")
 
     # Run all demos

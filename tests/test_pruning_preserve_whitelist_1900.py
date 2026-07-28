@@ -5,7 +5,7 @@ Verifies that whitelisted classes/tags are always kept regardless of
 pruning score, while non-whitelisted content is still pruned normally.
 """
 import pytest
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl.content_filter_strategy import PruningContentFilter
 
 
 # ── HTML fixtures ────────────────────────────────────────────────────────
@@ -39,7 +39,7 @@ GITHUB_COMMENT_HTML = """
         </div>
         <div class="comment-body">
             <p>Agreed with alice. The abstract base class approach makes sense.
-            We could also add a built-in implementation for PDFs since crawl4ai
+            We could also add a built-in implementation for PDFs since crawl
             already has PDFContentScrapingStrategy that could be wrapped.</p>
         </div>
     </div>

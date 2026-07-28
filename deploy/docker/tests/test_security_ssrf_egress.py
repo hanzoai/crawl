@@ -100,14 +100,14 @@ class TestEnforceEgress:
     def test_tls_verification_forced_on(self, monkeypatch):
         import egress_broker
         monkeypatch.setattr(egress_broker, "ALLOW_INSECURE_TLS", False)
-        from crawl4ai import BrowserConfig
+        from crawl import BrowserConfig
         b = BrowserConfig(ignore_https_errors=True)
         egress_broker.enforce_egress(b)
         assert b.ignore_https_errors is False
 
     def test_proxy_nulled(self):
         import egress_broker
-        from crawl4ai import BrowserConfig
+        from crawl import BrowserConfig
         b = BrowserConfig()
         b.proxy_config = object()
         egress_broker.enforce_egress(b)
@@ -115,7 +115,7 @@ class TestEnforceEgress:
 
     def test_dangerous_args_stripped(self):
         import egress_broker
-        from crawl4ai import BrowserConfig
+        from crawl import BrowserConfig
         b = BrowserConfig(extra_args=["--proxy-server=http://evil", "--ignore-certificate-errors", "--headless"])
         egress_broker.enforce_egress(b)
         assert b.extra_args == ["--headless"]

@@ -1,10 +1,10 @@
-# Crawl4AI Docker Server - Technical Architecture
+# Crawl Docker Server - Technical Architecture
 
 **Version**: 0.7.4
 **Last Updated**: October 2025
 **Status**: Production-ready with real-time monitoring
 
-This document provides a comprehensive technical overview of the Crawl4AI Docker server architecture, including the smart browser pool, real-time monitoring system, and all production optimizations.
+This document provides a comprehensive technical overview of the Crawl Docker server architecture, including the smart browser pool, real-time monitoring system, and all production optimizations.
 
 ---
 
@@ -782,15 +782,15 @@ python -m uvicorn server:app --host 0.0.0.0 --port 11235 --reload
 
 ```bash
 # Build image
-docker build -t crawl4ai:latest -f Dockerfile .
+docker build -t crawl:latest -f Dockerfile .
 
 # Run container
 docker run -d \
-  --name crawl4ai \
+  --name crawl \
   -p 11235:11235 \
   --shm-size=1g \
   --env-file .llm.env \
-  crawl4ai:latest
+  crawl:latest
 ```
 
 ### Production Configuration
@@ -828,19 +828,19 @@ http://localhost:11235/static/monitor/
 **Check Logs:**
 ```bash
 # All activity
-docker logs crawl4ai -f
+docker logs crawl -f
 
 # Pool activity only
-docker logs crawl4ai | grep -E "(🔥|♨️|❄️|🆕|⬆️)"
+docker logs crawl | grep -E "(🔥|♨️|❄️|🆕|⬆️)"
 
 # Errors only
-docker logs crawl4ai | grep ERROR
+docker logs crawl | grep ERROR
 ```
 
 **Metrics:**
 ```bash
 # Container stats
-docker stats crawl4ai
+docker stats crawl
 
 # Memory percentage
 curl http://localhost:11235/monitor/health | jq '.container.memory_percent'
@@ -862,7 +862,7 @@ Symptoms: Yellow "Connecting..." indicator, falls back to blue "Polling"
 Debug:
 ```bash
 # Check server logs
-docker logs crawl4ai | grep WebSocket
+docker logs crawl | grep WebSocket
 
 # Test WebSocket manually
 python test-websocket.py
@@ -883,7 +883,7 @@ curl http://localhost:11235/monitor/health | jq '.container.memory_percent'
 curl http://localhost:11235/monitor/browsers
 
 # Check janitor activity
-docker logs crawl4ai | grep "🧹"
+docker logs crawl | grep "🧹"
 ```
 
 Fix:
@@ -899,7 +899,7 @@ Symptoms: High "New Created" count, poor reuse rate
 Debug:
 ```python
 # Check config signature matching
-from crawl4ai import BrowserConfig
+from crawl import BrowserConfig
 import json, hashlib
 
 cfg = BrowserConfig(...)  # Your config
@@ -909,7 +909,7 @@ print(f"Config signature: {sig[:8]}")
 
 Check logs for permanent browser signature:
 ```bash
-docker logs crawl4ai | grep "permanent"
+docker logs crawl | grep "permanent"
 ```
 
 Fix: Ensure endpoint configs match permanent browser config exactly
@@ -937,7 +937,7 @@ Fix:
 **Config Signature Checker:**
 
 ```python
-from crawl4ai import BrowserConfig
+from crawl import BrowserConfig
 import json, hashlib
 
 def check_sig(cfg: BrowserConfig) -> str:
@@ -1053,7 +1053,7 @@ pip install -r requirements.txt
 
 # Build image first
 cd /path/to/repo
-docker build -t crawl4ai-local:latest .
+docker build -t crawl-local:latest .
 
 # Run tests
 cd deploy/docker/tests
@@ -1133,8 +1133,8 @@ When modifying the architecture:
 
 ## License & Credits
 
-**Crawl4AI** - Created by Unclecode
-**GitHub**: https://github.com/unclecode/crawl4ai
+**Crawl** - Created by Unclecode
+**GitHub**: https://github.com/hanzoai/crawl
 **License**: See LICENSE file in repository
 
 **Architecture & Optimizations**: October 2025
@@ -1146,4 +1146,4 @@ When modifying the architecture:
 **End of Technical Architecture Document**
 
 For questions or issues, please open a GitHub issue at:
-https://github.com/unclecode/crawl4ai/issues
+https://github.com/hanzoai/crawl/issues

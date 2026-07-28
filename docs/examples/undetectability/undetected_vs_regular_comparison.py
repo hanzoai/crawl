@@ -13,7 +13,7 @@ Based on tested anti-bot services:
 """
 
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,
@@ -21,7 +21,7 @@ from crawl4ai import (
     UndetectedAdapter,
     CrawlResult
 )
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 
 # Test URLs for various bot detection services
@@ -138,7 +138,7 @@ async def compare_adapters(url: str, site_name: str):
 
 async def main():
     """Run comparison tests on multiple sites"""
-    print("🤖 Crawl4AI Browser Adapter Comparison")
+    print("🤖 Crawl Browser Adapter Comparison")
     print("Testing regular vs undetected browser modes\n")
     
     results = {}

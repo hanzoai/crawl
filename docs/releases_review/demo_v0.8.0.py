@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI v0.8.0 Release Demo - Feature Verification Tests
+Crawl v0.8.0 Release Demo - Feature Verification Tests
 ==========================================================
 
 This demo ACTUALLY RUNS and VERIFIES the new features in v0.8.0.
@@ -16,7 +16,7 @@ New Features Verified:
 7. Security - Hooks disabled by default (Docker API)
 
 Breaking Changes in v0.8.0:
-- Docker API hooks disabled by default (CRAWL4AI_HOOKS_ENABLED=false)
+- Docker API hooks disabled by default (CRAWL_HOOKS_ENABLED=false)
 - file:// URLs blocked on Docker API endpoints
 
 Usage:
@@ -78,8 +78,8 @@ async def test_crash_recovery_state_capture():
     print_test("Crash Recovery - State Capture", "on_state_change")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.deep_crawling import BFSDeepCrawlStrategy
 
         captured_states: List[Dict[str, Any]] = []
 
@@ -134,8 +134,8 @@ async def test_crash_recovery_resume():
     print_test("Crash Recovery - Resume from Checkpoint", "resume_state")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.deep_crawling import BFSDeepCrawlStrategy
 
         # Phase 1: Start crawl and capture state after 2 pages
         crash_after = 2
@@ -228,8 +228,8 @@ async def test_crash_recovery_json_serializable():
     print_test("Crash Recovery - JSON Serializable", "State Structure")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.deep_crawling import BFSDeepCrawlStrategy
 
         captured_state: Optional[Dict] = None
 
@@ -304,7 +304,7 @@ async def test_prefetch_returns_html_links():
     print_test("Prefetch Mode - HTML and Links", "prefetch=True")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         config = CrawlerRunConfig(prefetch=True)
 
@@ -351,7 +351,7 @@ async def test_prefetch_skips_processing():
     print_test("Prefetch Mode - Skips Processing", "prefetch=True")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         config = CrawlerRunConfig(prefetch=True)
 
@@ -403,7 +403,7 @@ async def test_prefetch_two_phase():
     print_test("Prefetch Mode - Two-Phase Crawl", "Two-Phase Pattern")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         async with AsyncWebCrawler(verbose=False) as crawler:
             # Phase 1: Fast discovery with prefetch
@@ -469,29 +469,29 @@ async def test_security_hooks_disabled():
     Verify hooks are disabled by default in Docker API for security.
 
     NEW in v0.8.0: Docker API hooks are disabled by default to prevent
-    Remote Code Execution. Set CRAWL4AI_HOOKS_ENABLED=true to enable.
+    Remote Code Execution. Set CRAWL_HOOKS_ENABLED=true to enable.
     """
-    print_test("Security - Hooks Disabled", "CRAWL4AI_HOOKS_ENABLED")
+    print_test("Security - Hooks Disabled", "CRAWL_HOOKS_ENABLED")
 
     try:
         import os
 
         # Check the default environment variable
-        hooks_enabled = os.environ.get("CRAWL4AI_HOOKS_ENABLED", "false").lower()
+        hooks_enabled = os.environ.get("CRAWL_HOOKS_ENABLED", "false").lower()
 
         if hooks_enabled == "true":
             record_result("Hooks Disabled Default", "Security", True,
-                         "CRAWL4AI_HOOKS_ENABLED is explicitly set to 'true' (user override)",
+                         "CRAWL_HOOKS_ENABLED is explicitly set to 'true' (user override)",
                          skipped=True)
             return
 
         # Verify default is "false"
         if hooks_enabled == "false":
             record_result("Hooks Disabled Default", "Security", True,
-                         "Hooks disabled by default (CRAWL4AI_HOOKS_ENABLED=false)")
+                         "Hooks disabled by default (CRAWL_HOOKS_ENABLED=false)")
         else:
             record_result("Hooks Disabled Default", "Security", True,
-                         f"CRAWL4AI_HOOKS_ENABLED='{hooks_enabled}' (not 'true', hooks disabled)")
+                         f"CRAWL_HOOKS_ENABLED='{hooks_enabled}' (not 'true', hooks disabled)")
 
     except Exception as e:
         record_result("Hooks Disabled Default", "Security", False, f"Exception: {e}")
@@ -507,7 +507,7 @@ async def test_comprehensive_crawl():
     print_test("Comprehensive Crawl Test", "Overall")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 
         async with AsyncWebCrawler(config=BrowserConfig(headless=True), verbose=False) as crawler:
             result = await crawler.arun(
@@ -582,7 +582,7 @@ def print_summary():
 
 async def main():
     """Run all verification tests"""
-    print_header("Crawl4AI v0.8.0 - Feature Verification Tests")
+    print_header("Crawl v0.8.0 - Feature Verification Tests")
     print("Running actual tests to verify new features...")
     print("\nKey Features in v0.8.0:")
     print("  - Crash Recovery for Deep Crawl (resume_state, on_state_change)")

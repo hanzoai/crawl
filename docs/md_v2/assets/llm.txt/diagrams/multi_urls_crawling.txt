@@ -389,4 +389,4 @@ graph TD
     style R fill:#ffcdd2
 ```
 
-**📖 Learn more:** [Multi-URL Crawling Guide](https://docs.crawl4ai.com/advanced/multi-url-crawling/), [Dispatcher Configuration](https://docs.crawl4ai.com/advanced/crawl-dispatcher/), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/#performance-optimization)
+**📖 Learn more:** [Multi-URL Crawling Guide](https://docs.hanzo.ai/advanced/multi-url-crawling/), [Dispatcher Configuration](https://docs.hanzo.ai/advanced/crawl-dispatcher/), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/#performance-optimization)

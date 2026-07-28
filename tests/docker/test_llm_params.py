@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test script for LLM temperature and base_url parameters in Crawl4AI Docker API.
+Test script for LLM temperature and base_url parameters in Crawl Docker API.
 This demonstrates the new hierarchical configuration system:
 1. Request-level parameters (highest priority)
 2. Provider-specific environment variables
@@ -294,7 +294,7 @@ async def show_environment_info():
 async def main():
     """Run all tests"""
     console.print(Panel.fit(
-        "[bold cyan]Crawl4AI LLM Parameters Test Suite[/]\n" +
+        "[bold cyan]Crawl LLM Parameters Test Suite[/]\n" +
         "Testing temperature and base_url configuration hierarchy",
         border_style="cyan"
     ))

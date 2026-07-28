@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Crawl4AI Assistant",
+  "name": "Crawl Assistant",
   "version": "1.3.0",
-  "description": "Visual schema and script builder for Crawl4AI - Build extraction schemas and automation scripts by clicking and recording actions",
+  "description": "Visual schema and script builder for Crawl - Build extraction schemas and automation scripts by clicking and recording actions",
   "permissions": [
     "activeTab",
     "storage",

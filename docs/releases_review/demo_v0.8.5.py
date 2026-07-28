@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI v0.8.5 Release Demo - Feature Verification Tests
+Crawl v0.8.5 Release Demo - Feature Verification Tests
 ==========================================================
 
 This demo ACTUALLY RUNS and VERIFIES the new features in v0.8.5.
@@ -81,8 +81,8 @@ async def test_antibot_detection():
     print_test("Anti-bot Detection", "is_blocked() + live crawl")
 
     try:
-        from crawl4ai.antibot_detector import is_blocked
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.antibot_detector import is_blocked
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         # Unit: blocked page detected
         blocked, reason = is_blocked(
@@ -138,7 +138,7 @@ async def test_crawl_stats():
     print_test("Crawl Stats Tracking", "crawl_stats on CrawlResult")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         async with AsyncWebCrawler(verbose=False) as crawler:
             result = await crawler.arun(
@@ -188,8 +188,8 @@ async def test_proxy_escalation():
     print_test("Proxy Escalation Chain", "list proxy_config + DIRECT crawl")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.async_configs import ProxyConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.async_configs import ProxyConfig
 
         # Verify DIRECT normalizes correctly in a list
         config = CrawlerRunConfig(
@@ -233,8 +233,8 @@ async def test_config_defaults():
     print_test("Config Defaults API", "set_defaults → real crawl")
 
     try:
-        from crawl4ai import AsyncWebCrawler
-        from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
+        from crawl import AsyncWebCrawler
+        from crawl.async_configs import BrowserConfig, CrawlerRunConfig
 
         original = BrowserConfig.get_defaults()
 
@@ -301,7 +301,7 @@ async def test_shadow_dom_flattening():
     print_test("Shadow DOM Flattening", "comparison crawl")
 
     try:
-        from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
         # Use a page known to use web components / shadow DOM
         # (GitHub uses shadow DOM for some components)
@@ -352,8 +352,8 @@ async def test_deep_crawl_cancellation():
     print_test("Deep Crawl Cancellation", "DFS cancel after 2 pages")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.deep_crawling import DFSDeepCrawlStrategy
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.deep_crawling import DFSDeepCrawlStrategy
 
         pages_crawled = 0
 
@@ -407,7 +407,7 @@ async def test_consent_popup_removal():
     print_test("Consent Popup Removal", "crawl with remove_consent_popups")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         async with AsyncWebCrawler(verbose=False) as crawler:
             result = await crawler.arun(
@@ -448,8 +448,8 @@ async def test_source_sibling_selector():
     print_test("Source/Sibling Selector", "crawl + extract with source field")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
 
         # Use a schema with source field on synthetic HTML first to verify
         # the feature works, then also run it through a real crawl pipeline
@@ -540,7 +540,7 @@ async def test_gfm_tables():
     print_test("GFM Table Compliance", "crawl page with tables")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         # Use raw HTML with a table
         html = """
@@ -607,7 +607,7 @@ async def test_avoid_ads():
     print_test("Resource Filtering", "crawl with avoid_ads + avoid_css")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 
         # Crawl with ad blocking enabled
         async with AsyncWebCrawler(
@@ -659,7 +659,7 @@ async def test_browser_recycling():
     print_test("Browser Recycling", "multi-page crawl with memory_saving_mode")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 
         urls = [
             "https://example.com",
@@ -706,9 +706,9 @@ async def test_bm25_dedup():
     print_test("BM25 Deduplication", "fit_markdown has no duplicates")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.content_filter_strategy import BM25ContentFilter
-        from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.content_filter_strategy import BM25ContentFilter
+        from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
         async with AsyncWebCrawler(verbose=False) as crawler:
             result = await crawler.arun(
@@ -763,7 +763,7 @@ async def test_cleaned_html_attrs():
     print_test("cleaned_html Attributes", "class and id preserved")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         html = """
         <html><body>
@@ -851,7 +851,7 @@ def print_summary():
 
 async def main():
     """Run all verification tests"""
-    print_header("Crawl4AI v0.8.5 - Feature Verification Tests")
+    print_header("Crawl v0.8.5 - Feature Verification Tests")
     print("Running actual tests to verify new features...")
     print("\nKey Features in v0.8.5:")
     print("  - Anti-bot detection + retry + proxy escalation + fallback")

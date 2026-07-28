@@ -1,7 +1,7 @@
 import json
 import asyncio
 from urllib.parse import quote, urlencode
-from crawl4ai import CrawlerRunConfig, BrowserConfig, AsyncWebCrawler
+from crawl import CrawlerRunConfig, BrowserConfig, AsyncWebCrawler
 
 # Scrapeless provides a free anti-detection fingerprint browser client and cloud browsers:
 # https://www.scrapeless.com/en/blog/scrapeless-nstbrowser-strategic-integration

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Stress test for Crawl4AI's Docker API server (/crawl and /crawl/stream endpoints).
+Stress test for Crawl's Docker API server (/crawl and /crawl/stream endpoints).
 
-This version targets a running Crawl4AI API server, sending concurrent requests
+This version targets a running Crawl API server, sending concurrent requests
 to test its ability to handle multiple crawl jobs simultaneously.
 It uses httpx for async HTTP requests and logs results per batch of requests,
 including server-side memory usage reported by the API.
@@ -113,7 +113,7 @@ class ApiStressTest:
         self.results_summary["start_time"] = time.strftime("%Y-%m-%d %H:%M:%S")
         start_time = time.time()
 
-        console.print(f"\n[bold cyan]Crawl4AI API Stress Test - {self.url_count} URLs, {self.max_concurrent_requests} concurrent requests[/bold cyan]")
+        console.print(f"\n[bold cyan]Crawl API Stress Test - {self.url_count} URLs, {self.max_concurrent_requests} concurrent requests[/bold cyan]")
         console.print(f"[bold cyan]Target API:[/bold cyan] {self.api_base_url}, [bold cyan]Mode:[/bold cyan] {'Streaming' if self.stream_mode else 'Batch'}, [bold cyan]URLs per Request:[/bold cyan] {self.chunk_size}")
         # Removed client memory log
 
@@ -478,9 +478,9 @@ async def run_full_test(args):
 # --- main Function (Argument parsing mostly unchanged) ---
 def main():
     """Main entry point for the script."""
-    parser = argparse.ArgumentParser(description="Crawl4AI API Server Stress Test")
+    parser = argparse.ArgumentParser(description="Crawl API Server Stress Test")
 
-    parser.add_argument("--api-url", type=str, default=DEFAULT_API_URL, help=f"Base URL of the Crawl4AI API server (default: {DEFAULT_API_URL})")
+    parser.add_argument("--api-url", type=str, default=DEFAULT_API_URL, help=f"Base URL of the Crawl API server (default: {DEFAULT_API_URL})")
     parser.add_argument("--urls", type=int, default=DEFAULT_URL_COUNT, help=f"Total number of unique URLs to process via API calls (default: {DEFAULT_URL_COUNT})")
     parser.add_argument("--max-concurrent-requests", type=int, default=DEFAULT_MAX_CONCURRENT_REQUESTS, help=f"Maximum concurrent API requests from this client (default: {DEFAULT_MAX_CONCURRENT_REQUESTS})")
     parser.add_argument("--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE, help=f"Number of URLs per API request payload (default: {DEFAULT_CHUNK_SIZE})")
@@ -490,7 +490,7 @@ def main():
 
     args = parser.parse_args()
 
-    console.print("[bold underline]Crawl4AI API Stress Test Configuration[/bold underline]")
+    console.print("[bold underline]Crawl API Stress Test Configuration[/bold underline]")
     console.print(f"API URL: {args.api_url}")
     console.print(f"Total URLs: {args.urls}, Concurrent Client Requests: {args.max_concurrent_requests}, URLs per Request: {args.chunk_size}")
     console.print(f"Mode: {'Streaming' if args.stream else 'Batch'}")

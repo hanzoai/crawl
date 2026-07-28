@@ -4,8 +4,8 @@ No mocks - all tests hit real servers.
 """
 
 import pytest
-from crawl4ai.cache_validator import CacheValidator, CacheValidationResult
-from crawl4ai.utils import compute_head_fingerprint
+from crawl.cache_validator import CacheValidator, CacheValidationResult
+from crawl.utils import compute_head_fingerprint
 
 
 class TestRealDomainsConditionalSupport:
@@ -30,14 +30,14 @@ class TestRealDomainsConditionalSupport:
             assert "304" in result.reason
 
     @pytest.mark.asyncio
-    async def test_docs_crawl4ai_etag(self):
-        """docs.crawl4ai.com supports ETag - should return 304."""
-        url = "https://docs.crawl4ai.com/"
+    async def test_docs_crawl_etag(self):
+        """docs.hanzo.ai supports ETag - should return 304."""
+        url = "https://docs.hanzo.ai/"
 
         async with CacheValidator(timeout=15.0) as validator:
             head_html, etag, last_modified = await validator._fetch_head(url)
 
-            assert etag is not None, "docs.crawl4ai.com should return ETag"
+            assert etag is not None, "docs.hanzo.ai should return ETag"
 
             result = await validator.validate(url=url, stored_etag=etag)
 
@@ -222,9 +222,9 @@ class TestRealDomainsHeadFingerprint:
             assert fingerprint != ""
 
     @pytest.mark.asyncio
-    async def test_crawl4ai_docs_fingerprint(self):
-        """Crawl4AI docs should have title and description."""
-        url = "https://docs.crawl4ai.com/"
+    async def test_crawl_docs_fingerprint(self):
+        """Crawl docs should have title and description."""
+        url = "https://docs.hanzo.ai/"
 
         async with CacheValidator(timeout=15.0) as validator:
             head_html, _, _ = await validator._fetch_head(url)
@@ -232,7 +232,7 @@ class TestRealDomainsHeadFingerprint:
             assert head_html is not None
             fingerprint = compute_head_fingerprint(head_html)
 
-            assert fingerprint != "", "Should extract fingerprint from Crawl4AI docs"
+            assert fingerprint != "", "Should extract fingerprint from Crawl docs"
 
 
 class TestRealDomainsFetchHead:

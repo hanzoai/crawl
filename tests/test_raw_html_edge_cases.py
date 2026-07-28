@@ -9,7 +9,7 @@ import pytest
 import asyncio
 import tempfile
 import os
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 
 # ============================================================================
@@ -298,7 +298,7 @@ async def test_file_url_fast_path():
 @pytest.mark.asyncio
 async def test_raw_html_with_css_extraction():
     """Test CSS extraction on raw HTML after js_code modifies it."""
-    from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+    from crawl.extraction_strategy import JsonCssExtractionStrategy
 
     html = """
     <html><body>

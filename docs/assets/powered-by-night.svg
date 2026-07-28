@@ -23,6 +23,6 @@
     <path d="M18 17.5 L27 17.5" stroke="#8B5CF6" stroke-width="2" filter="url(#neonGlow)"/>
     <circle cx="22.5" cy="17.5" r="2" fill="#8B5CF6"/>
     
-    <text x="40" y="23" fill="#fff" font-family="Arial, sans-serif" font-weight="500" font-size="14" filter="url(#neonGlow)">Crawl4AI</text>
+    <text x="40" y="23" fill="#fff" font-family="Arial, sans-serif" font-weight="500" font-size="14" filter="url(#neonGlow)">Crawl</text>
   </g>
 </svg>

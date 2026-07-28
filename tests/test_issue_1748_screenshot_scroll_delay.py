@@ -16,8 +16,8 @@ import base64
 from io import BytesIO
 from unittest.mock import AsyncMock, MagicMock, patch, call
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 
 # ---------------------------------------------------------------------------
@@ -75,7 +75,7 @@ async def test_scroll_delay_custom_value_used():
     )
 
     with patch(
-        "crawl4ai.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
+        "crawl.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
     ) as mock_sleep:
         result = await strategy.take_screenshot_scroller(
             page, scroll_delay=1.5, screenshot_height_threshold=100
@@ -117,7 +117,7 @@ async def test_scroll_delay_default_value():
     )
 
     with patch(
-        "crawl4ai.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
+        "crawl.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
     ) as mock_sleep:
         result = await strategy.take_screenshot_scroller(
             page, screenshot_height_threshold=100
@@ -184,7 +184,7 @@ async def test_integration_arun_respects_scroll_delay():
     )
 
     with patch(
-        "crawl4ai.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
+        "crawl.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
     ) as mock_sleep:
         async with AsyncWebCrawler() as crawler:
             result = await crawler.arun(f"raw:{TALL_HTML}", config=config)
@@ -221,7 +221,7 @@ async def test_integration_generate_media_respects_scroll_delay():
     )
 
     with patch(
-        "crawl4ai.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
+        "crawl.async_crawler_strategy.asyncio.sleep", new_callable=AsyncMock
     ) as mock_sleep:
         async with AsyncWebCrawler() as crawler:
             (

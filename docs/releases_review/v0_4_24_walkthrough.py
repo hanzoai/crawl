@@ -1,8 +1,8 @@
 """
-Crawl4AI v0.4.24 Feature Walkthrough
+Crawl v0.4.24 Feature Walkthrough
 ===================================
 
-This script demonstrates the new features introduced in Crawl4AI v0.4.24.
+This script demonstrates the new features introduced in Crawl v0.4.24.
 Each section includes detailed examples and explanations of the new capabilities.
 """
 
@@ -11,7 +11,7 @@ import os
 import json
 import re
 from typing import List
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,
@@ -19,8 +19,8 @@ from crawl4ai import (
     LLMExtractionStrategy,
     JsonCssExtractionStrategy,
 )
-from crawl4ai.content_filter_strategy import RelevantContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import RelevantContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 from bs4 import BeautifulSoup
 
 # Sample HTML for demonstrations
@@ -450,7 +450,7 @@ async def demo_input_formats():
 
 # Main execution
 async def main():
-    print("Crawl4AI v0.4.24 Feature Walkthrough")
+    print("Crawl v0.4.24 Feature Walkthrough")
     print("====================================")
 
     # Run all demos

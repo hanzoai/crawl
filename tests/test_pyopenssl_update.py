@@ -1,5 +1,5 @@
 """
-Test script to verify pyOpenSSL update doesn't break crawl4ai functionality.
+Test script to verify pyOpenSSL update doesn't break crawl functionality.
 
 This test verifies:
 1. pyOpenSSL and cryptography versions are correct and secure
@@ -66,7 +66,7 @@ async def test_basic_crawl():
     print("=" * 60)
 
     try:
-        from crawl4ai import AsyncWebCrawler
+        from crawl import AsyncWebCrawler
 
         async with AsyncWebCrawler(verbose=True) as crawler:
             # Test with a simple HTTPS site (requires SSL/TLS)
@@ -100,7 +100,7 @@ async def test_stealth_mode():
     print("=" * 60)
 
     try:
-        from crawl4ai import AsyncWebCrawler, BrowserConfig
+        from crawl import AsyncWebCrawler, BrowserConfig
 
         # Create browser config with stealth mode
         browser_config = BrowserConfig(

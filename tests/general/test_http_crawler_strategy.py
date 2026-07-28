@@ -1,8 +1,8 @@
 from tkinter import N
-from crawl4ai.async_crawler_strategy import AsyncHTTPCrawlerStrategy
-from crawl4ai.async_logger import AsyncLogger
-from crawl4ai import CrawlerRunConfig, HTTPCrawlerConfig
-from crawl4ai.async_crawler_strategy import ConnectionTimeoutError
+from crawl.async_crawler_strategy import AsyncHTTPCrawlerStrategy
+from crawl.async_logger import AsyncLogger
+from crawl import CrawlerRunConfig, HTTPCrawlerConfig
+from crawl.async_crawler_strategy import ConnectionTimeoutError
 import asyncio
 import os
 

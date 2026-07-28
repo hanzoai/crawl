@@ -4,13 +4,13 @@ Demonstrates the basic usage of undetected browser mode
 """
 
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler, 
     BrowserConfig, 
     CrawlerRunConfig,
     UndetectedAdapter
 )
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 async def crawl_with_regular_browser(url: str):
     """Crawl with regular browser"""
@@ -82,7 +82,7 @@ async def crawl_with_undetected_browser(url: str):
 
 async def main():
     """Demo comparing regular vs undetected modes"""
-    print("🤖 Crawl4AI Undetected Browser Demo")
+    print("🤖 Crawl Undetected Browser Demo")
     print("="*50)
     
     # Test URLs - you can change these

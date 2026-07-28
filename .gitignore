@@ -171,8 +171,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-Crawl4AI.egg-info/
-Crawl4AI.egg-info/*
+Crawl.egg-info/
+Crawl.egg-info/*
 crawler_data.db
 .vscode/
 .tests/
@@ -180,7 +180,7 @@ crawler_data.db
 test_pad.py
 test_pad*.py
 .data/
-Crawl4AI.egg-info/
+Crawl.egg-info/
 
 requirements0.txt
 a.txt

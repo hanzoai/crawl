@@ -7,10 +7,10 @@ import json
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parent_dir)
 
-from crawl4ai import LLMConfig
-from crawl4ai.async_webcrawler import AsyncWebCrawler
-from crawl4ai.chunking_strategy import RegexChunking
-from crawl4ai import LLMExtractionStrategy
+from crawl import LLMConfig
+from crawl.async_webcrawler import AsyncWebCrawler
+from crawl.chunking_strategy import RegexChunking
+from crawl import LLMExtractionStrategy
 
 
 @pytest.mark.asyncio

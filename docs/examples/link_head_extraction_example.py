@@ -2,14 +2,14 @@
 """
 Link Head Extraction & Scoring Example
 
-This example demonstrates Crawl4AI's advanced link analysis capabilities:
+This example demonstrates Crawl's advanced link analysis capabilities:
 1. Basic link head extraction
 2. Three-layer scoring system (intrinsic, contextual, total)
 3. Pattern-based filtering
 4. Multiple practical use cases
 
 Requirements:
-- crawl4ai installed
+- crawl installed
 - Internet connection
 
 Usage:
@@ -17,8 +17,8 @@ Usage:
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import LinkPreviewConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import LinkPreviewConfig
 
 
 async def basic_link_head_extraction():
@@ -344,7 +344,7 @@ async def main():
     """
     Run all examples
     """
-    print("🚀 Crawl4AI Link Head Extraction Examples")
+    print("🚀 Crawl Link Head Extraction Examples")
     print("=" * 60)
     print("This will demonstrate various link analysis capabilities.\n")
     

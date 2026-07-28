@@ -9,10 +9,10 @@ import sys
 import os
 
 # Import your crawler components
-from crawl4ai.models import DisplayMode, CrawlStatus, CrawlResult
-from crawl4ai.async_configs import CrawlerRunConfig, BrowserConfig, CacheMode
-from crawl4ai import AsyncWebCrawler
-from crawl4ai import MemoryAdaptiveDispatcher, CrawlerMonitor
+from crawl.models import DisplayMode, CrawlStatus, CrawlResult
+from crawl.async_configs import CrawlerRunConfig, BrowserConfig, CacheMode
+from crawl import AsyncWebCrawler
+from crawl import MemoryAdaptiveDispatcher, CrawlerMonitor
 
 # Global configuration
 STREAM = False  # Toggle between streaming and non-streaming modes

@@ -6,7 +6,7 @@ This test verifies the security requirements are met:
 2. cryptography >= 45.0.7 is installed (above vulnerable range)
 3. SSL/TLS functionality works correctly
 
-This test can run without full crawl4ai dependencies installed.
+This test can run without full crawl dependencies installed.
 """
 
 import sys

@@ -1,6 +1,6 @@
 import asyncio
 import pytest
-from crawl4ai import AsyncLogger, AsyncUrlSeeder, SeedingConfig
+from crawl import AsyncLogger, AsyncUrlSeeder, SeedingConfig
 from pathlib import Path
 import httpx
 
@@ -23,7 +23,7 @@ async def test_sitemap_source_does_not_hit_commoncrawl():
 
         seeder._latest_index = boom
         try:
-            await seeder.urls("https://docs.crawl4ai.com/", config)
+            await seeder.urls("https://docs.hanzo.ai/", config)
             print("PASS: _latest_index was NOT called (expected after fix).")
         except httpx.ConnectTimeout:
             print("FAIL: _latest_index WAS called even though source='sitemap'.")

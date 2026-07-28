@@ -469,4 +469,4 @@ graph LR
     style Q fill:#c8e6c9
 ```
 
-**📖 Learn more:** [HTTP vs Browser Strategies](https://docs.crawl4ai.com/core/browser-crawler-config/), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/), [Error Handling](https://docs.crawl4ai.com/api/async-webcrawler/)
+**📖 Learn more:** [HTTP vs Browser Strategies](https://docs.hanzo.ai/core/browser-crawler-config/), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/), [Error Handling](https://docs.hanzo.ai/api/async-webcrawler/)

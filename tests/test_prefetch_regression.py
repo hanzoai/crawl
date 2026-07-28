@@ -1,9 +1,9 @@
 """Regression tests to ensure prefetch mode doesn't break existing functionality."""
 
 import pytest
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
-TEST_URL = "https://docs.crawl4ai.com"
+TEST_URL = "https://docs.hanzo.ai"
 
 
 class TestNoRegressions:
@@ -55,7 +55,7 @@ class TestNoRegressions:
     @pytest.mark.asyncio
     async def test_existing_extraction_still_works(self):
         """Test that extraction strategies still work in normal mode."""
-        from crawl4ai import JsonCssExtractionStrategy
+        from crawl import JsonCssExtractionStrategy
 
         schema = {
             "name": "Links",
@@ -77,7 +77,7 @@ class TestNoRegressions:
     @pytest.mark.asyncio
     async def test_existing_deep_crawl_still_works(self):
         """Test that deep crawl without prefetch still does full processing."""
-        from crawl4ai import BFSDeepCrawlStrategy
+        from crawl import BFSDeepCrawlStrategy
 
         async with AsyncWebCrawler() as crawler:
             config = CrawlerRunConfig(
@@ -187,7 +187,7 @@ class TestPrefetchDoesNotAffectOtherModes:
     @pytest.mark.asyncio
     async def test_cache_mode_still_works(self):
         """Test that cache mode still works normally."""
-        from crawl4ai import CacheMode
+        from crawl import CacheMode
 
         async with AsyncWebCrawler() as crawler:
             # First request - bypass cache

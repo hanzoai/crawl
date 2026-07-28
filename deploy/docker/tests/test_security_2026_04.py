@@ -21,7 +21,7 @@ from urllib.parse import urlparse
 # Local copies of security utilities (to avoid dns.resolver import in utils.py)
 # ============================================================================
 
-ALLOWED_OUTPUT_DIR = os.environ.get("CRAWL4AI_OUTPUT_DIR", "/tmp/crawl4ai-outputs")
+ALLOWED_OUTPUT_DIR = os.environ.get("CRAWL_OUTPUT_DIR", "/tmp/crawl-outputs")
 
 
 def validate_output_path(user_path):
@@ -174,7 +174,7 @@ class TestMonitorAuthStructural(unittest.TestCase):
         # the REST path and compared with a timing-unsafe `!=`).
         with open(os.path.join(DEPLOY_DIR, "monitor_routes.py")) as f:
             source = f.read()
-        self.assertNotIn('os.environ.get("CRAWL4AI_API_TOKEN"', source,
+        self.assertNotIn('os.environ.get("CRAWL_API_TOKEN"', source,
             "bespoke WS token check must be removed; the gate owns WS auth")
 
 
@@ -309,7 +309,7 @@ class TestWebhookSourceChecks(unittest.TestCase):
 
 if __name__ == "__main__":
     print("=" * 70)
-    print("Crawl4AI Security Tests - 2026-04-13 Vulnerabilities")
+    print("Crawl Security Tests - 2026-04-13 Vulnerabilities")
     print("=" * 70)
     print()
     unittest.main(verbosity=2)

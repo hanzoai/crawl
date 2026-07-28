@@ -68,7 +68,7 @@ def generate_dummy_data():
 
         # LLM Integration
         ("LangChain Crawl", "LLM Integration", "Open Source", True, False,
-         "LangChain integration for Crawl4AI workflows", "https://langchain-crawl.dev",
+         "LangChain integration for Crawl workflows", "https://langchain-crawl.dev",
          "https://github.com/langchain/crawl", "Free", 4.5, 18900,
          "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop"),
 
@@ -115,19 +115,19 @@ def generate_dummy_data():
          "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop"),
 
         # Developer Tools
-        ("Crawl4AI VSCode", "Developer Tools", "Open Source", True, False,
-         "VSCode extension for Crawl4AI development", "https://marketplace.visualstudio.com",
-         "https://github.com/crawl4ai/vscode", "Free", 4.8, 34500,
+        ("Crawl VSCode", "Developer Tools", "Open Source", True, False,
+         "VSCode extension for Crawl development", "https://marketplace.visualstudio.com",
+         "https://github.com/crawl/vscode", "Free", 4.8, 34500,
          "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800&h=400&fit=crop"),
 
         ("Postman Collection", "Developer Tools", "Open Source", False, False,
-         "Postman collection for Crawl4AI API testing", "https://postman.com/crawl4ai",
-         "https://github.com/crawl4ai/postman", "Free", 4.3, 7800,
+         "Postman collection for Crawl API testing", "https://postman.com/crawl",
+         "https://github.com/crawl/postman", "Free", 4.3, 7800,
          "https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=800&h=400&fit=crop"),
 
         ("Debug Toolkit", "Developer Tools", "Open Source", False, False,
-         "Debugging tools for crawler development", "https://debug.crawl4ai.com",
-         "https://github.com/crawl4ai/debug", "Free", 4.0, 4300,
+         "Debugging tools for crawler development", "https://crawl.hanzo.ai",
+         "https://github.com/crawl/debug", "Free", 4.0, 4300,
          "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&h=400&fit=crop"),
     ]
 
@@ -144,7 +144,7 @@ def generate_dummy_data():
         """, (name, generate_slug(name), desc, category, type_, featured, sponsored,
              url, github, pricing, rating, downloads, image, screenshots,
              f"https://ui-avatars.com/api/?name={name}&background=50ffff&color=070708&size=128",
-             f"# {name} Integration\n\n```python\nfrom crawl4ai import AsyncWebCrawler\n# Integration code coming soon...\n```",
+             f"# {name} Integration\n\n```python\nfrom crawl import AsyncWebCrawler\n# Integration code coming soon...\n```",
              f"contact@{generate_slug(name)}.com",
              random.randint(100, 5000)))
 
@@ -160,8 +160,8 @@ def generate_dummy_data():
          ["proxy", "web-scraping", "guide"],
          "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=630&fit=crop"),
 
-        ("Integrating LLMs with Crawl4AI: A Complete Guide",
-         "Tutorial", "Crawl4AI Team", ["LangChain Crawl", "GPT Scraper", "Claude Extract"],
+        ("Integrating LLMs with Crawl: A Complete Guide",
+         "Tutorial", "Crawl Team", ["LangChain Crawl", "GPT Scraper", "Claude Extract"],
          ["llm", "integration", "tutorial"],
          "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop"),
 
@@ -170,8 +170,8 @@ def generate_dummy_data():
          ["cloud", "scalability", "architecture"],
          "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=1200&h=630&fit=crop"),
 
-        ("What's New in Crawl4AI Marketplace",
-         "News", "Crawl4AI Team", [],
+        ("What's New in Crawl Marketplace",
+         "News", "Crawl Team", [],
          ["marketplace", "announcement", "news"],
          "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1200&h=630&fit=crop"),
 
@@ -181,7 +181,7 @@ def generate_dummy_data():
          "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&h=630&fit=crop"),
 
         ("Getting Started with Browser Automation",
-         "Tutorial", "Crawl4AI Team", ["Playwright Cloud", "Selenium Grid Hub"],
+         "Tutorial", "Crawl Team", ["Playwright Cloud", "Selenium Grid Hub"],
          ["beginner", "tutorial", "automation"],
          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=630&fit=crop"),
 

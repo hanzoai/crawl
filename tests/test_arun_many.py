@@ -8,8 +8,8 @@ from pathlib import Path
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai.processors.pdf import PDFContentScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl.processors.pdf import PDFContentScrapingStrategy
 
 
 async def test_run_many():

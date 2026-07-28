@@ -1,19 +1,19 @@
-# 🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper.
+# 🚀🤖 Crawl: Open-source LLM Friendly Web Crawler & Scraper.
 
 <div align="center">
 
-<a href="https://trendshift.io/repositories/11716" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11716" alt="unclecode%2Fcrawl4ai | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/11716" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11716" alt="unclecode%2Fcrawl | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-[![GitHub Stars](https://img.shields.io/github/stars/unclecode/crawl4ai?style=social)](https://github.com/unclecode/crawl4ai/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/unclecode/crawl4ai?style=social)](https://github.com/unclecode/crawl4ai/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/hanzoai/crawl?style=social)](https://github.com/hanzoai/crawl/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/hanzoai/crawl?style=social)](https://github.com/hanzoai/crawl/network/members)
 
-[![PyPI version](https://badge.fury.io/py/crawl4ai.svg)](https://badge.fury.io/py/crawl4ai)
-[![Python Version](https://img.shields.io/pypi/pyversions/crawl4ai)](https://pypi.org/project/crawl4ai/)
-[![Downloads](https://static.pepy.tech/badge/crawl4ai/month)](https://pepy.tech/project/crawl4ai)
+[![PyPI version](https://badge.fury.io/py/crawl.svg)](https://badge.fury.io/py/crawl)
+[![Python Version](https://img.shields.io/pypi/pyversions/crawl)](https://pypi.org/project/crawl/)
+[![Downloads](https://static.pepy.tech/badge/crawl/month)](https://pepy.tech/project/crawl)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/unclecode?style=flat&logo=GitHub-Sponsors&label=Sponsors&color=pink)](https://github.com/sponsors/unclecode)
 
 ---
-#### 🚀 Crawl4AI Cloud API — Closed Beta (Launching Soon)
+#### 🚀 Crawl Cloud API — Closed Beta (Launching Soon)
 Reliable, large-scale web extraction, now built to be _**drastically more cost-effective**_ than any of the existing solutions.
 
 👉 **Apply [here](https://forms.gle/E9MyPaNXACnAMaqG7) for early access**  
@@ -23,10 +23,10 @@ Limited slots._
 ---
 
 <p align="center">
-    <a href="https://x.com/crawl4ai">
+    <a href="https://x.com/crawl">
       <img src="https://img.shields.io/badge/Follow%20on%20X-000000?style=for-the-badge&logo=x&logoColor=white" alt="Follow on X" />
     </a>
-    <a href="https://www.linkedin.com/company/crawl4ai">
+    <a href="https://www.linkedin.com/company/crawl">
       <img src="https://img.shields.io/badge/Follow%20on%20LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Follow on LinkedIn" />
     </a>
     <a href="https://discord.gg/jP8KfhDhyN">
@@ -35,33 +35,33 @@ Limited slots._
   </p>
 </div>
 
-Crawl4AI turns the web into clean, LLM ready Markdown for RAG, agents, and data pipelines. Fast, controllable, battle tested by a 50k+ star community.
+Crawl turns the web into clean, LLM ready Markdown for RAG, agents, and data pipelines. Fast, controllable, battle tested by a 50k+ star community.
 
 [✨ Check out latest update v0.9.2](#-recent-updates)
 
-✨ **New in v0.9.2**: Maintenance patch release. Fixes a `MemoryAdaptiveDispatcher` task/page leak when a streaming crawl is closed, Docker Playground "Advanced Config" and Monitor WebSocket auth, Playwright headless-shell packaging, and GPU (`ENABLE_GPU=true`) Docker builds. [Release notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.9.2.md)
+✨ **New in v0.9.2**: Maintenance patch release. Fixes a `MemoryAdaptiveDispatcher` task/page leak when a streaming crawl is closed, Docker Playground "Advanced Config" and Monitor WebSocket auth, Playwright headless-shell packaging, and GPU (`ENABLE_GPU=true`) Docker builds. [Release notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.9.2.md)
 
-✨ Recent v0.9.0: Major secure-by-default release of the Docker API server. Auth is on by default, the server binds loopback unless given a token, and the request body is now an untrusted trust boundary. [Release notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.9.0.md)
+✨ Recent v0.9.0: Major secure-by-default release of the Docker API server. Auth is on by default, the server binds loopback unless given a token, and the request body is now an untrusted trust boundary. [Release notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.9.0.md)
 
-✨ Recent v0.8.7: Security-hardening release. Fixes critical Docker API vulnerabilities (RCE, SSRF, auth bypass, file write, XSS, hardcoded JWT secret), adds DomainMapper, and ships scraping, deep-crawl, and LLM fixes. [Release notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.8.7.md)
+✨ Recent v0.8.7: Security-hardening release. Fixes critical Docker API vulnerabilities (RCE, SSRF, auth bypass, file write, XSS, hardcoded JWT secret), adds DomainMapper, and ships scraping, deep-crawl, and LLM fixes. [Release notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.8.7.md)
 
-✨ Previous v0.8.0: Crash Recovery & Prefetch Mode! Deep crawl crash recovery with `resume_state` and `on_state_change` callbacks for long-running crawls. New `prefetch=True` mode for 5-10x faster URL discovery. [Release notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.8.0.md)
+✨ Previous v0.8.0: Crash Recovery & Prefetch Mode! Deep crawl crash recovery with `resume_state` and `on_state_change` callbacks for long-running crawls. New `prefetch=True` mode for 5-10x faster URL discovery. [Release notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.8.0.md)
 
-✨ Previous v0.7.8: Stability & Bug Fix Release! 11 bug fixes addressing Docker API issues, LLM extraction improvements, URL handling fixes, and dependency updates. [Release notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.7.8.md)
+✨ Previous v0.7.8: Stability & Bug Fix Release! 11 bug fixes addressing Docker API issues, LLM extraction improvements, URL handling fixes, and dependency updates. [Release notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.7.8.md)
 
 <details>
   <summary>🤓 <strong>My Personal Story</strong></summary>
 
 I grew up on an Amstrad, thanks to my dad, and never stopped building. In grad school I specialized in NLP and built crawlers for research. That’s where I learned how much extraction matters.
 
-In 2023, I needed web-to-Markdown. The “open source” option wanted an account, API token, and $16, and still under-delivered. I went turbo anger mode, built Crawl4AI in days, and it went viral. Now it’s the most-starred crawler on GitHub.
+In 2023, I needed web-to-Markdown. The “open source” option wanted an account, API token, and $16, and still under-delivered. I went turbo anger mode, built Crawl in days, and it went viral. Now it’s the most-starred crawler on GitHub.
 
 I made it open source for **availability**, anyone can use it without a gate. Now I’m building the platform for **affordability**, anyone can run serious crawls without breaking the bank. If that resonates, join in, send feedback, or just crawl something amazing.
 </details>
 
 
 <details>
-  <summary>Why developers pick Crawl4AI</summary>
+  <summary>Why developers pick Crawl</summary>
 
 - **LLM ready output**, smart Markdown with headings, tables, code, citation hints
 - **Fast in practice**, async browser pool, caching, minimal hops
@@ -73,19 +73,19 @@ I made it open source for **availability**, anyone can use it without a gate. No
 
 ## 🚀 Quick Start 
 
-1. Install Crawl4AI:
+1. Install Crawl:
 ```bash
 # Install the package
-pip install -U crawl4ai
+pip install -U crawl
 
 # For pre release versions
-pip install crawl4ai --pre
+pip install crawl --pre
 
 # Run post-installation setup
-crawl4ai-setup
+crawl-setup
 
 # Verify your installation
-crawl4ai-doctor
+crawl-doctor
 ```
 
 If you encounter any browser-related issues, you can install them manually:
@@ -96,7 +96,7 @@ python -m playwright install --with-deps chromium
 2. Run a simple web crawl with Python:
 ```python
 import asyncio
-from crawl4ai import *
+from crawl import *
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -115,17 +115,17 @@ if __name__ == "__main__":
 crwl https://www.nbcnews.com/business -o markdown
 
 # Deep crawl with BFS strategy, max 10 pages
-crwl https://docs.crawl4ai.com --deep-crawl bfs --max-pages 10
+crwl https://docs.hanzo.ai --deep-crawl bfs --max-pages 10
 
 # Use LLM extraction with a specific question
 crwl https://www.example.com/products -q "Extract all product prices"
 ```
 
-## 💖 Support Crawl4AI
+## 💖 Support Crawl
 
-> 🎉 **Sponsorship Program Now Open!** After powering 51K+ developers and 1 year of growth, Crawl4AI is launching dedicated support for **startups** and **enterprises**. Be among the first 50 **Founding Sponsors** for permanent recognition in our Hall of Fame.
+> 🎉 **Sponsorship Program Now Open!** After powering 51K+ developers and 1 year of growth, Crawl is launching dedicated support for **startups** and **enterprises**. Be among the first 50 **Founding Sponsors** for permanent recognition in our Hall of Fame.
 
-Crawl4AI is the #1 trending open-source web crawler on GitHub. Your support keeps it independent, innovative, and free for the community — while giving you direct access to premium benefits.
+Crawl is the #1 trending open-source web crawler on GitHub. Your support keeps it independent, innovative, and free for the community — while giving you direct access to premium benefits.
 
 <div align="">
   
@@ -143,7 +143,7 @@ Crawl4AI is the #1 trending open-source web crawler on GitHub. Your support keep
   *Custom arrangements available - see [SPONSORS.md](SPONSORS.md) for details & contact*
 
 **Why sponsor?**  
-No rate-limited APIs. No lock-in. Build and own your data pipeline with direct guidance from the creator of Crawl4AI.
+No rate-limited APIs. No lock-in. Build and own your data pipeline with direct guidance from the creator of Crawl.
 
 [See All Tiers & Benefits →](https://github.com/sponsors/unclecode)
 
@@ -230,11 +230,11 @@ No rate-limited APIs. No lock-in. Build and own your data pipeline with direct g
 
 ✨ Play around with this [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1SgRPrByQLzjRfwoRNq1wSGE9nYY_EE8C?usp=sharing)
 
-✨ Visit our [Documentation Website](https://docs.crawl4ai.com/)
+✨ Visit our [Documentation Website](https://docs.hanzo.ai/)
 
 ## Installation 🛠️
 
-Crawl4AI offers flexible installation options to suit various use cases. You can install it as a Python package or use Docker.
+Crawl offers flexible installation options to suit various use cases. You can install it as a Python package or use Docker.
 
 <details>
 <summary>🐍 <strong>Using pip</strong></summary>
@@ -246,13 +246,13 @@ Choose the installation option that best fits your needs:
 For basic web crawling and scraping tasks:
 
 ```bash
-pip install crawl4ai
-crawl4ai-setup # Setup the browser
+pip install crawl
+crawl-setup # Setup the browser
 ```
 
-By default, this will install the asynchronous version of Crawl4AI, using Playwright for web crawling.
+By default, this will install the asynchronous version of Crawl, using Playwright for web crawling.
 
-👉 **Note**: When you install Crawl4AI, the `crawl4ai-setup` should automatically install and set up Playwright. However, if you encounter any Playwright-related errors, you can manually install it using one of these methods:
+👉 **Note**: When you install Crawl, the `crawl-setup` should automatically install and set up Playwright. However, if you encounter any Playwright-related errors, you can manually install it using one of these methods:
 
 1. Through the command line:
 
@@ -275,7 +275,7 @@ This second method has proven to be more reliable in some cases.
 The sync version is deprecated and will be removed in future versions. If you need the synchronous version using Selenium:
 
 ```bash
-pip install crawl4ai[sync]
+pip install crawl[sync]
 ```
 
 ---
@@ -285,8 +285,8 @@ pip install crawl4ai[sync]
 For contributors who plan to modify the source code:
 
 ```bash
-git clone https://github.com/unclecode/crawl4ai.git
-cd crawl4ai
+git clone https://github.com/hanzoai/crawl.git
+cd crawl
 pip install -e .                    # Basic installation in editable mode
 ```
 
@@ -322,8 +322,8 @@ The new Docker implementation includes:
 
 ```bash
 # Pull and run the latest release
-docker pull unclecode/crawl4ai:latest
-docker run -d -p 11235:11235 --name crawl4ai --shm-size=1g unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
+docker run -d -p 11235:11235 --name crawl --shm-size=1g hanzoai/crawl:latest
 
 # Visit the monitoring dashboard at http://localhost:11235/dashboard
 # Or the playground at http://localhost:11235/playground
@@ -355,7 +355,7 @@ else:
     result = requests.get(f"http://localhost:11235/task/{task_id}")
 ```
 
-For more examples, see our [Docker Examples](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/docker_example.py). For advanced configuration, monitoring features, and production deployment, see our [Self-Hosting Guide](https://docs.crawl4ai.com/core/self-hosting/).
+For more examples, see our [Docker Examples](https://github.com/hanzoai/crawl/blob/main/docs/examples/docker_example.py). For advanced configuration, monitoring features, and production deployment, see our [Self-Hosting Guide](https://docs.hanzo.ai/core/self-hosting/).
 
 </details>
 
@@ -363,16 +363,16 @@ For more examples, see our [Docker Examples](https://github.com/unclecode/crawl4
 
 ## 🔬 Advanced Usage Examples 🔬
 
-You can check the project structure in the directory [docs/examples](https://github.com/unclecode/crawl4ai/tree/main/docs/examples). Over there, you can find a variety of examples; here, some popular examples are shared.
+You can check the project structure in the directory [docs/examples](https://github.com/hanzoai/crawl/tree/main/docs/examples). Over there, you can find a variety of examples; here, some popular examples are shared.
 
 <details>
 <summary>📝 <strong>Heuristic Markdown Generation with Clean and Fit Markdown</strong></summary>
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai.content_filter_strategy import PruningContentFilter, BM25ContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl.content_filter_strategy import PruningContentFilter, BM25ContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def main():
     browser_config = BrowserConfig(
@@ -408,8 +408,8 @@ if __name__ == "__main__":
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 import json
 
 async def main():
@@ -482,8 +482,8 @@ if __name__ == "__main__":
 ```python
 import os
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
-from crawl4ai import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
+from crawl import LLMExtractionStrategy
 from pydantic import BaseModel, Field
 
 class OpenAIModelFee(BaseModel):
@@ -528,11 +528,11 @@ if __name__ == "__main__":
 import os, sys
 from pathlib import Path
 import asyncio, time
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def test_news_crawl():
     # Create a persistent user data directory
-    user_data_dir = os.path.join(Path.home(), ".crawl4ai", "browser_profile")
+    user_data_dir = os.path.join(Path.home(), ".crawl", "browser_profile")
     os.makedirs(user_data_dir, exist_ok=True)
 
     browser_config = BrowserConfig(
@@ -572,10 +572,10 @@ A maintenance patch release with bug fixes across the dispatcher, Docker, and GP
 No new features, no breaking changes.
 
 ```bash
-pip install -U crawl4ai
+pip install -U crawl
 ```
 
-[Full v0.9.2 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.9.2.md)
+[Full v0.9.2 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.9.2.md)
 
 </details>
 
@@ -587,10 +587,10 @@ A patch release with 12 bug fixes and one new feature. The new `preserve_classes
 Bug fixes span Docker (auth gate UI, supervisord/redis dirs, FastAPI compatibility, redis auth), browser (Windows channel crash, context snapshot leak), core (HTTP timeout unit mismatch, best-first ordering), and extraction (html2text table attributes).
 
 ```bash
-pip install -U crawl4ai
+pip install -U crawl
 ```
 
-[Full v0.9.1 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.9.1.md)
+[Full v0.9.1 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.9.1.md)
 
 </details>
 
@@ -600,10 +600,10 @@ pip install -U crawl4ai
 A major, secure-by-default release of the Docker API server. The out-of-the-box deployment is hardened with defense in depth: authentication is on by default, the server binds loopback unless you give it a token, and the network request body is treated as an untrusted trust boundary.
 
 ```bash
-pip install -U crawl4ai
+pip install -U crawl
 ```
 
-[Migration Guide →](https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md) · [Full v0.9.0 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.9.0.md)
+[Migration Guide →](https://github.com/hanzoai/crawl/blob/main/deploy/docker/MIGRATION.md) · [Full v0.9.0 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.9.0.md)
 
 </details>
 
@@ -613,10 +613,10 @@ pip install -U crawl4ai
 A security-hardening release. Fixes critical Docker API vulnerabilities (AST sandbox escape RCE, hook sandbox RCE, hardcoded JWT secret, SSRF on webhook and crawl endpoints, arbitrary file write, monitor auth bypass, stored XSS, and unauthenticated JS execution), adds the DomainMapper feature, and ships a batch of scraping, deep-crawl, and LLM fixes. If you self-host the Docker API, upgrade immediately.
 
 ```bash
-pip install -U crawl4ai
+pip install -U crawl
 ```
 
-[Full v0.8.7 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.8.7.md)
+[Full v0.8.7 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.8.7.md)
 
 </details>
 
@@ -626,7 +626,7 @@ pip install -U crawl4ai
 Replaced `litellm` dependency with `unclecode-litellm` due to a PyPI supply chain compromise affecting the original package. If you're on v0.8.5 or earlier, upgrade immediately.
 
 ```bash
-pip install -U crawl4ai
+pip install -U crawl
 ```
 
 </details>
@@ -640,8 +640,8 @@ Our biggest release since v0.8.0. Anti-bot detection with proxy escalation, Shad
   - 3-tier detection: known vendors, generic block indicators, structural integrity checks
   - Automatic retry with proxy chain and fallback fetch function
   ```python
-  from crawl4ai import CrawlerRunConfig
-  from crawl4ai.async_configs import ProxyConfig
+  from crawl import CrawlerRunConfig
+  from crawl.async_configs import ProxyConfig
 
   config = CrawlerRunConfig(
       proxy_config=[ProxyConfig.DIRECT, ProxyConfig(server="http://my-proxy:8080")],
@@ -669,7 +669,7 @@ Our biggest release since v0.8.0. Anti-bot detection with proxy escalation, Shad
 
 - **60+ Bug Fixes** across browser management, proxy, deep crawling, extraction, CLI, and Docker
 
-[Full v0.8.5 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.8.5.md)
+[Full v0.8.5 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.8.5.md)
 
 </details>
 
@@ -684,7 +684,7 @@ This release introduces crash recovery for deep crawls, a new prefetch mode for 
   - JSON-serializable state for Redis/database storage
   - Works with BFS, DFS, and Best-First strategies
   ```python
-  from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+  from crawl.deep_crawling import BFSDeepCrawlStrategy
 
   strategy = BFSDeepCrawlStrategy(
       max_depth=3,
@@ -704,11 +704,11 @@ This release introduces crash recovery for deep crawls, a new prefetch mode for 
   ```
 
 - **🔒 Security Fixes (Docker API)**:
-  - Hooks disabled by default (`CRAWL4AI_HOOKS_ENABLED=false`)
+  - Hooks disabled by default (`CRAWL_HOOKS_ENABLED=false`)
   - `file://` URLs blocked on API endpoints to prevent LFI
   - `__import__` removed from hook execution sandbox
 
-[Full v0.8.0 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.8.0.md)
+[Full v0.8.0 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.8.0.md)
 
 </details>
 
@@ -725,7 +725,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 - **🤖 LLM Extraction Improvements**:
   - Configurable rate limiter backoff with new `LLMConfig` parameters (#1269):
     ```python
-    from crawl4ai import LLMConfig
+    from crawl import LLMConfig
 
     config = LLMConfig(
         provider="openai/gpt-4o-mini",
@@ -736,7 +736,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
     ```
   - HTML input format support for `LLMExtractionStrategy` (#1178):
     ```python
-    from crawl4ai import LLMExtractionStrategy
+    from crawl import LLMExtractionStrategy
 
     strategy = LLMExtractionStrategy(
         llm_config=config,
@@ -757,7 +757,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 - **🧠 AdaptiveCrawler**:
   - Fixed query expansion to actually use LLM instead of hardcoded mock data (#1621)
 
-[Full v0.7.8 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.7.8.md)
+[Full v0.7.8 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.7.8.md)
 
 </details>
 
@@ -808,7 +808,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
   - Fixed CDP timing with exponential backoff (#1528)
   - Security update for pyOpenSSL (>=25.3.0)
 
-[Full v0.7.7 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.7.7.md)
+[Full v0.7.7 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.7.7.md)
 
 </details>
 
@@ -818,8 +818,8 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 - **🔧 Docker Hooks System**: Complete pipeline customization with user-provided Python functions at 8 key points
 - **✨ Function-Based Hooks API (NEW)**: Write hooks as regular Python functions with full IDE support:
   ```python
-  from crawl4ai import hooks_to_string
-  from crawl4ai.docker_client import Crawl4aiDockerClient
+  from crawl import hooks_to_string
+  from crawl.docker_client import Crawl4aiDockerClient
 
   # Define hooks as regular Python functions
   async def on_page_context_created(page, context, **kwargs):
@@ -830,7 +830,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 
   async def before_goto(page, context, url, **kwargs):
       """Add custom headers"""
-      await page.set_extra_http_headers({'X-Crawl4AI': 'v0.7.5'})
+      await page.set_extra_http_headers({'X-Crawl': 'v0.7.5'})
       return page
 
   # Option 1: Use hooks_to_string() utility for REST API
@@ -856,7 +856,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 - **🐍 Python 3.10+ Support**: Modern language features and enhanced performance
 - **🛠️ Bug Fixes**: Resolved multiple community-reported issues including URL processing, JWT authentication, and proxy configuration
 
-[Full v0.7.5 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.7.5.md)
+[Full v0.7.5 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.7.5.md)
 
 </details>
 
@@ -865,7 +865,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 
 - **🚀 LLMTableExtraction**: Revolutionary table extraction with intelligent chunking for massive tables:
   ```python
-  from crawl4ai import LLMTableExtraction, LLMConfig
+  from crawl import LLMTableExtraction, LLMConfig
   
   # Configure intelligent table extraction
   table_strategy = LLMTableExtraction(
@@ -890,7 +890,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 - **🔗 Advanced URL Processing**: Better handling of raw:// URLs and base tag link resolution
 - **🛡️ Enhanced Proxy Support**: Flexible proxy configuration supporting both dict and string formats
 
-[Full v0.7.4 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.7.4.md)
+[Full v0.7.4 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.7.4.md)
 
 </details>
 
@@ -899,7 +899,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 
 - **🕵️ Undetected Browser Support**: Bypass sophisticated bot detection systems:
   ```python
-  from crawl4ai import AsyncWebCrawler, BrowserConfig
+  from crawl import AsyncWebCrawler, BrowserConfig
   
   browser_config = BrowserConfig(
       browser_type="undetected",  # Use undetected Chrome
@@ -917,7 +917,7 @@ This release focuses on stability with 11 bug fixes addressing issues reported b
 
 - **🎨 Multi-URL Configuration**: Different strategies for different URL patterns in one batch:
 ```python
-from crawl4ai import CrawlerRunConfig, MatchMode, CacheMode
+from crawl import CrawlerRunConfig, MatchMode, CacheMode
   
   configs = [
       # Documentation sites - aggressive caching
@@ -943,7 +943,7 @@ from crawl4ai import CrawlerRunConfig, MatchMode, CacheMode
 
 - **🧠 Memory Monitoring**: Track and optimize memory usage during crawling:
   ```python
-  from crawl4ai.memory_utils import MemoryMonitor
+  from crawl.memory_utils import MemoryMonitor
   
   monitor = MemoryMonitor()
   monitor.start_monitoring()
@@ -971,7 +971,7 @@ from crawl4ai import CrawlerRunConfig, MatchMode, CacheMode
 - **💰 GitHub Sponsors**: 4-tier sponsorship system for project sustainability
 - **🐳 Docker LLM Flexibility**: Configure providers via environment variables
 
-[Full v0.7.3 Release Notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.7.3.md)
+[Full v0.7.3 Release Notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.7.3.md)
 
 </details>
 
@@ -1039,13 +1039,13 @@ from crawl4ai import CrawlerRunConfig, MatchMode, CacheMode
 
 - **⚡ Performance Boost**: Up to 3x faster with optimized resource handling and memory efficiency
 
-Read the full details in our [0.7.0 Release Notes](https://docs.crawl4ai.com/blog/release-v0.7.0) or check the [CHANGELOG](https://github.com/unclecode/crawl4ai/blob/main/CHANGELOG.md).
+Read the full details in our [0.7.0 Release Notes](https://docs.hanzo.ai/blog/release-v0.7.0) or check the [CHANGELOG](https://github.com/hanzoai/crawl/blob/main/CHANGELOG.md).
 
 </details>
 
-## Version Numbering in Crawl4AI
+## Version Numbering in Crawl
 
-Crawl4AI follows standard Python version numbering conventions (PEP 440) to help users understand the stability and features of each release.
+Crawl follows standard Python version numbering conventions (PEP 440) to help users understand the stability and features of each release.
 
 <details>
 <summary>📈 <strong>Version Numbers Explained</strong></summary>
@@ -1063,17 +1063,17 @@ We use different suffixes to indicate development stages:
 #### Installation
 - Regular installation (stable version):
   ```bash
-  pip install -U crawl4ai
+  pip install -U crawl
   ```
 
 - Install pre-release versions:
   ```bash
-  pip install crawl4ai --pre
+  pip install crawl --pre
   ```
 
 - Install specific version:
   ```bash
-  pip install crawl4ai==0.4.3b1
+  pip install crawl==0.4.3b1
   ```
 
 #### Why Pre-releases?
@@ -1091,9 +1091,9 @@ For production environments, we recommend using the stable version. For testing 
 
 > 🚨 **Documentation Update Alert**: We're undertaking a major documentation overhaul next week to reflect recent updates and improvements. Stay tuned for a more comprehensive and up-to-date guide!
 
-For current documentation, including installation instructions, advanced features, and API reference, visit our [Documentation Website](https://docs.crawl4ai.com/).
+For current documentation, including installation instructions, advanced features, and API reference, visit our [Documentation Website](https://docs.hanzo.ai/).
 
-To check our development plans and upcoming features, visit our [Roadmap](https://github.com/unclecode/crawl4ai/blob/main/ROADMAP.md).
+To check our development plans and upcoming features, visit our [Roadmap](https://github.com/hanzoai/crawl/blob/main/ROADMAP.md).
 
 <details>
 <summary>📈 <strong>Development TODOs</strong></summary>
@@ -1115,7 +1115,7 @@ To check our development plans and upcoming features, visit our [Roadmap](https:
 
 ## 🤝 Contributing 
 
-We welcome contributions from the open-source community. Check out our [contribution guidelines](https://github.com/unclecode/crawl4ai/blob/main/CONTRIBUTORS.md) for more information.
+We welcome contributions from the open-source community. Check out our [contribution guidelines](https://github.com/hanzoai/crawl/blob/main/CONTRIBUTORS.md) for more information.
 
 I'll help modify the license section with badges. For the halftone effect, here's a version with it:
 
@@ -1123,10 +1123,10 @@ Here's the updated license section:
 
 ## 📄 License & Attribution
 
-This project is licensed under the Apache License 2.0, attribution is recommended via the badges below. See the [Apache 2.0 License](https://github.com/unclecode/crawl4ai/blob/main/LICENSE) file for details.
+This project is licensed under the Apache License 2.0, attribution is recommended via the badges below. See the [Apache 2.0 License](https://github.com/hanzoai/crawl/blob/main/LICENSE) file for details.
 
 ### Attribution Requirements
-When using Crawl4AI, you must include one of the following attribution methods:
+When using Crawl, you must include one of the following attribution methods:
 
 <details>
 <summary>📈 <strong>1. Badge Attribution (Recommended)</strong></summary>
@@ -1134,37 +1134,37 @@ Add one of these badges to your README, documentation, or website:
 
 | Theme | Badge |
 |-------|-------|
-| **Disco Theme (Animated)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-disco.svg" alt="Powered by Crawl4AI" width="200"/></a> |
-| **Night Theme (Dark with Neon)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-night.svg" alt="Powered by Crawl4AI" width="200"/></a> |
-| **Dark Theme (Classic)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-dark.svg" alt="Powered by Crawl4AI" width="200"/></a> |
-| **Light Theme (Classic)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-light.svg" alt="Powered by Crawl4AI" width="200"/></a> |
+| **Disco Theme (Animated)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-disco.svg" alt="Powered by Crawl" width="200"/></a> |
+| **Night Theme (Dark with Neon)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-night.svg" alt="Powered by Crawl" width="200"/></a> |
+| **Dark Theme (Classic)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-dark.svg" alt="Powered by Crawl" width="200"/></a> |
+| **Light Theme (Classic)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-light.svg" alt="Powered by Crawl" width="200"/></a> |
  
 
 HTML code for adding the badges:
 ```html
 <!-- Disco Theme (Animated) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-disco.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-disco.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Night Theme (Dark with Neon) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-night.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-night.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Dark Theme (Classic) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-dark.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-dark.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Light Theme (Classic) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-light.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-light.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Simple Shield Badge -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://img.shields.io/badge/Powered%20by-Crawl4AI-blue?style=flat-square" alt="Powered by Crawl4AI"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://img.shields.io/badge/Powered%20by-Crawl-blue?style=flat-square" alt="Powered by Crawl"/>
 </a>
 ```
 
@@ -1174,30 +1174,30 @@ HTML code for adding the badges:
 <summary>📖 <strong>2. Text Attribution</strong></summary>
 Add this line to your documentation:
 ```
-This project uses Crawl4AI (https://github.com/unclecode/crawl4ai) for web data extraction.
+This project uses Crawl (https://github.com/hanzoai/crawl) for web data extraction.
 ```
 </details>
 
 ## 📚 Citation
 
-If you use Crawl4AI in your research or project, please cite:
+If you use Crawl in your research or project, please cite:
 
 ```bibtex
-@software{crawl4ai2024,
+@software{crawl2024,
   author = {UncleCode},
-  title = {Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper},
+  title = {Crawl: Open-source LLM Friendly Web Crawler & Scraper},
   year = {2024},
   publisher = {GitHub},
   journal = {GitHub Repository},
-  howpublished = {\url{https://github.com/unclecode/crawl4ai}},
+  howpublished = {\url{https://github.com/hanzoai/crawl}},
   commit = {Please use the commit hash you're working with}
 }
 ```
 
 Text citation format:
 ```
-UncleCode. (2024). Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper [Computer software]. 
-GitHub. https://github.com/unclecode/crawl4ai
+UncleCode. (2024). Crawl: Open-source LLM Friendly Web Crawler & Scraper [Computer software]. 
+GitHub. https://github.com/hanzoai/crawl
 ```
 
 ## 📧 Contact 
@@ -1206,13 +1206,13 @@ For questions, suggestions, or feedback, feel free to reach out:
 
 - GitHub: [unclecode](https://github.com/unclecode)
 - Twitter: [@unclecode](https://twitter.com/unclecode)
-- Website: [crawl4ai.com](https://crawl4ai.com)
+- Website: [crawl.hanzo.ai](https://crawl.hanzo.ai)
 
 Happy Crawling! 🕸️🚀
 
 ## 🗾 Mission
 
-Our mission is to unlock the value of personal and enterprise data by transforming digital footprints into structured, tradeable assets. Crawl4AI empowers individuals and organizations with open-source tools to extract and structure data, fostering a shared data economy.  
+Our mission is to unlock the value of personal and enterprise data by transforming digital footprints into structured, tradeable assets. Crawl empowers individuals and organizations with open-source tools to extract and structure data, fostering a shared data economy.  
 
 We envision a future where AI is powered by real human knowledge, ensuring data creators directly benefit from their contributions. By democratizing data and enabling ethical sharing, we are laying the foundation for authentic AI advancement.
 
@@ -1239,7 +1239,7 @@ For more details, see our [full mission statement](./MISSION.md).
 
 ### 🤝 Strategic Partners
 
-These companies provide core infrastructure and technology that power Crawl4AI’s capabilities — from web access and proxy networks to AI tooling and data pipelines.
+These companies provide core infrastructure and technology that power Crawl’s capabilities — from web access and proxy networks to AI tooling and data pipelines.
 
 | Company | About |
 |------|------|
@@ -1247,23 +1247,23 @@ These companies provide core infrastructure and technology that power Crawl4AI�
 
 ### 🏢 Enterprise Sponsors
 
-Our enterprise sponsors support Crawl4AI and help scale it to power production-grade data pipelines.
+Our enterprise sponsors support Crawl and help scale it to power production-grade data pipelines.
 
 | Company | About | Sponsorship Tier |
 |------|------|----------------------------|
-| <a href="https://kipo.ai" target="_blank"><img src="https://docs.crawl4ai.com/uploads/sponsors/20251013045751_2d54f57f117c651e.png" alt="DataSync" height="40"/></a> | Helps engineers and buyers find, compare, and source electronic & industrial parts in seconds, with specs, pricing, lead times & alternatives.| 🥇 Gold |
-| <a href="https://www.kidocode.com/" target="_blank"><img src="https://docs.crawl4ai.com/uploads/sponsors/20251013045045_bb8dace3f0440d65.svg" alt="Kidocode" height="40"/></a> | Kidocode is a hybrid technology and entrepreneurship school for kids aged 5–18, offering both online and on-campus education. | 🥇 Gold |
+| <a href="https://kipo.ai" target="_blank"><img src="https://docs.hanzo.ai/uploads/sponsors/20251013045751_2d54f57f117c651e.png" alt="DataSync" height="40"/></a> | Helps engineers and buyers find, compare, and source electronic & industrial parts in seconds, with specs, pricing, lead times & alternatives.| 🥇 Gold |
+| <a href="https://www.kidocode.com/" target="_blank"><img src="https://docs.hanzo.ai/uploads/sponsors/20251013045045_bb8dace3f0440d65.svg" alt="Kidocode" height="40"/></a> | Kidocode is a hybrid technology and entrepreneurship school for kids aged 5–18, offering both online and on-campus education. | 🥇 Gold |
 | <a href="https://www.alephnull.sg/" target="_blank"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/assets/sponsors/aleph_null_light.svg"><source media="(prefers-color-scheme: light)" srcset="docs/assets/sponsors/aleph_null.svg"><img alt="Aleph null" src="docs/assets/sponsors/aleph_null.svg" height="40"/></picture></a> | Singapore-based  Aleph Null is Asia’s leading edtech hub, dedicated to student-centric, AI-driven education—empowering learners with the tools to thrive in a fast-changing world. | 🥇 Gold |
 
 ---
 
 ### 💼 Become a Strategic Partner or Sponsor
 
-Interested in partnering with Crawl4AI?
+Interested in partnering with Crawl?
 
-Whether you’re a proxy provider, AI infrastructure company, cloud platform, or an organization looking to support the Crawl4AI ecosystem, we’d love to hear from you.
+Whether you’re a proxy provider, AI infrastructure company, cloud platform, or an organization looking to support the Crawl ecosystem, we’d love to hear from you.
 
-📩 Contact: hello@crawl4ai.com
+📩 Contact: hello@crawl.hanzo.ai
 
 
 
@@ -1282,14 +1282,14 @@ A heartfelt thanks to our individual supporters! Every contribution helps us kee
   <a href="https://github.com/work-flow-manager"><img src="https://avatars.githubusercontent.com/u/217665461?s=60&v=4" style="border-radius:50%;"width="64px;"/></a>
 </p>
 
-> Want to join them? [Sponsor Crawl4AI →](https://github.com/sponsors/unclecode)
+> Want to join them? [Sponsor Crawl →](https://github.com/sponsors/unclecode)
 
 ## Star History
 
-<a href="https://www.star-history.com/?type=date&repos=unclecode%2Fcrawl4ai">
+<a href="https://www.star-history.com/?type=date&repos=unclecode%2Fcrawl">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=unclecode/crawl4ai&type=date&theme=dark&legend=top-left&sealed_token=KuajrA7ScH8VT4KagC7nm1xbazTVaNs6rdok4At2dV6tDl91YR_dxmHhmsffjhFiWdLYlzdACxZ-cWLwp8tZHCYxSDMjITf3Vnu4mPns7YdLetyQBPHMQ2f_KakXdbvbVP6PofI82GNqGCVEXtPnZWHC8WM6CzZe6s6cJb6_ga_kn-jh-BeHdyuRRdVR" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=unclecode/crawl4ai&type=date&legend=top-left&sealed_token=KuajrA7ScH8VT4KagC7nm1xbazTVaNs6rdok4At2dV6tDl91YR_dxmHhmsffjhFiWdLYlzdACxZ-cWLwp8tZHCYxSDMjITf3Vnu4mPns7YdLetyQBPHMQ2f_KakXdbvbVP6PofI82GNqGCVEXtPnZWHC8WM6CzZe6s6cJb6_ga_kn-jh-BeHdyuRRdVR" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=unclecode/crawl4ai&type=date&legend=top-left&sealed_token=KuajrA7ScH8VT4KagC7nm1xbazTVaNs6rdok4At2dV6tDl91YR_dxmHhmsffjhFiWdLYlzdACxZ-cWLwp8tZHCYxSDMjITf3Vnu4mPns7YdLetyQBPHMQ2f_KakXdbvbVP6PofI82GNqGCVEXtPnZWHC8WM6CzZe6s6cJb6_ga_kn-jh-BeHdyuRRdVR" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=hanzoai/crawl&type=date&theme=dark&legend=top-left&sealed_token=KuajrA7ScH8VT4KagC7nm1xbazTVaNs6rdok4At2dV6tDl91YR_dxmHhmsffjhFiWdLYlzdACxZ-cWLwp8tZHCYxSDMjITf3Vnu4mPns7YdLetyQBPHMQ2f_KakXdbvbVP6PofI82GNqGCVEXtPnZWHC8WM6CzZe6s6cJb6_ga_kn-jh-BeHdyuRRdVR" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=hanzoai/crawl&type=date&legend=top-left&sealed_token=KuajrA7ScH8VT4KagC7nm1xbazTVaNs6rdok4At2dV6tDl91YR_dxmHhmsffjhFiWdLYlzdACxZ-cWLwp8tZHCYxSDMjITf3Vnu4mPns7YdLetyQBPHMQ2f_KakXdbvbVP6PofI82GNqGCVEXtPnZWHC8WM6CzZe6s6cJb6_ga_kn-jh-BeHdyuRRdVR" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=hanzoai/crawl&type=date&legend=top-left&sealed_token=KuajrA7ScH8VT4KagC7nm1xbazTVaNs6rdok4At2dV6tDl91YR_dxmHhmsffjhFiWdLYlzdACxZ-cWLwp8tZHCYxSDMjITf3Vnu4mPns7YdLetyQBPHMQ2f_KakXdbvbVP6PofI82GNqGCVEXtPnZWHC8WM6CzZe6s6cJb6_ga_kn-jh-BeHdyuRRdVR" />
  </picture>
 </a>

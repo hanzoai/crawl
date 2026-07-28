@@ -1,13 +1,13 @@
 name: Bug Report
-description: Report a bug with the Crawl4AI.
+description: Report a bug with the Crawl.
 title: "[Bug]: "
 labels: ["🐞 Bug","🩺 Needs Triage"]
 body:
   - type: input
-    id: crawl4ai_version
+    id: crawl_version
     attributes:
-      label: crawl4ai version
-      description: Specify the version of crawl4ai you are using.
+      label: crawl version
+      description: Specify the version of crawl you are using.
       placeholder: "e.g., 2.0.0"
     validations:
       required: true

@@ -1,7 +1,7 @@
 import asyncio
 import pytest
 from typing import List
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig, 
     CrawlerRunConfig,
@@ -9,7 +9,7 @@ from crawl4ai import (
     RateLimiter,
     CacheMode
 )
-from crawl4ai.extraction_strategy import ExtractionStrategy
+from crawl.extraction_strategy import ExtractionStrategy
 
 class MockExtractionStrategy(ExtractionStrategy):
     """Mock extraction strategy for testing URL parameter handling"""

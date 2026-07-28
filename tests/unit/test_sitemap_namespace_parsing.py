@@ -15,7 +15,7 @@ class _FakeBM25:
 
 sys.modules.setdefault("rank_bm25", SimpleNamespace(BM25Okapi=_FakeBM25))
 
-from crawl4ai.async_url_seeder import AsyncUrlSeeder
+from crawl.async_url_seeder import AsyncUrlSeeder
 
 
 class DummyResponse:

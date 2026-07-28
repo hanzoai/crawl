@@ -1,12 +1,12 @@
 import unittest, os
-from crawl4ai import LLMConfig
-from crawl4ai.web_crawler import WebCrawler
-from crawl4ai.chunking_strategy import (
+from crawl import LLMConfig
+from crawl.web_crawler import WebCrawler
+from crawl.chunking_strategy import (
     RegexChunking,
     FixedLengthWordChunking,
     SlidingWindowChunking,
 )
-from crawl4ai import (
+from crawl import (
     CosineStrategy,
     LLMExtractionStrategy,
     TopicExtractionStrategy,

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Security Integration Tests for Crawl4AI Docker API.
+Security Integration Tests for Crawl Docker API.
 Tests that security fixes are working correctly against a running server.
 
 Usage:
@@ -64,7 +64,7 @@ def main():
     base_url = sys.argv[1] if len(sys.argv) > 1 else "http://localhost:11235"
 
     print("=" * 60)
-    print("Crawl4AI Security Integration Tests")
+    print("Crawl Security Integration Tests")
     print(f"Target: {base_url}")
     print("=" * 60)
     print()

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crawl4AI Monitor</title>
+    <title>Crawl Monitor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -85,10 +85,10 @@
     <!-- Header -->
     <header class="border-b border-border px-4 py-2 flex items-center">
         <h1 class="text-lg font-medium flex items-center space-x-4">
-            <img src="/static/assets/logo.png" alt="Crawl4AI" class="h-8">
+            <img src="/static/assets/logo.png" alt="Crawl" class="h-8">
             <span class="text-secondary">Monitor</span>
-            <a href="https://github.com/unclecode/crawl4ai" target="_blank" class="flex space-x-1">
-                <img src="https://img.shields.io/github/stars/unclecode/crawl4ai?style=social" alt="GitHub stars" class="h-5">
+            <a href="https://github.com/hanzoai/crawl" target="_blank" class="flex space-x-1">
+                <img src="https://img.shields.io/github/stars/hanzoai/crawl?style=social" alt="GitHub stars" class="h-5">
             </a>
         </h1>
 
@@ -327,7 +327,7 @@
 
     <script>
         // ========== Auth ==========
-        function getToken() { return sessionStorage.getItem('crawl4ai_token') || ''; }
+        function getToken() { return sessionStorage.getItem('crawl_token') || ''; }
 
         function authFetch(url, opts = {}) {
             const token = getToken();
@@ -340,13 +340,13 @@
         (function initTokenBar() {
             const input = document.getElementById('token-input');
             const status = document.getElementById('token-status');
-            const saved = sessionStorage.getItem('crawl4ai_token');
+            const saved = sessionStorage.getItem('crawl_token');
             if (saved) input.value = saved;
 
             function applyToken() {
                 const val = input.value.trim();
                 if (!val) return;
-                sessionStorage.setItem('crawl4ai_token', val);
+                sessionStorage.setItem('crawl_token', val);
                 status.textContent = 'Token saved';
                 status.className = 'text-xs text-green-400';
                 setTimeout(() => { status.textContent = ''; }, 2000);
@@ -359,7 +359,7 @@
             document.getElementById('token-save').addEventListener('click', applyToken);
             input.addEventListener('keydown', e => { if (e.key === 'Enter') applyToken(); });
             document.getElementById('token-clear').addEventListener('click', () => {
-                sessionStorage.removeItem('crawl4ai_token');
+                sessionStorage.removeItem('crawl_token');
                 input.value = '';
                 status.textContent = 'Token cleared';
                 status.className = 'text-xs text-yellow-400';

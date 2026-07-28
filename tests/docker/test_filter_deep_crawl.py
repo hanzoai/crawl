@@ -8,8 +8,8 @@ from typing import Any
 import asyncio
 import httpx
 
-from crawl4ai import BrowserConfig, CacheMode, CrawlerRunConfig
-from crawl4ai.deep_crawling import (
+from crawl import BrowserConfig, CacheMode, CrawlerRunConfig
+from crawl.deep_crawling import (
     BFSDeepCrawlStrategy,
     ContentRelevanceFilter,
     FilterChain,
@@ -17,9 +17,9 @@ from crawl4ai.deep_crawling import (
     URLPatternFilter,
 )
 
-CRAWL4AI_DOCKER_PORT = os.environ.get("CRAWL4AI_DOCKER_PORT", "11234")
+CRAWL_DOCKER_PORT = os.environ.get("CRAWL_DOCKER_PORT", "11234")
 try:
-    BASE_PORT = int(CRAWL4AI_DOCKER_PORT)
+    BASE_PORT = int(CRAWL_DOCKER_PORT)
 except TypeError:
     BASE_PORT = 11234
 BASE_URL = f"http://localhost:{BASE_PORT}/"  # Adjust port as needed
@@ -27,7 +27,7 @@ BASE_URL = f"http://localhost:{BASE_PORT}/"  # Adjust port as needed
 
 async def test_with_docker_client(filter_chain: list[URLFilter], max_pages: int = 20, timeout: int = 30) -> bool:
     """Test using the Docker client (same as 1419.py)."""
-    from crawl4ai.docker_client import Crawl4aiDockerClient
+    from crawl.docker_client import Crawl4aiDockerClient
     
     print("=" * 60)
     print("Testing with Docker Client")
@@ -50,7 +50,7 @@ async def test_with_docker_client(filter_chain: list[URLFilter], max_pages: int 
             
             print("\n1. Testing crawl with filters...")
             results = await client.crawl(
-                ["https://docs.crawl4ai.com"],  # Simple test page
+                ["https://docs.hanzo.ai"],  # Simple test page
                 browser_config=BrowserConfig(headless=True),
                 crawler_config=crawler_config,
                 hooks_timeout=timeout,
@@ -107,7 +107,7 @@ async def test_with_rest_api(filters: list[dict[str, Any]], max_pages: int = 20,
     }
     
     crawl_payload = {
-        "urls": ["https://docs.crawl4ai.com"],
+        "urls": ["https://docs.hanzo.ai"],
         "browser_config": {"type": "BrowserConfig", "params": {"headless": True}},
         "crawler_config": {
             "type": "CrawlerRunConfig",

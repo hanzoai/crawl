@@ -1,11 +1,11 @@
-# 🚀🤖 Crawl4AI: Open-Source LLM-Friendly Web Crawler & Scraper
+# 🚀🤖 Crawl: Open-Source LLM-Friendly Web Crawler & Scraper
 
 <div class = "badges" align="center">
 
   <p>
     <a href="https://trendshift.io/repositories/11716" target="_blank">
       <img src="https://trendshift.io/api/badge/repositories/11716"
-           alt="unclecode%2Fcrawl4ai | Trendshift"
+           alt="unclecode%2Fcrawl | Trendshift"
            style="width: 250px; height: 55px;"
            width="250" height="55"/>
     </a>
@@ -13,39 +13,39 @@
   </p>
 
   <p>
-    <a href="https://github.com/unclecode/crawl4ai/stargazers">
-      <img src="https://img.shields.io/github/stars/unclecode/crawl4ai?style=social"
+    <a href="https://github.com/hanzoai/crawl/stargazers">
+      <img src="https://img.shields.io/github/stars/hanzoai/crawl?style=social"
            alt="GitHub Stars"/>
     </a>
-    <a href="https://github.com/unclecode/crawl4ai/network/members">
-      <img src="https://img.shields.io/github/forks/unclecode/crawl4ai?style=social"
+    <a href="https://github.com/hanzoai/crawl/network/members">
+      <img src="https://img.shields.io/github/forks/hanzoai/crawl?style=social"
            alt="GitHub Forks"/>
     </a>
-    <a href="https://badge.fury.io/py/crawl4ai">
-      <img src="https://badge.fury.io/py/crawl4ai.svg"
+    <a href="https://badge.fury.io/py/crawl">
+      <img src="https://badge.fury.io/py/crawl.svg"
            alt="PyPI version"/>
     </a>
   </p>
 
   <p>
-    <a href="https://pypi.org/project/crawl4ai/">
-      <img src="https://img.shields.io/pypi/pyversions/crawl4ai"
+    <a href="https://pypi.org/project/crawl/">
+      <img src="https://img.shields.io/pypi/pyversions/crawl"
            alt="Python Version"/>
     </a>
-    <a href="https://pepy.tech/project/crawl4ai">
-      <img src="https://static.pepy.tech/badge/crawl4ai/month"
+    <a href="https://pepy.tech/project/crawl">
+      <img src="https://static.pepy.tech/badge/crawl/month"
            alt="Downloads"/>
     </a>
-    <a href="https://github.com/unclecode/crawl4ai/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/unclecode/crawl4ai"
+    <a href="https://github.com/hanzoai/crawl/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/hanzoai/crawl"
            alt="License"/>
     </a>
   </p>
   <p align="center">
-    <a href="https://x.com/crawl4ai">
+    <a href="https://x.com/crawl">
       <img src="https://img.shields.io/badge/Follow%20on%20X-000000?style=for-the-badge&logo=x&logoColor=white" alt="Follow on X" />
     </a>
-    <a href="https://www.linkedin.com/company/crawl4ai">
+    <a href="https://www.linkedin.com/company/crawl">
       <img src="https://img.shields.io/badge/Follow%20on%20LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Follow on LinkedIn" />
     </a>
     <a href="https://discord.gg/jP8KfhDhyN">
@@ -56,7 +56,7 @@
 </div>
 
 ---
-#### 🚀 Crawl4AI Cloud API — Closed Beta (Launching Soon)
+#### 🚀 Crawl Cloud API — Closed Beta (Launching Soon)
 Reliable, large-scale web extraction, now built to be _**drastically more cost-effective**_ than any of the existing solutions.
 
 👉 **Apply [here](https://forms.gle/E9MyPaNXACnAMaqG7) for early access**  
@@ -65,15 +65,15 @@ Limited slots._
 
 ---
 
-Crawl4AI is the #1 trending GitHub repository, actively maintained by a vibrant community. It delivers blazing-fast, AI-ready web crawling tailored for large language models, AI agents, and data pipelines. Fully open source, flexible, and built for real-time performance, **Crawl4AI** empowers developers with unmatched speed, precision, and deployment ease.
+Crawl is the #1 trending GitHub repository, actively maintained by a vibrant community. It delivers blazing-fast, AI-ready web crawling tailored for large language models, AI agents, and data pipelines. Fully open source, flexible, and built for real-time performance, **Crawl** empowers developers with unmatched speed, precision, and deployment ease.
 
-> Enjoy using Crawl4AI? Consider **[becoming a sponsor](https://github.com/sponsors/unclecode)** to support ongoing development and community growth!
+> Enjoy using Crawl? Consider **[becoming a sponsor](https://github.com/sponsors/unclecode)** to support ongoing development and community growth!
 
 ## 🆕 AI Assistant Skill Now Available!
 
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <h3 style="color: white; margin: 0 0 10px 0;">🤖 Crawl4AI Skill for Claude & AI Assistants</h3>
-  <p style="color: white; margin: 10px 0;">Supercharge your AI coding assistant with complete Crawl4AI knowledge! Download our comprehensive skill package that includes:</p>
+  <h3 style="color: white; margin: 0 0 10px 0;">🤖 Crawl Skill for Claude & AI Assistants</h3>
+  <p style="color: white; margin: 10px 0;">Supercharge your AI coding assistant with complete Crawl knowledge! Download our comprehensive skill package that includes:</p>
   <ul style="color: white; margin: 10px 0;">
     <li>📚 Complete SDK reference (23K+ words)</li>
     <li>🚀 Ready-to-use extraction scripts</li>
@@ -81,7 +81,7 @@ Crawl4AI is the #1 trending GitHub repository, actively maintained by a vibrant 
     <li>🔧 Version 0.7.4 compatible</li>
   </ul>
   <div style="text-align: center; margin-top: 15px;">
-    <a href="assets/crawl4ai-skill.zip" download style="background: white; color: #667eea; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; transition: transform 0.2s;">
+    <a href="assets/crawl-skill.zip" download style="background: white; color: #667eea; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; transition: transform 0.2s;">
       📦 Download Skill Package
     </a>
   </div>
@@ -92,24 +92,24 @@ Crawl4AI is the #1 trending GitHub repository, actively maintained by a vibrant 
 
 ## 🎯 New: Adaptive Web Crawling
 
-Crawl4AI now features intelligent adaptive crawling that knows when to stop! Using advanced information foraging algorithms, it determines when sufficient information has been gathered to answer your query.
+Crawl now features intelligent adaptive crawling that knows when to stop! Using advanced information foraging algorithms, it determines when sufficient information has been gathered to answer your query.
 
 [Learn more about Adaptive Crawling →](core/adaptive-crawling.md)
 
 
 ## Quick Start
 
-Here's a quick example to show you how easy it is to use Crawl4AI with its asynchronous capabilities:
+Here's a quick example to show you how easy it is to use Crawl with its asynchronous capabilities:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     # Create an instance of AsyncWebCrawler
     async with AsyncWebCrawler() as crawler:
         # Run the crawler on a URL
-        result = await crawler.arun(url="https://crawl4ai.com")
+        result = await crawler.arun(url="https://crawl.hanzo.ai")
 
         # Print the extracted content
         print(result.markdown)
@@ -123,14 +123,14 @@ asyncio.run(main())
 ## Video Tutorial
 
 <div align="center">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/xo3qK6Hg9AA?start=15" title="Crawl4AI Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/xo3qK6Hg9AA?start=15" title="Crawl Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ---
 
-## What Does Crawl4AI Do?
+## What Does Crawl Do?
 
-Crawl4AI is a feature-rich crawler and scraper that aims to:
+Crawl is a feature-rich crawler and scraper that aims to:
 
 1. **Generate Clean Markdown**: Perfect for RAG pipelines or direct ingestion into LLMs.  
 2. **Structured Extraction**: Parse repeated patterns with CSS, XPath, or LLM-based extraction.  
@@ -149,7 +149,7 @@ Crawl4AI is a feature-rich crawler and scraper that aims to:
 To help you get started, we’ve organized our docs into clear sections:
 
 - **Setup & Installation**  
-  Basic instructions to install Crawl4AI via pip or Docker.  
+  Basic instructions to install Crawl via pip or Docker.  
 - **Quick Start**  
   A hands-on introduction showing how to do your first crawl, generate Markdown, and do a simple extraction.  
 - **Core**  
@@ -167,11 +167,11 @@ Throughout these sections, you’ll find code samples you can **copy-paste** int
 
 ## How You Can Support
 
-- **Star & Fork**: If you find Crawl4AI helpful, star the repo on GitHub or fork it to add your own features.  
+- **Star & Fork**: If you find Crawl helpful, star the repo on GitHub or fork it to add your own features.  
 - **File Issues**: Encounter a bug or missing feature? Let us know by filing an issue, so we can improve.  
 - **Pull Requests**: Whether it’s a small fix, a big feature, or better docs—contributions are always welcome.  
 - **Join Discord**: Come chat about web scraping, crawling tips, or AI workflows with the community.  
-- **Spread the Word**: Mention Crawl4AI in your blog posts, talks, or on social media.  
+- **Spread the Word**: Mention Crawl in your blog posts, talks, or on social media.  
 
 **Our mission**: to empower everyone—students, researchers, entrepreneurs, data scientists—to access, parse, and shape the world’s data with speed, cost-efficiency, and creative freedom.
 
@@ -179,13 +179,13 @@ Throughout these sections, you’ll find code samples you can **copy-paste** int
 
 ## Quick Links
 
-- **[GitHub Repo](https://github.com/unclecode/crawl4ai)**  
+- **[GitHub Repo](https://github.com/hanzoai/crawl)**  
 - **[Installation Guide](./core/installation.md)**  
 - **[Quick Start](./core/quickstart.md)**  
 - **[API Reference](./api/async-webcrawler.md)**  
-- **[Changelog](https://github.com/unclecode/crawl4ai/blob/main/CHANGELOG.md)**  
+- **[Changelog](https://github.com/hanzoai/crawl/blob/main/CHANGELOG.md)**  
 
 Thank you for joining me on this journey. Let’s keep building an **open, democratic** approach to data extraction and AI together.
 
 Happy Crawling!  
-— *Unclecode, Founder & Maintainer of Crawl4AI*  
+— *Unclecode, Founder & Maintainer of Crawl*  

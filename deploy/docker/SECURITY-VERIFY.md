@@ -23,10 +23,10 @@ Expected: all pass, `1 xfailed` (the `--no-sandbox` posture test, see §3).
 
 ```bash
 IMAGE=local-sec docker compose build
-# or: docker build -t unclecode/crawl4ai:local-sec .
+# or: docker build -t hanzoai/crawl:local-sec .
 ```
 Expected: build succeeds. Note the `/app` dir is now root-owned + read-only and
-the artifact dir `/var/lib/crawl4ai/outputs` is created 0700.
+the artifact dir `/var/lib/crawl/outputs` is created 0700.
 
 ---
 
@@ -35,12 +35,12 @@ the artifact dir `/var/lib/crawl4ai/outputs` is created 0700.
 ### 2a. No credential -> loopback only (refuses to expose)
 
 ```bash
-docker run --rm -p 11235:11235 unclecode/crawl4ai:local-sec &
+docker run --rm -p 11235:11235 hanzoai/crawl:local-sec &
 sleep 8
 docker logs <id> 2>&1 | grep -i "binding loopback only"   # expect this line
 curl -fsS http://localhost:11235/health                   # expect: NOT reachable
 ```
-Expected: entrypoint logs "no CRAWL4AI_API_TOKEN set; binding loopback only";
+Expected: entrypoint logs "no CRAWL_API_TOKEN set; binding loopback only";
 the mapped port is **not** reachable from the host (gunicorn bound 127.0.0.1
 inside the container). This is the fail-closed default.
 
@@ -48,7 +48,7 @@ inside the container). This is the fail-closed default.
 
 ```bash
 TOKEN=$(openssl rand -hex 32)
-docker run --rm -e CRAWL4AI_API_TOKEN=$TOKEN -p 11235:11235 unclecode/crawl4ai:local-sec &
+docker run --rm -e CRAWL_API_TOKEN=$TOKEN -p 11235:11235 hanzoai/crawl:local-sec &
 sleep 8
 curl -fsS http://localhost:11235/health                            # expect 200
 curl -fsS http://localhost:11235/schema                            # expect 401
@@ -64,8 +64,8 @@ Default keeps `--no-sandbox` (works as today). To verify the hardened path:
 ### Option A — unprivileged user namespace (preferred)
 Host: `sysctl -w kernel.unprivileged_userns_clone=1` (Debian/Ubuntu).
 ```bash
-docker run --rm -e CRAWL4AI_API_TOKEN=$TOKEN -e CRAWL4AI_CHROMIUM_SANDBOX=true \
-  -p 11235:11235 unclecode/crawl4ai:local-sec &
+docker run --rm -e CRAWL_API_TOKEN=$TOKEN -e CRAWL_CHROMIUM_SANDBOX=true \
+  -p 11235:11235 hanzoai/crawl:local-sec &
 sleep 8
 curl -fsS -X POST http://localhost:11235/crawl \
   -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
@@ -80,7 +80,7 @@ Provide a Chrome seccomp profile and wire it in compose:
 security_opt:
   - seccomp=./seccomp-chrome.json
 ```
-then set `CRAWL4AI_CHROMIUM_SANDBOX=true` and re-run the crawl above.
+then set `CRAWL_CHROMIUM_SANDBOX=true` and re-run the crawl above.
 
 If verified, flip the default: remove `--no-sandbox` from `config.yml` and the
 `test_no_no_sandbox_flag` xfail in `test_security_default_posture.py` becomes a
@@ -94,7 +94,7 @@ normal pass.
 docker compose up -d              # uses read_only: true + tmpfs
 sleep 8
 # Writes outside tmpfs must fail:
-docker compose exec crawl4ai sh -c 'echo x > /app/should_fail' ; echo "exit=$?"   # expect non-zero
+docker compose exec crawl sh -c 'echo x > /app/should_fail' ; echo "exit=$?"   # expect non-zero
 # Artifact write (tmpfs) must work via the API:
 curl -fsS -X POST http://localhost:11235/screenshot \
   -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
@@ -108,8 +108,8 @@ and `GET /artifacts/{id}` (with the token) returns the PNG.
 ## 5. Redis is loopback + password-protected, not exposed
 
 ```bash
-docker compose exec crawl4ai sh -c 'redis-cli -p 6379 ping'                 # expect: NOAUTH / error
-docker compose exec crawl4ai sh -c 'redis-cli -a "$REDIS_PASSWORD" ping'    # expect: PONG
+docker compose exec crawl sh -c 'redis-cli -p 6379 ping'                 # expect: NOAUTH / error
+docker compose exec crawl sh -c 'redis-cli -a "$REDIS_PASSWORD" ping'    # expect: PONG
 # From the host, the redis port must NOT be reachable (no EXPOSE / publish):
 nc -z localhost 6379 ; echo "exit=$?"                                        # expect non-zero
 ```

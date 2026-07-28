@@ -1,5 +1,5 @@
 """
-Crawl4AI Regression Tests - Browser Management and Features
+Crawl Regression Tests - Browser Management and Features
 
 Tests browser lifecycle, viewport configuration, wait_for conditions, JavaScript
 execution, page interaction, screenshots, iframe processing, overlay removal,
@@ -12,8 +12,8 @@ import time
 
 import pytest
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.cache_context import CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.cache_context import CacheMode
 
 
 # ---------------------------------------------------------------------------
@@ -170,7 +170,7 @@ async def test_js_code_returns_value(local_server):
         if result.js_execution_result is not None:
             # The result might be stored under a key or directly
             result_str = str(result.js_execution_result)
-            assert "Crawl4AI Test Home" in result_str or len(result_str) > 0, (
+            assert "Crawl Test Home" in result_str or len(result_str) > 0, (
                 "js_execution_result should contain the document title"
             )
 
@@ -308,7 +308,7 @@ async def test_stealth_mode_no_crash(local_server):
             config=CrawlerRunConfig(verbose=False),
         )
         assert result.success, f"Stealth mode crawl failed: {result.error_message}"
-        assert "Crawl4AI Test Home" in (result.html or ""), (
+        assert "Crawl Test Home" in (result.html or ""), (
             "Stealth mode should still extract content correctly"
         )
 

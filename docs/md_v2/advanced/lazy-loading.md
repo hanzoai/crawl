@@ -12,8 +12,8 @@ Many websites now load images **lazily** as you scroll. If you need to ensure th
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
-from crawl4ai.async_configs import CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+from crawl.async_configs import CacheMode
 
 async def main():
     config = CrawlerRunConfig(

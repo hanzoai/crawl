@@ -1,7 +1,7 @@
 """Unit tests for head fingerprinting."""
 
 import pytest
-from crawl4ai.utils import compute_head_fingerprint
+from crawl.utils import compute_head_fingerprint
 
 
 class TestHeadFingerprint:

@@ -1,6 +1,6 @@
 # Migration Guide — Docker Server Hardening Release
 
-This is a major, **secure-by-default** release of the Crawl4AI **Docker API
+This is a major, **secure-by-default** release of the Crawl **Docker API
 server** (`deploy/docker/`). Several defaults changed in breaking ways so the
 out-of-the-box deployment is safe. The core pip library (SDK / in-process use)
 is **unchanged** — these notes apply only to the self-hosted HTTP server.
@@ -22,7 +22,7 @@ The server no longer serves an unauthenticated API on `0.0.0.0`. It binds
 loopback by default and will not expose itself without a credential.
 
 ```bash
-export CRAWL4AI_API_TOKEN="$(openssl rand -hex 32)"
+export CRAWL_API_TOKEN="$(openssl rand -hex 32)"
 ```
 
 - With a token set, you may expose the server (put a TLS-terminating reverse
@@ -100,7 +100,7 @@ provider outside the allowed family returns 400.
 
 `POST /monitor/actions/cleanup|kill_browser|restart_browser` and
 `/monitor/stats/reset` require an **admin-scope** principal (the static
-`CRAWL4AI_API_TOKEN` is admin; `/token`-issued JWTs are `data` scope).
+`CRAWL_API_TOKEN` is admin; `/token`-issued JWTs are `data` scope).
 
 ### Browser / JS clients: allowlist your origin (CORS)
 
@@ -114,8 +114,8 @@ security:
 ### TLS verification is on
 
 Self-signed / internal TLS crawl targets now fail by default. For trusted
-internal testing only: `CRAWL4AI_ALLOW_INSECURE_TLS=true`. Internal-network
-crawling escape hatch: `CRAWL4AI_ALLOW_INTERNAL_URLS=true`.
+internal testing only: `CRAWL_ALLOW_INSECURE_TLS=true`. Internal-network
+crawling escape hatch: `CRAWL_ALLOW_INTERNAL_URLS=true`.
 
 ### Webhook headers are validated
 
@@ -170,7 +170,7 @@ messages are unchanged.
 - **`--no-sandbox`** is still set by default (the container runs as non-root
   without a usable sandbox). To drop it, run the container with an unprivileged
   user namespace (`unprivileged_userns_clone=1`) or a seccomp profile, then set
-  `CRAWL4AI_CHROMIUM_SANDBOX=true`. See `SECURITY-VERIFY.md`.
+  `CRAWL_CHROMIUM_SANDBOX=true`. See `SECURITY-VERIFY.md`.
 - The hardened `docker-compose.yml` uses `read_only: true` + tmpfs, `cap_drop:
   [ALL]`, `no-new-privileges`, and `shm_size` instead of a host `/dev/shm` bind.
   Mirror these in a custom compose file.

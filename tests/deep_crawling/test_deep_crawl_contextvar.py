@@ -17,7 +17,7 @@ import pytest
 import asyncio
 from unittest.mock import MagicMock, AsyncMock
 
-from crawl4ai.deep_crawling.base_strategy import DeepCrawlDecorator
+from crawl.deep_crawling.base_strategy import DeepCrawlDecorator
 
 
 # ============================================================================

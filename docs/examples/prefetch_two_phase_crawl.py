@@ -22,7 +22,7 @@ import asyncio
 import time
 from typing import List, Dict
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 
 async def example_basic_prefetch():
@@ -175,7 +175,7 @@ async def example_prefetch_with_deep_crawl():
     print("Example 4: Prefetch with Deep Crawl")
     print("=" * 60)
 
-    from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+    from crawl.deep_crawling import BFSDeepCrawlStrategy
 
     async with AsyncWebCrawler(verbose=False) as crawler:
         # Deep crawl with prefetch - maximum discovery speed

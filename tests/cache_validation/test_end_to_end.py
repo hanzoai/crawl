@@ -16,8 +16,8 @@ Verifies all layers:
 import pytest
 import time
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai.async_database import async_db_manager
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl.async_database import async_db_manager
 
 
 class TestEndToEndCacheValidation:
@@ -113,9 +113,9 @@ class TestEndToEndCacheValidation:
         print(f"{'='*60}")
 
     @pytest.mark.asyncio
-    async def test_full_cache_flow_crawl4ai_docs(self):
-        """Test with docs.crawl4ai.com."""
-        url = "https://docs.crawl4ai.com/"
+    async def test_full_cache_flow_crawl_docs(self):
+        """Test with docs.hanzo.ai."""
+        url = "https://docs.hanzo.ai/"
 
         browser_config = BrowserConfig(headless=True, verbose=False)
 
@@ -128,7 +128,7 @@ class TestEndToEndCacheValidation:
 
         assert result1.success
         assert result1.cache_status == "miss"
-        print(f"\n[docs.crawl4ai.com] Fresh: {time1:.2f}s")
+        print(f"\n[docs.hanzo.ai] Fresh: {time1:.2f}s")
 
         # Cache hit with validation
         config2 = CrawlerRunConfig(cache_mode=CacheMode.ENABLED, check_cache_freshness=True)
@@ -139,7 +139,7 @@ class TestEndToEndCacheValidation:
 
         assert result2.success
         assert result2.cache_status in ["hit_validated", "hit_fallback"]
-        print(f"[docs.crawl4ai.com] Validated: {time2:.2f}s ({time1/time2:.1f}x faster)")
+        print(f"[docs.hanzo.ai] Validated: {time2:.2f}s ({time1/time2:.1f}x faster)")
 
     @pytest.mark.asyncio
     async def test_verify_database_storage(self):
@@ -421,7 +421,7 @@ class TestCacheValidationResponseHeaders:
     @pytest.mark.asyncio
     async def test_headers_used_for_validation(self):
         """Verify stored headers are used for conditional requests."""
-        url = "https://docs.crawl4ai.com/"
+        url = "https://docs.hanzo.ai/"
 
         browser_config = BrowserConfig(headless=True, verbose=False)
 

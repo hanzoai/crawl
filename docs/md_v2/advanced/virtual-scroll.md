@@ -2,7 +2,7 @@
 
 Modern websites increasingly use **virtual scrolling** (also called windowed rendering or viewport rendering) to handle large datasets efficiently. This technique only renders visible items in the DOM, replacing content as users scroll. Popular examples include Twitter's timeline, Instagram's feed, and many data tables.
 
-Crawl4AI's Virtual Scroll feature automatically detects and handles these scenarios, ensuring you capture **all content**, not just what's initially visible.
+Crawl's Virtual Scroll feature automatically detects and handles these scenarios, ensuring you capture **all content**, not just what's initially visible.
 
 ## Understanding Virtual Scroll
 
@@ -27,7 +27,7 @@ Without proper handling, crawlers only capture the currently visible items, miss
 
 ### Three Scrolling Scenarios
 
-Crawl4AI's Virtual Scroll detects and handles three scenarios:
+Crawl's Virtual Scroll detects and handles three scenarios:
 
 1. **No Change** - Content doesn't update on scroll (static page or end reached)
 2. **Content Appended** - New items added to existing ones (traditional infinite scroll)  
@@ -38,7 +38,7 @@ Only scenario 3 requires special handling, which Virtual Scroll automates.
 ## Basic Usage
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig
 
 # Configure virtual scroll
 virtual_config = VirtualScrollConfig(
@@ -80,7 +80,7 @@ async with AsyncWebCrawler() as crawler:
 ### Twitter-like Timeline
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig, BrowserConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig, BrowserConfig
 
 async def crawl_twitter_timeline():
     # Twitter replaces tweets as you scroll
@@ -199,7 +199,7 @@ Use **scan_full_page** when:
 Virtual Scroll works seamlessly with extraction strategies:
 
 ```python
-from crawl4ai import LLMExtractionStrategy, LLMConfig
+from crawl import LLMExtractionStrategy, LLMConfig
 
 # Define extraction schema
 schema = {

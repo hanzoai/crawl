@@ -1,6 +1,6 @@
 # Browser, Crawler & LLM Configuration (Quick Overview)
 
-Crawl4AI's flexibility stems from two key classes:
+Crawl's flexibility stems from two key classes:
 
 1. **`BrowserConfig`** – Dictates **how** the browser is launched and behaves (e.g., headless or visible, proxy, user agent).  
 2. **`CrawlerRunConfig`** – Dictates **how** each **crawl** operates (e.g., caching, extraction, timeouts, JavaScript code to run, etc.).  
@@ -151,7 +151,7 @@ debug_browser = base_browser.clone(
 Both `BrowserConfig` and `CrawlerRunConfig` support **class-level default overrides** via `set_defaults()`. This is useful in server/cloud deployments where every config instance needs the same base settings — set them once at startup instead of repeating at every call site.
 
 ```python
-from crawl4ai import BrowserConfig, CrawlerRunConfig
+from crawl import BrowserConfig, CrawlerRunConfig
 
 # At application startup — one time
 BrowserConfig.set_defaults(
@@ -184,7 +184,7 @@ cfg = BrowserConfig(cdp_url="ws://localhost:9222", cache_cdp_connection=False)
 **Minimal Example**:
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig
+from crawl import AsyncWebCrawler, BrowserConfig
 
 browser_conf = BrowserConfig(
     browser_type="firefox",
@@ -386,8 +386,8 @@ In a typical scenario, you define **one** `BrowserConfig` for your crawler sessi
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig, LLMContentFilter, DefaultMarkdownGenerator
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig, LLMContentFilter, DefaultMarkdownGenerator
+from crawl import JsonCssExtractionStrategy
 
 async def main():
     # 1) Browser config: headless, bigger viewport, no proxy

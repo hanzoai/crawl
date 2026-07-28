@@ -1,4 +1,4 @@
-# Crawl4AI v0.8.0 Release Notes
+# Crawl v0.8.0 Release Notes
 
 **Release Date**: January 2026
 **Previous Version**: v0.7.6
@@ -27,7 +27,7 @@
 **Migration**:
 ```bash
 # To re-enable hooks (only if you trust all API users):
-export CRAWL4AI_HOOKS_ENABLED=true
+export CRAWL_HOOKS_ENABLED=true
 ```
 
 ### 2. Docker API: file:// URLs Blocked
@@ -41,7 +41,7 @@ export CRAWL4AI_HOOKS_ENABLED=true
 **Migration**: Use the Python library directly for local file processing:
 ```python
 # Instead of API call with file:// URL, use library:
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 async with AsyncWebCrawler() as crawler:
     result = await crawler.arun(url="file:///path/to/file.html")
 ```
@@ -60,7 +60,7 @@ async with AsyncWebCrawler() as crawler:
 
 **Fix**:
 1. Removed `__import__` from allowed builtins
-2. Hooks disabled by default (`CRAWL4AI_HOOKS_ENABLED=false`)
+2. Hooks disabled by default (`CRAWL_HOOKS_ENABLED=false`)
 
 ### High: Local File Inclusion via file:// URLs (CVE Pending)
 
@@ -103,7 +103,7 @@ config = BrowserConfig(
 All deep crawl strategies (BFS, DFS, Best-First) now support crash recovery:
 
 ```python
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 strategy = BFSDeepCrawlStrategy(
     max_depth=3,
@@ -199,12 +199,12 @@ Various fixes to cache validation and persistence.
 
 1. **Update the package**:
    ```bash
-   pip install --upgrade crawl4ai
+   pip install --upgrade crawl
    ```
 
 2. **Docker API users**:
    - Hooks are now disabled by default
-   - If you need hooks: `export CRAWL4AI_HOOKS_ENABLED=true`
+   - If you need hooks: `export CRAWL_HOOKS_ENABLED=true`
    - `file://` URLs no longer work on API (use library directly)
 
 3. **Review security settings**:
@@ -240,4 +240,4 @@ Special thanks to **Neo by ProjectDiscovery** for responsible security disclosur
 
 ---
 
-*For questions or issues, please open a [GitHub Issue](https://github.com/unclecode/crawl4ai/issues).*
+*For questions or issues, please open a [GitHub Issue](https://github.com/hanzoai/crawl/issues).*

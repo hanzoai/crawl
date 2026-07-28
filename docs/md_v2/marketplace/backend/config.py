@@ -52,8 +52,8 @@ class Config:
         "http://127.0.0.1:8000",
         "http://127.0.0.1:8080",
         "http://127.0.0.1:8100",
-        "https://crawl4ai.com",
-        "https://www.crawl4ai.com",
-        "https://docs.crawl4ai.com",
-        "https://market.crawl4ai.com"
+        "https://crawl.hanzo.ai",
+        "https://www.crawl.hanzo.ai",
+        "https://docs.hanzo.ai",
+        "https://market.crawl.hanzo.ai"
     ]

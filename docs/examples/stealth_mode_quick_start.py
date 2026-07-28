@@ -1,12 +1,12 @@
 """
-Quick Start: Using Stealth Mode in Crawl4AI
+Quick Start: Using Stealth Mode in Crawl
 
 This example shows practical use cases for the stealth mode feature.
 Stealth mode helps bypass basic bot detection mechanisms.
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 
 async def example_1_basic_stealth():
@@ -184,7 +184,7 @@ async def example_5_stealth_comparison():
 
 async def main():
     """Run all examples"""
-    print("Crawl4AI Stealth Mode Examples")
+    print("Crawl Stealth Mode Examples")
     print("==============================")
     
     # Run basic example

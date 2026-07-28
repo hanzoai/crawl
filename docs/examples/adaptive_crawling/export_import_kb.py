@@ -8,7 +8,7 @@ import them for reuse, sharing, or analysis.
 import asyncio
 import json
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
 
 
 async def build_knowledge_base():

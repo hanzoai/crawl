@@ -15,7 +15,7 @@ import tempfile
 
 import pytest
 
-from crawl4ai.async_crawler_strategy import _safe_download_filepath, _nofollow_opener
+from crawl.async_crawler_strategy import _safe_download_filepath, _nofollow_opener
 
 pytestmark = pytest.mark.posture
 

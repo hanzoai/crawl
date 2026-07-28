@@ -1,10 +1,10 @@
-# 🚀 Crawl4AI v0.7.3: The Multi-Config Intelligence Update
+# 🚀 Crawl v0.7.3: The Multi-Config Intelligence Update
 
 *August 6, 2025 • 5 min read*
 
 ---
 
-Today I'm releasing Crawl4AI v0.7.3—the Multi-Config Intelligence Update. This release brings smarter URL-specific configurations, flexible Docker deployments, important bug fixes, and documentation improvements that make Crawl4AI more robust and production-ready.
+Today I'm releasing Crawl v0.7.3—the Multi-Config Intelligence Update. This release brings smarter URL-specific configurations, flexible Docker deployments, important bug fixes, and documentation improvements that make Crawl more robust and production-ready.
 
 ## 🎯 What's New at a Glance
 
@@ -26,7 +26,7 @@ Today I'm releasing Crawl4AI v0.7.3—the Multi-Config Intelligence Update. This
 ### Technical Implementation
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, MatchMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, MatchMode
 
 # Define specialized configs for different content types
 configs = [
@@ -86,12 +86,12 @@ async with AsyncWebCrawler() as crawler:
 
 **The Problem:** Modern websites employ sophisticated bot detection systems. Cloudflare, Akamai, and custom solutions block automated crawlers, limiting access to valuable content.
 
-**My Solution:** I implemented undetected browser support with a flexible adapter pattern. Now Crawl4AI can bypass most bot detection systems using stealth techniques.
+**My Solution:** I implemented undetected browser support with a flexible adapter pattern. Now Crawl can bypass most bot detection systems using stealth techniques.
 
 ### Technical Implementation
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig
+from crawl import AsyncWebCrawler, BrowserConfig
 
 # Enable undetected mode for stealth crawling
 browser_config = BrowserConfig(
@@ -117,7 +117,7 @@ async with AsyncWebCrawler(config=browser_config) as crawler:
 
 ```python
 # Combine multiple stealth techniques
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 config = CrawlerRunConfig(
     # Random user agents and headers
@@ -170,7 +170,7 @@ result = await crawler.arun("https://bot-protected-site.com", config=config)
 ### Memory Tracking Implementation
 
 ```python
-from crawl4ai.memory_utils import MemoryMonitor, get_memory_info
+from crawl.memory_utils import MemoryMonitor, get_memory_info
 
 # Monitor memory during crawling
 monitor = MemoryMonitor()
@@ -242,7 +242,7 @@ if result.tables:
 
 ## 💰 Community Support: GitHub Sponsors
 
-I've launched GitHub Sponsors to ensure Crawl4AI's continued development and support our growing community.
+I've launched GitHub Sponsors to ensure Crawl's continued development and support our growing community.
 
 **Sponsorship Tiers:**
 - **🌱 Supporter ($5/month)**: Community support + early feature previews
@@ -272,7 +272,7 @@ docker run -d \
   -e LLM_PROVIDER="groq/llama-3.2-3b-preview" \
   -e GROQ_API_KEY="your-key" \
   -p 11235:11235 \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 
 # Option 2: Using .llm.env file (recommended for production)
 # Create .llm.env file:
@@ -283,7 +283,7 @@ docker run -d \
 docker run -d \
   --env-file .llm.env \
   -p 11235:11235 \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 ```
 
 Override per request when needed:
@@ -336,15 +336,15 @@ Thanks to our contributors and the entire community for feedback and bug reports
 
 ## 📚 Resources
 
-- [Full Documentation](https://docs.crawl4ai.com)
-- [GitHub Repository](https://github.com/unclecode/crawl4ai)
-- [Discord Community](https://discord.gg/crawl4ai)
-- [Feature Demo](https://github.com/unclecode/crawl4ai/blob/main/docs/releases_review/demo_v0.7.3.py)
+- [Full Documentation](https://docs.hanzo.ai)
+- [GitHub Repository](https://github.com/hanzoai/crawl)
+- [Discord Community](https://discord.gg/crawl)
+- [Feature Demo](https://github.com/hanzoai/crawl/blob/main/docs/releases_review/demo_v0.7.3.py)
 
 ---
 
-*Crawl4AI continues to evolve with your needs. This release makes it smarter, more flexible, and more stable. Try the new multi-config feature and flexible Docker deployment—they're game changers!*
+*Crawl continues to evolve with your needs. This release makes it smarter, more flexible, and more stable. Try the new multi-config feature and flexible Docker deployment—they're game changers!*
 
 **Happy Crawling! 🕷️**
 
-*- The Crawl4AI Team*
+*- The Crawl Team*

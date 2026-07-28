@@ -1,11 +1,11 @@
-from crawl4ai import BrowserConfig, CrawlerRunConfig, PruningContentFilter, DefaultMarkdownGenerator
-from crawl4ai.deep_crawling.filters import ContentTypeFilter, DomainFilter
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer, PathDepthScorer
-from crawl4ai.cache_context import CacheMode
-from crawl4ai.deep_crawling.bfs_strategy import BFSDeepCrawlStrategy
-from crawl4ai.deep_crawling.filters import FilterChain
-from crawl4ai.deep_crawling.scorers import CompositeScorer
-from crawl4ai.docker_client import Crawl4aiDockerClient
+from crawl import BrowserConfig, CrawlerRunConfig, PruningContentFilter, DefaultMarkdownGenerator
+from crawl.deep_crawling.filters import ContentTypeFilter, DomainFilter
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer, PathDepthScorer
+from crawl.cache_context import CacheMode
+from crawl.deep_crawling.bfs_strategy import BFSDeepCrawlStrategy
+from crawl.deep_crawling.filters import FilterChain
+from crawl.deep_crawling.scorers import CompositeScorer
+from crawl.docker_client import Crawl4aiDockerClient
 import json
 from rich.console import Console
 from rich.syntax import Syntax
@@ -26,7 +26,7 @@ async def part1_basic_config():
     Here we create simple configuration objects and examine their structure.
     This helps understand the basic type-params pattern used throughout the API.
     """
-    console.print("\n[bold green]Explanation:[/bold green] Configuration objects like BrowserConfig and CrawlerRunConfig are the foundation of Crawl4AI. They define how the crawler behaves—e.g., whether it runs headless or how it processes content. These objects use a 'type-params' pattern: 'type' identifies the object class, and 'params' holds its settings. This structure is key because it’s reusable and can be serialized into JSON for API calls.")
+    console.print("\n[bold green]Explanation:[/bold green] Configuration objects like BrowserConfig and CrawlerRunConfig are the foundation of Crawl. They define how the crawler behaves—e.g., whether it runs headless or how it processes content. These objects use a 'type-params' pattern: 'type' identifies the object class, and 'params' holds its settings. This structure is key because it’s reusable and can be serialized into JSON for API calls.")
     
     # Create a simple browser config
     browser_config = BrowserConfig(
@@ -143,7 +143,7 @@ async def part5_direct_api():
     Learn how to make direct API calls without the SDK.
     This demonstrates the raw request structure and gives more control.
     """
-    console.print("\n[bold green]Explanation:[/bold green] Skipping the SDK means you’re in full control—you build the JSON payload yourself and send it to the API. This is harder but gives you a deeper understanding of how Crawl4AI works under the hood. It’s also useful if you’re integrating with systems that don’t use the SDK.")
+    console.print("\n[bold green]Explanation:[/bold green] Skipping the SDK means you’re in full control—you build the JSON payload yourself and send it to the API. This is harder but gives you a deeper understanding of how Crawl works under the hood. It’s also useful if you’re integrating with systems that don’t use the SDK.")
     
     import aiohttp
     from datetime import datetime
@@ -220,11 +220,11 @@ async def part6_wrap_up():
     console.print("- **Nesting:** Customize deeply with nested objects.")
     console.print("- **SDK:** Simplify API calls with automatic serialization.")
     console.print("- **Direct API:** Gain control by crafting raw requests.")
-    console.print("\n[bold green]🚀 You’re ready to crawl with Crawl4AI![/bold green]")
+    console.print("\n[bold green]🚀 You’re ready to crawl with Crawl![/bold green]")
 
 async def main():
     """Main tutorial runner that executes each part in sequence"""
-    console.print("\n[bold yellow]🎓 Crawl4AI Docker Tutorial[/bold yellow]")
+    console.print("\n[bold yellow]🎓 Crawl Docker Tutorial[/bold yellow]")
     console.print("[italic]Learn how to work with configuration objects and the Docker API[/italic]\n")
     
     parts = [

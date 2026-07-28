@@ -1,8 +1,8 @@
-# Crawl4AI
+# Crawl
 
 > Open-source LLM-friendly web crawler and scraper for AI applications
 
-Crawl4AI simplifies asynchronous web crawling and data extraction, making it accessible for large language models (LLMs) and AI applications. Built with Python and Playwright for high-performance crawling with structured data extraction.
+Crawl simplifies asynchronous web crawling and data extraction, making it accessible for large language models (LLMs) and AI applications. Built with Python and Playwright for high-performance crawling with structured data extraction.
 
 **Key Features:**
 - Asynchronous crawling with high concurrency
@@ -13,9 +13,9 @@ Crawl4AI simplifies asynchronous web crawling and data extraction, making it acc
 - Advanced anti-detection capabilities
 
 **Quick Links:**
-- [GitHub Repository](https://github.com/unclecode/crawl4ai)
-- [Documentation](https://docs.crawl4ai.com)
-- [Examples](https://github.com/unclecode/crawl4ai/tree/main/docs/examples)
+- [GitHub Repository](https://github.com/hanzoai/crawl)
+- [Documentation](https://docs.hanzo.ai)
+- [Examples](https://github.com/hanzoai/crawl/tree/main/docs/examples)
 
 ---
 
@@ -28,20 +28,20 @@ Multiple installation options for different environments and use cases.
 
 ```bash
 # Install core library
-pip install crawl4ai
+pip install crawl
 
 # Initial setup (installs Playwright browsers)
-crawl4ai-setup
+crawl-setup
 
 # Verify installation
-crawl4ai-doctor
+crawl-doctor
 ```
 
 ### Quick Verification
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -52,35 +52,35 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-**📖 Learn more:** [Basic Usage Guide](https://docs.crawl4ai.com/core/quickstart.md)
+**📖 Learn more:** [Basic Usage Guide](https://docs.hanzo.ai/core/quickstart.md)
 
 ### Advanced Features (Optional)
 
 ```bash
 # PyTorch-based features (text clustering, semantic chunking)
-pip install crawl4ai[torch]
-crawl4ai-setup
+pip install crawl[torch]
+crawl-setup
 
 # Transformers (Hugging Face models)
-pip install crawl4ai[transformer]
-crawl4ai-setup
+pip install crawl[transformer]
+crawl-setup
 
 # All features (large download)
-pip install crawl4ai[all]
-crawl4ai-setup
+pip install crawl[all]
+crawl-setup
 
 # Pre-download models (optional)
-crawl4ai-download-models
+crawl-download-models
 ```
 
-**📖 Learn more:** [Advanced Features Documentation](https://docs.crawl4ai.com/extraction/llm-strategies.md)
+**📖 Learn more:** [Advanced Features Documentation](https://docs.hanzo.ai/extraction/llm-strategies.md)
 
 ### Docker Deployment
 
 ```bash
 # Pull pre-built image (specify platform for consistency)
-docker pull --platform linux/amd64 unclecode/crawl4ai:latest
-# For ARM (M1/M2 Macs): docker pull --platform linux/arm64 unclecode/crawl4ai:latest
+docker pull --platform linux/amd64 hanzoai/crawl:latest
+# For ARM (M1/M2 Macs): docker pull --platform linux/arm64 hanzoai/crawl:latest
 
 # Setup environment for LLM support
 cat > .llm.env << EOL
@@ -92,10 +92,10 @@ EOL
 docker run -d \
   --platform linux/amd64 \
   -p 11235:11235 \
-  --name crawl4ai \
+  --name crawl \
   --env-file .llm.env \
   --shm-size=1g \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 
 # For ARM Macs, use: --platform linux/arm64
 
@@ -103,26 +103,26 @@ docker run -d \
 docker run -d \
   --platform linux/amd64 \
   -p 11235:11235 \
-  --name crawl4ai \
+  --name crawl \
   --shm-size=1g \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 ```
 
-**📖 Learn more:** [Complete Docker Guide](https://docs.crawl4ai.com/core/docker-deployment.md)
+**📖 Learn more:** [Complete Docker Guide](https://docs.hanzo.ai/core/docker-deployment.md)
 
 ### Docker Compose
 
 ```bash
 # Clone repository
-git clone https://github.com/unclecode/crawl4ai.git
-cd crawl4ai
+git clone https://github.com/hanzoai/crawl.git
+cd crawl
 
 # Copy environment template
 cp deploy/docker/.llm.env.example .llm.env
 # Edit .llm.env with your API keys
 
 # Run pre-built image
-IMAGE=unclecode/crawl4ai:latest docker compose up -d
+IMAGE=hanzoai/crawl:latest docker compose up -d
 
 # Build and run locally
 docker compose up --build -d
@@ -134,55 +134,55 @@ INSTALL_TYPE=all docker compose up --build -d
 docker compose down
 ```
 
-**📖 Learn more:** [Docker Compose Configuration](https://docs.crawl4ai.com/core/docker-deployment.md#option-2-using-docker-compose)
+**📖 Learn more:** [Docker Compose Configuration](https://docs.hanzo.ai/core/docker-deployment.md#option-2-using-docker-compose)
 
 ### Manual Docker Build
 
 ```bash
 # Build multi-architecture image (specify platform)
-docker buildx build --platform linux/amd64 -t crawl4ai-local:latest --load .
-# For ARM: docker buildx build --platform linux/arm64 -t crawl4ai-local:latest --load .
+docker buildx build --platform linux/amd64 -t crawl-local:latest --load .
+# For ARM: docker buildx build --platform linux/arm64 -t crawl-local:latest --load .
 
 # Build with specific features
 docker buildx build \
   --platform linux/amd64 \
   --build-arg INSTALL_TYPE=all \
   --build-arg ENABLE_GPU=false \
-  -t crawl4ai-local:latest --load .
+  -t crawl-local:latest --load .
 
 # Run custom build (specify platform)
 docker run -d \
   --platform linux/amd64 \
   -p 11235:11235 \
-  --name crawl4ai-custom \
+  --name crawl-custom \
   --env-file .llm.env \
   --shm-size=1g \
-  crawl4ai-local:latest
+  crawl-local:latest
 ```
 
-**📖 Learn more:** [Manual Build Guide](https://docs.crawl4ai.com/core/docker-deployment.md#option-3-manual-local-build--run)
+**📖 Learn more:** [Manual Build Guide](https://docs.hanzo.ai/core/docker-deployment.md#option-3-manual-local-build--run)
 
 ### Google Colab
 
 ```python
 # Install in Colab
-!pip install crawl4ai
-!crawl4ai-setup
+!pip install crawl
+!crawl-setup
 
 # If setup fails, manually install Playwright browsers
 !playwright install chromium
 
 # Install with all features (may take 5-10 minutes)
-!pip install crawl4ai[all]
-!crawl4ai-setup
-!crawl4ai-download-models
+!pip install crawl[all]
+!crawl-setup
+!crawl-download-models
 
 # If still having issues, force Playwright install
 !playwright install chromium --force
 
 # Quick test
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def test_crawl():
     async with AsyncWebCrawler() as crawler:
@@ -194,15 +194,15 @@ async def test_crawl():
 await test_crawl()
 ```
 
-**📖 Learn more:** [Colab Examples Notebook](https://colab.research.google.com/github/unclecode/crawl4ai/blob/main/docs/examples/quickstart.ipynb)
+**📖 Learn more:** [Colab Examples Notebook](https://colab.research.google.com/github/hanzoai/crawl/blob/main/docs/examples/quickstart.ipynb)
 
 ### Docker API Usage
 
 ```python
 # Using Docker SDK
 import asyncio
-from crawl4ai.docker_client import Crawl4aiDockerClient
-from crawl4ai import BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl.docker_client import Crawl4aiDockerClient
+from crawl import BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def main():
     async with Crawl4aiDockerClient(base_url="http://localhost:11235") as client:
@@ -217,7 +217,7 @@ async def main():
 asyncio.run(main())
 ```
 
-**📖 Learn more:** [Docker Client API](https://docs.crawl4ai.com/core/docker-deployment.md#python-sdk)
+**📖 Learn more:** [Docker Client API](https://docs.hanzo.ai/core/docker-deployment.md#python-sdk)
 
 ### Direct API Calls
 
@@ -235,7 +235,7 @@ response = requests.post("http://localhost:11235/crawl", json=payload)
 print(response.json())
 ```
 
-**📖 Learn more:** [REST API Reference](https://docs.crawl4ai.com/core/docker-deployment.md#rest-api-examples)
+**📖 Learn more:** [REST API Reference](https://docs.hanzo.ai/core/docker-deployment.md#rest-api-examples)
 
 ### Health Check
 
@@ -250,7 +250,7 @@ open http://localhost:11235/playground
 curl http://localhost:11235/metrics
 ```
 
-**📖 Learn more:** [Monitoring & Metrics](https://docs.crawl4ai.com/core/docker-deployment.md#metrics--monitoring)
+**📖 Learn more:** [Monitoring & Metrics](https://docs.hanzo.ai/core/docker-deployment.md#metrics--monitoring)
 ---
 
 
@@ -262,7 +262,7 @@ Basic web crawling operations with AsyncWebCrawler, configurations, and response
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 async def main():
     browser_config = BrowserConfig()  # Default browser settings
@@ -282,8 +282,8 @@ if __name__ == "__main__":
 ### Understanding CrawlResult
 
 ```python
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
 
 config = CrawlerRunConfig(
     markdown_generator=DefaultMarkdownGenerator(
@@ -349,7 +349,7 @@ async with AsyncWebCrawler(config=browser_config) as crawler:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def comprehensive_crawl():
     browser_config = BrowserConfig(verbose=True)
@@ -422,7 +422,7 @@ Extract structured data from HTML tables with automatic detection and scoring.
 ```python
 import asyncio
 import pandas as pd
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def extract_tables():
     async with AsyncWebCrawler() as crawler:
@@ -451,7 +451,7 @@ asyncio.run(extract_tables())
 ### Advanced Table Processing
 
 ```python
-from crawl4ai import LXMLWebScrapingStrategy
+from crawl import LXMLWebScrapingStrategy
 
 async def process_financial_tables():
     config = CrawlerRunConfig(
@@ -618,7 +618,7 @@ config = CrawlerRunConfig(
 ```
 
 
-**📖 Learn more:** [CrawlResult API Reference](https://docs.crawl4ai.com/api/crawl-result/), [Browser & Crawler Configuration](https://docs.crawl4ai.com/core/browser-crawler-config/), [Cache Modes](https://docs.crawl4ai.com/core/cache-modes/)
+**📖 Learn more:** [CrawlResult API Reference](https://docs.hanzo.ai/api/crawl-result/), [Browser & Crawler Configuration](https://docs.hanzo.ai/core/browser-crawler-config/), [Cache Modes](https://docs.hanzo.ai/core/cache-modes/)
 ---
 
 
@@ -629,7 +629,7 @@ Core configuration classes for controlling browser behavior, crawl operations, L
 ### BrowserConfig - Browser Environment Setup
 
 ```python
-from crawl4ai import BrowserConfig, AsyncWebCrawler
+from crawl import BrowserConfig, AsyncWebCrawler
 
 # Basic browser configuration
 browser_config = BrowserConfig(
@@ -662,9 +662,9 @@ async with AsyncWebCrawler(config=browser_config) as crawler:
 ### CrawlerRunConfig - Crawl Operation Control
 
 ```python
-from crawl4ai import CrawlerRunConfig, CacheMode
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl import CrawlerRunConfig, CacheMode
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
 
 # Basic crawl configuration
 run_config = CrawlerRunConfig(
@@ -780,7 +780,7 @@ config = CrawlerRunConfig(
 ### LLMConfig - Language Model Setup
 
 ```python
-from crawl4ai import LLMConfig
+from crawl import LLMConfig
 
 # OpenAI configuration
 llm_config = LLMConfig(
@@ -820,7 +820,7 @@ llm_config = LLMConfig(
 ### CrawlResult - Understanding Output
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async with AsyncWebCrawler() as crawler:
     result = await crawler.arun("https://example.com", config=run_config)
@@ -975,7 +975,7 @@ stealth_config = CrawlerRunConfig(
 #### User Agent Management & Bot Detection Avoidance
 
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # Random user agent generation
 config = CrawlerRunConfig(
@@ -1009,7 +1009,7 @@ stealth_config = CrawlerRunConfig(
 #### Proxy Configuration with ProxyConfig
 
 ```python
-from crawl4ai import CrawlerRunConfig, ProxyConfig, ProxyRotationStrategy
+from crawl import CrawlerRunConfig, ProxyConfig, ProxyRotationStrategy
 
 # Single proxy configuration
 proxy_config = ProxyConfig(
@@ -1045,7 +1045,7 @@ proxies_from_env = ProxyConfig.from_env("MY_PROXIES")  # comma-separated proxy s
 #### Content Selection: css_selector vs target_elements
 
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # css_selector: Extracts HTML at top level, affects entire processing
 config = CrawlerRunConfig(
@@ -1079,7 +1079,7 @@ config = CrawlerRunConfig(
 #### Advanced wait_for Conditions
 
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # CSS selector waiting
 config = CrawlerRunConfig(
@@ -1112,7 +1112,7 @@ config = CrawlerRunConfig(
 #### Session Management for Multi-Step Crawling
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 # Persistent session across multiple arun() calls
 async def multi_step_crawling():
@@ -1166,7 +1166,7 @@ async def session_with_shared_data():
 #### Identity-Based Crawling Parameters
 
 ```python
-from crawl4ai import CrawlerRunConfig, GeolocationConfig
+from crawl import CrawlerRunConfig, GeolocationConfig
 
 # Locale and timezone simulation
 config = CrawlerRunConfig(
@@ -1218,8 +1218,8 @@ identity_config = CrawlerRunConfig(
 #### Simplified Import Pattern
 
 ```python
-# Almost everything from crawl4ai main package
-from crawl4ai import (
+# Almost everything from crawl main package
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig, 
     CrawlerRunConfig,
@@ -1229,8 +1229,8 @@ from crawl4ai import (
     GeolocationConfig
 )
 
-# Specialized strategies (still from crawl4ai)
-from crawl4ai import (
+# Specialized strategies (still from crawl)
+from crawl import (
     JsonCssExtractionStrategy,
     LLMExtractionStrategy,
     DefaultMarkdownGenerator,
@@ -1264,7 +1264,7 @@ Comprehensive guide to advanced crawling capabilities including file handling, a
 ### File Download Handling
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 import os
 
 # Enable downloads with custom path
@@ -1302,7 +1302,7 @@ async def download_files():
 ### Hooks & Authentication
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 from playwright.async_api import Page, BrowserContext
 
 async def advanced_crawler_with_hooks():
@@ -1790,9 +1790,9 @@ async def performance_optimized_crawling():
 ```
 
 
-**📖 Learn more:** [Complete Parameter Reference](https://docs.crawl4ai.com/api/parameters/), [Content Filtering](https://docs.crawl4ai.com/core/markdown-generation/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Network Capture](https://docs.crawl4ai.com/advanced/network-console-capture/)
+**📖 Learn more:** [Complete Parameter Reference](https://docs.hanzo.ai/api/parameters/), [Content Filtering](https://docs.hanzo.ai/core/markdown-generation/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Network Capture](https://docs.hanzo.ai/advanced/network-console-capture/)
 
-**📖 Learn more:** [Hooks & Authentication](https://docs.crawl4ai.com/advanced/hooks-auth/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Network Monitoring](https://docs.crawl4ai.com/advanced/network-console-capture/), [Page Interaction](https://docs.crawl4ai.com/core/page-interaction/), [File Downloads](https://docs.crawl4ai.com/advanced/file-downloading/)
+**📖 Learn more:** [Hooks & Authentication](https://docs.hanzo.ai/advanced/hooks-auth/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Network Monitoring](https://docs.hanzo.ai/advanced/network-console-capture/), [Page Interaction](https://docs.hanzo.ai/core/page-interaction/), [File Downloads](https://docs.hanzo.ai/advanced/file-downloading/)
 ---
 
 
@@ -1834,8 +1834,8 @@ import asyncio
 import json
 from pydantic import BaseModel, Field
 from typing import List
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
-from crawl4ai import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
+from crawl import LLMExtractionStrategy
 
 class SentimentAnalysis(BaseModel):
     """Use LLM when you need semantic understanding"""
@@ -2742,8 +2742,8 @@ The `generate_schema()` function uses LLM ONCE to create a reusable extraction p
 import json
 import asyncio
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
+from crawl import JsonCssExtractionStrategy
 
 async def smart_extraction_workflow():
     """
@@ -2879,8 +2879,8 @@ social_schema = JsonCssExtractionStrategy.generate_schema(
 ```python
 import json
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import JsonCssExtractionStrategy
 
 # Manual schema for consistent product pages
 simple_schema = {
@@ -3046,7 +3046,7 @@ asyncio.run(extract_complex_ecommerce())
 ### XPath Alternative (When CSS Isn't Enough)
 
 ```python
-from crawl4ai import JsonXPathExtractionStrategy
+from crawl import JsonXPathExtractionStrategy
 
 # XPath for more complex selections
 xpath_schema = {
@@ -3090,8 +3090,8 @@ strategy = JsonXPathExtractionStrategy(xpath_schema, verbose=True)
 ```python
 import json
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import RegexExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import RegexExtractionStrategy
 
 async def extract_common_patterns():
     # Use built-in patterns for common data types
@@ -3547,7 +3547,7 @@ Concurrent crawling of multiple URLs with intelligent resource management, rate 
 ### Basic Multi-URL Crawling
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 # Batch processing (default) - get all results at once
 async def batch_crawl():
@@ -3591,7 +3591,7 @@ async def streaming_crawl():
 ### Memory-Adaptive Dispatching
 
 ```python
-from crawl4ai import AsyncWebCrawler, MemoryAdaptiveDispatcher, CrawlerMonitor, DisplayMode
+from crawl import AsyncWebCrawler, MemoryAdaptiveDispatcher, CrawlerMonitor, DisplayMode
 
 # Automatically manages concurrency based on system memory
 async def memory_adaptive_crawl():
@@ -3625,7 +3625,7 @@ async def memory_adaptive_crawl():
 ### Rate-Limited Crawling
 
 ```python
-from crawl4ai import RateLimiter, SemaphoreDispatcher
+from crawl import RateLimiter, SemaphoreDispatcher
 
 # Control request pacing and handle server rate limits
 async def rate_limited_crawl():
@@ -3658,7 +3658,7 @@ async def rate_limited_crawl():
 ### Real-Time Monitoring
 
 ```python
-from crawl4ai import CrawlerMonitor, DisplayMode
+from crawl import CrawlerMonitor, DisplayMode
 
 # Monitor crawling progress in real-time
 async def monitored_crawl():
@@ -3878,7 +3878,7 @@ async def robust_multi_crawl():
             print(f"  {failure['url']}: {failure['error']}")
 ```
 
-**📖 Learn more:** [Advanced Multi-URL Crawling](https://docs.crawl4ai.com/advanced/multi-url-crawling/), [Crawl Dispatcher](https://docs.crawl4ai.com/advanced/crawl-dispatcher/), [arun_many() API Reference](https://docs.crawl4ai.com/api/arun_many/)
+**📖 Learn more:** [Advanced Multi-URL Crawling](https://docs.hanzo.ai/advanced/multi-url-crawling/), [Crawl Dispatcher](https://docs.hanzo.ai/advanced/crawl-dispatcher/), [arun_many() API Reference](https://docs.hanzo.ai/api/arun_many/)
 ---
 
 
@@ -3889,9 +3889,9 @@ Multi-level website exploration with intelligent filtering, scoring, and priorit
 ### Basic Deep Crawl Setup
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
 
 # Basic breadth-first deep crawling
 async def basic_deep_crawl():
@@ -3905,7 +3905,7 @@ async def basic_deep_crawl():
     )
     
     async with AsyncWebCrawler() as crawler:
-        results = await crawler.arun("https://docs.crawl4ai.com", config=config)
+        results = await crawler.arun("https://docs.hanzo.ai", config=config)
         
         # Group results by depth
         pages_by_depth = {}
@@ -3923,8 +3923,8 @@ async def basic_deep_crawl():
 ### Deep Crawl Strategies
 
 ```python
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy, DFSDeepCrawlStrategy, BestFirstCrawlingStrategy
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling import BFSDeepCrawlStrategy, DFSDeepCrawlStrategy, BestFirstCrawlingStrategy
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 # Breadth-First Search - explores all links at one depth before going deeper
 bfs_strategy = BFSDeepCrawlStrategy(
@@ -3995,7 +3995,7 @@ async def streaming_deep_crawl():
 ### Filtering with Filter Chains
 
 ```python
-from crawl4ai.deep_crawling.filters import (
+from crawl.deep_crawling.filters import (
     FilterChain,
     URLPatternFilter,
     DomainFilter,
@@ -4052,7 +4052,7 @@ config = CrawlerRunConfig(
 ### Intelligent Crawling with Scorers
 
 ```python
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 # Keyword relevance scoring
 async def scored_deep_crawl():
@@ -4072,7 +4072,7 @@ async def scored_deep_crawl():
     )
     
     async with AsyncWebCrawler() as crawler:
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=config):
             score = result.metadata.get("score", 0)
             depth = result.metadata.get("depth", 0)
             print(f"Depth: {depth} | Score: {score:.2f} | {result.url}")
@@ -4114,7 +4114,7 @@ async def limited_crawls():
     
     async with AsyncWebCrawler() as crawler:
         # Use any of the configs
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=bf_config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=bf_config):
             score = result.metadata.get("score", 0)
             print(f"Score: {score:.2f} | {result.url}")
 ```
@@ -4126,8 +4126,8 @@ async def comprehensive_deep_crawl():
     # Sophisticated filter chain
     filter_chain = FilterChain([
         DomainFilter(
-            allowed_domains=["docs.crawl4ai.com"],
-            blocked_domains=["old.docs.crawl4ai.com"]
+            allowed_domains=["docs.hanzo.ai"],
+            blocked_domains=["old.docs.hanzo.ai"]
         ),
         URLPatternFilter(patterns=["*core*", "*advanced*", "*blog*"]),
         ContentTypeFilter(allowed_types=["text/html"]),
@@ -4160,7 +4160,7 @@ async def comprehensive_deep_crawl():
     start_time = time.time()
     
     async with AsyncWebCrawler() as crawler:
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=config):
             results.append(result)
             score = result.metadata.get("score", 0)
             depth = result.metadata.get("depth", 0)
@@ -4201,7 +4201,7 @@ async def robust_deep_crawl():
     failed_pages = []
     
     async with AsyncWebCrawler() as crawler:
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=config):
             if result.success:
                 successful_pages.append(result)
                 depth = result.metadata.get("depth", 0)
@@ -4229,7 +4229,7 @@ async def robust_deep_crawl():
             print(f"   Depth {depth}: {count} failures")
 ```
 
-**📖 Learn more:** [Deep Crawling Guide](https://docs.crawl4ai.com/core/deep-crawling/), [Filter Documentation](https://docs.crawl4ai.com/core/content-selection/), [Scoring Strategies](https://docs.crawl4ai.com/advanced/advanced-features/)
+**📖 Learn more:** [Deep Crawling Guide](https://docs.hanzo.ai/core/deep-crawling/), [Filter Documentation](https://docs.hanzo.ai/core/content-selection/), [Scoring Strategies](https://docs.hanzo.ai/advanced/advanced-features/)
 ---
 
 
@@ -4241,7 +4241,7 @@ Complete Docker deployment guide with pre-built images, API endpoints, configura
 
 ```bash
 # Pull latest image
-docker pull unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
 
 # Setup LLM API keys
 cat > .llm.env << EOL
@@ -4254,17 +4254,17 @@ EOL
 # Run with LLM support
 docker run -d \
   -p 11235:11235 \
-  --name crawl4ai \
+  --name crawl \
   --env-file .llm.env \
   --shm-size=1g \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 
 # Basic run (no LLM)
 docker run -d \
   -p 11235:11235 \
-  --name crawl4ai \
+  --name crawl \
   --shm-size=1g \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 
 # Check health
 curl http://localhost:11235/health
@@ -4274,13 +4274,13 @@ curl http://localhost:11235/health
 
 ```bash
 # Clone and setup
-git clone https://github.com/unclecode/crawl4ai.git
-cd crawl4ai
+git clone https://github.com/hanzoai/crawl.git
+cd crawl
 cp deploy/docker/.llm.env.example .llm.env
 # Edit .llm.env with your API keys
 
 # Run pre-built image
-IMAGE=unclecode/crawl4ai:latest docker compose up -d
+IMAGE=hanzoai/crawl:latest docker compose up -d
 
 # Build locally
 docker compose up --build -d
@@ -4299,29 +4299,29 @@ docker compose down
 
 ```bash
 # Clone repository
-git clone https://github.com/unclecode/crawl4ai.git
-cd crawl4ai
+git clone https://github.com/hanzoai/crawl.git
+cd crawl
 
 # Build for current architecture
-docker buildx build -t crawl4ai-local:latest --load .
+docker buildx build -t crawl-local:latest --load .
 
 # Build for multiple architectures
 docker buildx build --platform linux/amd64,linux/arm64 \
-  -t crawl4ai-local:latest --load .
+  -t crawl-local:latest --load .
 
 # Build with specific features
 docker buildx build \
   --build-arg INSTALL_TYPE=all \
   --build-arg ENABLE_GPU=false \
-  -t crawl4ai-local:latest --load .
+  -t crawl-local:latest --load .
 
 # Run custom build
 docker run -d \
   -p 11235:11235 \
-  --name crawl4ai-custom \
+  --name crawl-custom \
   --env-file .llm.env \
   --shm-size=1g \
-  crawl4ai-local:latest
+  crawl-local:latest
 ```
 
 ### Build Arguments
@@ -4335,7 +4335,7 @@ docker buildx build \
   --build-arg USE_LOCAL=true \       # Use local source
   --build-arg GITHUB_REPO=url \      # Git repo if USE_LOCAL=false
   --build-arg GITHUB_BRANCH=main \   # Git branch
-  -t crawl4ai-custom:latest --load .
+  -t crawl-custom:latest --load .
 ```
 
 ### Core API Endpoints
@@ -4420,8 +4420,8 @@ response = requests.get("http://localhost:11235/ask", params={
 
 ```python
 import asyncio
-from crawl4ai.docker_client import Crawl4aiDockerClient
-from crawl4ai import BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl.docker_client import Crawl4aiDockerClient
+from crawl import BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def main():
     async with Crawl4aiDockerClient(base_url="http://localhost:11235") as client:
@@ -4545,8 +4545,8 @@ extracted = json.loads(data["results"][0]["extracted_content"])
 ### MCP (Model Context Protocol) Integration
 
 ```bash
-# Add Crawl4AI as MCP provider to Claude Code
-claude mcp add --transport sse c4ai-sse http://localhost:11235/mcp/sse
+# Add Crawl as MCP provider to Claude Code
+claude mcp add --transport sse crawl-sse http://localhost:11235/mcp/sse
 
 # List MCP providers
 claude mcp list
@@ -4567,14 +4567,14 @@ Available MCP tools:
 - `pdf` - Generate PDF documents
 - `execute_js` - Run JavaScript on web pages
 - `crawl` - Perform multi-URL crawling
-- `ask` - Query Crawl4AI library context
+- `ask` - Query Crawl library context
 
 ### Configuration Management
 
 ```yaml
 # config.yml structure
 app:
-  title: "Crawl4AI API"
+  title: "Crawl API"
   version: "1.0.0"
   host: "0.0.0.0"
   port: 11235
@@ -4615,15 +4615,15 @@ logging:
 ```bash
 # Method 1: Mount custom config
 docker run -d -p 11235:11235 \
-  --name crawl4ai-custom \
+  --name crawl-custom \
   --env-file .llm.env \
   --shm-size=1g \
   -v $(pwd)/my-config.yml:/app/config.yml \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 
 # Method 2: Build with custom config
 # Edit deploy/docker/config.yml then build
-docker buildx build -t crawl4ai-custom:latest --load .
+docker buildx build -t crawl-custom:latest --load .
 ```
 
 ### Monitoring and Health Checks
@@ -4676,7 +4676,7 @@ print("Final result:", status)
 ```bash
 # Production-ready deployment
 docker run -d \
-  --name crawl4ai-prod \
+  --name crawl-prod \
   --restart unless-stopped \
   -p 11235:11235 \
   --env-file .llm.env \
@@ -4684,13 +4684,13 @@ docker run -d \
   --memory=8g \
   --cpus=4 \
   -v /path/to/custom-config.yml:/app/config.yml \
-  unclecode/crawl4ai:latest
+  hanzoai/crawl:latest
 
 # With Docker Compose for production
 version: '3.8'
 services:
-  crawl4ai:
-    image: unclecode/crawl4ai:latest
+  crawl:
+    image: hanzoai/crawl:latest
     ports:
       - "11235:11235"
     environment:
@@ -4710,8 +4710,8 @@ services:
 
 ```python
 # Method 1: Create config objects and dump to see expected JSON structure
-from crawl4ai import BrowserConfig, CrawlerRunConfig, LLMConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy, LLMExtractionStrategy
+from crawl import BrowserConfig, CrawlerRunConfig, LLMConfig, CacheMode
+from crawl import JsonCssExtractionStrategy, LLMExtractionStrategy
 import json
 
 # Create browser config and see JSON structure
@@ -4754,7 +4754,7 @@ print(json.dumps(crawler_json, indent=2))
 
 ```python
 # Method 2: Load JSON back to config objects for validation
-from crawl4ai.async_configs import from_serializable_dict
+from crawl.async_configs import from_serializable_dict
 
 # Test JSON structure by converting back to objects
 test_browser_json = {
@@ -5058,7 +5058,7 @@ if pre_flight_check(payload):
     pass
 ```
 
-**📖 Learn more:** [Complete Docker Guide](https://docs.crawl4ai.com/core/docker-deployment/), [API Reference](https://docs.crawl4ai.com/api/), [MCP Integration](https://docs.crawl4ai.com/core/docker-deployment/#mcp-model-context-protocol-support), [Configuration Options](https://docs.crawl4ai.com/core/docker-deployment/#server-configuration)
+**📖 Learn more:** [Complete Docker Guide](https://docs.hanzo.ai/core/docker-deployment/), [API Reference](https://docs.hanzo.ai/api/), [MCP Integration](https://docs.hanzo.ai/core/docker-deployment/#mcp-model-context-protocol-support), [Configuration Options](https://docs.hanzo.ai/core/docker-deployment/#server-configuration)
 ---
 
 
@@ -5259,7 +5259,7 @@ crwl https://company-intranet.com -p work-profile \
 ```python
 # Create profiles via Python API
 import asyncio
-from crawl4ai import BrowserProfiler
+from crawl import BrowserProfiler
 
 async def create_auth_profile():
     profiler = BrowserProfiler()
@@ -5274,7 +5274,7 @@ async def create_auth_profile():
         print(f"Profile: {profile['name']} at {profile['path']}")
     
     # Use profile for crawling
-    from crawl4ai import AsyncWebCrawler, BrowserConfig
+    from crawl import AsyncWebCrawler, BrowserConfig
     
     browser_config = BrowserConfig(
         headless=True,
@@ -5356,7 +5356,7 @@ crwl https://research-platform.com/data -p research-profile \
     -o json
 ```
 
-**📖 Learn more:** [Identity-Based Crawling Documentation](https://docs.crawl4ai.com/advanced/identity-based-crawling/), [Browser Profile Management](https://docs.crawl4ai.com/advanced/session-management/), [CLI Examples](https://docs.crawl4ai.com/core/cli/)
+**📖 Learn more:** [Identity-Based Crawling Documentation](https://docs.hanzo.ai/advanced/identity-based-crawling/), [Browser Profile Management](https://docs.hanzo.ai/advanced/session-management/), [CLI Examples](https://docs.hanzo.ai/core/cli/)
 ---
 
 
@@ -5368,9 +5368,9 @@ Fast, lightweight HTTP-only crawling without browser overhead for cases where Ja
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, HTTPCrawlerConfig, CacheMode
-from crawl4ai.async_crawler_strategy import AsyncHTTPCrawlerStrategy
-from crawl4ai.async_logger import AsyncLogger
+from crawl import AsyncWebCrawler, CrawlerRunConfig, HTTPCrawlerConfig, CacheMode
+from crawl.async_crawler_strategy import AsyncHTTPCrawlerStrategy
+from crawl.async_logger import AsyncLogger
 
 async def main():
     # Initialize HTTP strategy
@@ -5470,7 +5470,7 @@ async def setup_hooks():
     # Before request hook
     async def before_request(url, kwargs):
         print(f"Requesting: {url}")
-        kwargs['headers']['X-Custom-Header'] = 'crawl4ai'
+        kwargs['headers']['X-Custom-Header'] = 'crawl'
         kwargs['headers']['Authorization'] = 'Bearer token123'
     
     # After request hook
@@ -5522,7 +5522,7 @@ result = await strategy.crawl("https://slow-server.com", config=config)
 ### Error Handling and Retries
 
 ```python
-from crawl4ai.async_crawler_strategy import (
+from crawl.async_crawler_strategy import (
     ConnectionTimeoutError, 
     HTTPStatusError, 
     HTTPCrawlerError
@@ -5618,7 +5618,7 @@ async def concurrent_http_crawling():
 ### Integration with Content Processing
 
 ```python
-from crawl4ai import DefaultMarkdownGenerator, PruningContentFilter
+from crawl import DefaultMarkdownGenerator, PruningContentFilter
 
 async def http_with_processing():
     # HTTP strategy with content processing
@@ -5669,7 +5669,7 @@ async def strategy_comparison():
     http_time = time.time() - start_time
     
     # Browser Strategy (full features)
-    from crawl4ai import BrowserConfig
+    from crawl import BrowserConfig
     browser_config = BrowserConfig(headless=True)
     start_time = time.time()
     async with AsyncWebCrawler(config=browser_config) as crawler:
@@ -5725,7 +5725,7 @@ async def advanced_http_setup():
     # Custom headers for all requests
     http_config = HTTPCrawlerConfig(
         headers={
-            "User-Agent": "Crawl4AI-HTTP/1.0",
+            "User-Agent": "Crawl-HTTP/1.0",
             "Accept": "text/html,application/xhtml+xml",
             "Accept-Language": "en-US,en;q=0.9",
             "Accept-Encoding": "gzip, deflate, br",
@@ -5747,7 +5747,7 @@ async def advanced_http_setup():
     await strategy.close()
 ```
 
-**📖 Learn more:** [AsyncWebCrawler API](https://docs.crawl4ai.com/api/async-webcrawler/), [Browser vs HTTP Strategy](https://docs.crawl4ai.com/core/browser-crawler-config/), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [AsyncWebCrawler API](https://docs.hanzo.ai/api/async-webcrawler/), [Browser vs HTTP Strategy](https://docs.hanzo.ai/core/browser-crawler-config/), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/)
 ---
 
 
@@ -5791,8 +5791,8 @@ The `generate_schema()` function uses LLM ONCE to create a reusable extraction p
 import json
 import asyncio
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
+from crawl import JsonCssExtractionStrategy
 
 async def smart_extraction_workflow():
     """
@@ -5928,8 +5928,8 @@ social_schema = JsonCssExtractionStrategy.generate_schema(
 ```python
 import json
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import JsonCssExtractionStrategy
 
 # Manual schema for consistent product pages
 simple_schema = {
@@ -6095,7 +6095,7 @@ asyncio.run(extract_complex_ecommerce())
 ### XPath Alternative (When CSS Isn't Enough)
 
 ```python
-from crawl4ai import JsonXPathExtractionStrategy
+from crawl import JsonXPathExtractionStrategy
 
 # XPath for more complex selections
 xpath_schema = {
@@ -6139,8 +6139,8 @@ strategy = JsonXPathExtractionStrategy(xpath_schema, verbose=True)
 ```python
 import json
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import RegexExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import RegexExtractionStrategy
 
 async def extract_common_patterns():
     # Use built-in patterns for common data types
@@ -6597,8 +6597,8 @@ Smart URL discovery for efficient large-scale crawling. Discover thousands of UR
 
 ```python
 # Deep Crawling: Real-time discovery (page by page)
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 async def deep_crawl_example():
     config = CrawlerRunConfig(
@@ -6614,7 +6614,7 @@ async def deep_crawl_example():
         print(f"Discovered {len(results)} pages dynamically")
 
 # URL Seeding: Bulk discovery (thousands instantly)
-from crawl4ai import AsyncUrlSeeder, SeedingConfig
+from crawl import AsyncUrlSeeder, SeedingConfig
 
 async def url_seeding_example():
     config = SeedingConfig(
@@ -6636,7 +6636,7 @@ async def url_seeding_example():
 
 ```python
 import asyncio
-from crawl4ai import AsyncUrlSeeder, SeedingConfig
+from crawl import AsyncUrlSeeder, SeedingConfig
 
 async def basic_discovery():
     # Context manager handles cleanup automatically
@@ -6706,7 +6706,7 @@ async def pattern_filtering():
 ### SeedingConfig Parameters
 
 ```python
-from crawl4ai import SeedingConfig
+from crawl import SeedingConfig
 
 # Comprehensive configuration
 config = SeedingConfig(
@@ -7071,7 +7071,7 @@ async def smart_research_pipeline():
             print(f"  {i}. [{score:.2f}] {title}")
     
     # Step 4: Crawl selected articles
-    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+    from crawl import AsyncWebCrawler, CrawlerRunConfig
     
     print(f"\n🕷️ Crawling {len(top_articles)} articles...")
     
@@ -7243,7 +7243,7 @@ best_practices = """
 """
 ```
 
-**📖 Learn more:** [Complete URL Seeding Guide](https://docs.crawl4ai.com/core/url-seeding/), [SeedingConfig Reference](https://docs.crawl4ai.com/api/parameters/), [Multi-URL Crawling](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [Complete URL Seeding Guide](https://docs.hanzo.ai/core/url-seeding/), [SeedingConfig Reference](https://docs.hanzo.ai/api/parameters/), [Multi-URL Crawling](https://docs.hanzo.ai/advanced/multi-url-crawling/)
 ---
 
 
@@ -7254,7 +7254,7 @@ Advanced URL filtering and scoring strategies for intelligent deep crawling with
 ### URL Filters - Content and Domain Control
 
 ```python
-from crawl4ai.deep_crawling.filters import (
+from crawl.deep_crawling.filters import (
     URLPatternFilter, DomainFilter, ContentTypeFilter, 
     FilterChain, ContentRelevanceFilter, SEOFilter
 )
@@ -7364,7 +7364,7 @@ print(f"Relevance: {relevance_score}, SEO: {seo_score}")
 ### URL Scorers - Quality and Relevance Scoring
 
 ```python
-from crawl4ai.deep_crawling.scorers import (
+from crawl.deep_crawling.scorers import (
     KeywordRelevanceScorer, PathDepthScorer, ContentTypeScorer,
     FreshnessScorer, DomainAuthorityScorer, CompositeScorer
 )
@@ -7571,7 +7571,7 @@ filtered = await batch_filter_urls(large_url_list, optimized_chain)
 ### Custom Filter Implementation
 
 ```python
-from crawl4ai.deep_crawling.filters import URLFilter
+from crawl.deep_crawling.filters import URLFilter
 import re
 
 class CustomLanguageFilter(URLFilter):
@@ -7605,7 +7605,7 @@ class CustomLanguageFilter(URLFilter):
         return False
 
 # Custom scorer implementation
-from crawl4ai.deep_crawling.scorers import URLScorer
+from crawl.deep_crawling.scorers import URLScorer
 
 class CustomComplexityScorer(URLScorer):
     """Score URLs by content complexity indicators"""
@@ -7645,8 +7645,8 @@ print(f"Complexity score: {complexity_score}")
 ### Integration with Deep Crawling
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import DeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import DeepCrawlStrategy
 
 async def deep_crawl_with_filtering():
     # Create comprehensive filter chain
@@ -7692,13 +7692,13 @@ async def deep_crawl_with_filtering():
 await deep_crawl_with_filtering()
 ```
 
-**📖 Learn more:** [Deep Crawling Strategy](https://docs.crawl4ai.com/core/deep-crawling/), [Custom Filter Development](https://docs.crawl4ai.com/advanced/custom-filters/), [Performance Optimization](https://docs.crawl4ai.com/advanced/performance-tuning/)
+**📖 Learn more:** [Deep Crawling Strategy](https://docs.hanzo.ai/core/deep-crawling/), [Custom Filter Development](https://docs.hanzo.ai/advanced/custom-filters/), [Performance Optimization](https://docs.hanzo.ai/advanced/performance-tuning/)
 ---
 
 
 ## Summary
 
-Crawl4AI provides a comprehensive solution for web crawling and data extraction optimized for AI applications. From simple page crawling to complex multi-URL operations with advanced filtering, the library offers the flexibility and performance needed for modern data extraction workflows.
+Crawl provides a comprehensive solution for web crawling and data extraction optimized for AI applications. From simple page crawling to complex multi-URL operations with advanced filtering, the library offers the flexibility and performance needed for modern data extraction workflows.
 
 **Key Takeaways:**
 - Start with basic installation and simple crawling patterns
@@ -7708,8 +7708,8 @@ Crawl4AI provides a comprehensive solution for web crawling and data extraction 
 - Implement advanced features like deep crawling and custom filters as needed
 
 **Next Steps:**
-- Explore the [GitHub repository](https://github.com/unclecode/crawl4ai) for latest updates
+- Explore the [GitHub repository](https://github.com/hanzoai/crawl) for latest updates
 - Join the [Discord community](https://discord.gg/jP8KfhDhyN) for support
-- Check out [example projects](https://github.com/unclecode/crawl4ai/tree/main/docs/examples) for inspiration
+- Check out [example projects](https://github.com/hanzoai/crawl/tree/main/docs/examples) for inspiration
 
 Happy crawling! 🕷️

@@ -10,15 +10,15 @@ This example shows how to:
 import asyncio
 import os
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai import LLMConfig
-from crawl4ai import (
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import LLMConfig
+from crawl import (
     LLMExtractionStrategy,
     JsonCssExtractionStrategy,
     JsonXPathExtractionStrategy,
 )
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 
 async def run_extraction(crawler: AsyncWebCrawler, url: str, strategy, name: str):

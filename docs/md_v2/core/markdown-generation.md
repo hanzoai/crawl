@@ -1,6 +1,6 @@
 # Markdown Generation Basics
 
-One of Crawl4AI’s core features is generating **clean, structured markdown** from web pages. Originally built to solve the problem of extracting only the “actual” content and discarding boilerplate or noise, Crawl4AI’s markdown system remains one of its biggest draws for AI workflows.
+One of Crawl’s core features is generating **clean, structured markdown** from web pages. Originally built to solve the problem of extracting only the “actual” content and discarding boilerplate or noise, Crawl’s markdown system remains one of its biggest draws for AI workflows.
 
 In this tutorial, you’ll learn:
 
@@ -20,8 +20,8 @@ Here’s a minimal code snippet that uses the **DefaultMarkdownGenerator** with 
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def main():
     config = CrawlerRunConfig(
@@ -41,7 +41,7 @@ if __name__ == "__main__":
 ```
 
 **What’s happening?**  
-- `CrawlerRunConfig( markdown_generator = DefaultMarkdownGenerator() )` instructs Crawl4AI to convert the final HTML into markdown at the end of each crawl.  
+- `CrawlerRunConfig( markdown_generator = DefaultMarkdownGenerator() )` instructs Crawl to convert the final HTML into markdown at the end of each crawl.  
 - The resulting markdown is accessible via `result.markdown`.
 
 ---
@@ -73,8 +73,8 @@ Before or after the HTML-to-Markdown step, you can apply a **content filter** (l
 You can tweak the output by passing an `options` dict to `DefaultMarkdownGenerator`. For example:
 
 ```python
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     # Example: ignore all links, don't escape HTML, and wrap text at 80 characters
@@ -116,8 +116,8 @@ Some commonly used `options`:
 The `content_source` parameter allows you to control which HTML content is used as input for markdown generation. This gives you flexibility in how the HTML is processed before conversion to markdown.
 
 ```python
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     # Option 1: Use the raw HTML directly from the webpage (before any processing)
@@ -180,9 +180,9 @@ if __name__ == "__main__":
 If you have a **search query**, BM25 is a good choice:
 
 ```python
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import BM25ContentFilter
-from crawl4ai import CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import BM25ContentFilter
+from crawl import CrawlerRunConfig
 
 bm25_filter = BM25ContentFilter(
     user_query="machine learning",
@@ -210,7 +210,7 @@ config = CrawlerRunConfig(markdown_generator=md_generator)
 If you **don’t** have a specific query, or if you just want a robust “junk remover,” use `PruningContentFilter`. It analyzes text density, link density, HTML structure, and known patterns (like “nav,” “footer”) to systematically prune extraneous or repetitive sections.
 
 ```python
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl.content_filter_strategy import PruningContentFilter
 
 prune_filter = PruningContentFilter(
     threshold=0.5,
@@ -234,8 +234,8 @@ prune_filter = PruningContentFilter(
 For intelligent content filtering and high-quality markdown generation, you can use the **LLMContentFilter**. This filter leverages LLMs to generate relevant markdown while preserving the original content's meaning and structure:
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, LLMConfig, DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import LLMContentFilter
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, LLMConfig, DefaultMarkdownGenerator
+from crawl.content_filter_strategy import LLMContentFilter
 
 async def main():
     # Initialize LLM filter with specific instruction
@@ -318,9 +318,9 @@ When a content filter is active, the library produces two forms of markdown insi
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
 
 async def main():
     config = CrawlerRunConfig(
@@ -388,8 +388,8 @@ You might want to **prune out** noisy boilerplate first (with `PruningContentFil
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.content_filter_strategy import PruningContentFilter, BM25ContentFilter
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.content_filter_strategy import PruningContentFilter, BM25ContentFilter
 from bs4 import BeautifulSoup
 
 async def main():

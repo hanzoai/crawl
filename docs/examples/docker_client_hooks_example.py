@@ -11,7 +11,7 @@ This approach is recommended because:
 """
 
 import asyncio
-from crawl4ai import Crawl4aiDockerClient
+from crawl import Crawl4aiDockerClient
 
 # API_BASE_URL = "http://localhost:11235"
 API_BASE_URL = "http://localhost:11234"
@@ -62,7 +62,7 @@ async def before_goto_hook(page, context, url, **kwargs):
     print(f"[HOOK] Navigating to: {url}")
 
     await page.set_extra_http_headers({
-        "X-Custom-Header": "crawl4ai-test",
+        "X-Custom-Header": "crawl-test",
         "Accept-Language": "en-US"
     })
 
@@ -484,7 +484,7 @@ async def test_reusable_hook_library():
 
 async def main():
     """Run all Docker client hook examples"""
-    print("🔧 Crawl4AI Docker Client - Hooks Examples (Function-Based)")
+    print("🔧 Crawl Docker Client - Hooks Examples (Function-Based)")
     print("Using Python function objects with automatic conversion")
     print("=" * 70)
 

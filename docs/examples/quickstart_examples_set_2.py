@@ -1,6 +1,6 @@
 import os, sys
 
-from crawl4ai.types import LLMConfig
+from crawl.types import LLMConfig
 
 sys.path.append(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -13,20 +13,20 @@ import re
 from typing import Dict
 from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field
-from crawl4ai import AsyncWebCrawler, CacheMode, BrowserConfig, CrawlerRunConfig
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai import (
+from crawl import AsyncWebCrawler, CacheMode, BrowserConfig, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl import (
     JsonCssExtractionStrategy,
     LLMExtractionStrategy,
 )
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-print("Crawl4AI: Advanced Web Crawling and Data Extraction")
-print("GitHub Repository: https://github.com/unclecode/crawl4ai")
+print("Crawl: Advanced Web Crawling and Data Extraction")
+print("GitHub Repository: https://github.com/hanzoai/crawl")
 print("Twitter: @unclecode")
-print("Website: https://crawl4ai.com")
+print("Website: https://crawl.hanzo.ai")
 
 
 # Basic Example - Simple Crawl
@@ -138,7 +138,7 @@ async def custom_hook_workflow(verbose=True):
         )
 
         # Perform the crawl operation
-        result = await crawler.arun(url="https://crawl4ai.com")
+        result = await crawler.arun(url="https://crawl.hanzo.ai")
         print(result.markdown.raw_markdown[:500].replace("\n", " -- "))
 
 
@@ -416,7 +416,7 @@ async def crawl_dynamic_content_pages_method_2():
 
 
 async def cosine_similarity_extraction():
-    from crawl4ai import CosineStrategy
+    from crawl import CosineStrategy
     crawl_config = CrawlerRunConfig(
         cache_mode=CacheMode.BYPASS,
         extraction_strategy=CosineStrategy(

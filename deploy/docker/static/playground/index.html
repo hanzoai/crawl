@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crawl4AI Playground</title>
+    <title>Crawl Playground</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -144,18 +144,18 @@
     <!-- Header -->
     <header class="border-b border-border px-4 py-2 flex items-center">
         <h1 class="text-lg font-medium flex items-center space-x-4">
-            <span>🚀🤖 <span class="text-primary">Crawl4AI</span> Playground</span>
+            <span>🚀🤖 <span class="text-primary">Crawl</span> Playground</span>
 
             <!-- GitHub badges -->
-            <a href="https://github.com/unclecode/crawl4ai" target="_blank" class="flex space-x-1">
-                <img src="https://img.shields.io/github/stars/unclecode/crawl4ai?style=social"
+            <a href="https://github.com/hanzoai/crawl" target="_blank" class="flex space-x-1">
+                <img src="https://img.shields.io/github/stars/hanzoai/crawl?style=social"
                      alt="GitHub stars" class="h-5">
-                <img src="https://img.shields.io/github/forks/unclecode/crawl4ai?style=social"
+                <img src="https://img.shields.io/github/forks/hanzoai/crawl?style=social"
                      alt="GitHub forks" class="h-5">
             </a>
 
             <!-- Docs -->
-            <a href="https://docs.crawl4ai.com" target="_blank"
+            <a href="https://docs.hanzo.ai" target="_blank"
                class="text-xs text-secondary hover:text-primary underline flex items-center">
                 Docs
             </a>
@@ -263,7 +263,7 @@
                         </select>
 
                         <!-- help link -->
-                        <a href="https://docs.crawl4ai.com/api/parameters/"
+                        <a href="https://docs.hanzo.ai/api/parameters/"
                            target="_blank"
                            class="text-xs text-primary hover:underline flex items-center space-x-1"
                            title="Open parameter reference in new tab">
@@ -411,13 +411,13 @@
 
     <script>
         // ================ AUTH ================
-        const _savedToken = sessionStorage.getItem('crawl4ai_token');
+        const _savedToken = sessionStorage.getItem('crawl_token');
         const _tokenBar = document.getElementById('token-bar');
         const _tokenInput = document.getElementById('token-input');
         const _tokenSave = document.getElementById('token-save');
         const _tokenStatus = document.getElementById('token-status');
 
-        function getToken() { return sessionStorage.getItem('crawl4ai_token') || ''; }
+        function getToken() { return sessionStorage.getItem('crawl_token') || ''; }
 
         function authFetch(url, opts = {}) {
             const token = getToken();
@@ -430,14 +430,14 @@
         function applyToken() {
             const val = _tokenInput.value.trim();
             if (!val) return;
-            sessionStorage.setItem('crawl4ai_token', val);
+            sessionStorage.setItem('crawl_token', val);
             _tokenStatus.textContent = 'Token saved';
             _tokenStatus.className = 'text-xs text-green-400';
             setTimeout(() => { _tokenStatus.textContent = ''; }, 2000);
         }
 
         function clearToken() {
-            sessionStorage.removeItem('crawl4ai_token');
+            sessionStorage.removeItem('crawl_token');
             _tokenInput.value = '';
             _tokenStatus.textContent = 'Token cleared';
             _tokenStatus.className = 'text-xs text-yellow-400';

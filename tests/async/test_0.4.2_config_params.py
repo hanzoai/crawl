@@ -5,11 +5,11 @@ sys.path.append(parent_dir)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai import JsonCssExtractionStrategy
-from crawl4ai.chunking_strategy import RegexChunking
+from crawl import AsyncWebCrawler, CacheMode
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl import JsonCssExtractionStrategy
+from crawl.chunking_strategy import RegexChunking
 
 
 # Category 1: Browser Configuration Tests
@@ -95,13 +95,13 @@ async def test_cache_and_session_management():
 # Category 4: Media Handling Tests
 async def test_media_handling_config():
     """Test configurations related to media handling"""
-    # Get the base path for home directroy ~/.crawl4ai/downloads, make sure it exists
-    os.makedirs(os.path.expanduser("~/.crawl4ai/downloads"), exist_ok=True)
+    # Get the base path for home directroy ~/.crawl/downloads, make sure it exists
+    os.makedirs(os.path.expanduser("~/.crawl/downloads"), exist_ok=True)
     browser_config = BrowserConfig(
         viewport_width=1920,
         viewport_height=1080,
         accept_downloads=True,
-        downloads_path=os.path.expanduser("~/.crawl4ai/downloads"),
+        downloads_path=os.path.expanduser("~/.crawl/downloads"),
     )
     crawler_config = CrawlerRunConfig(
         screenshot=True,

@@ -1,6 +1,6 @@
 # Extracting JSON (LLM)
 
-In some cases, you need to extract **complex or unstructured** information from a webpage that a simple CSS/XPath schema cannot easily parse. Or you want **AI**-driven insights, classification, or summarization. For these scenarios, Crawl4AI provides an **LLM-based extraction strategy** that:
+In some cases, you need to extract **complex or unstructured** information from a webpage that a simple CSS/XPath schema cannot easily parse. Or you want **AI**-driven insights, classification, or summarization. For these scenarios, Crawl provides an **LLM-based extraction strategy** that:
 
 1. Works with **any** large language model supported by [LiteLLM](https://github.com/BerriAI/litellm) (Ollama, OpenAI, Claude, and more).  
 2. Automatically splits content into chunks (if desired) to handle token limits, then combines results.  
@@ -26,7 +26,7 @@ You can use LLMConfig, to quickly configure multiple variations of LLMs and expe
 llm_config = LLMConfig(provider="openai/gpt-4o-mini", api_token=os.getenv("OPENAI_API_KEY"))
 ```
 
-Crawl4AI uses a “provider string” (e.g., `"openai/gpt-4o"`, `"ollama/llama2.0"`, `"aws/titan"`) to identify your LLM. **Any** model that LiteLLM supports is fair game. You just provide:
+Crawl uses a “provider string” (e.g., `"openai/gpt-4o"`, `"ollama/llama2.0"`, `"aws/titan"`) to identify your LLM. **Any** model that LiteLLM supports is fair game. You just provide:
 
 - **`provider`**: The `<provider>/<model_name>` identifier (e.g., `"openai/gpt-4"`, `"ollama/llama2"`, `"huggingface/google-flan"`, etc.).  
 - **`api_token`**: If needed (for OpenAI, HuggingFace, etc.); local models or Ollama might not require it.  
@@ -93,7 +93,7 @@ extraction_strategy = LLMExtractionStrategy(
 
 ## 5. Putting It in `CrawlerRunConfig`
 
-**Important**: In Crawl4AI, all strategy definitions should go inside the `CrawlerRunConfig`, not directly as a param in `arun()`. Here’s a full example:
+**Important**: In Crawl, all strategy definitions should go inside the `CrawlerRunConfig`, not directly as a param in `arun()`. Here’s a full example:
 
 ```python
 import os
@@ -101,8 +101,8 @@ import asyncio
 import json
 from pydantic import BaseModel, Field
 from typing import List
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
-from crawl4ai import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
+from crawl import LLMExtractionStrategy
 
 class Product(BaseModel):
     name: str
@@ -220,8 +220,8 @@ import json
 import asyncio
 from typing import List
 from pydantic import BaseModel, Field
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
-from crawl4ai import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
+from crawl import LLMExtractionStrategy
 
 class Entity(BaseModel):
     name: str
@@ -296,7 +296,7 @@ if __name__ == "__main__":
 
 ## 11. Conclusion
 
-**LLM-based extraction** in Crawl4AI is **provider-agnostic**, letting you choose from hundreds of models via LiteLLM. It’s perfect for **semantically complex** tasks or generating advanced structures like knowledge graphs. However, it’s **slower** and potentially costlier than schema-based approaches. Keep these tips in mind:
+**LLM-based extraction** in Crawl is **provider-agnostic**, letting you choose from hundreds of models via LiteLLM. It’s perfect for **semantically complex** tasks or generating advanced structures like knowledge graphs. However, it’s **slower** and potentially costlier than schema-based approaches. Keep these tips in mind:
 
 - Put your LLM strategy **in `CrawlerRunConfig`**.  
 - Use **`input_format`** to pick which form (markdown, HTML, fit_markdown) the LLM sees.  

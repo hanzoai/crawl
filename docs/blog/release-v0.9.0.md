@@ -1,14 +1,14 @@
-# Crawl4AI v0.9.0: Secure-by-Default Docker Server
+# Crawl v0.9.0: Secure-by-Default Docker Server
 
 *June 2026 - 6 min read*
 
 ---
 
-I'm releasing Crawl4AI v0.9.0, a major, secure-by-default release of the Crawl4AI Docker API server. This is the biggest change to the self-hosted HTTP server since we shipped it. It moves the out-of-the-box deployment from an open, trust-the-caller posture to a closed, hardened one with defense in depth.
+I'm releasing Crawl v0.9.0, a major, secure-by-default release of the Crawl Docker API server. This is the biggest change to the self-hosted HTTP server since we shipped it. It moves the out-of-the-box deployment from an open, trust-the-caller posture to a closed, hardened one with defense in depth.
 
-This is a breaking release for the Docker server only. The core pip library (the SDK and in-process use) is unchanged. If you only `pip install crawl4ai` and drive it from Python, nothing here affects you and you can upgrade freely.
+This is a breaking release for the Docker server only. The core pip library (the SDK and in-process use) is unchanged. If you only `pip install crawl` and drive it from Python, nothing here affects you and you can upgrade freely.
 
-If you self-host the Docker API server, please read the [migration guide](https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md) before you upgrade, and roll out behind a staging environment first.
+If you self-host the Docker API server, please read the [migration guide](https://github.com/hanzoai/crawl/blob/main/deploy/docker/MIGRATION.md) before you upgrade, and roll out behind a staging environment first.
 
 ## Why this release
 
@@ -32,7 +32,7 @@ That means the permissive defaults are gone. Authentication is on by default. Th
 The server no longer serves an unauthenticated API on `0.0.0.0`. With no token configured it binds `127.0.0.1` only and prints a one-off token at startup for local use. To expose it, set a token and put a TLS-terminating reverse proxy in front:
 
 ```bash
-export CRAWL4AI_API_TOKEN="$(openssl rand -hex 32)"
+export CRAWL_API_TOKEN="$(openssl rand -hex 32)"
 ```
 
 Every request except `GET /health` then needs `Authorization: Bearer <token>`. WebSocket clients that cannot set headers may pass `?token=...`. The JWT implementation changed, so tokens from older versions are no longer valid; re-mint via `POST /token`.
@@ -57,18 +57,18 @@ Destination validation now covers the streaming crawl handler. `/crawl/stream` a
 
 ### Transport and infrastructure
 
-TLS verification is on; self-signed or internal targets fail by default, with explicit escape hatches (`CRAWL4AI_ALLOW_INSECURE_TLS`, `CRAWL4AI_ALLOW_INTERNAL_URLS`) for trusted internal testing. CORS is deny-by-default; allowlist your frontend origin under `security.cors_allow_origins`. Redis runs in-container, loopback-only, password-protected, with its port no longer published. Background jobs run on a bounded queue, and request size, wall-clock, and per-principal concurrency are capped (all configurable, `0` = unbounded). 5xx responses return a generic body with a correlation id you can match in the logs.
+TLS verification is on; self-signed or internal targets fail by default, with explicit escape hatches (`CRAWL_ALLOW_INSECURE_TLS`, `CRAWL_ALLOW_INTERNAL_URLS`) for trusted internal testing. CORS is deny-by-default; allowlist your frontend origin under `security.cors_allow_origins`. Redis runs in-container, loopback-only, password-protected, with its port no longer published. Background jobs run on a bounded queue, and request size, wall-clock, and per-principal concurrency are capped (all configurable, `0` = unbounded). 5xx responses return a generic body with a correlation id you can match in the logs.
 
 ## Migrating
 
 How much you have to do scales with how much you drove through the API. A plain "crawl these URLs with a normal config" user only needs to set a token and re-issue tokens. Everything else applies only if you used that specific feature.
 
-Read the [migration guide](https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md) first, then follow `deploy/docker/SECURITY-VERIFY.md` for the deployment checklist.
+Read the [migration guide](https://github.com/hanzoai/crawl/blob/main/deploy/docker/MIGRATION.md) first, then follow `deploy/docker/SECURITY-VERIFY.md` for the deployment checklist.
 
 ## Upgrade
 
 ```bash
-pip install -U crawl4ai
+pip install -U crawl
 ```
 
 Docker users should pull the latest image once the Docker release workflow finishes.

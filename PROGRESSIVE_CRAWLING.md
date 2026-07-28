@@ -221,7 +221,7 @@ Under certain assumptions about link preview accuracy:
 3. **CrawlStrategy**: Pluggable strategy interface
 4. **AdaptiveCrawler**: Main orchestrator
 
-### 8.2 Integration with Crawl4AI
+### 8.2 Integration with Crawl
 
 - Wraps existing AsyncWebCrawler
 - Leverages link preview functionality

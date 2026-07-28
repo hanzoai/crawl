@@ -2,8 +2,8 @@
 
 import pytest
 import pytest_asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.models import CrawlResult, AsyncCrawlResponse
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.models import CrawlResult, AsyncCrawlResponse
 
 
 class TestRedirectedStatusCodeModel:
@@ -51,7 +51,7 @@ async def test_redirected_status_code_on_redirect():
         result = await crawler.arun("https://httpbin.org/redirect/1", config=run_config)
 
     assert result.success
-    # status_code should be 302 (the first hop, per crawl4ai's redirect chain walking)
+    # status_code should be 302 (the first hop, per crawl's redirect chain walking)
     assert result.status_code == 302
     # redirected_status_code should be 200 (the final destination)
     assert result.redirected_status_code == 200

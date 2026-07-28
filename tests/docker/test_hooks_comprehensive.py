@@ -107,7 +107,7 @@ async def hook(page, context, url, **kwargs):
     
     # Add custom headers for the request
     await page.set_extra_http_headers({
-        "X-Custom-Header": "crawl4ai-test",
+        "X-Custom-Header": "crawl-test",
         "Accept-Language": "en-US,en;q=0.9",
         "DNT": "1"
     })
@@ -519,7 +519,7 @@ async def hook(page, context, **kwargs):
 
 def main():
     """Run comprehensive hook tests"""
-    print("🔧 Crawl4AI Docker API - Comprehensive Hooks Testing")
+    print("🔧 Crawl Docker API - Comprehensive Hooks Testing")
     print("Based on docs/examples/hooks_example.py")
     print("=" * 70)
 

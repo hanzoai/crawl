@@ -1,4 +1,4 @@
-# Crawl4AI CLI Guide
+# Crawl CLI Guide
 
 ## Table of Contents
 - [Installation](#installation)
@@ -18,11 +18,11 @@
 - [Best Practices & Tips](#best-practices--tips)
 
 ## Installation
-The Crawl4AI CLI will be installed automatically when you install the library.
+The Crawl CLI will be installed automatically when you install the library.
 
 ## Basic Usage
 
-The Crawl4AI CLI (`crwl`) provides a simple interface to the Crawl4AI library:
+The Crawl CLI (`crwl`) provides a simple interface to the Crawl library:
 
 ```bash
 # Basic crawling
@@ -183,7 +183,7 @@ crwl https://example.com \
 
 First-time setup:
 - Prompts for LLM provider and API token
-- Saves configuration in `~/.crawl4ai/global.yml`
+- Saves configuration in `~/.crawl/global.yml`
 - Supports various providers (openai/gpt-4, anthropic/claude-3-sonnet, etc.)
 - For case of `ollama` you do not need to provide API token.
 - See [LiteLLM Providers](https://docs.litellm.ai/docs/providers) for full list
@@ -279,7 +279,7 @@ crwl https://example.com -q "Summarize the conclusions"
 1. **Configuration Management**:
    - Keep common configurations in YAML files
    - Use CLI parameters for quick overrides
-   - Store sensitive data (API tokens) in `~/.crawl4ai/global.yml`
+   - Store sensitive data (API tokens) in `~/.crawl/global.yml`
 
 2. **Performance Optimization**:
    - Use `--bypass-cache` for fresh content
@@ -298,7 +298,7 @@ crwl https://example.com -q "Summarize the conclusions"
 
 ## Recap
 
-The Crawl4AI CLI provides:
+The Crawl CLI provides:
 - Flexible configuration via files and parameters
 - Multiple extraction strategies (CSS, XPath, LLM)
 - Content filtering and optimization

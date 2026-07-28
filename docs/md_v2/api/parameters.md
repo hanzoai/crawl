@@ -3,7 +3,7 @@
 `BrowserConfig` focuses on **how** the browser is launched and behaves. This includes headless mode, proxies, user agents, and other environment tweaks.
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig
+from crawl import AsyncWebCrawler, BrowserConfig
 
 browser_cfg = BrowserConfig(
     browser_type="chromium",
@@ -66,7 +66,7 @@ browser_cfg = BrowserConfig(
 While `BrowserConfig` sets up the **environment**, `CrawlerRunConfig` details **how** each **crawl operation** should behave: caching, content filtering, link or domain blocking, timeouts, JavaScript code, etc.
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 run_cfg = CrawlerRunConfig(
     wait_for="css:.main-content",
@@ -243,7 +243,7 @@ Use these for link-level content filtering (often to keep crawls “internal” 
 When sites use virtual scrolling (content replaced as you scroll), use `VirtualScrollConfig`:
 
 ```python
-from crawl4ai import VirtualScrollConfig
+from crawl import VirtualScrollConfig
 
 virtual_config = VirtualScrollConfig(
     container_selector="#timeline",    # CSS selector for scrollable container
@@ -284,9 +284,9 @@ See [Virtual Scroll documentation](../../advanced/virtual-scroll.md) for detaile
 The `url_matcher` parameter enables URL-specific configurations when used with `arun_many()`:
 
 ```python
-from crawl4ai import CrawlerRunConfig, MatchMode
-from crawl4ai.processors.pdf import PDFContentScrapingStrategy
-from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+from crawl import CrawlerRunConfig, MatchMode
+from crawl.processors.pdf import PDFContentScrapingStrategy
+from crawl.extraction_strategy import JsonCssExtractionStrategy
 
 # Simple string pattern (glob-style)
 pdf_config = CrawlerRunConfig(
@@ -383,7 +383,7 @@ Both config classes support class-level default overrides. When deploying in a s
 **Resolution order:** explicit arg > class-level default > hardcoded default
 
 ```python
-from crawl4ai import BrowserConfig, CrawlerRunConfig
+from crawl import BrowserConfig, CrawlerRunConfig
 
 # Set once at application startup
 BrowserConfig.set_defaults(
@@ -429,7 +429,7 @@ BrowserConfig.reset_defaults()
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def main():
     # Configure the browser

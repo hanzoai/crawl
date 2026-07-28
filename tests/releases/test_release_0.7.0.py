@@ -6,16 +6,16 @@ import os
 import json
 import tempfile
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy, LLMExtractionStrategy, LLMConfig
-from crawl4ai.content_filter_strategy import BM25ContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.async_url_seeder import AsyncUrlSeeder
-from crawl4ai.utils import RobotsParser
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy, LLMExtractionStrategy, LLMConfig
+from crawl.content_filter_strategy import BM25ContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.async_url_seeder import AsyncUrlSeeder
+from crawl.utils import RobotsParser
 
 
-class TestCrawl4AIv070:
-    """Test suite for Crawl4AI v0.7.0 changes"""
+class TestCrawlv070:
+    """Test suite for Crawl v0.7.0 changes"""
     
     @pytest.mark.asyncio
     async def test_raw_url_parsing(self):

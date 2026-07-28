@@ -1,7 +1,7 @@
 # Overview of Some Important Advanced Features 
 (Proxy, PDF, Screenshot, SSL, Headers, & Storage State)
 
-Crawl4AI offers multiple power-user features that go beyond simple crawling. This tutorial covers:
+Crawl offers multiple power-user features that go beyond simple crawling. This tutorial covers:
 
 1. **Proxy Usage**  
 2. **Capturing PDFs & Screenshots**  
@@ -18,11 +18,11 @@ Crawl4AI offers multiple power-user features that go beyond simple crawling. Thi
 
 ## 1. Proxy Usage
 
-If you need to route your crawl traffic through a proxy—whether for IP rotation, geo-testing, or privacy—Crawl4AI supports it via `BrowserConfig.proxy_config`.
+If you need to route your crawl traffic through a proxy—whether for IP rotation, geo-testing, or privacy—Crawl supports it via `BrowserConfig.proxy_config`.
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 async def main():
     browser_cfg = BrowserConfig(
@@ -61,12 +61,12 @@ if __name__ == "__main__":
 
 ## 2. Capturing PDFs & Screenshots
 
-Sometimes you need a visual record of a page or a PDF “printout.” Crawl4AI can do both in one pass:
+Sometimes you need a visual record of a page or a PDF “printout.” Crawl can do both in one pass:
 
 ```python
 import os, asyncio
 from base64 import b64decode
-from crawl4ai import AsyncWebCrawler, CacheMode, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CacheMode, CrawlerRunConfig
 
 async def main():
     run_config = CrawlerRunConfig(
@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
 **Why PDF + Screenshot?**  
 - Large or complex pages can be slow or error-prone with “traditional” full-page screenshots.  
-- Exporting a PDF is more reliable for very long pages. Crawl4AI automatically converts the first PDF page into an image if you request both.  
+- Exporting a PDF is more reliable for very long pages. Crawl automatically converts the first PDF page into an image if you request both.  
 
 **Relevant Parameters**  
 - **`pdf=True`**: Exports the current page as a PDF (base64-encoded in `result.pdf`).  
@@ -119,11 +119,11 @@ if __name__ == "__main__":
 
 ## 3. Handling SSL Certificates
 
-If you need to verify or export a site’s SSL certificate—for compliance, debugging, or data analysis—Crawl4AI can fetch it during the crawl:
+If you need to verify or export a site’s SSL certificate—for compliance, debugging, or data analysis—Crawl can fetch it during the crawl:
 
 ```python
 import asyncio, os
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def main():
     tmp_dir = os.path.join(os.getcwd(), "tmp")
@@ -169,7 +169,7 @@ Sometimes you need to set custom headers (e.g., language preferences, authentica
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     # Option 1: Set headers at the crawler strategy level
@@ -204,13 +204,13 @@ if __name__ == "__main__":
 
 ## 5. Session Persistence & Local Storage
 
-Crawl4AI can preserve cookies and localStorage so you can continue where you left off—ideal for logging into sites or skipping repeated auth flows.
+Crawl can preserve cookies and localStorage so you can continue where you left off—ideal for logging into sites or skipping repeated auth flows.
 
 ### 5.1 `storage_state`
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     storage_dict = {
@@ -264,11 +264,11 @@ You can sign in once, export the browser context, and reuse it later—without r
 
 ## 6. Robots.txt Compliance
 
-Crawl4AI supports respecting robots.txt rules with efficient caching:
+Crawl supports respecting robots.txt rules with efficient caching:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     # Enable robots.txt checking in config
@@ -291,7 +291,7 @@ if __name__ == "__main__":
 
 **Key Points**
 - Robots.txt files are cached locally for efficiency
-- Cache is stored in `~/.crawl4ai/robots/robots_cache.db`
+- Cache is stored in `~/.crawl/robots/robots_cache.db`
 - Cache has a default TTL of 7 days
 - If robots.txt can't be fetched, crawling is allowed
 - Returns 403 status code if URL is disallowed
@@ -305,7 +305,7 @@ Here’s a snippet that combines multiple “advanced” features (proxy, PDF, s
 ```python
 import os, asyncio
 from base64 import b64decode
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def main():
     # 1. Browser config with proxy + headless
@@ -363,7 +363,7 @@ if __name__ == "__main__":
 
 ## 7. Anti-Bot Features (Stealth Mode & Undetected Browser)
 
-Crawl4AI provides two powerful features to bypass bot detection:
+Crawl provides two powerful features to bypass bot detection:
 
 ### 7.1 Stealth Mode
 
@@ -383,8 +383,8 @@ browser_config = BrowserConfig(
 For advanced bot detection, use the undetected browser adapter:
 
 ```python
-from crawl4ai import UndetectedAdapter
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl import UndetectedAdapter
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 # Create undetected adapter
 adapter = UndetectedAdapter()

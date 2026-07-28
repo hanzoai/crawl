@@ -1,5 +1,5 @@
 """
-🚀 Crawl4AI v0.7.0 Release Demo
+🚀 Crawl v0.7.0 Release Demo
 ================================
 This demo showcases all major features introduced in v0.7.0 release.
 
@@ -24,7 +24,7 @@ from rich.table import Table
 from rich.panel import Panel
 from rich import box
 
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler, 
     CrawlerRunConfig, 
     BrowserConfig,
@@ -36,8 +36,8 @@ from crawl4ai import (
     c4a_compile,
     CompilationResult
 )
-from crawl4ai.async_configs import VirtualScrollConfig, LinkPreviewConfig
-from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+from crawl.async_configs import VirtualScrollConfig, LinkPreviewConfig
+from crawl.extraction_strategy import JsonCssExtractionStrategy
 
 console = Console()
 
@@ -367,7 +367,7 @@ async def demo_7_performance_improvements():
 async def main():
     """Run all demos"""
     console.print(Panel(
-        "[bold cyan]Crawl4AI v0.7.0 Release Demo[/bold cyan]\n\n"
+        "[bold cyan]Crawl v0.7.0 Release Demo[/bold cyan]\n\n"
         "This demo showcases all major features introduced in v0.7.0.\n"
         "Each demo is self-contained and demonstrates a specific feature.",
         title="Welcome",
@@ -396,9 +396,9 @@ async def main():
     
     console.print(Panel(
         "[bold green]Demo Complete![/bold green]\n\n"
-        "Thank you for trying Crawl4AI v0.7.0!\n"
+        "Thank you for trying Crawl v0.7.0!\n"
         "For more examples and documentation, visit:\n"
-        "https://github.com/unclecode/crawl4ai",
+        "https://github.com/hanzoai/crawl",
         title="Complete",
         border_style="green"
     ))

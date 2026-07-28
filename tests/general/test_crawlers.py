@@ -1,7 +1,7 @@
 
 # example_usageexample_usageexample_usage# example_usage.py
 import asyncio
-from crawl4ai.crawlers import get_crawler
+from crawl.crawlers import get_crawler
 
 async def main():
     # Get the registered crawler

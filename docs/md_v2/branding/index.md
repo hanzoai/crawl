@@ -1,4 +1,4 @@
-# 🎨 Crawl4AI Brand Book
+# 🎨 Crawl Brand Book
 
 <style>
 /* Brand Book Styles */
@@ -564,13 +564,13 @@
 </style>
 
 <div class="brand-hero">
-    <h1>Crawl4AI Brand Guidelines</h1>
+    <h1>Crawl Brand Guidelines</h1>
     <p>A comprehensive design system for building consistent, terminal-inspired experiences</p>
 </div>
 
 ## 📖 About This Guide
 
-This brand book documents the complete visual language of Crawl4AI. Whether you're building documentation pages, interactive apps, or Chrome extensions, these guidelines ensure consistency while maintaining the unique terminal-aesthetic that defines our brand.
+This brand book documents the complete visual language of Crawl. Whether you're building documentation pages, interactive apps, or Chrome extensions, these guidelines ensure consistency while maintaining the unique terminal-aesthetic that defines our brand.
 
 ---
 
@@ -811,7 +811,7 @@ Our typography system is built around **Dank Mono**, a monospace font that reinf
         <span>Weight: 400</span>
         <span>Line-height: 1.6</span>
     </div>
-    <p style="margin-top: 1rem; font-size: 14px;">Crawl4AI is the #1 trending GitHub repository, actively maintained by a vibrant community. It delivers blazing-fast, AI-ready web crawling tailored for large language models and data pipelines.</p>
+    <p style="margin-top: 1rem; font-size: 14px;">Crawl is the #1 trending GitHub repository, actively maintained by a vibrant community. It delivers blazing-fast, AI-ready web crawling tailored for large language models and data pipelines.</p>
 </div>
 
 <div class="type-specimen">
@@ -947,7 +947,7 @@ Our typography system is built around **Dank Mono**, a monospace font that reinf
 
     <div class="brand-card">
         <h3 class="brand-card-title">🧠 LLM Context Builder</h3>
-        <p class="brand-card-description">Generate optimized context files for your favorite LLM when working with Crawl4AI. Get focused, relevant documentation based on your needs.</p>
+        <p class="brand-card-description">Generate optimized context files for your favorite LLM when working with Crawl. Get focused, relevant documentation based on your needs.</p>
         <button class="brand-btn brand-btn-primary" style="margin-top: 1rem;">Launch Builder →</button>
     </div>
 </div>
@@ -972,11 +972,11 @@ Our typography system is built around **Dank Mono**, a monospace font that reinf
             <span class="terminal-dot yellow"></span>
             <span class="terminal-dot green"></span>
         </div>
-        <span class="terminal-title">crawl4ai@terminal ~ %</span>
+        <span class="terminal-title">crawl@terminal ~ %</span>
     </div>
     <div class="terminal-content">
-        <p style="color: #09b5a5; margin: 0;">$ pip install crawl4ai</p>
-        <p style="color: #d5cec0; margin: 0.5rem 0 0 0;">Successfully installed crawl4ai-0.7.2</p>
+        <p style="color: #09b5a5; margin: 0;">$ pip install crawl</p>
+        <p style="color: #d5cec0; margin: 0.5rem 0 0 0;">Successfully installed crawl-0.7.2</p>
     </div>
 </div>
 
@@ -1089,7 +1089,7 @@ Maximum width with auto margins for centered layouts
 - ToC on the right side
 - Focus on readability and technical accuracy
 
-**Landing Pages (`docs/md_v2/apps/crawl4ai-assistant`, etc.)**
+**Landing Pages (`docs/md_v2/apps/crawl-assistant`, etc.)**
 - Use `assistant.css` style approach
 - Hero sections with gradients
 - Feature cards with hover effects
@@ -1302,9 +1302,9 @@ Use these CSS variables for consistency across all styles:
 
 - Main Documentation Styles: `docs/md_v2/assets/styles.css`
 - Layout System: `docs/md_v2/assets/layout.css`
-- Landing Page Style: `docs/md_v2/apps/crawl4ai-assistant/assistant.css`
+- Landing Page Style: `docs/md_v2/apps/crawl-assistant/assistant.css`
 - App Home Style: `docs/md_v2/apps/index.md`
-- Extension Style: `docs/md_v2/apps/crawl4ai-assistant/popup/popup.css`
+- Extension Style: `docs/md_v2/apps/crawl-assistant/popup/popup.css`
 
 ### Questions?
 
@@ -1312,8 +1312,8 @@ If you're unsure about which style to use or need help implementing these guidel
 
 - Check existing examples in the relevant section
 - Review the "When to Use Each Style" guidelines above
-- Ask in our [Discord community](https://discord.gg/crawl4ai)
-- Open an issue on [GitHub](https://github.com/unclecode/crawl4ai)
+- Ask in our [Discord community](https://discord.gg/crawl)
+- Open an issue on [GitHub](https://github.com/hanzoai/crawl)
 
 ---
 

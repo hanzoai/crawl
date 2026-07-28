@@ -37,7 +37,7 @@ GO https://duckduckgo.com
 WAIT `input[name="q"]` 10
 
 # Type our search query
-TYPE "Crawl4AI"
+TYPE "Crawl"
 
 # Press Enter to search
 PRESS Enter
@@ -52,9 +52,9 @@ That's it! In just a few lines, you've automated a complete search workflow.
 
 Want to learn by doing? We've got you covered:
 
-**🚀 [Live Demo](https://docs.crawl4ai.com/apps/c4a-script/)** - Try C4A-Script in your browser right now!
+**🚀 [Live Demo](https://docs.hanzo.ai/apps/c4a-script/)** - Try C4A-Script in your browser right now!
 
-**📁 [Tutorial Examples](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/c4a_script/)** - Complete examples with source code
+**📁 [Tutorial Examples](https://github.com/hanzoai/crawl/blob/main/docs/examples/c4a_script/)** - Complete examples with source code
 
 ### Running the Tutorial Locally
 
@@ -275,7 +275,7 @@ C4A-Script includes a powerful visual programming interface built on Google Bloc
 - **Error Prevention**: Visual connections prevent syntax errors
 - **Comment Support**: Add visual comment blocks for documentation
 
-Try the visual editor in our [live demo](https://docs.crawl4ai.com/c4a-script/demo) or [local tutorial](/examples/c4a_script/tutorial/).
+Try the visual editor in our [live demo](https://docs.hanzo.ai/c4a-script/demo) or [local tutorial](/examples/c4a_script/tutorial/).
 
 ## Advanced Features
 
@@ -302,11 +302,11 @@ IF (EXISTS `#optional-button`) THEN CLICK `#optional-button`
 EVAL `console.log("Current page title:", document.title)`
 ```
 
-### Integration with Crawl4AI
-C4A-Script integrates seamlessly with Crawl4AI's web crawling capabilities:
+### Integration with Crawl
+C4A-Script integrates seamlessly with Crawl's web crawling capabilities:
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 # Use C4A-Script for interaction before crawling
 script = """
@@ -378,7 +378,7 @@ SET `#email` $test_email
 - **📖 [Complete Examples](/examples/c4a_script/)** - Real-world automation scripts
 - **🎮 [Interactive Tutorial](/examples/c4a_script/tutorial/)** - Hands-on learning environment  
 - **📋 [API Reference](/api/c4a-script-reference/)** - Detailed command documentation
-- **🌐 [Live Demo](https://docs.crawl4ai.com/c4a-script/demo)** - Try it in your browser
+- **🌐 [Live Demo](https://docs.hanzo.ai/c4a-script/demo)** - Try it in your browser
 
 ## What's Next?
 

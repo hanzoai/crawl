@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI Stats Dashboard Generator
+Crawl Stats Dashboard Generator
 
 Fetches live data from GitHub API (via gh CLI), PyPI Stats API, and Docker Hub API,
 then generates docs/md_v2/stats.md with embedded charts (Chart.js).
@@ -19,9 +19,9 @@ from pathlib import Path
 from collections import defaultdict
 
 # --- Configuration ---
-REPO = "unclecode/crawl4ai"
-PYPI_PACKAGE = "crawl4ai"
-DOCKER_REPO = "unclecode/crawl4ai"
+REPO = "hanzoai/crawl"
+PYPI_PACKAGE = "crawl"
+DOCKER_REPO = "hanzoai/crawl"
 OUTPUT_PATH = Path(__file__).resolve().parent.parent / "docs" / "md_v2" / "stats.md"
 
 # Star history milestones (manually maintained — stargazer API is too slow for 60K+ stars)
@@ -88,7 +88,7 @@ def run_gh(args: list[str]) -> dict | list | None:
 def fetch_url_json(url: str) -> dict | list | None:
     """Fetch JSON from a URL using urllib."""
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "crawl4ai-stats/1.0"})
+        req = urllib.request.Request(url, headers={"User-Agent": "crawl-stats/1.0"})
         with urllib.request.urlopen(req, timeout=30) as resp:
             return json.loads(resp.read().decode())
     except (urllib.error.URLError, json.JSONDecodeError, TimeoutError) as e:
@@ -533,9 +533,9 @@ hide:
 <div class="stats-page">
 
 <div class="stats-header">
-    <img src="../assets/images/logo.png" alt="Crawl4AI">
+    <img src="../assets/images/logo.png" alt="Crawl">
     <h1>Growth</h1>
-    <div class="subtitle">Community growth & adoption metrics for Crawl4AI</div>
+    <div class="subtitle">Community growth & adoption metrics for Crawl</div>
 </div>
 
 <!-- Headline Metrics -->
@@ -848,7 +848,7 @@ new Chart(document.getElementById('trafficChart'), {{
 
 def main():
     print("=" * 50)
-    print("Crawl4AI Stats Dashboard Generator")
+    print("Crawl Stats Dashboard Generator")
     print("=" * 50)
 
     github = fetch_github_stats()

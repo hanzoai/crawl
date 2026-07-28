@@ -1,6 +1,6 @@
 ## Docker Deployment Architecture and Workflows
 
-Visual representations of Crawl4AI Docker deployment, API architecture, configuration management, and service interactions.
+Visual representations of Crawl Docker deployment, API architecture, configuration management, and service interactions.
 
 ### Docker Deployment Decision Flow
 
@@ -13,7 +13,7 @@ flowchart TD
     B -->|Custom Build| E[Manual Build]
     B -->|Production| F[Production Setup]
     
-    C --> C1[docker pull unclecode/crawl4ai]
+    C --> C1[docker pull hanzoai/crawl]
     C1 --> C2{Need LLM Support?}
     C2 -->|Yes| C3[Setup .llm.env]
     C2 -->|No| C4[Basic run]
@@ -66,7 +66,7 @@ flowchart TD
 ```mermaid
 graph TB
     subgraph "Host Environment"
-        A[Docker Engine] --> B[Crawl4AI Container]
+        A[Docker Engine] --> B[Crawl Container]
         C[.llm.env] --> B
         D[Custom config.yml] --> B
         E[Port 11235] --> B
@@ -275,7 +275,7 @@ flowchart TD
         G --> G1[Ubuntu base image]
         G1 --> G2[Python 3.11 install]
         G2 --> G3[System dependencies]
-        G3 --> G4[Crawl4AI installation]
+        G3 --> G4[Crawl installation]
         G4 --> G5[Playwright setup]
         G5 --> G6[FastAPI configuration]
         G6 --> G7[AMD64 image ready]
@@ -285,7 +285,7 @@ flowchart TD
         H --> H1[Ubuntu ARM64 base]
         H1 --> H2[Python 3.11 install]
         H2 --> H3[ARM-specific deps]
-        H3 --> H4[Crawl4AI installation]
+        H3 --> H4[Crawl installation]
         H4 --> H5[Playwright setup]
         H5 --> H6[FastAPI configuration]
         H6 --> H7[ARM64 image ready]
@@ -325,7 +325,7 @@ graph TB
         E[Custom MCP Client] --> B
     end
     
-    subgraph "Crawl4AI MCP Server"
+    subgraph "Crawl MCP Server"
         B --> F[MCP Endpoint Router]
         F --> G[SSE Transport /mcp/sse]
         F --> H[WebSocket Transport /mcp/ws]
@@ -343,7 +343,7 @@ graph TB
         J --> Q[Tool: ask]
     end
     
-    subgraph "Crawl4AI Core Services"
+    subgraph "Crawl Core Services"
         K --> R[Markdown Generator]
         L --> S[HTML Preprocessor]
         M --> T[Screenshot Service]
@@ -489,9 +489,9 @@ graph TB
     end
     
     subgraph "Application Layer"
-        C --> E[Crawl4AI Instance 1]
-        C --> F[Crawl4AI Instance 2]
-        C --> G[Crawl4AI Instance N]
+        C --> E[Crawl Instance 1]
+        C --> F[Crawl Instance 2]
+        C --> G[Crawl Instance N]
         
         E --> H[FastAPI Server]
         F --> I[FastAPI Server]
@@ -600,4 +600,4 @@ graph TD
     style Y fill:#fff3e0
 ```
 
-**📖 Learn more:** [Docker Deployment Guide](https://docs.crawl4ai.com/core/docker-deployment/), [API Reference](https://docs.crawl4ai.com/api/), [MCP Integration](https://docs.crawl4ai.com/core/docker-deployment/#mcp-model-context-protocol-support), [Production Configuration](https://docs.crawl4ai.com/core/docker-deployment/#production-deployment)
+**📖 Learn more:** [Docker Deployment Guide](https://docs.hanzo.ai/core/docker-deployment/), [API Reference](https://docs.hanzo.ai/api/), [MCP Integration](https://docs.hanzo.ai/core/docker-deployment/#mcp-model-context-protocol-support), [Production Configuration](https://docs.hanzo.ai/core/docker-deployment/#production-deployment)

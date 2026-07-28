@@ -1,6 +1,6 @@
 # Advanced Multi-URL Crawling with Dispatchers
 
-> **Heads Up**: Crawl4AI supports advanced dispatchers for **parallel** or **throttled** crawling, providing dynamic rate limiting and memory usage checks. The built-in `arun_many()` function uses these dispatchers to handle concurrency efficiently.
+> **Heads Up**: Crawl supports advanced dispatchers for **parallel** or **throttled** crawling, providing dynamic rate limiting and memory usage checks. The built-in `arun_many()` function uses these dispatchers to handle concurrency efficiently.
 
 ## 1. Introduction
 
@@ -97,7 +97,7 @@ If `rate_limit_codes = [429, 503, 504]`, the crawler will back off on these thre
 Here’s an example of initializing and using a `RateLimiter` in your project:
 
 ```python
-from crawl4ai import RateLimiter
+from crawl import RateLimiter
 
 # Create a RateLimiter with custom settings
 rate_limiter = RateLimiter(
@@ -119,7 +119,7 @@ The `RateLimiter` integrates seamlessly with dispatchers like `MemoryAdaptiveDis
 The CrawlerMonitor provides real-time visibility into crawling operations:
 
 ```python
-from crawl4ai import CrawlerMonitor, DisplayMode
+from crawl import CrawlerMonitor, DisplayMode
 monitor = CrawlerMonitor(
     # Maximum rows in live display
     max_visible_rows=15,          
@@ -143,7 +143,7 @@ monitor = CrawlerMonitor(
 Automatically manages concurrency based on system memory usage:
 
 ```python
-from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher
+from crawl.async_dispatcher import MemoryAdaptiveDispatcher
 
 dispatcher = MemoryAdaptiveDispatcher(
     memory_threshold_percent=90.0,  # Pause if memory exceeds this
@@ -188,7 +188,7 @@ dispatcher = MemoryAdaptiveDispatcher(
 Provides simple concurrency control with a fixed limit:
 
 ```python
-from crawl4ai.async_dispatcher import SemaphoreDispatcher
+from crawl.async_dispatcher import SemaphoreDispatcher
 
 dispatcher = SemaphoreDispatcher(
     max_session_permit=20,         # Maximum concurrent tasks
@@ -342,7 +342,7 @@ async def crawl_with_semaphore(urls):
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def main():
     urls = [
@@ -415,11 +415,11 @@ When crawling diverse content types, you often need different configurations for
 ### 6.1 Basic URL Pattern Matching
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, MatchMode
-from crawl4ai.processors.pdf import PDFContentScrapingStrategy
-from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig, MatchMode
+from crawl.processors.pdf import PDFContentScrapingStrategy
+from crawl.extraction_strategy import JsonCssExtractionStrategy
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def crawl_mixed_content():
     # Configure different strategies for different content

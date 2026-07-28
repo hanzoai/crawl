@@ -1,6 +1,6 @@
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, UndetectedAdapter
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, UndetectedAdapter
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 # Example 1: Stealth Mode
 async def stealth_mode_example():

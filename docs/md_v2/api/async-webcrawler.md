@@ -1,6 +1,6 @@
 # AsyncWebCrawler
 
-The **`AsyncWebCrawler`** is the core class for asynchronous web crawling in Crawl4AI. You typically create it **once**, optionally customize it with a **`BrowserConfig`** (e.g., headless, user agent), then **run** multiple **`arun()`** calls with different **`CrawlerRunConfig`** objects.
+The **`AsyncWebCrawler`** is the core class for asynchronous web crawling in Crawl. You typically create it **once**, optionally customize it with a **`BrowserConfig`** (e.g., headless, user agent), then **run** multiple **`arun()`** calls with different **`CrawlerRunConfig`** objects.
 
 **Recommended usage**:
 
@@ -50,7 +50,7 @@ class AsyncWebCrawler:
 ### Typical Initialization
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig
+from crawl import AsyncWebCrawler, BrowserConfig
 
 browser_cfg = BrowserConfig(
     browser_type="chromium",
@@ -113,7 +113,7 @@ You pass a `CrawlerRunConfig` object that sets up everything about a crawl—con
 
 ```python
 import asyncio
-from crawl4ai import CrawlerRunConfig, CacheMode
+from crawl import CrawlerRunConfig, CacheMode
 
 run_cfg = CrawlerRunConfig(
     cache_mode=CacheMode.BYPASS,
@@ -216,8 +216,8 @@ Below is an example hooking it all together:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 import json
 
 async def main():

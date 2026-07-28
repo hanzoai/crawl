@@ -1,4 +1,4 @@
-# Crawl4AI Prospect‑Wizard – step‑by‑step guide
+# Crawl Prospect‑Wizard – step‑by‑step guide
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/10nRCwmfxPjVrRUHyJsYlX7BH5bvPoGpx?usp=sharing)
 
@@ -20,7 +20,7 @@ prospect‑wizard/
 
 ### 1.1  Install dependencies
 ```bash
-pip install crawl4ai litellm sentence-transformers pandas rich
+pip install crawl litellm sentence-transformers pandas rich
 ```
 
 ### 1.2  Create / warm a LinkedIn browser profile
@@ -53,7 +53,7 @@ python c4ai_discover.py full \
 * `companies.jsonl` – one JSON per company
 * `people.jsonl` – one JSON per employee
 
-🛠️  **Dry‑run:** `C4AI_DEMO_DEBUG=1 python c4ai_discover.py full --query coffee` uses bundled HTML snippets, no network.
+🛠️  **Dry‑run:** `CRAWL_DEMO_DEBUG=1 python c4ai_discover.py full --query coffee` uses bundled HTML snippets, no network.
 
 ### Handy geoUrn cheatsheet
 | Location | geoUrn |
@@ -127,5 +127,5 @@ The page fetches `data/company_graph.json` and the `org_chart_*.json` files auto
 
 ### TL;DR
 `crwl profiles` → `c4ai_discover.py` → `c4ai_insights.py` → open `graph_view_template.html`.  
-Live long and `import crawl4ai`.
+Live long and `import crawl`.
 

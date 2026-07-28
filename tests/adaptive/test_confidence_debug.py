@@ -12,9 +12,9 @@ import math
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
 
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.adaptive_crawler import CrawlState, StatisticalStrategy
-from crawl4ai.models import CrawlResult
+from crawl import AsyncWebCrawler
+from crawl.adaptive_crawler import CrawlState, StatisticalStrategy
+from crawl.models import CrawlResult
 
 
 class ConfidenceTestHarness:

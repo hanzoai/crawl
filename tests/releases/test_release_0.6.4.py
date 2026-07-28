@@ -1,7 +1,7 @@
 import pytest
 import asyncio
 import time
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig, CacheMode
 
 
 @pytest.mark.asyncio
@@ -118,7 +118,7 @@ async def test_mkdocs_no_duplicate_gtag():
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Crawl4AI Documentation</title>
+        <title>Crawl Documentation</title>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
@@ -127,7 +127,7 @@ async def test_mkdocs_no_duplicate_gtag():
         </script>
     </head>
     <body>
-        <h1>Crawl4AI Documentation</h1>
+        <h1>Crawl Documentation</h1>
         <p>Welcome to the documentation</p>
     </body>
     </html>

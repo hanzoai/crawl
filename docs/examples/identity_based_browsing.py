@@ -1,5 +1,5 @@
 """
-Identity-Based Browsing Example with Crawl4AI
+Identity-Based Browsing Example with Crawl
 
 This example demonstrates how to:
 1. Create a persistent browser profile interactively
@@ -11,9 +11,9 @@ Uses the new BrowserProfiler class for profile management.
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig
-from crawl4ai.browser_profiler import BrowserProfiler
-from crawl4ai.async_logger import AsyncLogger
+from crawl import AsyncWebCrawler, BrowserConfig
+from crawl.browser_profiler import BrowserProfiler
+from crawl.async_logger import AsyncLogger
 from colorama import Fore, Style, init
 
 # Initialize colorama
@@ -61,7 +61,7 @@ async def crawl_with_profile(profile_path, url):
 
 
 async def main():
-    logger.info(f"{Fore.CYAN}Identity-Based Browsing Example with Crawl4AI{Style.RESET_ALL}", tag="DEMO")
+    logger.info(f"{Fore.CYAN}Identity-Based Browsing Example with Crawl{Style.RESET_ALL}", tag="DEMO")
     logger.info("This example demonstrates using profiles for authenticated browsing", tag="DEMO")
     
     # Choose between interactive mode and automatic mode

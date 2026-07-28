@@ -105,8 +105,8 @@ class TestDeepCrawlStreamBranching:
     @pytest.mark.asyncio
     async def test_deep_crawl_single_url_uses_arun(self):
         """With deep_crawl_strategy + 1 URL, should call crawler.arun()."""
-        from crawl4ai import CrawlerRunConfig, BrowserConfig
-        from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+        from crawl import CrawlerRunConfig, BrowserConfig
+        from crawl.deep_crawling import BFSDeepCrawlStrategy
 
         cfg = CrawlerRunConfig(
             deep_crawl_strategy=BFSDeepCrawlStrategy(max_depth=1, max_pages=5),
@@ -127,7 +127,7 @@ class TestDeepCrawlStreamBranching:
     @pytest.mark.asyncio
     async def test_no_deep_crawl_uses_arun_many(self):
         """Without deep_crawl_strategy, should use arun_many()."""
-        from crawl4ai import CrawlerRunConfig
+        from crawl import CrawlerRunConfig
 
         cfg = CrawlerRunConfig(stream=True)
         assert cfg.deep_crawl_strategy is None
@@ -142,8 +142,8 @@ class TestDeepCrawlStreamBranching:
     @pytest.mark.asyncio
     async def test_deep_crawl_multi_url_rejected(self):
         """Deep crawl + multiple URLs should be rejected."""
-        from crawl4ai import CrawlerRunConfig
-        from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+        from crawl import CrawlerRunConfig
+        from crawl.deep_crawling import BFSDeepCrawlStrategy
 
         cfg = CrawlerRunConfig(
             deep_crawl_strategy=BFSDeepCrawlStrategy(max_depth=1, max_pages=5),

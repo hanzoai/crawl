@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI v0.7.7 Release Demo
+Crawl v0.7.7 Release Demo
 ============================
 
 This demo showcases the major feature in v0.7.7:
@@ -16,7 +16,7 @@ Features Demonstrated:
 7. Production metrics (efficiency, reuse rates, memory)
 
 Prerequisites:
-- Crawl4AI Docker container running on localhost:11235
+- Crawl Docker container running on localhost:11235
 - Python packages: pip install httpx websockets
 
 Usage:
@@ -31,8 +31,8 @@ from datetime import datetime
 from typing import Dict, Any
 
 # Configuration
-CRAWL4AI_BASE_URL = "http://localhost:11235"
-MONITOR_DASHBOARD_URL = f"{CRAWL4AI_BASE_URL}/dashboard"
+CRAWL_BASE_URL = "http://localhost:11235"
+MONITOR_DASHBOARD_URL = f"{CRAWL_BASE_URL}/dashboard"
 
 
 def print_section(title: str, description: str = ""):
@@ -52,10 +52,10 @@ def print_subsection(title: str):
 
 
 async def check_server_health():
-    """Check if Crawl4AI server is running"""
+    """Check if Crawl server is running"""
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
-            response = await client.get(f"{CRAWL4AI_BASE_URL}/health")
+            response = await client.get(f"{CRAWL_BASE_URL}/health")
             return response.status_code == 200
     except:
         return False
@@ -72,7 +72,7 @@ async def demo_1_system_health_overview():
         print("🔍 Fetching system health metrics...")
 
         try:
-            response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/health")
+            response = await client.get(f"{CRAWL_BASE_URL}/monitor/health")
             health = response.json()
 
             print("\n✅ System Health Report:")
@@ -128,7 +128,7 @@ async def demo_2_request_tracking():
         tasks = []
         for url in urls_to_crawl:
             task = client.post(
-                f"{CRAWL4AI_BASE_URL}/crawl",
+                f"{CRAWL_BASE_URL}/crawl",
                 json={"urls": [url], "crawler_config": {}}
             )
             tasks.append(task)
@@ -143,7 +143,7 @@ async def demo_2_request_tracking():
         print("\n📊 Checking request tracking...")
         await asyncio.sleep(2)  # Wait for requests to process
 
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/requests")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/requests")
         requests_data = response.json()
 
         print(f"\n📋 Request Status:")
@@ -171,7 +171,7 @@ async def demo_3_browser_pool_management():
         print("\n🔥 Test 1: Default Config → Permanent Browser")
         for i in range(3):
             await client.post(
-                f"{CRAWL4AI_BASE_URL}/crawl",
+                f"{CRAWL_BASE_URL}/crawl",
                 json={"urls": [f"https://httpbin.org/html?req={i}"], "crawler_config": {}}
             )
             print(f"   • Request {i+1}/3 sent (should use permanent browser)")
@@ -183,7 +183,7 @@ async def demo_3_browser_pool_management():
         viewport_config = {"viewport": {"width": 1280, "height": 720}}
         for i in range(4):
             await client.post(
-                f"{CRAWL4AI_BASE_URL}/crawl",
+                f"{CRAWL_BASE_URL}/crawl",
                 json={
                     "urls": [f"https://httpbin.org/json?viewport={i}"],
                     "browser_config": viewport_config,
@@ -196,7 +196,7 @@ async def demo_3_browser_pool_management():
 
         # Check browser pool status
         print("\n📊 Browser Pool Report:")
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/browsers")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/browsers")
         browsers = response.json()
 
         print(f"\n🎯 Pool Summary:")
@@ -236,7 +236,7 @@ async def demo_4_monitor_api_endpoints():
 
         # Endpoint performance statistics
         print_subsection("Endpoint Performance Statistics")
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/endpoints/stats")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/endpoints/stats")
         endpoint_stats = response.json()
 
         print("\n📊 Per-Endpoint Analytics:")
@@ -248,7 +248,7 @@ async def demo_4_monitor_api_endpoints():
 
         # Timeline data for charts
         print_subsection("Timeline Data (for Charts)")
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/timeline?minutes=5")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/timeline?minutes=5")
         timeline = response.json()
 
         print(f"\n📈 Timeline Metrics (last 5 minutes):")
@@ -260,7 +260,7 @@ async def demo_4_monitor_api_endpoints():
 
         # Janitor logs
         print_subsection("Janitor Cleanup Events")
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/logs/janitor?limit=3")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/logs/janitor?limit=3")
         janitor_logs = response.json()
 
         print(f"\n🧹 Recent Cleanup Activities:")
@@ -272,7 +272,7 @@ async def demo_4_monitor_api_endpoints():
 
         # Error logs
         print_subsection("Error Monitoring")
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/logs/errors?limit=3")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/logs/errors?limit=3")
         error_logs = response.json()
 
         print(f"\n❌ Recent Errors:")
@@ -332,7 +332,7 @@ async def demo_6_control_actions():
         print_subsection("Force Immediate Cleanup")
         print("🧹 Triggering manual cleanup...")
         try:
-            response = await client.post(f"{CRAWL4AI_BASE_URL}/monitor/actions/cleanup")
+            response = await client.post(f"{CRAWL_BASE_URL}/monitor/actions/cleanup")
             if response.status_code == 200:
                 result = response.json()
                 print(f"   ✅ Cleanup completed")
@@ -345,7 +345,7 @@ async def demo_6_control_actions():
 
         # Get browser list for potential kill/restart
         print_subsection("Browser Management")
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/browsers")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/browsers")
         browsers = response.json()
 
         cold_browsers = browsers.get('cold', [])
@@ -379,11 +379,11 @@ async def demo_7_production_metrics():
         print("📊 Key Production Metrics:")
 
         # Overall health
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/health")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/health")
         health = response.json()
 
         # Browser efficiency
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/browsers")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/browsers")
         browsers = response.json()
 
         print("\n🎯 Critical Metrics to Track:")
@@ -414,7 +414,7 @@ async def demo_7_production_metrics():
         print(f"   • Check: Janitor is running correctly")
 
         print(f"\n6️⃣  Error Frequency")
-        response = await client.get(f"{CRAWL4AI_BASE_URL}/monitor/logs/errors?limit=10")
+        response = await client.get(f"{CRAWL_BASE_URL}/monitor/logs/errors?limit=10")
         errors = response.json()
         print(f"   • Recent Errors: {len(errors)}")
         print(f"   • Alert if: >10 in last hour")
@@ -430,7 +430,7 @@ async def demo_7_production_metrics():
 async def demo_8_self_hosting_value():
     """Demo 8: Self-Hosting Value Proposition"""
     print_section(
-        "Demo 8: Why Self-Host Crawl4AI?",
+        "Demo 8: Why Self-Host Crawl?",
         "The value proposition of owning your infrastructure"
     )
 
@@ -468,15 +468,15 @@ async def demo_8_self_hosting_value():
     print("   • Manual controls for troubleshooting")
 
     print(f"\n🌐 Get Started:")
-    print(f"   docker pull unclecode/crawl4ai:0.7.7")
-    print(f"   docker run -d -p 11235:11235 --shm-size=1g unclecode/crawl4ai:0.7.7")
+    print(f"   docker pull hanzoai/crawl:0.7.7")
+    print(f"   docker run -d -p 11235:11235 --shm-size=1g hanzoai/crawl:0.7.7")
     print(f"   # Visit: {MONITOR_DASHBOARD_URL}")
 
 
 def print_summary():
     """Print comprehensive demo summary"""
     print("\n" + "=" * 70)
-    print("📊 DEMO SUMMARY - Crawl4AI v0.7.7")
+    print("📊 DEMO SUMMARY - Crawl v0.7.7")
     print("=" * 70)
 
     print("\n✨ Features Demonstrated:")
@@ -541,7 +541,7 @@ def print_summary():
     print("📚 Next Steps")
     print("=" * 70)
     print(f"1. Open the dashboard: {MONITOR_DASHBOARD_URL}")
-    print("2. Read the docs: https://docs.crawl4ai.com/basic/self-hosting/")
+    print("2. Read the docs: https://docs.hanzo.ai/basic/self-hosting/")
     print("3. Try the Monitor API endpoints yourself")
     print("4. Set up Prometheus integration for production")
     print("5. Build custom dashboards with WebSocket streaming")
@@ -550,9 +550,9 @@ def print_summary():
     print("🔗 Resources")
     print("=" * 70)
     print(f"• Dashboard: {MONITOR_DASHBOARD_URL}")
-    print(f"• Health API: {CRAWL4AI_BASE_URL}/monitor/health")
-    print(f"• Documentation: https://docs.crawl4ai.com/")
-    print(f"• GitHub: https://github.com/unclecode/crawl4ai")
+    print(f"• Health API: {CRAWL_BASE_URL}/monitor/health")
+    print(f"• Documentation: https://docs.hanzo.ai/")
+    print(f"• GitHub: https://github.com/hanzoai/crawl")
 
     print("\n" + "=" * 70)
     print("🎉 You're now in control of your web crawling destiny!")
@@ -562,24 +562,24 @@ def print_summary():
 async def main():
     """Run all demos"""
     print("\n" + "=" * 70)
-    print("🚀 Crawl4AI v0.7.7 Release Demo")
+    print("🚀 Crawl v0.7.7 Release Demo")
     print("=" * 70)
     print("Feature: Self-Hosting with Real-time Monitoring Dashboard")
     print("=" * 70)
 
     # Check if server is running
-    print("\n🔍 Checking Crawl4AI server...")
+    print("\n🔍 Checking Crawl server...")
     server_running = await check_server_health()
 
     if not server_running:
-        print(f"❌ Cannot connect to Crawl4AI at {CRAWL4AI_BASE_URL}")
+        print(f"❌ Cannot connect to Crawl at {CRAWL_BASE_URL}")
         print("\nPlease start the Docker container:")
-        print("  docker pull unclecode/crawl4ai:0.7.7")
-        print("  docker run -d -p 11235:11235 --shm-size=1g unclecode/crawl4ai:0.7.7")
+        print("  docker pull hanzoai/crawl:0.7.7")
+        print("  docker run -d -p 11235:11235 --shm-size=1g hanzoai/crawl:0.7.7")
         print("\nThen re-run this demo.")
         return
 
-    print(f"✅ Crawl4AI server is running!")
+    print(f"✅ Crawl server is running!")
     print(f"📊 Dashboard available at: {MONITOR_DASHBOARD_URL}")
 
     # Run all demos
@@ -621,8 +621,8 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n\n👋 Demo stopped by user. Thanks for trying Crawl4AI v0.7.7!")
+        print("\n\n👋 Demo stopped by user. Thanks for trying Crawl v0.7.7!")
     except Exception as e:
         print(f"\n\n❌ Demo failed: {e}")
         print("Make sure the Docker container is running:")
-        print("  docker run -d -p 11235:11235 --shm-size=1g unclecode/crawl4ai:0.7.7")
+        print("  docker run -d -p 11235:11235 --shm-size=1g hanzoai/crawl:0.7.7")

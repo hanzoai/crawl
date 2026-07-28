@@ -20,7 +20,7 @@ Domain mapping goes beyond URL seeding. Instead of checking a single sitemap or 
 
 ```python
 import asyncio
-from crawl4ai import DomainMapper, DomainMapperConfig
+from crawl import DomainMapper, DomainMapperConfig
 
 async def main():
     async with DomainMapper() as mapper:
@@ -38,7 +38,7 @@ asyncio.run(main())
 Or via `AsyncWebCrawler`:
 
 ```python
-from crawl4ai import AsyncWebCrawler, DomainMapperConfig
+from crawl import AsyncWebCrawler, DomainMapperConfig
 
 async with AsyncWebCrawler() as crawler:
     results = await crawler.amap_domain("example.com")
@@ -181,7 +181,7 @@ All discovered URLs go through:
 
 Many modern SPAs return HTTP 200 for every URL — even pages that don't exist. DomainMapper detects this:
 
-1. **Fingerprinting**: Fetches a guaranteed-nonexistent URL (e.g., `/c4ai-probe-a1b2c3d4`) on each host
+1. **Fingerprinting**: Fetches a guaranteed-nonexistent URL (e.g., `/crawl-probe-a1b2c3d4`) on each host
 2. **Recording**: Captures the response title and body hash
 3. **Filtering**: When probing real paths, compares against the fingerprint. If they match → soft-404, filtered out
 
@@ -249,7 +249,7 @@ Each result is a dict:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, DomainMapperConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, DomainMapperConfig, CrawlerRunConfig
 
 async def crawl_all_docs():
     async with AsyncWebCrawler() as crawler:

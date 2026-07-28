@@ -2,7 +2,7 @@
 Test script demonstrating the hooks_to_string utility and Docker client integration.
 """
 import asyncio
-from crawl4ai import Crawl4aiDockerClient, hooks_to_string
+from crawl import Crawl4aiDockerClient, hooks_to_string
 
 
 # Define hook functions as regular Python functions
@@ -64,7 +64,7 @@ async def test_docker_client_with_functions():
     print("Testing Docker Client with Function Objects")
     print("=" * 60)
 
-    # Note: This requires a running Crawl4AI Docker server
+    # Note: This requires a running Crawl Docker server
     # Uncomment the following to test with actual server:
 
     async with Crawl4aiDockerClient(base_url="http://localhost:11234", verbose=True) as client:
@@ -98,7 +98,7 @@ async def test_docker_client_with_strings():
     }
     hooks_string = hooks_to_string(hooks_dict)
 
-    # Note: This requires a running Crawl4AI Docker server
+    # Note: This requires a running Crawl Docker server
     # Uncomment the following to test with actual server:
 
     async with Crawl4aiDockerClient(base_url="http://localhost:11234", verbose=True) as client:
@@ -165,7 +165,7 @@ async def hook(page, context, **kwargs):
 
 async def main():
     """Run all tests."""
-    print("\n🚀 Crawl4AI Hooks Utility Test Suite\n")
+    print("\n🚀 Crawl Hooks Utility Test Suite\n")
 
     # Test the utility function
     # await test_hooks_utility()

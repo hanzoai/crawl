@@ -1,13 +1,13 @@
 # Network Requests & Console Message Capturing
 
-Crawl4AI can capture all network requests and browser console messages during a crawl, which is invaluable for debugging, security analysis, or understanding page behavior.
+Crawl can capture all network requests and browser console messages during a crawl, which is invaluable for debugging, security analysis, or understanding page behavior.
 
 ## Configuration
 
 To enable network and console capturing, use these configuration options:
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 # Enable both network request capture and console message capture
 config = CrawlerRunConfig(
@@ -21,7 +21,7 @@ config = CrawlerRunConfig(
 ```python
 import asyncio
 import json
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     # Enable both network request capture and console message capture

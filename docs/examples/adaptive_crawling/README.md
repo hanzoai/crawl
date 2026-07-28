@@ -1,6 +1,6 @@
 # Adaptive Crawling Examples
 
-This directory contains examples demonstrating various aspects of Crawl4AI's Adaptive Crawling feature.
+This directory contains examples demonstrating various aspects of Crawl's Adaptive Crawling feature.
 
 ## Examples Overview
 
@@ -74,12 +74,12 @@ python embedding_vs_statistical.py
 
 ## Requirements
 
-- Crawl4AI installed
+- Crawl installed
 - For embedding strategy with local models: `sentence-transformers`
 - For embedding strategy with OpenAI: Set `OPENAI_API_KEY` environment variable
 
 ## Learn More
 
-- [Adaptive Crawling Documentation](https://docs.crawl4ai.com/core/adaptive-crawling/)
-- [Mathematical Framework](https://github.com/unclecode/crawl4ai/blob/main/PROGRESSIVE_CRAWLING.md)
-- [Blog: The Adaptive Crawling Revolution](https://docs.crawl4ai.com/blog/adaptive-crawling-revolution/)
+- [Adaptive Crawling Documentation](https://docs.hanzo.ai/core/adaptive-crawling/)
+- [Mathematical Framework](https://github.com/hanzoai/crawl/blob/main/PROGRESSIVE_CRAWLING.md)
+- [Blog: The Adaptive Crawling Revolution](https://docs.hanzo.ai/blog/adaptive-crawling-revolution/)

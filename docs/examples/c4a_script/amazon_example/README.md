@@ -1,10 +1,10 @@
 # Amazon R2D2 Product Search Example
 
-A real-world demonstration of Crawl4AI's multi-step crawling with LLM-generated automation scripts.
+A real-world demonstration of Crawl's multi-step crawling with LLM-generated automation scripts.
 
 ## 🎯 What This Example Shows
 
-This example demonstrates advanced Crawl4AI features:
+This example demonstrates advanced Crawl features:
 - **LLM-Generated Scripts**: Automatically create C4A-Script from HTML snippets
 - **Multi-Step Crawling**: Navigate through multiple pages using session persistence
 - **Structured Data Extraction**: Extract product data using JSON CSS schemas
@@ -46,8 +46,8 @@ Products are extracted with:
 
 1. **Prerequisites**
    ```bash
-   # Ensure Crawl4AI is installed
-   pip install crawl4ai
+   # Ensure Crawl is installed
+   pip install crawl
    
    # Set up LLM API key (for script generation)
    export OPENAI_API_KEY="your-key-here"

@@ -1,6 +1,6 @@
 # PDF Processing Strategies
 
-Crawl4AI provides specialized strategies for handling and extracting content from PDF files. These strategies allow you to seamlessly integrate PDF processing into your crawling workflows, whether the PDFs are hosted online or stored locally.
+Crawl provides specialized strategies for handling and extracting content from PDF files. These strategies allow you to seamlessly integrate PDF processing into your crawling workflows, whether the PDFs are hosted online or stored locally.
 
 ## `PDFCrawlerStrategy`
 
@@ -16,7 +16,7 @@ Use `PDFCrawlerStrategy` when you need to:
 ### Key Methods and Their Behavior
 -   **`__init__(self, logger: AsyncLogger = None)`**:
     -   Initializes the strategy.
-    -   `logger`: An optional `AsyncLogger` instance (from `crawl4ai.async_logger`) for logging purposes.
+    -   `logger`: An optional `AsyncLogger` instance (from `crawl.async_logger`) for logging purposes.
 -   **`async crawl(self, url: str, **kwargs) -> AsyncCrawlResponse`**:
     -   This method is called by the `AsyncWebCrawler` during the `arun` process.
     -   It takes the `url` (which should point to a PDF) and creates a minimal `AsyncCrawlResponse`.
@@ -30,8 +30,8 @@ Use `PDFCrawlerStrategy` when you need to:
 ### Example Usage
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.processors.pdf import PDFCrawlerStrategy, PDFContentScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.processors.pdf import PDFCrawlerStrategy, PDFContentScrapingStrategy
 
 async def main():
     # Initialize the PDF crawler strategy
@@ -119,8 +119,8 @@ When initializing `PDFContentScrapingStrategy`, you can configure its behavior u
 ### Example Usage
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.processors.pdf import PDFCrawlerStrategy, PDFContentScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.processors.pdf import PDFCrawlerStrategy, PDFContentScrapingStrategy
 import os # For creating image directory
 
 async def main():

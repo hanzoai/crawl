@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🚀 Crawl4AI v0.7.5 - Docker Hooks System Complete Demonstration
+🚀 Crawl v0.7.5 - Docker Hooks System Complete Demonstration
 ================================================================
 
 This file demonstrates the NEW Docker Hooks System introduced in v0.7.5.
@@ -17,8 +17,8 @@ All three approaches are part of this NEW v0.7.5 feature!
 Perfect for video recording and demonstration purposes.
 
 Requirements:
-- Docker container running: docker run -p 11235:11235 unclecode/crawl4ai:latest
-- crawl4ai v0.7.5 installed: pip install crawl4ai==0.7.5
+- Docker container running: docker run -p 11235:11235 hanzoai/crawl:latest
+- crawl v0.7.5 installed: pip install crawl==0.7.5
 """
 
 import asyncio
@@ -27,9 +27,9 @@ import json
 import time
 from typing import Dict, Any
 
-# Import Crawl4AI components
-from crawl4ai import hooks_to_string
-from crawl4ai.docker_client import Crawl4aiDockerClient
+# Import Crawl components
+from crawl import hooks_to_string
+from crawl.docker_client import Crawl4aiDockerClient
 
 # Configuration
 DOCKER_URL = "http://localhost:11235"
@@ -101,10 +101,10 @@ async def authentication_headers_hook(page, context, url, **kwargs):
     print(f"  [Hook] 🔐 Adding custom headers for {url[:50]}...")
 
     await page.set_extra_http_headers({
-        'X-Crawl4AI-Version': '0.7.5',
+        'X-Crawl-Version': '0.7.5',
         'X-Custom-Hook': 'function-based-demo',
         'Accept-Language': 'en-US,en;q=0.9',
-        'User-Agent': 'Crawl4AI/0.7.5 (Educational Demo)'
+        'User-Agent': 'Crawl/0.7.5 (Educational Demo)'
     })
 
     print("  [Hook] ✓ Custom headers added")
@@ -185,7 +185,7 @@ async def hook(page, context, **kwargs):
 async def hook(page, context, url, **kwargs):
     print(f"  [String Hook] Navigating to {url[:50]}...")
     await page.set_extra_http_headers({
-        'X-Crawl4AI': 'string-based-hooks',
+        'X-Crawl': 'string-based-hooks',
         'X-Demo': 'v0.7.5'
     })
     return page
@@ -359,7 +359,7 @@ async def demo_3_docker_client_auto_conversion():
         "Pass function objects directly - conversion happens automatically!"
     )
 
-    print("🐳 Initializing Crawl4AI Docker Client...")
+    print("🐳 Initializing Crawl Docker Client...")
     client = Crawl4aiDockerClient(base_url=DOCKER_URL)
 
     print("✅ Client ready!\n")
@@ -554,7 +554,7 @@ async def main():
     Run all demonstrations
     """
     print("\n" + "=" * 70)
-    print("  🚀 Crawl4AI v0.7.5 - Docker Hooks Complete Demonstration")
+    print("  🚀 Crawl v0.7.5 - Docker Hooks Complete Demonstration")
     print("=" * 70)
 
     # Check Docker service
@@ -562,7 +562,7 @@ async def main():
     if not check_docker_service():
         print("❌ Docker service is not running!")
         print("\n📋 To start the Docker service:")
-        print("   docker run -p 11235:11235 unclecode/crawl4ai:latest")
+        print("   docker run -p 11235:11235 hanzoai/crawl:latest")
         print("\nPlease start the service and run this demo again.")
         return
 
@@ -632,8 +632,8 @@ async def main():
     print("   • on_execution_started, before_retrieve_html, before_return_html")
 
     print("\n📚 Resources:")
-    print("   • Docs: https://docs.crawl4ai.com")
-    print("   • GitHub: https://github.com/unclecode/crawl4ai")
+    print("   • Docs: https://docs.hanzo.ai")
+    print("   • GitHub: https://github.com/hanzoai/crawl")
     print("   • Discord: https://discord.gg/jP8KfhDhyN")
 
     print("\n" + "=" * 70)
@@ -642,13 +642,13 @@ async def main():
 
 
 if __name__ == "__main__":
-    print("\n🎬 Starting Crawl4AI v0.7.5 Docker Hooks Demonstration...")
+    print("\n🎬 Starting Crawl v0.7.5 Docker Hooks Demonstration...")
     print("Press Ctrl+C anytime to exit\n")
 
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n\n👋 Demo stopped by user. Thanks for exploring Crawl4AI v0.7.5!")
+        print("\n\n👋 Demo stopped by user. Thanks for exploring Crawl v0.7.5!")
     except Exception as e:
         print(f"\n\n❌ Demo error: {str(e)}")
         import traceback

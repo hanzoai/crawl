@@ -1,6 +1,6 @@
 # Crawl Result and Output
 
-When you call `arun()` on a page, Crawl4AI returns a **`CrawlResult`** object containing everything you might need—raw HTML, a cleaned version, optional screenshots or PDFs, structured extraction results, and more. This document explains those fields and how they map to different output types.  
+When you call `arun()` on a page, Crawl returns a **`CrawlResult`** object containing everything you might need—raw HTML, a cleaned version, optional screenshots or PDFs, structured extraction results, and more. This document explains those fields and how they map to different output types.  
 
 ---
 
@@ -85,7 +85,7 @@ class CrawlResult(BaseModel):
 
 ### `html`: Raw HTML
 
-Crawl4AI preserves the exact HTML as `result.html`. Useful for:
+Crawl preserves the exact HTML as `result.html`. Useful for:
 
 - Debugging page issues or checking the original content.
 - Performing your own specialized parse if needed.
@@ -125,8 +125,8 @@ print(result.cleaned_html)  # Freed of forms, header, footer, data-* attributes
 ### 3.2 Basic Example with a Markdown Generator
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 config = CrawlerRunConfig(
     markdown_generator=DefaultMarkdownGenerator(
@@ -154,8 +154,8 @@ If you run a JSON-based extraction strategy (CSS, XPath, LLM, etc.), the structu
 ```python
 import asyncio
 import json
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 
 async def main():
     schema = {
@@ -224,7 +224,7 @@ Tables that score above the threshold (default: 7) are extracted and stored in r
 ### Accessing Table data:
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -340,4 +340,4 @@ else:
 - **Session & Hooks**: If you want to manipulate the page or preserve state across multiple `arun()` calls, see the hooking or session docs.  
 - **LLM Extraction**: For complex or unstructured content requiring AI-driven parsing, check the LLM-based strategies doc.
 
-**Enjoy** exploring all that `CrawlResult` offers—whether you need raw HTML, sanitized output, markdown, or fully structured data, Crawl4AI has you covered!
+**Enjoy** exploring all that `CrawlResult` offers—whether you need raw HTML, sanitized output, markdown, or fully structured data, Crawl has you covered!

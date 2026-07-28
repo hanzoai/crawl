@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Details - Crawl4AI Marketplace</title>
+    <title>App Details - Crawl Marketplace</title>
     <link rel="stylesheet" href="marketplace.css">
     <link rel="stylesheet" href="app-detail.css">
 </head>
@@ -14,7 +14,7 @@
             <div class="header-content">
                 <div class="header-left">
                     <div class="logo-title">
-                        <img src="../../assets/images/logo.png" alt="Crawl4AI" class="header-logo">
+                        <img src="../../assets/images/logo.png" alt="Crawl" class="header-logo">
                         <h1>
                             <span class="ascii-border">[</span>
                             Marketplace
@@ -100,7 +100,7 @@
                             <span class="code-lang">bash</span>
                             <button class="copy-btn">Copy</button>
                         </div>
-                        <pre><code id="install-code">pip install crawl4ai</code></pre>
+                        <pre><code id="install-code">pip install crawl</code></pre>
                     </div>
 
                     <h3>Basic Usage</h3>
@@ -109,7 +109,7 @@
                             <span class="code-lang">python</span>
                             <button class="copy-btn">Copy</button>
                         </div>
-                        <pre><code id="usage-code">from crawl4ai import AsyncWebCrawler
+                        <pre><code id="usage-code">from crawl import AsyncWebCrawler
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -152,9 +152,9 @@ if __name__ == "__main__":
                             <span class="code-lang">python</span>
                             <button class="copy-btn">Copy</button>
                         </div>
-                        <pre><code id="integration-code">from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai import LLMConfig
-from crawl4ai.extraction_strategy import LLMExtractionStrategy
+                        <pre><code id="integration-code">from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import LLMConfig
+from crawl.extraction_strategy import LLMExtractionStrategy
 
 async def extract_with_llm():
     async with AsyncWebCrawler() as crawler:

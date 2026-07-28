@@ -2,7 +2,7 @@
 import asyncio
 import pytest
 import pytest_asyncio
-from crawl4ai import DomainMapper, DomainMapperConfig
+from crawl import DomainMapper, DomainMapperConfig
 
 
 pytestmark = pytest.mark.network
@@ -34,15 +34,15 @@ class TestDomainMapperE2E:
             "docs.superdesign.dev should be discovered"
 
     @pytest.mark.asyncio
-    async def test_scan_docs_crawl4ai(self, mapper):
-        """docs.crawl4ai.com has a known good sitemap."""
+    async def test_scan_docs_crawl(self, mapper):
+        """docs.hanzo.ai has a known good sitemap."""
         config = DomainMapperConfig(
             source="sitemap",
             extract_head=False,
             force=True,
             verbose=False,
         )
-        results = await mapper.scan("docs.crawl4ai.com", config)
+        results = await mapper.scan("docs.hanzo.ai", config)
         assert len(results) >= 5, f"Expected >=5 URLs from sitemap, got {len(results)}"
         assert all(r["source"] == "sitemap" for r in results)
 
@@ -98,7 +98,7 @@ class TestDomainMapperE2E:
             force=True,
             verbose=False,
         )
-        results = await mapper.scan("docs.crawl4ai.com", config)
+        results = await mapper.scan("docs.hanzo.ai", config)
         for r in results:
             assert "source" in r
             assert r["source"], "Source should not be empty"
@@ -115,17 +115,17 @@ class TestDomainMapperE2E:
             force=True,
             verbose=False,
         )
-        results = await mapper.scan("docs.crawl4ai.com", config)
+        results = await mapper.scan("docs.hanzo.ai", config)
         has_title = any(r.get("head_data", {}).get("title") for r in results)
         assert has_title, "At least one result should have a title in head_data"
 
     @pytest.mark.asyncio
     async def test_crawler_integration(self):
         """Test amap_domain() on AsyncWebCrawler works."""
-        from crawl4ai import AsyncWebCrawler
+        from crawl import AsyncWebCrawler
         async with AsyncWebCrawler() as crawler:
             results = await crawler.amap_domain(
-                "docs.crawl4ai.com",
+                "docs.hanzo.ai",
                 DomainMapperConfig(
                     source="sitemap",
                     extract_head=False,

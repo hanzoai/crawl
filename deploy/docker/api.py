@@ -15,7 +15,7 @@ from fastapi.background import BackgroundTasks
 from fastapi.responses import JSONResponse
 from redis import asyncio as aioredis
 
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     LLMExtractionStrategy,
@@ -25,10 +25,10 @@ from crawl4ai import (
     RateLimiter, 
     LLMConfig
 )
-from crawl4ai.async_configs import Provenance, UntrustedConfigError
+from crawl.async_configs import Provenance, UntrustedConfigError
 from hook_registry import build_declarative_hooks, HookValidationError
 from llm_broker import LLMProviderNotAllowed
-from crawl4ai.utils import perform_completion_with_backoff
+from crawl.utils import perform_completion_with_backoff
 
 
 def _enqueue_job(background_tasks, factory, principal=None):
@@ -64,13 +64,13 @@ def _attach_declarative_hooks(crawler, hooks_config: dict) -> dict:
     for hook_point, fn in hooks.items():
         crawler.crawler_strategy.set_hook(hook_point, fn)
     return {"status": "success", "attached": list(hooks.keys())}
-from crawl4ai.content_filter_strategy import (
+from crawl.content_filter_strategy import (
     PruningContentFilter,
     BM25ContentFilter,
     LLMContentFilter
 )
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
 
 from utils import (
     TaskStatus,

@@ -6,7 +6,7 @@ This example shows how to use the new generate_script() function to automaticall
 create C4A-Script automation from natural language descriptions and HTML.
 """
 
-from crawl4ai.script.c4a_compile import C4ACompiler
+from crawl.script.c4a_compile import C4ACompiler
 
 def main():
     print("🤖 C4A-Script Generation Hello World")

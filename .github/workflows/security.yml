@@ -10,12 +10,12 @@ on:
     branches: [main, develop, "security/**"]
     paths:
       - "deploy/docker/**"
-      - "crawl4ai/async_configs.py"
+      - "crawl/async_configs.py"
       - ".github/workflows/security.yml"
   pull_request:
     paths:
       - "deploy/docker/**"
-      - "crawl4ai/async_configs.py"
+      - "crawl/async_configs.py"
       - ".github/workflows/security.yml"
 
 jobs:

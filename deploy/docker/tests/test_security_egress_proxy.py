@@ -124,7 +124,7 @@ class TestPinningProxy:
 class TestEnforceEgressWiring:
     def test_enforce_egress_sets_proxy(self, monkeypatch):
         import egress_broker
-        from crawl4ai import BrowserConfig
+        from crawl import BrowserConfig
         monkeypatch.setattr(egress_broker, "_EGRESS_PROXY_URL", "http://127.0.0.1:9999")
         b = BrowserConfig()
         egress_broker.enforce_egress(b)

@@ -1,7 +1,7 @@
-# Crawl4AI Cache System and Migration Guide
+# Crawl Cache System and Migration Guide
 
 ## Overview
-Starting from version 0.5.0, Crawl4AI introduces a new caching system that replaces the old boolean flags with a more intuitive `CacheMode` enum. This change simplifies cache control and makes the behavior more predictable.
+Starting from version 0.5.0, Crawl introduces a new caching system that replaces the old boolean flags with a more intuitive `CacheMode` enum. This change simplifies cache control and makes the behavior more predictable.
 
 ## Old vs New Approach
 
@@ -24,7 +24,7 @@ The new system uses a single `CacheMode` enum:
 
 ### Old Code (Deprecated)
 ```python
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def old_code(crawler: AsyncWebCrawler):
     # Legacy `bypass_cache` / `disable_cache` / `no_cache_read` / `no_cache_write`
@@ -39,8 +39,8 @@ async def old_code(crawler: AsyncWebCrawler):
 ### New Code (Recommended)
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode
-from crawl4ai.async_configs import CrawlerRunConfig
+from crawl import AsyncWebCrawler, CacheMode
+from crawl.async_configs import CrawlerRunConfig
 
 async def use_proxy():
     # Use CacheMode in CrawlerRunConfig

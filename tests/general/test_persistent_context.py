@@ -1,7 +1,7 @@
 import asyncio
 import os
-from crawl4ai.async_webcrawler import AsyncWebCrawler
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl.async_webcrawler import AsyncWebCrawler
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig, CacheMode
 
 # Simple concurrency test for persistent context page creation
 # Usage: python scripts/test_persistent_context.py
@@ -14,7 +14,7 @@ URLS = [
 ]
 
 async def main():
-    profile_dir = os.path.join(os.path.expanduser("~"), ".crawl4ai", "profiles", "test-persistent-profile")
+    profile_dir = os.path.join(os.path.expanduser("~"), ".crawl", "profiles", "test-persistent-profile")
     os.makedirs(profile_dir, exist_ok=True)
 
     browser_config = BrowserConfig(

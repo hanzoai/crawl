@@ -17,7 +17,7 @@ import httpx
 @pytest.fixture
 def seeder():
     """Create an AsyncUrlSeeder with a mocked HTTP client."""
-    from crawl4ai.async_url_seeder import AsyncUrlSeeder
+    from crawl.async_url_seeder import AsyncUrlSeeder
 
     s = AsyncUrlSeeder()
     s.client = AsyncMock(spec=httpx.AsyncClient)
@@ -142,7 +142,7 @@ class TestDispatcherWiring:
 
     def test_default_config_values(self):
         """CrawlerRunConfig should have mean_delay=0.1 and max_range=0.3 by default."""
-        from crawl4ai.async_configs import CrawlerRunConfig
+        from crawl.async_configs import CrawlerRunConfig
 
         cfg = CrawlerRunConfig()
         assert cfg.mean_delay == 0.1
@@ -150,7 +150,7 @@ class TestDispatcherWiring:
 
     def test_custom_config_values(self):
         """CrawlerRunConfig should accept custom mean_delay and max_range."""
-        from crawl4ai.async_configs import CrawlerRunConfig
+        from crawl.async_configs import CrawlerRunConfig
 
         cfg = CrawlerRunConfig(mean_delay=2.0, max_range=1.0)
         assert cfg.mean_delay == 2.0
@@ -159,9 +159,9 @@ class TestDispatcherWiring:
     @pytest.mark.asyncio
     async def test_dispatcher_uses_config_delays(self):
         """When no dispatcher is provided, arun_many should create one using config delays."""
-        from crawl4ai.async_webcrawler import AsyncWebCrawler
-        from crawl4ai.async_configs import CrawlerRunConfig, BrowserConfig
-        from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher, RateLimiter
+        from crawl.async_webcrawler import AsyncWebCrawler
+        from crawl.async_configs import CrawlerRunConfig, BrowserConfig
+        from crawl.async_dispatcher import MemoryAdaptiveDispatcher, RateLimiter
 
         captured_dispatcher = {}
 
@@ -198,9 +198,9 @@ class TestDispatcherWiring:
     @pytest.mark.asyncio
     async def test_dispatcher_uses_first_config_from_list(self):
         """When config is a list, should use the first config's delays."""
-        from crawl4ai.async_webcrawler import AsyncWebCrawler
-        from crawl4ai.async_configs import CrawlerRunConfig, BrowserConfig
-        from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher, RateLimiter
+        from crawl.async_webcrawler import AsyncWebCrawler
+        from crawl.async_configs import CrawlerRunConfig, BrowserConfig
+        from crawl.async_dispatcher import MemoryAdaptiveDispatcher, RateLimiter
 
         captured_dispatcher = {}
 
@@ -239,9 +239,9 @@ class TestDispatcherWiring:
     @pytest.mark.asyncio
     async def test_explicit_dispatcher_not_overridden(self):
         """When user provides their own dispatcher, config delays should NOT override it."""
-        from crawl4ai.async_webcrawler import AsyncWebCrawler
-        from crawl4ai.async_configs import CrawlerRunConfig, BrowserConfig
-        from crawl4ai.async_dispatcher import MemoryAdaptiveDispatcher, RateLimiter
+        from crawl.async_webcrawler import AsyncWebCrawler
+        from crawl.async_configs import CrawlerRunConfig, BrowserConfig
+        from crawl.async_dispatcher import MemoryAdaptiveDispatcher, RateLimiter
 
         custom_rl = RateLimiter(base_delay=(10.0, 20.0))
         custom_dispatcher = MemoryAdaptiveDispatcher(rate_limiter=custom_rl)
@@ -278,7 +278,7 @@ class TestProcessIframesDOMParser:
     def test_source_code_uses_domparser(self):
         """The process_iframes method should use DOMParser, not innerHTML for injection."""
         import inspect
-        from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+        from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
         source = inspect.getsource(AsyncPlaywrightCrawlerStrategy.process_iframes)
 
@@ -304,7 +304,7 @@ class TestProcessIframesDOMParser:
     def test_js_snippet_structure(self):
         """The JS snippet should properly create DOM nodes from parsed HTML."""
         import inspect
-        from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+        from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
         source = inspect.getsource(AsyncPlaywrightCrawlerStrategy.process_iframes)
 

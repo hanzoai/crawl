@@ -1,5 +1,5 @@
 """
-This example demonstrates optimal browser usage patterns in Crawl4AI:
+This example demonstrates optimal browser usage patterns in Crawl:
 1. Sequential crawling with session reuse
 2. Parallel crawling with browser instance reuse
 3. Performance optimization settings
@@ -7,8 +7,8 @@ This example demonstrates optimal browser usage patterns in Crawl4AI:
 
 import asyncio
 from typing import List
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 
 async def crawl_sequential(urls: List[str]):

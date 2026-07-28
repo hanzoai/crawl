@@ -1,4 +1,4 @@
-// Service worker for Crawl4AI Assistant
+// Service worker for Crawl Assistant
 
 // Handle messages from content script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       // Download the file
       chrome.downloads.download({
         url: dataUrl,
-        filename: message.filename || 'crawl4ai_schema.py',
+        filename: message.filename || 'crawl_schema.py',
         saveAs: true
       }, (downloadId) => {
         if (chrome.runtime.lastError) {

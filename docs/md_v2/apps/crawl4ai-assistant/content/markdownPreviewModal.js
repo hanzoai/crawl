@@ -1,4 +1,4 @@
-// Shared Markdown Preview Modal Component for Crawl4AI Assistant
+// Shared Markdown Preview Modal Component for Crawl Assistant
 // Used by both SchemaBuilder and Click2CrawlBuilder
 
 class MarkdownPreviewModal {
@@ -39,18 +39,18 @@ class MarkdownPreviewModal {
 
   createModal() {
     this.modal = document.createElement('div');
-    this.modal.className = 'c4ai-c2c-preview';
+    this.modal.className = 'crawl-c2c-preview';
     this.modal.innerHTML = `
-      <div class="c4ai-preview-header">
-        <div class="c4ai-toolbar-dots">
-          <span class="c4ai-dot c4ai-dot-red"></span>
-          <span class="c4ai-dot c4ai-dot-yellow"></span>
-          <span class="c4ai-dot c4ai-dot-green"></span>
+      <div class="crawl-preview-header">
+        <div class="crawl-toolbar-dots">
+          <span class="crawl-dot crawl-dot-red"></span>
+          <span class="crawl-dot crawl-dot-yellow"></span>
+          <span class="crawl-dot crawl-dot-green"></span>
         </div>
-        <span class="c4ai-preview-title">Markdown Preview</span>
-        <button class="c4ai-preview-close">×</button>
+        <span class="crawl-preview-title">Markdown Preview</span>
+        <button class="crawl-preview-close">×</button>
       </div>
-      <div class="c4ai-preview-options">
+      <div class="crawl-preview-options">
         <label><input type="checkbox" name="textOnly"> 👁️ Visual Text Mode (As You See)</label>
         <label><input type="checkbox" name="includeImages" checked> Include Images</label>
         <label><input type="checkbox" name="preserveTables" checked> Preserve Tables</label>
@@ -60,27 +60,27 @@ class MarkdownPreviewModal {
         <label><input type="checkbox" name="addSeparators" checked> Add Separators</label>
         <label><input type="checkbox" name="includeXPath"> Include XPath Headers</label>
       </div>
-      <div class="c4ai-preview-content">
-        <div class="c4ai-preview-tabs">
-          <button class="c4ai-tab active" data-tab="preview">Preview</button>
-          <button class="c4ai-tab" data-tab="markdown">Markdown</button>
-          <button class="c4ai-wrap-toggle" title="Toggle word wrap">↔️ Wrap</button>
+      <div class="crawl-preview-content">
+        <div class="crawl-preview-tabs">
+          <button class="crawl-tab active" data-tab="preview">Preview</button>
+          <button class="crawl-tab" data-tab="markdown">Markdown</button>
+          <button class="crawl-wrap-toggle" title="Toggle word wrap">↔️ Wrap</button>
         </div>
-        <div class="c4ai-preview-pane active" data-pane="preview"></div>
-        <div class="c4ai-preview-pane" data-pane="markdown"></div>
+        <div class="crawl-preview-pane active" data-pane="preview"></div>
+        <div class="crawl-preview-pane" data-pane="markdown"></div>
       </div>
-      <div class="c4ai-preview-actions">
-        <button class="c4ai-download-btn">Download .md</button>
-        <button class="c4ai-copy-markdown-btn">Copy Markdown</button>
-        <button class="c4ai-cloud-btn" disabled>Send to Cloud (Coming Soon)</button>
+      <div class="crawl-preview-actions">
+        <button class="crawl-download-btn">Download .md</button>
+        <button class="crawl-copy-markdown-btn">Copy Markdown</button>
+        <button class="crawl-cloud-btn" disabled>Send to Cloud (Coming Soon)</button>
       </div>
     `;
     
     document.body.appendChild(this.modal);
     
     // Make modal draggable
-    if (window.C4AI_Utils && window.C4AI_Utils.makeDraggable) {
-      window.C4AI_Utils.makeDraggable(this.modal);
+    if (window.CRAWL_Utils && window.CRAWL_Utils.makeDraggable) {
+      window.CRAWL_Utils.makeDraggable(this.modal);
     }
     
     // Position preview modal
@@ -95,12 +95,12 @@ class MarkdownPreviewModal {
 
   setupEventListeners() {
     // Close button
-    this.modal.querySelector('.c4ai-preview-close').addEventListener('click', () => {
+    this.modal.querySelector('.crawl-preview-close').addEventListener('click', () => {
       this.hide();
     });
     
     // Tab switching
-    this.modal.querySelectorAll('.c4ai-tab').forEach(tab => {
+    this.modal.querySelectorAll('.crawl-tab').forEach(tab => {
       tab.addEventListener('click', (e) => {
         const tabName = e.target.dataset.tab;
         this.switchTab(tabName);
@@ -108,9 +108,9 @@ class MarkdownPreviewModal {
     });
     
     // Wrap toggle
-    const wrapToggle = this.modal.querySelector('.c4ai-wrap-toggle');
+    const wrapToggle = this.modal.querySelector('.crawl-wrap-toggle');
     wrapToggle.addEventListener('click', () => {
-      const panes = this.modal.querySelectorAll('.c4ai-preview-pane');
+      const panes = this.modal.querySelectorAll('.crawl-preview-pane');
       panes.forEach(pane => {
         pane.classList.toggle('wrap');
       });
@@ -154,23 +154,23 @@ class MarkdownPreviewModal {
     });
     
     // Action buttons
-    this.modal.querySelector('.c4ai-copy-markdown-btn').addEventListener('click', () => {
+    this.modal.querySelector('.crawl-copy-markdown-btn').addEventListener('click', () => {
       this.copyToClipboard();
     });
     
-    this.modal.querySelector('.c4ai-download-btn').addEventListener('click', () => {
+    this.modal.querySelector('.crawl-download-btn').addEventListener('click', () => {
       this.downloadMarkdown();
     });
   }
 
   switchTab(tabName) {
     // Update active tab
-    this.modal.querySelectorAll('.c4ai-tab').forEach(tab => {
+    this.modal.querySelectorAll('.crawl-tab').forEach(tab => {
       tab.classList.toggle('active', tab.dataset.tab === tabName);
     });
     
     // Update active pane
-    this.modal.querySelectorAll('.c4ai-preview-pane').forEach(pane => {
+    this.modal.querySelectorAll('.crawl-preview-pane').forEach(pane => {
       pane.classList.toggle('active', pane.dataset.pane === tabName);
     });
   }
@@ -200,10 +200,10 @@ class MarkdownPreviewModal {
         });
         
         const html = marked.parse(this.currentMarkdown);
-        previewPane.innerHTML = `<div class="c4ai-markdown-preview">${html}</div>`;
+        previewPane.innerHTML = `<div class="crawl-markdown-preview">${html}</div>`;
       } else {
         // Fallback
-        previewPane.innerHTML = `<div class="c4ai-markdown-preview"><pre>${this.escapeHtml(this.currentMarkdown)}</pre></div>`;
+        previewPane.innerHTML = `<div class="crawl-markdown-preview"><pre>${this.escapeHtml(this.currentMarkdown)}</pre></div>`;
       }
     } catch (error) {
       console.error('Error generating markdown:', error);
@@ -223,7 +223,7 @@ class MarkdownPreviewModal {
 
   async downloadMarkdown() {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-    const filename = `crawl4ai-export-${timestamp}.md`;
+    const filename = `crawl-export-${timestamp}.md`;
     
     // Create blob and download
     const blob = new Blob([this.currentMarkdown], { type: 'text/markdown' });
@@ -242,7 +242,7 @@ class MarkdownPreviewModal {
 
   showNotification(message, type = 'success') {
     const notification = document.createElement('div');
-    notification.className = `c4ai-notification c4ai-notification-${type}`;
+    notification.className = `crawl-notification crawl-notification-${type}`;
     notification.textContent = message;
     
     document.body.appendChild(notification);

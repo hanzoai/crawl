@@ -1,6 +1,6 @@
-# Prefix-Based Input Handling in Crawl4AI
+# Prefix-Based Input Handling in Crawl
 
-This guide will walk you through using the Crawl4AI library to crawl web pages, local HTML files, and raw HTML strings. We'll demonstrate these capabilities using a Wikipedia page as an example.
+This guide will walk you through using the Crawl library to crawl web pages, local HTML files, and raw HTML strings. We'll demonstrate these capabilities using a Wikipedia page as an example.
 
 ## Crawling a Web URL
 
@@ -8,7 +8,7 @@ To crawl a live web page, provide the URL starting with `http://` or `https://`,
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CacheMode, CrawlerRunConfig
 
 async def crawl_web():
     config = CrawlerRunConfig(cache_mode=CacheMode.BYPASS)
@@ -32,7 +32,7 @@ To crawl a local HTML file, prefix the file path with `file://`.
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CacheMode, CrawlerRunConfig
 
 async def crawl_local_file():
     local_file_path = "/path/to/apple.html"  # Replace with your file path
@@ -56,8 +56,8 @@ To crawl raw HTML content, prefix the HTML string with `raw:`.
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode
-from crawl4ai.async_configs import CrawlerRunConfig
+from crawl import AsyncWebCrawler, CacheMode
+from crawl.async_configs import CrawlerRunConfig
 
 async def crawl_raw_html():
     raw_html = "<html><body><h1>Hello, World!</h1></body></html>"
@@ -91,7 +91,7 @@ import os
 import sys
 import asyncio
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, CacheMode, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CacheMode, CrawlerRunConfig
 
 async def main():
     wikipedia_url = "https://en.wikipedia.org/wiki/apple"
@@ -155,4 +155,4 @@ if __name__ == "__main__":
 
 # Conclusion
 
-With the unified `url` parameter and prefix-based handling in **Crawl4AI**, you can seamlessly handle web URLs, local HTML files, and raw HTML content. Use `CrawlerRunConfig` for flexible and consistent configuration in all scenarios.
+With the unified `url` parameter and prefix-based handling in **Crawl**, you can seamlessly handle web URLs, local HTML files, and raw HTML content. Use `CrawlerRunConfig` for flexible and consistent configuration in all scenarios.

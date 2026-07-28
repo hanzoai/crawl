@@ -1,5 +1,5 @@
 """
-Regression tests for Crawl4AI extraction strategies.
+Regression tests for Crawl extraction strategies.
 
 Covers JsonCssExtractionStrategy, JsonXPathExtractionStrategy,
 JsonLxmlExtractionStrategy, RegexExtractionStrategy, NoExtractionStrategy,
@@ -14,8 +14,8 @@ import pytest
 import json
 import time
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.extraction_strategy import (
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.extraction_strategy import (
     JsonCssExtractionStrategy,
     JsonXPathExtractionStrategy,
     JsonLxmlExtractionStrategy,
@@ -24,7 +24,7 @@ from crawl4ai.extraction_strategy import (
 )
 
 try:
-    from crawl4ai.extraction_strategy import CosineStrategy
+    from crawl.extraction_strategy import CosineStrategy
     # CosineStrategy requires torch and sklearn at instantiation time;
     # verify they are actually available before declaring it usable.
     import torch  # noqa: F401
@@ -357,8 +357,8 @@ async def test_regex_email(local_server):
         assert result.success
         extracted = json.loads(result.extracted_content)
         values = [item["value"] for item in extracted]
-        assert any("support@crawl4ai.com" in v for v in values), (
-            f"Expected support@crawl4ai.com in {values}"
+        assert any("support@crawl.hanzo.ai" in v for v in values), (
+            f"Expected support@crawl.hanzo.ai in {values}"
         )
         assert any("sales@example.org" in v for v in values), (
             f"Expected sales@example.org in {values}"
@@ -393,7 +393,7 @@ async def test_regex_url(local_server):
         values = [item["value"] for item in extracted]
         assert len(values) > 0, "Expected URLs to be extracted"
         all_vals = " ".join(values)
-        assert "crawl4ai.com" in all_vals
+        assert "crawl.hanzo.ai" in all_vals
 
 
 @pytest.mark.asyncio

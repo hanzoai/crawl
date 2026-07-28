@@ -1,6 +1,6 @@
 # Page Interaction
 
-Crawl4AI provides powerful features for interacting with **dynamic** webpages, handling JavaScript execution, waiting for conditions, and managing multi-step flows. By combining **js_code**, **wait_for**, and certain **CrawlerRunConfig** parameters, you can:
+Crawl provides powerful features for interacting with **dynamic** webpages, handling JavaScript execution, waiting for conditions, and managing multi-step flows. By combining **js_code**, **wait_for**, and certain **CrawlerRunConfig** parameters, you can:
 
 1. Click “Load More” buttons  
 2. Fill forms and submit them  
@@ -21,7 +21,7 @@ Below is a quick overview of how to do it.
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     # Single JS command
@@ -96,7 +96,7 @@ Sometimes, you just want to wait for a specific element to appear. For example:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     config = CrawlerRunConfig(
@@ -132,7 +132,7 @@ wait_condition = """() => {
 config = CrawlerRunConfig(wait_for=f"js:{wait_condition}")
 ```
 
-**Behind the Scenes**: Crawl4AI keeps polling the JS function until it returns `true` or a timeout occurs.
+**Behind the Scenes**: Crawl keeps polling the JS function until it returns `true` or a timeout occurs.
 
 ---
 
@@ -144,7 +144,7 @@ Many modern sites require **multiple steps**: scrolling, clicking “Load More,�
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     # Step 1: Load initial Hacker News page
@@ -238,7 +238,7 @@ Below is a simplified script that does multiple “Load More” clicks on GitHub
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def multi_page_commits():
     browser_cfg = BrowserConfig(
@@ -323,7 +323,7 @@ if __name__ == "__main__":
 Once dynamic content is loaded, you can attach an **`extraction_strategy`** (like `JsonCssExtractionStrategy` or `LLMExtractionStrategy`). For example:
 
 ```python
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import JsonCssExtractionStrategy
 
 schema = {
     "name": "Commits",
@@ -356,7 +356,7 @@ config = CrawlerRunConfig(
 )
 ```
 
-This walks all shadow trees, resolves `<slot>` projections, and produces flat HTML. It also force-opens closed shadow roots via an init script. For details and a full example, see [Flattening Shadow DOM](content-selection.md#31-flattening-shadow-dom) and [`shadow_dom_crawling.py`](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/shadow_dom_crawling.py).
+This walks all shadow trees, resolves `<slot>` projections, and produces flat HTML. It also force-opens closed shadow roots via an init script. For details and a full example, see [Flattening Shadow DOM](content-selection.md#31-flattening-shadow-dom) and [`shadow_dom_crawling.py`](https://github.com/hanzoai/crawl/blob/main/docs/examples/shadow_dom_crawling.py).
 
 ---
 
@@ -380,7 +380,7 @@ Below are the key interaction-related parameters in `CrawlerRunConfig`. For a fu
 
 ## 9. Conclusion
 
-Crawl4AI's **page interaction** features let you:
+Crawl's **page interaction** features let you:
 
 1. **Execute JavaScript** for scrolling, clicks, or form filling.  
 2. **Wait** for CSS or custom JS conditions before capturing data.  
@@ -394,10 +394,10 @@ With these tools, you can scrape modern, interactive webpages confidently. For a
 
 ## 10. Virtual Scrolling
 
-For sites that use **virtual scrolling** (where content is replaced rather than appended as you scroll, like Twitter or Instagram), Crawl4AI provides a dedicated `VirtualScrollConfig`:
+For sites that use **virtual scrolling** (where content is replaced rather than appended as you scroll, like Twitter or Instagram), Crawl provides a dedicated `VirtualScrollConfig`:
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig
 
 async def crawl_twitter_timeline():
     # Configure virtual scroll for Twitter-like feeds

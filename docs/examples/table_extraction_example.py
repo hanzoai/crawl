@@ -1,5 +1,5 @@
 """
-Example: Using Table Extraction Strategies in Crawl4AI
+Example: Using Table Extraction Strategies in Crawl
 
 This example demonstrates how to use different table extraction strategies
 to extract tables from web pages.
@@ -7,7 +7,7 @@ to extract tables from web pages.
 
 import asyncio
 import pandas as pd
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     CacheMode,
@@ -204,7 +204,7 @@ async def example_combined_extraction():
     print("Example 5: Combined Extraction Strategies")
     print("="*50)
     
-    from crawl4ai import LLMExtractionStrategy, LLMConfig
+    from crawl import LLMExtractionStrategy, LLMConfig
     
     async with AsyncWebCrawler() as crawler:
         # Define schema for structured extraction
@@ -257,7 +257,7 @@ async def example_combined_extraction():
 async def main():
     """Run all examples."""
     print("\n" + "="*60)
-    print("CRAWL4AI TABLE EXTRACTION EXAMPLES")
+    print("CRAWL TABLE EXTRACTION EXAMPLES")
     print("="*60)
     
     # Run examples

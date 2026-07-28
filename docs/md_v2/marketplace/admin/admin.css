@@ -1,4 +1,4 @@
-/* Admin Dashboard - C4AI Terminal Style */
+/* Admin Dashboard - CRAWL Terminal Style */
 
 /* Utility Classes */
 .hidden {
@@ -7,11 +7,11 @@
 
 /* Brand Colors */
 :root {
-    --c4ai-cyan: #50ffff;
-    --c4ai-green: #50ff50;
-    --c4ai-yellow: #ffff50;
-    --c4ai-pink: #ff50ff;
-    --c4ai-blue: #5050ff;
+    --crawl-cyan: #50ffff;
+    --crawl-green: #50ff50;
+    --crawl-yellow: #ffff50;
+    --crawl-pink: #ff50ff;
+    --crawl-blue: #5050ff;
 }
 
 .admin-container {
@@ -201,23 +201,23 @@
 }
 
 .nav-btn[data-section="stats"] .nav-icon {
-    color: var(--c4ai-cyan);
+    color: var(--crawl-cyan);
 }
 
 .nav-btn[data-section="apps"] .nav-icon {
-    color: var(--c4ai-green);
+    color: var(--crawl-green);
 }
 
 .nav-btn[data-section="articles"] .nav-icon {
-    color: var(--c4ai-yellow);
+    color: var(--crawl-yellow);
 }
 
 .nav-btn[data-section="categories"] .nav-icon {
-    color: var(--c4ai-pink);
+    color: var(--crawl-pink);
 }
 
 .nav-btn[data-section="sponsors"] .nav-icon {
-    color: var(--c4ai-blue);
+    color: var(--crawl-blue);
 }
 
 .sidebar-actions {
@@ -284,23 +284,23 @@
 }
 
 .stat-card:nth-child(1) .stat-icon {
-    color: var(--c4ai-cyan);
-    border-color: var(--c4ai-cyan);
+    color: var(--crawl-cyan);
+    border-color: var(--crawl-cyan);
 }
 
 .stat-card:nth-child(2) .stat-icon {
-    color: var(--c4ai-green);
-    border-color: var(--c4ai-green);
+    color: var(--crawl-green);
+    border-color: var(--crawl-green);
 }
 
 .stat-card:nth-child(3) .stat-icon {
-    color: var(--c4ai-yellow);
-    border-color: var(--c4ai-yellow);
+    color: var(--crawl-yellow);
+    border-color: var(--crawl-yellow);
 }
 
 .stat-card:nth-child(4) .stat-icon {
-    color: var(--c4ai-pink);
-    border-color: var(--c4ai-pink);
+    color: var(--crawl-pink);
+    border-color: var(--crawl-pink);
 }
 
 .stat-number {

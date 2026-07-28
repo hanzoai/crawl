@@ -1,6 +1,6 @@
 ## Configuration Objects and System Architecture
 
-Visual representations of Crawl4AI's configuration system, object relationships, and data flow patterns.
+Visual representations of Crawl's configuration system, object relationships, and data flow patterns.
 
 ### Configuration Object Relationships
 
@@ -497,7 +497,7 @@ flowchart TD
 
 ## Advanced Configuration Workflows and Patterns
 
-Visual representations of advanced Crawl4AI configuration strategies, proxy management, session handling, and identity-based crawling patterns.
+Visual representations of advanced Crawl configuration strategies, proxy management, session handling, and identity-based crawling patterns.
 
 ### User Agent and Anti-Detection Strategy Flow
 
@@ -809,7 +809,7 @@ sequenceDiagram
 ```mermaid
 graph LR
     subgraph "Main Package Imports"
-        A[crawl4ai] --> A1[AsyncWebCrawler]
+        A[crawl] --> A1[AsyncWebCrawler]
         A --> A2[BrowserConfig]
         A --> A3[CrawlerRunConfig]
         A --> A4[LLMConfig]
@@ -1414,8 +1414,8 @@ flowchart TD
     style E fill:#f3e5f5
 ```
 
-**📖 Learn more:** [Advanced Features Guide](https://docs.crawl4ai.com/advanced/advanced-features/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Hooks System](https://docs.crawl4ai.com/advanced/hooks-auth/), [Performance Optimization](https://docs.crawl4ai.com/advanced/performance/)
+**📖 Learn more:** [Advanced Features Guide](https://docs.hanzo.ai/advanced/advanced-features/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Hooks System](https://docs.hanzo.ai/advanced/hooks-auth/), [Performance Optimization](https://docs.hanzo.ai/advanced/performance/)
 
-**📖 Learn more:** [Identity-Based Crawling](https://docs.crawl4ai.com/advanced/identity-based-crawling/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Proxy & Security](https://docs.crawl4ai.com/advanced/proxy-security/), [Content Selection](https://docs.crawl4ai.com/core/content-selection/)
+**📖 Learn more:** [Identity-Based Crawling](https://docs.hanzo.ai/advanced/identity-based-crawling/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Proxy & Security](https://docs.hanzo.ai/advanced/proxy-security/), [Content Selection](https://docs.hanzo.ai/core/content-selection/)
 
-**📖 Learn more:** [Configuration Reference](https://docs.crawl4ai.com/api/parameters/), [Best Practices](https://docs.crawl4ai.com/core/browser-crawler-config/), [Advanced Configuration](https://docs.crawl4ai.com/advanced/advanced-features/)
+**📖 Learn more:** [Configuration Reference](https://docs.hanzo.ai/api/parameters/), [Best Practices](https://docs.hanzo.ai/core/browser-crawler-config/), [Advanced Configuration](https://docs.hanzo.ai/advanced/advanced-features/)

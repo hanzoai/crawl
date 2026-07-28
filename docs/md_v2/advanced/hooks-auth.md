@@ -1,6 +1,6 @@
 # Hooks & Auth in AsyncWebCrawler
 
-Crawl4AI’s **hooks** let you customize the crawler at specific points in the pipeline:
+Crawl’s **hooks** let you customize the crawler at specific points in the pipeline:
 
 1. **`on_browser_created`** – After browser creation.  
 2. **`on_page_context_created`** – After a new context & page are created.  
@@ -32,7 +32,7 @@ Below is an example demonstration.
 ```python
 import asyncio
 import json
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from playwright.async_api import Page, BrowserContext
 
 async def main():

@@ -6,7 +6,7 @@ arguments:
     required: true
 ---
 
-# Crawl4AI Change Verification (c4ai-check)
+# Crawl Change Verification (crawl-check)
 
 You are verifying that recent code changes work correctly AND haven't broken anything else. This is a two-phase process.
 
@@ -64,7 +64,7 @@ After Phase 1 passes:
 Present a clear summary:
 
 ```
-## c4ai-check Results
+## crawl-check Results
 
 **Changes tested:** [brief description]
 

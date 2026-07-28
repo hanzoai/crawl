@@ -3,7 +3,7 @@ import time
 from types import SimpleNamespace
 
 import pytest
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,

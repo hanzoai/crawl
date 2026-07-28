@@ -2,22 +2,22 @@
 🎯 Multi-Config URL Matching Demo
 =================================
 Learn how to use different crawler configurations for different URL patterns
-in a single crawl batch with Crawl4AI's multi-config feature.
+in a single crawl batch with Crawl's multi-config feature.
 
 Part 1: Understanding URL Matching (Pattern Testing)
 Part 2: Practical Example with Real Crawling
 """
 
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler, 
     CrawlerRunConfig,
     MatchMode
 )
-from crawl4ai.processors.pdf import PDFContentScrapingStrategy
-from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.processors.pdf import PDFContentScrapingStrategy
+from crawl.extraction_strategy import JsonCssExtractionStrategy
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 
 def print_section(title):
@@ -281,7 +281,7 @@ async def main():
     print("""
 🎯 Multi-Config URL Matching Demo
 =================================
-Learn how Crawl4AI can use different configurations
+Learn how Crawl can use different configurations
 for different URLs in a single batch.
     """)
     

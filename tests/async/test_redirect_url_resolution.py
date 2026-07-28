@@ -61,8 +61,8 @@ async def main():
     
     try:
         import sys
-        sys.path.insert(0, '/Users/nasrin/vscode/c4ai-uc/develop')
-        from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+        sys.path.insert(0, '/Users/nasrin/vscode/crawl-uc/develop')
+        from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
         
         print("=" * 60)
         print("TEST: Delayed JS redirect WITH wait_for='css:#target-nav'")

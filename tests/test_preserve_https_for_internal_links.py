@@ -131,17 +131,17 @@ def test_edge_cases():
         print(f"  Expected HTTPS: {should_be_https}, Got: {is_https}")
 
 def usage_example():
-    """Show how to use the feature in crawl4ai"""
+    """Show how to use the feature in crawl"""
     
     print("\n" + "=" * 60)
-    print("USAGE IN CRAWL4AI")
+    print("USAGE IN CRAWL")
     print("=" * 60)
     
     print("""
-To enable HTTPS preservation in your crawl4ai code:
+To enable HTTPS preservation in your crawl code:
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async with AsyncWebCrawler() as crawler:
     config = CrawlerRunConfig(

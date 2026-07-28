@@ -17,7 +17,7 @@ inside Shadow DOM by Stencil.js web components.
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 URL = "https://store.boschrexroth.com/en/us/p/hydraulic-cylinder-r900999011"
 

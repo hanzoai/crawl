@@ -32,7 +32,7 @@ from typing import List, Optional
 from urllib.parse import urlparse
 
 # Operator escape hatch for trusted internal deployments (off by default).
-ALLOW_INTERNAL = os.environ.get("CRAWL4AI_ALLOW_INTERNAL_URLS", "false").lower() == "true"
+ALLOW_INTERNAL = os.environ.get("CRAWL_ALLOW_INTERNAL_URLS", "false").lower() == "true"
 
 _NAT64 = ipaddress.ip_network("64:ff9b::/96")
 _V4COMPAT = ipaddress.ip_network("::/96")
@@ -152,7 +152,7 @@ def check_redirect(location: str) -> PinnedTarget:
     return resolve_and_pin(location)
 
 
-ALLOW_INSECURE_TLS = os.environ.get("CRAWL4AI_ALLOW_INSECURE_TLS", "false").lower() == "true"
+ALLOW_INSECURE_TLS = os.environ.get("CRAWL_ALLOW_INSECURE_TLS", "false").lower() == "true"
 
 # URL of the localhost pinning forward-proxy (egress_proxy.py), set at boot.
 # When present, enforce_egress routes the browser through it so Chromium never
@@ -182,7 +182,7 @@ def enforce_egress(browser_config) -> None:
     R2 already forbids untrusted bodies from setting proxy/extra_args, so this
     is defense in depth that also covers server/SDK-built configs:
       - TLS verification ON (ignore_https_errors=False) unless the operator
-        opts into CRAWL4AI_ALLOW_INSECURE_TLS;
+        opts into CRAWL_ALLOW_INSECURE_TLS;
       - no caller proxy (the key/SSRF redirect vector);
       - strip any proxy/TLS-weakening Chromium launch flags.
     """
@@ -197,7 +197,7 @@ def enforce_egress(browser_config) -> None:
             setattr(browser_config, attr, None)
     if _EGRESS_PROXY_URL and hasattr(browser_config, "proxy_config"):
         try:
-            from crawl4ai import ProxyConfig
+            from crawl import ProxyConfig
             browser_config.proxy_config = ProxyConfig(server=_EGRESS_PROXY_URL)
         except Exception:
             pass

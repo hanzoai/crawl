@@ -2,7 +2,7 @@
 import asyncio, json, hashlib, time
 from contextlib import suppress
 from typing import Dict, Optional
-from crawl4ai import AsyncWebCrawler, BrowserConfig
+from crawl import AsyncWebCrawler, BrowserConfig
 from utils import load_config, get_container_memory_percent
 import logging
 

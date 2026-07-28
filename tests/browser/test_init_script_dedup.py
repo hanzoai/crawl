@@ -5,8 +5,8 @@ Problem: context.add_init_script() was called in BOTH setup_context() and
 _crawl_web(), causing unbounded script accumulation on shared contexts
 under concurrent load — ultimately crashing the context.
 
-Fix: Flag-based guard (_crawl4ai_nav_overrider_injected,
-_crawl4ai_shadow_dom_injected) ensures each script type is injected
+Fix: Flag-based guard (_crawl_nav_overrider_injected,
+_crawl_shadow_dom_injected) ensures each script type is injected
 at most once per context.
 
 Tests:
@@ -26,8 +26,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.browser_manager import BrowserManager
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.browser_manager import BrowserManager
 
 PASS = 0
 FAIL = 0
@@ -59,9 +59,9 @@ async def test_setup_context_sets_flags():
         await bm.setup_context(ctx_nav, config_nav)
 
         check("nav_overrider flag set after setup_context(override_navigator=True)",
-              getattr(ctx_nav, '_crawl4ai_nav_overrider_injected', False) is True)
+              getattr(ctx_nav, '_crawl_nav_overrider_injected', False) is True)
         check("shadow_dom flag NOT set (not requested)",
-              getattr(ctx_nav, '_crawl4ai_shadow_dom_injected', False) is False)
+              getattr(ctx_nav, '_crawl_shadow_dom_injected', False) is False)
 
         await ctx_nav.close()
 
@@ -71,7 +71,7 @@ async def test_setup_context_sets_flags():
         await bm.setup_context(ctx_magic, config_magic)
 
         check("nav_overrider flag set after setup_context(magic=True)",
-              getattr(ctx_magic, '_crawl4ai_nav_overrider_injected', False) is True)
+              getattr(ctx_magic, '_crawl_nav_overrider_injected', False) is True)
 
         await ctx_magic.close()
 
@@ -81,7 +81,7 @@ async def test_setup_context_sets_flags():
         await bm.setup_context(ctx_sim, config_sim)
 
         check("nav_overrider flag set after setup_context(simulate_user=True)",
-              getattr(ctx_sim, '_crawl4ai_nav_overrider_injected', False) is True)
+              getattr(ctx_sim, '_crawl_nav_overrider_injected', False) is True)
 
         await ctx_sim.close()
 
@@ -91,9 +91,9 @@ async def test_setup_context_sets_flags():
         await bm.setup_context(ctx_shadow, config_shadow)
 
         check("shadow_dom flag set after setup_context(flatten_shadow_dom=True)",
-              getattr(ctx_shadow, '_crawl4ai_shadow_dom_injected', False) is True)
+              getattr(ctx_shadow, '_crawl_shadow_dom_injected', False) is True)
         check("nav_overrider flag NOT set (not requested)",
-              getattr(ctx_shadow, '_crawl4ai_nav_overrider_injected', False) is False)
+              getattr(ctx_shadow, '_crawl_nav_overrider_injected', False) is False)
 
         await ctx_shadow.close()
 
@@ -103,8 +103,8 @@ async def test_setup_context_sets_flags():
         await bm.setup_context(ctx_both, config_both)
 
         check("both flags set when both features requested",
-              getattr(ctx_both, '_crawl4ai_nav_overrider_injected', False) is True
-              and getattr(ctx_both, '_crawl4ai_shadow_dom_injected', False) is True)
+              getattr(ctx_both, '_crawl_nav_overrider_injected', False) is True
+              and getattr(ctx_both, '_crawl_shadow_dom_injected', False) is True)
 
         await ctx_both.close()
 
@@ -126,9 +126,9 @@ async def test_setup_context_no_config_no_flags():
         await bm.setup_context(ctx)  # No crawlerRunConfig
 
         check("nav_overrider flag NOT set (no crawlerRunConfig)",
-              getattr(ctx, '_crawl4ai_nav_overrider_injected', False) is False)
+              getattr(ctx, '_crawl_nav_overrider_injected', False) is False)
         check("shadow_dom flag NOT set (no crawlerRunConfig)",
-              getattr(ctx, '_crawl4ai_shadow_dom_injected', False) is False)
+              getattr(ctx, '_crawl_shadow_dom_injected', False) is False)
 
         await ctx.close()
 
@@ -158,9 +158,9 @@ async def test_no_duplication_standard_path():
         bm = crawler.crawler_strategy.browser_manager
         for sig, ctx in bm.contexts_by_config.items():
             check("nav_overrider flag is set on context",
-                  getattr(ctx, '_crawl4ai_nav_overrider_injected', False) is True)
+                  getattr(ctx, '_crawl_nav_overrider_injected', False) is True)
             check("shadow_dom flag is set on context",
-                  getattr(ctx, '_crawl4ai_shadow_dom_injected', False) is True)
+                  getattr(ctx, '_crawl_shadow_dom_injected', False) is True)
 
 
 async def test_fallback_path_injects_once():
@@ -182,8 +182,8 @@ async def test_fallback_path_injects_once():
         await bm.setup_context(ctx)  # No crawlerRunConfig — no flags set
 
         check("flags NOT set before _crawl_web",
-              not getattr(ctx, '_crawl4ai_nav_overrider_injected', False)
-              and not getattr(ctx, '_crawl4ai_shadow_dom_injected', False))
+              not getattr(ctx, '_crawl_nav_overrider_injected', False)
+              and not getattr(ctx, '_crawl_shadow_dom_injected', False))
 
         # Track add_init_script calls
         original_add_init_script = ctx.add_init_script
@@ -202,22 +202,22 @@ async def test_fallback_path_injects_once():
         config = CrawlerRunConfig(magic=True, flatten_shadow_dom=True)
 
         # First "crawl" — should inject both scripts
-        from crawl4ai.js_snippet import load_js_script
+        from crawl.js_snippet import load_js_script
 
         if config.override_navigator or config.simulate_user or config.magic:
-            if not getattr(ctx, '_crawl4ai_nav_overrider_injected', False):
+            if not getattr(ctx, '_crawl_nav_overrider_injected', False):
                 await ctx.add_init_script(load_js_script("navigator_overrider"))
-                ctx._crawl4ai_nav_overrider_injected = True
+                ctx._crawl_nav_overrider_injected = True
 
         if config.flatten_shadow_dom:
-            if not getattr(ctx, '_crawl4ai_shadow_dom_injected', False):
+            if not getattr(ctx, '_crawl_shadow_dom_injected', False):
                 await ctx.add_init_script("""
                     const _origAttachShadow = Element.prototype.attachShadow;
                     Element.prototype.attachShadow = function(init) {
                         return _origAttachShadow.call(this, {...init, mode: 'open'});
                     };
                 """)
-                ctx._crawl4ai_shadow_dom_injected = True
+                ctx._crawl_shadow_dom_injected = True
 
         check("first pass: 2 add_init_script calls (nav + shadow)", call_count == 2)
 
@@ -225,14 +225,14 @@ async def test_fallback_path_injects_once():
         call_count = 0
 
         if config.override_navigator or config.simulate_user or config.magic:
-            if not getattr(ctx, '_crawl4ai_nav_overrider_injected', False):
+            if not getattr(ctx, '_crawl_nav_overrider_injected', False):
                 await ctx.add_init_script(load_js_script("navigator_overrider"))
-                ctx._crawl4ai_nav_overrider_injected = True
+                ctx._crawl_nav_overrider_injected = True
 
         if config.flatten_shadow_dom:
-            if not getattr(ctx, '_crawl4ai_shadow_dom_injected', False):
+            if not getattr(ctx, '_crawl_shadow_dom_injected', False):
                 await ctx.add_init_script("""...""")
-                ctx._crawl4ai_shadow_dom_injected = True
+                ctx._crawl_shadow_dom_injected = True
 
         check("second pass: 0 add_init_script calls (flags set)", call_count == 0)
 
@@ -274,9 +274,9 @@ async def test_concurrent_crawls_no_accumulation():
         bm = crawler.crawler_strategy.browser_manager
         for sig, ctx in bm.contexts_by_config.items():
             check("shared context has nav_overrider flag",
-                  getattr(ctx, '_crawl4ai_nav_overrider_injected', False) is True)
+                  getattr(ctx, '_crawl_nav_overrider_injected', False) is True)
             check("shared context has shadow_dom flag",
-                  getattr(ctx, '_crawl4ai_shadow_dom_injected', False) is True)
+                  getattr(ctx, '_crawl_shadow_dom_injected', False) is True)
 
         # Verify no context crash — all refcounts should be 0
         for sig, count in bm._context_refcounts.items():

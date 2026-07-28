@@ -398,4 +398,4 @@ flowchart TD
     style T fill:#e8f5e8
 ```
 
-**📖 Learn more:** [Deep Crawling Strategy](https://docs.crawl4ai.com/core/deep-crawling/), [Performance Optimization](https://docs.crawl4ai.com/advanced/performance-tuning/), [Custom Implementations](https://docs.crawl4ai.com/advanced/custom-filters/)
+**📖 Learn more:** [Deep Crawling Strategy](https://docs.hanzo.ai/core/deep-crawling/), [Performance Optimization](https://docs.hanzo.ai/advanced/performance-tuning/), [Custom Implementations](https://docs.hanzo.ai/advanced/custom-filters/)

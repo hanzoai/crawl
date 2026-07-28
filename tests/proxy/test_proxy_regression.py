@@ -8,8 +8,8 @@ import asyncio
 import os
 import shutil
 import uuid
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_configs import ProxyConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.async_configs import ProxyConfig
 
 TEST_URL = "https://httpbin.org/ip"  # Simple endpoint, returns IP
 
@@ -44,7 +44,7 @@ async def main():
     )
 
     # 1. Persistent context + proxy (the fixed path)
-    pd = os.path.expanduser(f"~/.crawl4ai/test_{uuid.uuid4().hex[:8]}")
+    pd = os.path.expanduser(f"~/.crawl/test_{uuid.uuid4().hex[:8]}")
     os.makedirs(pd, exist_ok=True)
     try:
         await test(
@@ -60,7 +60,7 @@ async def main():
         shutil.rmtree(pd, ignore_errors=True)
 
     # 2. Persistent context WITHOUT proxy
-    pd2 = os.path.expanduser(f"~/.crawl4ai/test_{uuid.uuid4().hex[:8]}")
+    pd2 = os.path.expanduser(f"~/.crawl/test_{uuid.uuid4().hex[:8]}")
     os.makedirs(pd2, exist_ok=True)
     try:
         await test(

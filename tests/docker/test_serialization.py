@@ -2,7 +2,7 @@ import inspect
 from typing import Any, Dict
 from enum import Enum
 
-from crawl4ai import LLMConfig
+from crawl import LLMConfig
 
 def to_serializable_dict(obj: Any) -> Dict:
     """
@@ -81,9 +81,9 @@ def from_serializable_dict(data: Any) -> Any:
         if data["type"] == "dict":
             return {k: from_serializable_dict(v) for k, v in data["value"].items()}
             
-        # Import from crawl4ai for class instances
-        import crawl4ai
-        cls = getattr(crawl4ai, data["type"])
+        # Import from crawl for class instances
+        import crawl
+        cls = getattr(crawl, data["type"])
         
         # Handle Enum
         if issubclass(cls, Enum):
@@ -114,7 +114,7 @@ def is_empty_value(value: Any) -> bool:
     return False
 
 # if __name__ == "__main__":
-#     from crawl4ai import (
+#     from crawl import (
 #         CrawlerRunConfig, CacheMode, DefaultMarkdownGenerator, 
 #         PruningContentFilter, BM25ContentFilter, LLMContentFilter,
 #         JsonCssExtractionStrategy, CosineStrategy, RegexChunking,
@@ -177,7 +177,7 @@ def is_empty_value(value: Any) -> bool:
 #     print("\nVerification passed: Configuration matches after serialization/deserialization!")
 
 if __name__ == "__main__":
-    from crawl4ai import (
+    from crawl import (
         CrawlerRunConfig, CacheMode, DefaultMarkdownGenerator, 
         PruningContentFilter, BM25ContentFilter, LLMContentFilter,
         JsonCssExtractionStrategy, RegexChunking,

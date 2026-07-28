@@ -16,12 +16,12 @@ import socket
 import pytest
 from aiohttp import web
 
-# Add parent to path so crawl4ai is importable
+# Add parent to path so crawl is importable
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parent_dir)
 
-from crawl4ai.async_crawler_strategy import AsyncHTTPCrawlerStrategy
-from crawl4ai.async_configs import HTTPCrawlerConfig, CrawlerRunConfig
+from crawl.async_crawler_strategy import AsyncHTTPCrawlerStrategy
+from crawl.async_configs import HTTPCrawlerConfig, CrawlerRunConfig
 
 
 # ---------------------------------------------------------------------------
@@ -345,7 +345,7 @@ class TestEdgeCases:
 
                 assert result.downloaded_files is not None
                 filepath = result.downloaded_files[0]
-                assert ".crawl4ai/downloads" in filepath
+                assert ".crawl/downloads" in filepath
                 if os.path.isfile(filepath):
                     os.unlink(filepath)
             finally:

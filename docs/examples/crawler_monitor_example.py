@@ -9,8 +9,8 @@ import time
 import uuid
 import random
 import threading
-from crawl4ai.components.crawler_monitor import CrawlerMonitor
-from crawl4ai.models import CrawlStatus
+from crawl.hanzo.aiponents.crawler_monitor import CrawlerMonitor
+from crawl.models import CrawlStatus
 
 def simulate_webcrawler_operations(monitor, num_tasks=20):
     """

@@ -1,10 +1,10 @@
 # Anti-Bot Detection & Fallback
 
-When crawling sites protected by anti-bot systems (Akamai, Cloudflare, PerimeterX, DataDome, Imperva, etc.), requests often get blocked with CAPTCHAs, 403 responses, or empty pages. Crawl4AI provides a layered retry and fallback system that automatically detects blocking and escalates through multiple strategies until content is retrieved.
+When crawling sites protected by anti-bot systems (Akamai, Cloudflare, PerimeterX, DataDome, Imperva, etc.), requests often get blocked with CAPTCHAs, 403 responses, or empty pages. Crawl provides a layered retry and fallback system that automatically detects blocking and escalates through multiple strategies until content is retrieved.
 
 ## How Detection Works
 
-After each crawl attempt, Crawl4AI inspects the HTTP status code and HTML content for known anti-bot signals:
+After each crawl attempt, Crawl inspects the HTTP status code and HTML content for known anti-bot signals:
 
 - **HTTP 403/429** with short or empty response bodies
 - **Challenge pages** — Cloudflare "Just a moment", Akamai "Access Denied", PerimeterX block pages
@@ -68,8 +68,8 @@ result.crawl_stats = {
 Retry the crawl up to 3 times when blocking is detected. Useful when blocks are intermittent or IP-based.
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
 
 async with AsyncWebCrawler(config=BrowserConfig(headless=True)) as crawler:
     result = await crawler.arun(
@@ -83,7 +83,7 @@ async with AsyncWebCrawler(config=BrowserConfig(headless=True)) as crawler:
 Pass a single `ProxyConfig` — it's used on every attempt. Same behavior as always.
 
 ```python
-from crawl4ai.async_configs import ProxyConfig
+from crawl.async_configs import ProxyConfig
 
 config = CrawlerRunConfig(
     max_retries=2,
@@ -171,7 +171,7 @@ config = CrawlerRunConfig(
 )
 ```
 
-The function can do anything — call an API, read from a database, return cached HTML, or make a simple HTTP request with a different library. Crawl4AI does not care how the HTML is obtained.
+The function can do anything — call an API, read from a database, return cached HTML, or make a simple HTTP request with a different library. Crawl does not care how the HTML is obtained.
 
 ### Full Escalation (All Features Combined)
 
@@ -179,8 +179,8 @@ This example combines every layer: stealth mode, a list of proxies tried in orde
 
 ```python
 import aiohttp
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig, ProxyConfig
+from crawl import AsyncWebCrawler
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig, ProxyConfig
 
 # Last-resort: fetch HTML via an external service
 async def external_fetch(url: str) -> str:

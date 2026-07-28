@@ -11,7 +11,7 @@
 | `ManagedBrowser._get_browser_path` | Current helper, checks env vars, Playwright cache, and OS defaults for the real executable. |
 | `ManagedBrowser._get_browser_args` | Builds the final CLI arg list by merging user flags, stealth flags, and defaults. |
 | `ManagedBrowser.cleanup` | Terminates the browser, stops monitors, deletes the temp dir. |
-| `ManagedBrowser.create_profile` | Opens a visible browser so a human can log in, then zips the resulting user-data-dir to `~/.crawl4ai/profiles/<name>`. |
+| `ManagedBrowser.create_profile` | Opens a visible browser so a human can log in, then zips the resulting user-data-dir to `~/.crawl/profiles/<name>`. |
 | `ManagedBrowser.list_profiles` | Thin wrapper, now forwarded to `BrowserProfiler.list_profiles()`. |
 | `ManagedBrowser.delete_profile` | Thin wrapper, now forwarded to `BrowserProfiler.delete_profile()`. |
 | `BrowserManager.__init__` | Holds the global Playwright instance, browser handle, config signature cache, session map, and logger. |
@@ -36,13 +36,13 @@
 | `BrowserProfiler.cleanup_handler` | General SIGTERM/SIGINT cleanup wrapper that kills child processes. |
 | `BrowserProfiler.sigint_handler` | Handles Ctrl-C during an interactive session, makes sure the browser shuts down cleanly. |
 | `BrowserProfiler.listen_for_quit_command` | Async REPL that exits when the user types `q`. |
-| `BrowserProfiler.list_profiles` | Enumerates `~/.crawl4ai/profiles`, prints profile name, browser type, size, and last modified. |
+| `BrowserProfiler.list_profiles` | Enumerates `~/.crawl/profiles`, prints profile name, browser type, size, and last modified. |
 | `BrowserProfiler.get_profile_path` | Returns the absolute path of a profile given its name, or `None` if missing. |
 | `BrowserProfiler.delete_profile` | Removes a profile folder or a direct path from disk, with optional confirmation prompt. |
 | `BrowserProfiler.interactive_manager` | Text UI loop for listing, creating, deleting, or launching profiles. |
 | `BrowserProfiler.launch_standalone_browser` | Starts a non-headless Chromium with remote debugging enabled and keeps it alive for manual tests. |
 | `BrowserProfiler.get_cdp_json` | Pulls `/json/version` from a CDP endpoint and returns the parsed JSON. |
-| `BrowserProfiler.launch_builtin_browser` | Spawns a headless Chromium in the background, saves `{wsEndpoint, pid, started_at}` to `~/.crawl4ai/builtin_browser.json`. |
+| `BrowserProfiler.launch_builtin_browser` | Spawns a headless Chromium in the background, saves `{wsEndpoint, pid, started_at}` to `~/.crawl/builtin_browser.json`. |
 | `BrowserProfiler.get_builtin_browser_info` | Reads that JSON file, verifies the PID, and returns browser status info. |
 | `BrowserProfiler._is_browser_running` | Cross-platform helper that checks if a PID is still alive. |
 | `BrowserProfiler.kill_builtin_browser` | Terminates the background builtin browser and removes its status file. |

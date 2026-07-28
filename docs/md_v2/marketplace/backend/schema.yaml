@@ -45,7 +45,7 @@ tables:
       title: {type: TEXT, required: true}
       slug: {type: TEXT, unique: true}
       content: {type: TEXT}
-      author: {type: TEXT, default: 'Crawl4AI Team'}
+      author: {type: TEXT, default: 'Crawl Team'}
       category: {type: TEXT}
       related_apps: {type: JSON, default: '[]'}
       featured_image: {type: TEXT}

@@ -11,7 +11,7 @@ validate-only, declarative hooks) live alongside as the docker pieces land.
 
 import pytest
 
-from crawl4ai.async_configs import (
+from crawl.async_configs import (
     BrowserConfig,
     CrawlerRunConfig,
     Provenance,
@@ -176,12 +176,12 @@ class TestUntrustedClampAndDrop:
 
 class TestLlmConfigGuard:
     def test_untrusted_env_token_rejected(self):
-        from crawl4ai.async_configs import LLMConfig
+        from crawl.async_configs import LLMConfig
         with pytest.raises(UntrustedConfigError):
             LLMConfig(api_token="env:SECRET_KEY", provenance=U)
 
     def test_untrusted_never_reads_env(self, monkeypatch):
-        from crawl4ai.async_configs import LLMConfig
+        from crawl.async_configs import LLMConfig
         monkeypatch.setenv("OPENAI_API_KEY", "leak-me")
         cfg = LLMConfig(provider="openai/gpt-4o-mini", provenance=U)
         assert cfg.api_token != "leak-me"

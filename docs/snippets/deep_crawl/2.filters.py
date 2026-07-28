@@ -1,7 +1,7 @@
 import asyncio
 from typing import List
 
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     BFSDeepCrawlStrategy,
@@ -16,7 +16,7 @@ from crawl4ai import (
 
 async def deep_crawl_filter_tutorial_part_2():
     """
-    Tutorial demonstrating URL filters in Crawl4AI, focusing on isolated filter behavior
+    Tutorial demonstrating URL filters in Crawl, focusing on isolated filter behavior
     before integrating them into a deep crawl.
 
     This tutorial covers:
@@ -75,16 +75,16 @@ async def deep_crawl_filter_tutorial_part_2():
     print("=" * 40 + "\n")
 
     # 3.1. Create DomainFilter:
-    domain_filter = DomainFilter(allowed_domains=["crawl4ai.com", "example.com"])
-    print("DomainFilter created, allowing domains: ['crawl4ai.com', 'example.com']")
+    domain_filter = DomainFilter(allowed_domains=["crawl.hanzo.ai", "example.com"])
+    print("DomainFilter created, allowing domains: ['crawl.hanzo.ai', 'example.com']")
 
     # 3.2. Synthetic URLs for Testing:
     test_urls_domain = [
-        "https://docs.crawl4ai.com/api",
+        "https://docs.hanzo.ai/api",
         "https://example.com/products",
         "https://another-website.org/blog",
         "https://sub.example.com/about",
-        "https://crawl4ai.com.attacker.net", # Corrected example: now should be rejected
+        "https://crawl.hanzo.ai.attacker.net", # Corrected example: now should be rejected
     ]
 
     # 3.3. Apply Filter and Show Results:
@@ -106,16 +106,16 @@ async def deep_crawl_filter_tutorial_part_2():
         filters=[
             URLPatternFilter(patterns=["*api*"]),
             ContentTypeFilter(allowed_types=["text/html"]), # Still URL extension based
-            DomainFilter(allowed_domains=["docs.crawl4ai.com"]),
+            DomainFilter(allowed_domains=["docs.hanzo.ai"]),
         ]
     )
     print("FilterChain created, combining URLPatternFilter, ContentTypeFilter, and DomainFilter.")
 
 
     test_urls_combined = [
-        "https://docs.crawl4ai.com/api/async-webcrawler",
+        "https://docs.hanzo.ai/api/async-webcrawler",
         "https://example.com/api/products",
-        "https://docs.crawl4ai.com/core/crawling",
+        "https://docs.hanzo.ai/core/crawling",
         "https://another-website.org/api/data",
     ]
 
@@ -147,7 +147,7 @@ async def deep_crawl_filter_tutorial_part_2():
 
     async with AsyncWebCrawler() as crawler:
         results_final_crawl: List[CrawlResult] = await crawler.arun(
-            url="https://docs.crawl4ai.com", config=config_final_crawl
+            url="https://docs.hanzo.ai", config=config_final_crawl
         )
 
         print("=== Crawled URLs (Deep Crawl with FilterChain) ===")

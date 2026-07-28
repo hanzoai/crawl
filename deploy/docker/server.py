@@ -1,6 +1,6 @@
 # ───────────────────────── server.py ─────────────────────────
 """
-Crawl4AI FastAPI entry‑point
+Crawl FastAPI entry‑point
 • Browser pool + global page cap
 • Rate‑limiting, security, metrics
 • /crawl, /crawl/stream, /md, /llm endpoints
@@ -8,9 +8,9 @@ Crawl4AI FastAPI entry‑point
 
 # ── stdlib & 3rd‑party imports ───────────────────────────────
 from crawler_pool import get_crawler, release_crawler, close_all, janitor
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_configs import Provenance, UntrustedConfigError
-from crawl4ai.__version__ import __version__
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.async_configs import Provenance, UntrustedConfigError
+from crawl.__version__ import __version__
 from auth import (
     create_access_token, get_token_dependency, TokenRequest,
     constant_time_eq, resolve_secret_key,
@@ -23,7 +23,7 @@ from fastapi.responses import FileResponse
 import base64
 import re
 import logging
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 from api import (
     handle_markdown_request, handle_llm_qa,
     handle_stream_crawl_request, handle_crawl_request,
@@ -66,7 +66,7 @@ from job import init_job_router
 from mcp_bridge import attach_mcp, mcp_resource, mcp_template, mcp_tool
 
 import ast
-import crawl4ai as _c4
+import crawl as _c4
 from pydantic import BaseModel, Field
 from slowapi import Limiter
 from slowapi.util import get_remote_address
@@ -84,7 +84,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 config = load_config()
 setup_logging(config)
 
-# Version is imported from crawl4ai package to ensure it stays in sync
+# Version is imported from crawl package to ensure it stays in sync
 
 # ── global page semaphore (hard cap) ─────────────────────────
 MAX_PAGES = config["crawler"]["pool"].get("max_pages", 30)
@@ -92,31 +92,31 @@ GLOBAL_SEM = asyncio.Semaphore(MAX_PAGES)
 
 # ── security feature flags ───────────────────────────────────
 # Hooks are disabled by default for security (RCE risk). Set to "true" to enable.
-HOOKS_ENABLED = os.environ.get("CRAWL4AI_HOOKS_ENABLED", "false").lower() == "true"
+HOOKS_ENABLED = os.environ.get("CRAWL_HOOKS_ENABLED", "false").lower() == "true"
 
 # /execute_js disabled by default (arbitrary JS + SSRF risk). Set to "true" to enable.
-EXECUTE_JS_ENABLED = os.environ.get("CRAWL4AI_EXECUTE_JS_ENABLED", "false").lower() == "true"
+EXECUTE_JS_ENABLED = os.environ.get("CRAWL_EXECUTE_JS_ENABLED", "false").lower() == "true"
 
 # Chromium renderer sandbox. --no-sandbox is kept by default because the
 # container runs as non-root without a usable sandbox. On a host that provides
 # an unprivileged user namespace (unprivileged_userns_clone=1) or a seccomp
-# profile, set CRAWL4AI_CHROMIUM_SANDBOX=true to drop --no-sandbox and run the
+# profile, set CRAWL_CHROMIUM_SANDBOX=true to drop --no-sandbox and run the
 # renderer sandboxed. Verify Chromium still starts after flipping it.
-CHROMIUM_SANDBOX = os.environ.get("CRAWL4AI_CHROMIUM_SANDBOX", "false").lower() == "true"
+CHROMIUM_SANDBOX = os.environ.get("CRAWL_CHROMIUM_SANDBOX", "false").lower() == "true"
 
 # Warn loudly if API token is not set (all endpoints unauthenticated)
-_api_token = config.get("security", {}).get("api_token", "") or os.environ.get("CRAWL4AI_API_TOKEN", "")
+_api_token = config.get("security", {}).get("api_token", "") or os.environ.get("CRAWL_API_TOKEN", "")
 if not _api_token:
     import logging as _logging
-    _logging.getLogger("crawl4ai.security").warning(
-        "CRAWL4AI_API_TOKEN is not set. All API endpoints are unauthenticated. "
-        "Set CRAWL4AI_API_TOKEN environment variable to enable authentication."
+    _logging.getLogger("crawl.security").warning(
+        "CRAWL_API_TOKEN is not set. All API endpoints are unauthenticated. "
+        "Set CRAWL_API_TOKEN environment variable to enable authentication."
     )
 
 # ── default browser config helper ─────────────────────────────
 def _browser_extra_args() -> list:
     """Effective Chromium launch flags. Drops --no-sandbox when the operator
-    opts into the renderer sandbox (CRAWL4AI_CHROMIUM_SANDBOX=true)."""
+    opts into the renderer sandbox (CRAWL_CHROMIUM_SANDBOX=true)."""
     args = list(config["crawler"]["browser"].get("extra_args", []))
     if CHROMIUM_SANDBOX:
         args = [a for a in args if a != "--no-sandbox"]
@@ -312,7 +312,7 @@ def _setup_security(app_: FastAPI):
     if trusted and trusted != ["*"]:
         app_.add_middleware(TrustedHostMiddleware, allowed_hosts=trusted)
     elif config["app"]["host"] not in ("127.0.0.1", "localhost", "::1"):
-        logging.getLogger("crawl4ai.security").warning(
+        logging.getLogger("crawl.security").warning(
             "trusted_hosts is ['*'] on a non-loopback bind (%s): the Host guard "
             "is disabled. Set security.trusted_hosts to your real hostname(s).",
             config["app"]["host"],
@@ -385,7 +385,7 @@ def _current_api_token() -> str:
     """The effective static operator token (config or environment)."""
     return (
         config.get("security", {}).get("api_token", "")
-        or os.environ.get("CRAWL4AI_API_TOKEN", "")
+        or os.environ.get("CRAWL_API_TOKEN", "")
     )
 
 
@@ -422,19 +422,19 @@ def _resolve_auth():
 
     if not loopback:
         logger.critical(
-            "Refusing to start: binding %s with no CRAWL4AI_API_TOKEN and "
+            "Refusing to start: binding %s with no CRAWL_API_TOKEN and "
             "jwt_enabled=false would expose an unauthenticated API. Set "
-            "CRAWL4AI_API_TOKEN=$(openssl rand -hex 32), enable jwt, or bind loopback.",
+            "CRAWL_API_TOKEN=$(openssl rand -hex 32), enable jwt, or bind loopback.",
             host,
         )
         sys.exit(1)
 
     import secrets as _secrets
     gen = _secrets.token_hex(32)
-    os.environ["CRAWL4AI_API_TOKEN"] = gen
+    os.environ["CRAWL_API_TOKEN"] = gen
     logger.warning(
-        "No CRAWL4AI_API_TOKEN set; generated an ephemeral token for this "
-        "loopback session:\n    CRAWL4AI_API_TOKEN=%s",
+        "No CRAWL_API_TOKEN set; generated an ephemeral token for this "
+        "loopback session:\n    CRAWL_API_TOKEN=%s",
         gen,
     )
 
@@ -620,7 +620,7 @@ async def generate_html(
             raise HTTPException(500, detail=results[0].error_message or "Crawl failed")
 
         raw_html = results[0].html
-        from crawl4ai.utils import preprocess_html_for_schema
+        from crawl.utils import preprocess_html_for_schema
         processed_html = preprocess_html_for_schema(raw_html)
         return JSONResponse({"html": processed_html, "url": body.url, "success": True})
     except Exception as e:
@@ -783,7 +783,7 @@ async def execute_js(
 
     """
     if not EXECUTE_JS_ENABLED:
-        raise HTTPException(403, "execute_js endpoint is disabled. Set CRAWL4AI_EXECUTE_JS_ENABLED=true to enable.")
+        raise HTTPException(403, "execute_js endpoint is disabled. Set CRAWL_EXECUTE_JS_ENABLED=true to enable.")
     validate_url_scheme(body.url)
     # Block SSRF: reject internal/private IPs
     try:
@@ -827,7 +827,7 @@ async def llm_endpoint(
 
 @app.get("/schema")
 async def get_schema():
-    from crawl4ai import BrowserConfig, CrawlerRunConfig
+    from crawl import BrowserConfig, CrawlerRunConfig
     return {"browser": BrowserConfig().dump(),
             "crawler": CrawlerRunConfig().dump()}
 
@@ -879,7 +879,7 @@ async def crawl(
     if not crawl_request.urls:
         raise HTTPException(400, "At least one URL required")
     if crawl_request.hooks and not HOOKS_ENABLED:
-        raise HTTPException(403, "Hooks are disabled. Set CRAWL4AI_HOOKS_ENABLED=true to enable.")
+        raise HTTPException(403, "Hooks are disabled. Set CRAWL_HOOKS_ENABLED=true to enable.")
     # Check whether it is a redirection for a streaming request
     try:
         crawler_config = CrawlerRunConfig.load(
@@ -922,7 +922,7 @@ async def crawl_stream(
     if not crawl_request.urls:
         raise HTTPException(400, "At least one URL required")
     if crawl_request.hooks and not HOOKS_ENABLED:
-        raise HTTPException(403, "Hooks are disabled. Set CRAWL4AI_HOOKS_ENABLED=true to enable.")
+        raise HTTPException(403, "Hooks are disabled. Set CRAWL_HOOKS_ENABLED=true to enable.")
 
     return await stream_process(crawl_request=crawl_request)
 
@@ -1034,8 +1034,8 @@ async def get_context(
     """
     # load contexts
     base = os.path.dirname(__file__)
-    code_path = os.path.join(base, "c4ai-code-context.md")
-    doc_path = os.path.join(base, "c4ai-doc-context.md")
+    code_path = os.path.join(base, "crawl-code-context.md")
+    doc_path = os.path.join(base, "crawl-doc-context.md")
     if not os.path.exists(code_path) or not os.path.exists(doc_path):
         raise HTTPException(404, "Context files not found")
 

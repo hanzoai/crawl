@@ -3,7 +3,7 @@ import asyncio
 import hashlib
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
-from crawl4ai.domain_mapper import (
+from crawl.domain_mapper import (
     DomainMapper,
     Soft404Fingerprint,
     _NONSENSE_SUFFIXES,
@@ -92,7 +92,7 @@ class TestRobotsTxtParsing:
         resp.text = robots_text
         mapper.client.get = AsyncMock(return_value=resp)
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         config = DomainMapperConfig()
 
         sitemap_urls, disallow_paths = await mapper._scan_robots_txt("example.com", config)
@@ -117,7 +117,7 @@ class TestRobotsTxtParsing:
         resp.text = robots_text
         mapper.client.get = AsyncMock(return_value=resp)
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         config = DomainMapperConfig()
 
         _, paths = await mapper._scan_robots_txt("example.com", config)
@@ -137,7 +137,7 @@ class TestRobotsTxtParsing:
         resp.status_code = 404
         mapper.client.get = AsyncMock(return_value=resp)
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         config = DomainMapperConfig()
 
         sitemap_urls, paths = await mapper._scan_robots_txt("example.com", config)
@@ -310,7 +310,7 @@ class TestCrtShParsing:
         ]
         mapper.client.get = AsyncMock(return_value=resp)
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         hosts = await mapper._discover_via_crt("example.com", DomainMapperConfig())
         assert "example.com" in hosts
         assert "docs.example.com" in hosts
@@ -331,7 +331,7 @@ class TestCrtShParsing:
         ]
         mapper.client.get = AsyncMock(return_value=resp)
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         hosts = await mapper._discover_via_crt("example.com", DomainMapperConfig())
         assert "example.com" in hosts
         assert "evil.com" not in hosts
@@ -343,7 +343,7 @@ class TestCrtShParsing:
         mapper.client = AsyncMock()
         mapper.client.get = AsyncMock(side_effect=Exception("timeout"))
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         hosts = await mapper._discover_via_crt("example.com", DomainMapperConfig())
         assert hosts == set()
 
@@ -373,7 +373,7 @@ class TestHomepageLinkExtraction:
         resp.url = "https://example.com/"
         mapper.client.get = AsyncMock(return_value=resp)
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         urls = await mapper._scan_homepage("example.com", "example.com", DomainMapperConfig())
         # Should have internal links, not external
         assert any("/about" in u for u in urls)
@@ -399,7 +399,7 @@ class TestHomepageLinkExtraction:
         resp.url = "https://example.com/"
         mapper.client.get = AsyncMock(return_value=resp)
 
-        from crawl4ai.async_configs import DomainMapperConfig
+        from crawl.async_configs import DomainMapperConfig
         urls = await mapper._scan_homepage("example.com", "example.com", DomainMapperConfig())
         # Should include link tags
         assert any("/es/" in u for u in urls)

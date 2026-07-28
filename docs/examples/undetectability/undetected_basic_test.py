@@ -4,7 +4,7 @@ Simple example to test if undetected mode works
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig
+from crawl import AsyncWebCrawler, BrowserConfig
 
 async def test_regular_mode():
     """Test with regular browser"""
@@ -25,8 +25,8 @@ async def test_regular_mode():
 async def test_undetected_mode():
     """Test with undetected browser"""
     print("\nTesting Undetected Browser Mode...")
-    from crawl4ai import UndetectedAdapter
-    from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+    from crawl import UndetectedAdapter
+    from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
     
     browser_config = BrowserConfig(
         headless=False,
@@ -55,7 +55,7 @@ async def test_undetected_mode():
 
 async def main():
     """Run both tests"""
-    print("🤖 Crawl4AI Basic Adapter Test\n")
+    print("🤖 Crawl Basic Adapter Test\n")
     
     # Test regular mode
     regular_success = await test_regular_mode()

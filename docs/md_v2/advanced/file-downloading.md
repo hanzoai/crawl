@@ -1,13 +1,13 @@
-# Download Handling in Crawl4AI
+# Download Handling in Crawl
 
-This guide explains how to use Crawl4AI to handle file downloads during crawling. You'll learn how to trigger downloads, specify download locations, and access downloaded files.
+This guide explains how to use Crawl to handle file downloads during crawling. You'll learn how to trigger downloads, specify download locations, and access downloaded files.
 
 ## Enabling Downloads
 
 To enable downloads, set the `accept_downloads` parameter in the `BrowserConfig` object and pass it to the crawler.
 
 ```python
-from crawl4ai.async_configs import BrowserConfig, AsyncWebCrawler
+from crawl.async_configs import BrowserConfig, AsyncWebCrawler
 
 async def main():
     config = BrowserConfig(accept_downloads=True)  # Enable downloads globally
@@ -19,10 +19,10 @@ asyncio.run(main())
 
 ## Specifying Download Location
 
-Specify the download directory using the `downloads_path` attribute in the `BrowserConfig` object. If not provided, Crawl4AI defaults to creating a "downloads" directory inside the `.crawl4ai` folder in your home directory.
+Specify the download directory using the `downloads_path` attribute in the `BrowserConfig` object. If not provided, Crawl defaults to creating a "downloads" directory inside the `.crawl` folder in your home directory.
 
 ```python
-from crawl4ai.async_configs import BrowserConfig
+from crawl.async_configs import BrowserConfig
 import os
 
 downloads_path = os.path.join(os.getcwd(), "my_downloads")  # Custom download path
@@ -41,7 +41,7 @@ async def main():
 Downloads are typically triggered by user interactions on a web page, such as clicking a download button. Use `js_code` in `CrawlerRunConfig` to simulate these actions and `wait_for` to allow sufficient time for downloads to start.
 
 ```python
-from crawl4ai.async_configs import CrawlerRunConfig
+from crawl.async_configs import CrawlerRunConfig
 
 config = CrawlerRunConfig(
     js_code="""
@@ -74,7 +74,7 @@ else:
 ## Example: Downloading Multiple Files
 
 ```python
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
 import os
 from pathlib import Path
 
@@ -102,7 +102,7 @@ async def download_multiple_files(url: str, download_path: str):
             print("No files downloaded.")
 
 # Usage
-download_path = os.path.join(Path.home(), ".crawl4ai", "downloads")
+download_path = os.path.join(Path.home(), ".crawl", "downloads")
 os.makedirs(download_path, exist_ok=True)
 
 asyncio.run(download_multiple_files("https://www.python.org/downloads/windows/", download_path))
@@ -115,4 +115,4 @@ asyncio.run(download_multiple_files("https://www.python.org/downloads/windows/",
 - **Error Handling:** Handle errors to manage failed downloads or incorrect paths gracefully.
 - **Security:** Scan downloaded files for potential security threats before use.
 
-This revised guide ensures consistency with the `Crawl4AI` codebase by using `BrowserConfig` and `CrawlerRunConfig` for all download-related configurations. Let me know if further adjustments are needed!
+This revised guide ensures consistency with the `Crawl` codebase by using `BrowserConfig` and `CrawlerRunConfig` for all download-related configurations. Let me know if further adjustments are needed!

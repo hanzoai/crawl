@@ -1,7 +1,7 @@
 """
-Docker Webhook Example for Crawl4AI
+Docker Webhook Example for Crawl
 
-This example demonstrates how to use webhooks with the Crawl4AI job queue API.
+This example demonstrates how to use webhooks with the Crawl job queue API.
 Instead of polling for results, webhooks notify your application when jobs complete.
 
 Supports both:
@@ -9,7 +9,7 @@ Supports both:
 - /llm/job - LLM-powered content extraction
 
 Prerequisites:
-1. Crawl4AI Docker container running on localhost:11235
+1. Crawl Docker container running on localhost:11235
 2. Flask installed: pip install flask requests
 3. LLM API key configured in .llm.env (for LLM extraction examples)
 
@@ -26,7 +26,7 @@ from flask import Flask, request, jsonify
 from threading import Thread
 
 # Configuration
-CRAWL4AI_BASE_URL = "http://localhost:11235"
+CRAWL_BASE_URL = "http://localhost:11235"
 WEBHOOK_BASE_URL = "http://localhost:8080"  # Your webhook receiver URL
 
 # Initialize Flask app for webhook receiver
@@ -72,7 +72,7 @@ def handle_crawl_webhook():
             # Fetch results from API if not included
             print(f"   📥 Fetching results from API...")
             task_id = payload['task_id']
-            result_response = requests.get(f"{CRAWL4AI_BASE_URL}/crawl/job/{task_id}")
+            result_response = requests.get(f"{CRAWL_BASE_URL}/crawl/job/{task_id}")
             if result_response.ok:
                 data = result_response.json()
                 print(f"   ✅ Results fetched successfully")
@@ -130,7 +130,7 @@ def handle_llm_webhook():
             # Fetch results from API if not included
             print(f"   📥 Fetching results from API...")
             task_id = payload['task_id']
-            result_response = requests.get(f"{CRAWL4AI_BASE_URL}/llm/job/{task_id}")
+            result_response = requests.get(f"{CRAWL_BASE_URL}/llm/job/{task_id}")
             if result_response.ok:
                 data = result_response.json()
                 print(f"   ✅ Results fetched successfully")
@@ -188,7 +188,7 @@ def submit_crawl_job_with_webhook(urls, webhook_url, include_data=False):
     print(f"   Include data: {include_data}")
 
     response = requests.post(
-        f"{CRAWL4AI_BASE_URL}/crawl/job",
+        f"{CRAWL_BASE_URL}/crawl/job",
         json=payload,
         headers={"Content-Type": "application/json"}
     )
@@ -248,7 +248,7 @@ def submit_llm_job_with_webhook(url, query, webhook_url, include_data=False, sch
         print(f"   Provider: {provider}")
 
     response = requests.post(
-        f"{CRAWL4AI_BASE_URL}/llm/job",
+        f"{CRAWL_BASE_URL}/llm/job",
         json=payload,
         headers={"Content-Type": "application/json"}
     )
@@ -284,7 +284,7 @@ def submit_job_without_webhook(urls):
     print(f"   URLs: {urls}")
 
     response = requests.post(
-        f"{CRAWL4AI_BASE_URL}/crawl/job",
+        f"{CRAWL_BASE_URL}/crawl/job",
         json=payload
     )
 
@@ -311,7 +311,7 @@ def poll_job_status(task_id, timeout=60):
     start_time = time.time()
 
     while time.time() - start_time < timeout:
-        response = requests.get(f"{CRAWL4AI_BASE_URL}/crawl/job/{task_id}")
+        response = requests.get(f"{CRAWL_BASE_URL}/crawl/job/{task_id}")
 
         if response.ok:
             data = response.json()
@@ -337,14 +337,14 @@ def poll_job_status(task_id, timeout=60):
 def main():
     """Run the webhook demonstration"""
 
-    # Check if Crawl4AI is running
+    # Check if Crawl is running
     try:
-        health = requests.get(f"{CRAWL4AI_BASE_URL}/health", timeout=5)
-        print(f"✅ Crawl4AI is running: {health.json()}")
+        health = requests.get(f"{CRAWL_BASE_URL}/health", timeout=5)
+        print(f"✅ Crawl is running: {health.json()}")
     except:
-        print(f"❌ Cannot connect to Crawl4AI at {CRAWL4AI_BASE_URL}")
+        print(f"❌ Cannot connect to Crawl at {CRAWL_BASE_URL}")
         print("   Please make sure Docker container is running:")
-        print("   docker run -d -p 11235:11235 --name crawl4ai unclecode/crawl4ai:latest")
+        print("   docker run -d -p 11235:11235 --name crawl hanzoai/crawl:latest")
         return
 
     # Start webhook server in background thread

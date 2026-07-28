@@ -1,5 +1,5 @@
 """
-Crawl4AI Docker API stress tester.
+Crawl Docker API stress tester.
 
 Examples
 --------
@@ -61,7 +61,7 @@ def pct(lat: List[float], p: float) -> str:
 
 # ───────────────────────── main ─────────────────────────
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Stress test Crawl4AI Docker API")
+    p = argparse.ArgumentParser(description="Stress test Crawl Docker API")
     p.add_argument("--urls", type=int, default=100, help="number of URLs")
     p.add_argument("--concurrency", type=int, default=1, help="max POSTs in flight")
     p.add_argument("--chunk-size", type=int, default=50, help="URLs per request")

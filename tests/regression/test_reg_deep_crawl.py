@@ -1,5 +1,5 @@
 """
-Crawl4AI Regression Tests - Deep Crawling
+Crawl Regression Tests - Deep Crawling
 
 Tests deep crawling strategies (BFS, DFS, BestFirst), URL filters, URL scorers,
 URL normalization, and streaming mode using real browser crawling with no mocking.
@@ -7,20 +7,20 @@ URL normalization, and streaming mode using real browser crawling with no mockin
 
 import pytest
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.deep_crawling import (
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.deep_crawling import (
     BFSDeepCrawlStrategy,
     DFSDeepCrawlStrategy,
     BestFirstCrawlingStrategy,
 )
-from crawl4ai.deep_crawling.filters import (
+from crawl.deep_crawling.filters import (
     URLPatternFilter,
     DomainFilter,
     ContentTypeFilter,
     FilterChain,
 )
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer, CompositeScorer
-from crawl4ai.utils import (
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer, CompositeScorer
+from crawl.utils import (
     normalize_url_for_deep_crawl,
     efficient_normalize_url_for_deep_crawl,
 )

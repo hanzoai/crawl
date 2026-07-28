@@ -2,7 +2,7 @@ import sys
 import pytest
 import asyncio
 from unittest.mock import patch, MagicMock
-from crawl4ai.browser_profiler import BrowserProfiler
+from crawl.browser_profiler import BrowserProfiler
 
 @pytest.mark.asyncio
 @pytest.mark.skipif(sys.platform != "win32", reason="Windows-specific msvcrt test")

@@ -11,11 +11,11 @@ from pathlib import Path
 import pytest
 from rich.console import Console
 
-# Load async_logger directly without triggering the full crawl4ai __init__
+# Load async_logger directly without triggering the full crawl __init__
 # (which pulls in many optional deps like aiofiles, OpenSSL, playwright …).
 _spec = importlib.util.spec_from_file_location(
-    "crawl4ai.async_logger",
-    Path(__file__).parent.parent / "crawl4ai" / "async_logger.py",
+    "crawl.async_logger",
+    Path(__file__).parent.parent / "crawl" / "async_logger.py",
 )
 _mod = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_mod)  # type: ignore[union-attr]

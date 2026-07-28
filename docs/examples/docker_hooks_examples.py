@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-🚀 Crawl4AI Docker Hooks System - Complete Examples
+🚀 Crawl Docker Hooks System - Complete Examples
 ====================================================
 
 This file demonstrates the Docker Hooks System with three different approaches:
@@ -10,8 +10,8 @@ This file demonstrates the Docker Hooks System with three different approaches:
 3. Docker Client with automatic conversion (most convenient)
 
 Requirements:
-- Docker container running: docker run -p 11235:11235 unclecode/crawl4ai:latest
-- crawl4ai installed: pip install crawl4ai
+- Docker container running: docker run -p 11235:11235 hanzoai/crawl:latest
+- crawl installed: pip install crawl
 """
 
 import asyncio
@@ -20,9 +20,9 @@ import json
 import time
 from typing import Dict, Any
 
-# Import Crawl4AI components
-from crawl4ai import hooks_to_string
-from crawl4ai.docker_client import Crawl4aiDockerClient
+# Import Crawl components
+from crawl import hooks_to_string
+from crawl.docker_client import Crawl4aiDockerClient
 
 # Configuration
 DOCKER_URL = "http://localhost:11235"
@@ -93,7 +93,7 @@ async def authentication_headers_hook(page, context, url, **kwargs):
     print(f"  [Hook] 🔐 Adding custom headers for {url[:50]}...")
 
     await page.set_extra_http_headers({
-        'X-Crawl4AI': 'docker-hooks',
+        'X-Crawl': 'docker-hooks',
         'X-Custom-Hook': 'function-based',
         'Accept-Language': 'en-US,en;q=0.9',
     })
@@ -177,7 +177,7 @@ async def hook(page, context, **kwargs):
 async def hook(page, context, url, **kwargs):
     print(f"  [String Hook] Navigating to {url[:50]}...")
     await page.set_extra_http_headers({
-        'X-Crawl4AI': 'string-based-hooks',
+        'X-Crawl': 'string-based-hooks',
     })
     return page
 """,
@@ -351,7 +351,7 @@ async def example_3_docker_client_auto_conversion():
         "Pass function objects directly - conversion happens automatically!"
     )
 
-    print("🐳 Initializing Crawl4AI Docker Client...")
+    print("🐳 Initializing Crawl Docker Client...")
     client = Crawl4aiDockerClient(base_url=DOCKER_URL)
 
     print("✅ Client ready!\n")
@@ -521,7 +521,7 @@ async def main():
     Run all example demonstrations
     """
     print("\n" + "=" * 70)
-    print("  🚀 Crawl4AI - Docker Hooks System Examples")
+    print("  🚀 Crawl - Docker Hooks System Examples")
     print("=" * 70)
 
     # Check Docker service
@@ -529,7 +529,7 @@ async def main():
     if not check_docker_service():
         print("❌ Docker service is not running!")
         print("\n📋 To start the Docker service:")
-        print("   docker run -p 11235:11235 unclecode/crawl4ai:latest")
+        print("   docker run -p 11235:11235 hanzoai/crawl:latest")
         print("\nPlease start the service and run this example again.")
         return
 
@@ -604,8 +604,8 @@ async def main():
     print("   • on_execution_started, before_retrieve_html, before_return_html")
 
     print("\n📚 Resources:")
-    print("   • Docs: https://docs.crawl4ai.com/core/docker-deployment")
-    print("   • GitHub: https://github.com/unclecode/crawl4ai")
+    print("   • Docs: https://docs.hanzo.ai/core/docker-deployment")
+    print("   • GitHub: https://github.com/hanzoai/crawl")
     print("   • Discord: https://discord.gg/jP8KfhDhyN")
 
     print("\n" + "=" * 70)
@@ -614,13 +614,13 @@ async def main():
 
 
 if __name__ == "__main__":
-    print("\n🎬 Starting Crawl4AI Docker Hooks Examples...")
+    print("\n🎬 Starting Crawl Docker Hooks Examples...")
     print("Press Ctrl+C anytime to exit\n")
 
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n\n👋 Examples stopped by user. Thanks for exploring Crawl4AI!")
+        print("\n\n👋 Examples stopped by user. Thanks for exploring Crawl!")
     except Exception as e:
         print(f"\n\n❌ Error: {str(e)}")
         import traceback

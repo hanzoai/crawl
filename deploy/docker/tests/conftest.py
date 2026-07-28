@@ -1,5 +1,5 @@
 """
-Shared fixtures for the Crawl4AI Docker server *behavioral* security tests.
+Shared fixtures for the Crawl Docker server *behavioral* security tests.
 
 Unlike the legacy `test_security_*.py` suites (which grep the source text and
 pass even when the running server is wide open), these fixtures boot the real

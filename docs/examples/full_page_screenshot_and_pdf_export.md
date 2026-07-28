@@ -1,4 +1,4 @@
-# Capturing Full-Page Screenshots and PDFs from Massive Webpages with Crawl4AI
+# Capturing Full-Page Screenshots and PDFs from Massive Webpages with Crawl
 
 When dealing with very long web pages, traditional full-page screenshots can be slow or fail entirely. For large pages (like extensive Wikipedia articles), generating a single massive screenshot often leads to delays, memory issues, or style differences.
 
@@ -15,7 +15,7 @@ We’ve introduced a new feature that effortlessly handles even the biggest page
 import os
 import sys
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CacheMode, CrawlerRunConfig
 
 # Adjust paths as needed
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,13 +51,13 @@ if __name__ == "__main__":
 ```
 
 **What Happens Under the Hood:**
-- Crawl4AI navigates to the target page.
+- Crawl navigates to the target page.
 - If `pdf=True`, it exports the current page as a full PDF, capturing all of its content no matter the length.
 - If `screenshot=True`, and a PDF is already available, it directly converts the first page of that PDF to an image for you—no repeated loading or scrolling.
 - Finally, you get your PDF and/or screenshot ready to use.
 
 **Controlling scroll speed for full-page screenshots:**  
-When a page is taller than `screenshot_height_threshold` (default ~20,000px) and no PDF is available, Crawl4AI scrolls through the page to capture a stitched full-page screenshot. Use `scroll_delay` to control the pause between scroll steps:
+When a page is taller than `screenshot_height_threshold` (default ~20,000px) and no PDF is available, Crawl scrolls through the page to capture a stitched full-page screenshot. Use `scroll_delay` to control the pause between scroll steps:
 
 ```python
 config = CrawlerRunConfig(
@@ -78,7 +78,7 @@ If you only need a screenshot of the visible viewport (not the entire page), use
 import os
 import asyncio
 from base64 import b64decode
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -105,4 +105,4 @@ if __name__ == "__main__":
 - You need smaller image sizes for thumbnails or previews
 
 **Conclusion:**
-With this feature, Crawl4AI becomes even more robust and versatile for large-scale content extraction. Whether you need a PDF snapshot or a quick screenshot, you now have a reliable solution for even the most extensive webpages.
+With this feature, Crawl becomes even more robust and versatile for large-scale content extraction. Whether you need a PDF snapshot or a quick screenshot, you now have a reliable solution for even the most extensive webpages.

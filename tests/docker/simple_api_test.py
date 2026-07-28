@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple API Test for Crawl4AI Docker Server v0.7.0
+Simple API Test for Crawl Docker Server v0.7.0
 Uses only built-in Python modules to test all endpoints.
 """
 
@@ -125,7 +125,7 @@ class SimpleApiTester:
     
     def run_all_tests(self):
         """Run all API tests"""
-        print("🚀 Starting Crawl4AI v0.7.0 API Test Suite")
+        print("🚀 Starting Crawl v0.7.0 API Test Suite")
         print(f"📡 Testing server at: {self.base_url}")
         print("=" * 60)
         
@@ -246,7 +246,7 @@ class SimpleApiTester:
         self.print_result(result)
         
         # Test ask endpoint
-        ask_endpoint = "/ask?context_type=all&query=crawl4ai&max_results=5"
+        ask_endpoint = "/ask?context_type=all&query=crawl&max_results=5"
         result = self.test_get_endpoint(ask_endpoint)
         print(result)
         self.print_result(result)
@@ -326,7 +326,7 @@ class SimpleApiTester:
             print(f"⏱️  Max Response Time: {max_time:.3f}s")
         
         # Save detailed report
-        report_file = f"crawl4ai_test_report_{int(time.time())}.json"
+        report_file = f"crawl_test_report_{int(time.time())}.json"
         with open(report_file, 'w') as f:
             json.dump({
                 "timestamp": time.time(),
@@ -346,7 +346,7 @@ def main():
     """Main test runner"""
     import argparse
     
-    parser = argparse.ArgumentParser(description='Crawl4AI v0.7.0 API Test Suite')
+    parser = argparse.ArgumentParser(description='Crawl v0.7.0 API Test Suite')
     parser.add_argument('--url', default=BASE_URL, help='Base URL of the server')
     
     args = parser.parse_args()

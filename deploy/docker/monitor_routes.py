@@ -264,7 +264,7 @@ async def restart_browser(req: KillBrowserRequest):
     try:
         from crawler_pool import (PERMANENT, HOT_POOL, COLD_POOL, LAST_USED,
                                   USAGE_COUNT, LOCK, DEFAULT_CONFIG_SIG, init_permanent)
-        from crawl4ai import AsyncWebCrawler, BrowserConfig
+        from crawl import AsyncWebCrawler, BrowserConfig
         from contextlib import suppress
         import time
 

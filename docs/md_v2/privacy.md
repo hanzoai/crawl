@@ -2,7 +2,7 @@
 
 **Last updated: April 20, 2026**
 
-Crawl4AI ("we", "us", "our") provides web crawling, scraping, and structured data extraction services through our open-source library, hosted API ("Crawl4AI Cloud"), dashboard, integrations, and Workspace add-ons. This Privacy Policy explains what we collect, how we use it, and the choices you have.
+Crawl ("we", "us", "our") provides web crawling, scraping, and structured data extraction services through our open-source library, hosted API ("Crawl Cloud"), dashboard, integrations, and Workspace add-ons. This Privacy Policy explains what we collect, how we use it, and the choices you have.
 
 By creating an account or using our services, you agree to this Policy.
 
@@ -10,7 +10,7 @@ By creating an account or using our services, you agree to this Policy.
 
 ## 1. Who we are
 
-Crawl4AI is operated by **CRAWL4AI**, located at 38 Beach Road, #26-12, South Beach Tower, Singapore 189767. Contact: [unclecode@crawl4ai.com](mailto:unclecode@crawl4ai.com).
+Crawl is operated by **CRAWL**, located at 38 Beach Road, #26-12, South Beach Tower, Singapore 189767. Contact: [unclecode@crawl.hanzo.ai](mailto:unclecode@crawl.hanzo.ai).
 
 ## 2. Information we collect
 
@@ -30,7 +30,7 @@ We collect only what we need to operate the service.
 
 ## 3. How we use your information
 
-- Operate, maintain, and secure the Crawl4AI services
+- Operate, maintain, and secure the Crawl services
 - Authenticate you and authorise API requests against your plan
 - Bill and meter usage
 - Notify you about service status, security issues, and material changes
@@ -39,12 +39,12 @@ We collect only what we need to operate the service.
 
 We do **not** sell your personal information. We do not use the contents of pages you crawl, the keywords you submit, or the results we extract for advertising or to train third-party machine-learning models.
 
-## 4. Crawl4AI Workspace add-ons (Google Sheets, etc.)
+## 4. Crawl Workspace add-ons (Google Sheets, etc.)
 
 Our Google Workspace add-ons run within your Google account using Apps Script. Specifically:
 
 - **Sheet contents** — the add-on reads the active spreadsheet you have open and writes results back into the same spreadsheet. Sheet contents are sent to our API only as part of jobs you explicitly trigger (for example, by clicking "Generate Data"). Cell contents are not stored beyond the duration of the job.
-- **API key storage** — the add-on stores your Crawl4AI API key in Google's per-user `PropertiesService`, which is encrypted at rest by Google and scoped to your Google account.
+- **API key storage** — the add-on stores your Crawl API key in Google's per-user `PropertiesService`, which is encrypted at rest by Google and scoped to your Google account.
 - **Email** — when granted, we read your Google account email address solely to display it in the sidebar so you know which account is in use.
 - **Limited use** — we follow Google's [Limited Use Requirements](https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes) for Workspace API data. We do not transfer Workspace data to third parties except as necessary to provide the user-facing feature, comply with applicable law, or as part of a merger / acquisition where successor entity is bound by an at-least-equally-protective policy. We do not use Workspace data for advertising, and we do not allow humans to read it except with your explicit permission, for security investigations, or to comply with applicable law.
 
@@ -83,7 +83,7 @@ Depending on where you live, you may have the right to:
 - Object to or restrict certain processing
 - Withdraw consent
 
-To exercise any of these rights, email [unclecode@crawl4ai.com](mailto:unclecode@crawl4ai.com). We will respond within 30 days. We will not discriminate against you for exercising these rights.
+To exercise any of these rights, email [unclecode@crawl.hanzo.ai](mailto:unclecode@crawl.hanzo.ai). We will respond within 30 days. We will not discriminate against you for exercising these rights.
 
 ## 10. Children
 
@@ -97,6 +97,6 @@ We may update this Policy from time to time. Material changes will be announced 
 
 Questions, complaints, or requests:
 
-**Crawl4AI**
+**Crawl**
 38 Beach Road, #26-12, South Beach Tower, Singapore 189767
-[unclecode@crawl4ai.com](mailto:unclecode@crawl4ai.com)
+[unclecode@crawl.hanzo.ai](mailto:unclecode@crawl.hanzo.ai)

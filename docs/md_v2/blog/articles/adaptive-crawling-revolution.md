@@ -277,7 +277,7 @@ No more crawling hundreds of pages hoping to find something that doesn't exist!
 ## Try It Yourself
 
 ```python
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
 
 async with AsyncWebCrawler() as crawler:
     # Choose your strategy
@@ -324,7 +324,7 @@ Join me in making web crawling intelligent, efficient, and actually useful. Beca
 
 ---
 
-*Adaptive Crawling is now part of Crawl4AI. [Get started with the documentation](/core/adaptive-crawling/) or [dive into the mathematical framework](https://github.com/unclecode/crawl4ai/blob/main/PROGRESSIVE_CRAWLING.md). For updates on my work in information theory and efficient AI, follow me on [X/Twitter](https://x.com/unclecode).*
+*Adaptive Crawling is now part of Crawl. [Get started with the documentation](/core/adaptive-crawling/) or [dive into the mathematical framework](https://github.com/hanzoai/crawl/blob/main/PROGRESSIVE_CRAWLING.md). For updates on my work in information theory and efficient AI, follow me on [X/Twitter](https://x.com/unclecode).*
 
 <style>
 /* Custom styles for this article */

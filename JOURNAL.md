@@ -1,6 +1,6 @@
 # Development Journal
 
-This journal tracks significant feature additions, bug fixes, and architectural decisions in the crawl4ai project. It serves as both documentation and a historical record of the project's evolution.
+This journal tracks significant feature additions, bug fixes, and architectural decisions in the crawl project. It serves as both documentation and a historical record of the project's evolution.
 
 ## [2025-04-17] Added Content Source Selection for Markdown Generation
 
@@ -21,8 +21,8 @@ This journal tracks significant feature additions, bug fixes, and architectural 
 - Ensured backward compatibility by defaulting to "cleaned_html" option
 
 **Files Modified:**
-- `crawl4ai/markdown_generation_strategy.py`: Added content_source parameter and updated the method signature
-- `crawl4ai/async_webcrawler.py`: Added HTML source selection logic and updated imports
+- `crawl/markdown_generation_strategy.py`: Added content_source parameter and updated the method signature
+- `crawl/async_webcrawler.py`: Added HTML source selection logic and updated imports
 
 **Examples:**
 - Created `docs/examples/content_source_example.py` demonstrating how to use the new parameter
@@ -50,7 +50,7 @@ This feature provides greater flexibility in how users generate markdown, enabli
 1.  Created a dedicated stress testing framework in the `benchmarking/` (or similar) directory.
 2.  Implemented local test site generation (`SiteGenerator`) with configurable heavy HTML pages.
 3.  Added basic memory usage tracking (`SimpleMemoryTracker`) using platform-specific commands (avoiding `psutil` dependency for this specific test).
-4.  Utilized `CrawlerMonitor` from `crawl4ai` for rich terminal UI and real-time monitoring of test progress and dispatcher activity.
+4.  Utilized `CrawlerMonitor` from `crawl` for rich terminal UI and real-time monitoring of test progress and dispatcher activity.
 5.  Implemented detailed result summary saving (JSON) and memory sample logging (CSV).
 6.  Developed `run_benchmark.py` to orchestrate tests with predefined configurations.
 7.  Created `run_all.sh` as a simple wrapper for `run_benchmark.py`.
@@ -58,7 +58,7 @@ This feature provides greater flexibility in how users generate markdown, enabli
 **Implementation Details:**
 -   Generates a local test site with configurable pages containing heavy text and image content.
 -   Uses Python's built-in `http.server` for local serving, minimizing network variance.
--   Leverages `crawl4ai`'s `arun_many` method for processing URLs.
+-   Leverages `crawl`'s `arun_many` method for processing URLs.
 -   Utilizes `MemoryAdaptiveDispatcher` to manage concurrency via the `max_sessions` parameter (note: memory adaptation features require `psutil`, not used by `SimpleMemoryTracker`).
 -   Tracks memory usage via `SimpleMemoryTracker`, recording samples throughout test execution to a CSV file.
 -   Uses `CrawlerMonitor` (which uses the `rich` library) for clear terminal visualization and progress reporting directly from the dispatcher.
@@ -85,7 +85,7 @@ This feature provides greater flexibility in how users generate markdown, enabli
 -   Designing `run_benchmark.py` to correctly pass arguments to `stress_test_sdk.py`.
 
 **Why This Feature:**
-The high volume stress testing solution addresses critical needs for ensuring Crawl4AI's `arun_many` reliability:
+The high volume stress testing solution addresses critical needs for ensuring Crawl's `arun_many` reliability:
 1.  Provides a reproducible way to evaluate performance under concurrent load.
 2.  Allows testing the dispatcher's concurrency control (`max_session_permit`) and queue management.
 3.  Enables performance tuning by observing throughput (`URLs/sec`) under different `max_sessions` settings.
@@ -158,7 +158,7 @@ The high volume stress testing solution addresses critical needs for ensuring Cr
 -   Ensured documentation matches the final script parameters and behavior.
 
 **Why These Changes:**
-These refinements correct the fundamental approach of the stress test to align with `crawl4ai`'s actual architecture and intended usage:
+These refinements correct the fundamental approach of the stress test to align with `crawl`'s actual architecture and intended usage:
 1.  Ensures the test evaluates the correct components (`arun_many`, `MemoryAdaptiveDispatcher`).
 2.  Makes test configurations more accurate and flexible.
 3.  Improves the usability of the testing framework through better argument handling and documentation.
@@ -251,10 +251,10 @@ These improvements address several usability issues with the stress testing syst
 - We ensure all browser resources are properly cleaned up after capture
 
 **Files Modified:**
-- `crawl4ai/models.py`: Added the mhtml field to CrawlResult
-- `crawl4ai/async_configs.py`: Added capture_mhtml parameter to CrawlerRunConfig
-- `crawl4ai/async_crawler_strategy.py`: Implemented MHTML capture logic
-- `crawl4ai/async_webcrawler.py`: Added mapping from AsyncCrawlResponse.mhtml_data to CrawlResult.mhtml
+- `crawl/models.py`: Added the mhtml field to CrawlResult
+- `crawl/async_configs.py`: Added capture_mhtml parameter to CrawlerRunConfig
+- `crawl/async_crawler_strategy.py`: Implemented MHTML capture logic
+- `crawl/async_webcrawler.py`: Added mapping from AsyncCrawlResponse.mhtml_data to CrawlResult.mhtml
 
 **Testing:**
 - Created comprehensive tests in `tests/20241401/test_mhtml.py` covering:
@@ -299,10 +299,10 @@ The MHTML capture feature allows users to capture complete web pages including a
 - Error handling ensures even failed capture attempts won't crash the main crawling process
 
 **Files Modified:**
-- `crawl4ai/models.py`: Added new fields to AsyncCrawlResponse and CrawlResult
-- `crawl4ai/async_configs.py`: Added new configuration parameters to CrawlerRunConfig
-- `crawl4ai/async_crawler_strategy.py`: Implemented capture logic using event listeners
-- `crawl4ai/async_webcrawler.py`: Added data transfer from AsyncCrawlResponse to CrawlResult
+- `crawl/models.py`: Added new fields to AsyncCrawlResponse and CrawlResult
+- `crawl/async_configs.py`: Added new configuration parameters to CrawlerRunConfig
+- `crawl/async_crawler_strategy.py`: Implemented capture logic using event listeners
+- `crawl/async_webcrawler.py`: Added data transfer from AsyncCrawlResponse to CrawlResult
 
 **Documentation:**
 - Created detailed documentation in `docs/md_v2/advanced/network-console-capture.md`

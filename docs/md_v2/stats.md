@@ -212,9 +212,9 @@ hide:
 <div class="stats-page">
 
 <div class="stats-header">
-    <img src="../assets/images/logo.png" alt="Crawl4AI">
+    <img src="../assets/images/logo.png" alt="Crawl">
     <h1>Growth</h1>
-    <div class="subtitle">Community growth & adoption metrics for Crawl4AI</div>
+    <div class="subtitle">Community growth & adoption metrics for Crawl</div>
 </div>
 
 <!-- Headline Metrics -->

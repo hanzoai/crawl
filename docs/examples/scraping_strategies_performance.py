@@ -1,5 +1,5 @@
 import time, re
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
 # WebScrapingStrategy is now an alias for LXMLWebScrapingStrategy
 import time
 import functools

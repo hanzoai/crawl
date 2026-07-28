@@ -1,7 +1,7 @@
 # // File: tests/deep_crawling/test_filters.py
 import pytest
 from urllib.parse import urlparse
-from crawl4ai import ContentTypeFilter, URLFilter 
+from crawl import ContentTypeFilter, URLFilter 
 
 # Minimal URLFilter base class stub if not already importable directly for tests
 # In a real scenario, this would be imported from the library

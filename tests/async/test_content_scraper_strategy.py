@@ -12,7 +12,7 @@ parent_dir = os.path.dirname(
 sys.path.append(parent_dir)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
 # This test compares the same strategy with itself now since WebScrapingStrategy is deprecated
 
 

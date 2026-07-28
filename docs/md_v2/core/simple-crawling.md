@@ -1,6 +1,6 @@
 # Simple Crawling
 
-This guide covers the basics of web crawling with Crawl4AI. You'll learn how to set up a crawler, make your first request, and understand the response.
+This guide covers the basics of web crawling with Crawl. You'll learn how to set up a crawler, make your first request, and understand the response.
 
 ## Basic Usage
 
@@ -8,8 +8,8 @@ Set up a simple crawl using `BrowserConfig` and `CrawlerRunConfig`:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
 
 async def main():
     browser_config = BrowserConfig()  # Default browser configuration
@@ -107,8 +107,8 @@ Here's a more comprehensive example demonstrating common usage patterns:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def main():
     browser_config = BrowserConfig(verbose=True)

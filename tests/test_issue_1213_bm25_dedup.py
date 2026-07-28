@@ -7,7 +7,7 @@ first occurrence in document order.
 """
 
 import pytest
-from crawl4ai.content_filter_strategy import BM25ContentFilter
+from crawl.content_filter_strategy import BM25ContentFilter
 
 
 # ---------------------------------------------------------------------------

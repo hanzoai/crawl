@@ -7,7 +7,7 @@ import os
 from typing import Dict, Any
 
 
-class Crawl4AiTester:
+class CrawlTester:
     def __init__(self, base_url: str = "http://localhost:11235"):
         self.base_url = base_url
 
@@ -41,8 +41,8 @@ class Crawl4AiTester:
 
 
 def test_docker_deployment(version="basic"):
-    tester = Crawl4AiTester()
-    print(f"Testing Crawl4AI Docker {version} version")
+    tester = CrawlTester()
+    print(f"Testing Crawl Docker {version} version")
 
     # Health check with timeout and retry
     max_retries = 5
@@ -72,7 +72,7 @@ def test_docker_deployment(version="basic"):
     # test_screenshot(tester)
 
 
-def test_basic_crawl(tester: Crawl4AiTester):
+def test_basic_crawl(tester: CrawlTester):
     print("\n=== Testing Basic Crawl ===")
     request = {"urls": ["https://www.nbcnews.com/business"], "priority": 10}
 
@@ -82,7 +82,7 @@ def test_basic_crawl(tester: Crawl4AiTester):
     assert len(result["result"]["markdown"]) > 0
 
 
-def test_js_execution(tester: Crawl4AiTester):
+def test_js_execution(tester: CrawlTester):
     print("\n=== Testing JS Execution ===")
     request = {
         "urls": ["https://www.nbcnews.com/business"],
@@ -99,7 +99,7 @@ def test_js_execution(tester: Crawl4AiTester):
     assert result["result"]["success"]
 
 
-def test_css_selector(tester: Crawl4AiTester):
+def test_css_selector(tester: CrawlTester):
     print("\n=== Testing CSS Selector ===")
     request = {
         "urls": ["https://www.nbcnews.com/business"],
@@ -114,7 +114,7 @@ def test_css_selector(tester: Crawl4AiTester):
     assert result["result"]["success"]
 
 
-def test_structured_extraction(tester: Crawl4AiTester):
+def test_structured_extraction(tester: CrawlTester):
     print("\n=== Testing Structured Extraction ===")
     schema = {
         "name": "Coinbase Crypto Prices",
@@ -152,7 +152,7 @@ def test_structured_extraction(tester: Crawl4AiTester):
     assert len(extracted) > 0
 
 
-def test_llm_extraction(tester: Crawl4AiTester):
+def test_llm_extraction(tester: CrawlTester):
     print("\n=== Testing LLM Extraction ===")
     schema = {
         "type": "object",
@@ -199,7 +199,7 @@ def test_llm_extraction(tester: Crawl4AiTester):
         print(f"LLM extraction test failed (might be due to missing API key): {str(e)}")
 
 
-def test_llm_with_ollama(tester: Crawl4AiTester):
+def test_llm_with_ollama(tester: CrawlTester):
     print("\n=== Testing LLM with Ollama ===")
     schema = {
         "type": "object",
@@ -245,7 +245,7 @@ def test_llm_with_ollama(tester: Crawl4AiTester):
         print(f"Ollama extraction test failed: {str(e)}")
 
 
-def test_cosine_extraction(tester: Crawl4AiTester):
+def test_cosine_extraction(tester: CrawlTester):
     print("\n=== Testing Cosine Extraction ===")
     request = {
         "urls": ["https://www.nbcnews.com/business"],
@@ -271,7 +271,7 @@ def test_cosine_extraction(tester: Crawl4AiTester):
         print(f"Cosine extraction test failed: {str(e)}")
 
 
-def test_screenshot(tester: Crawl4AiTester):
+def test_screenshot(tester: CrawlTester):
     print("\n=== Testing Screenshot ===")
     request = {
         "urls": ["https://www.nbcnews.com/business"],

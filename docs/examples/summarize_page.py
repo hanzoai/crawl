@@ -4,8 +4,8 @@ import os
 
 from pydantic import BaseModel, Field
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
-from crawl4ai import CacheMode, LLMExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
+from crawl import CacheMode, LLMExtractionStrategy
 
 url = r"https://marketplace.visualstudio.com/items?itemName=Unclecode.groqopilot"
 

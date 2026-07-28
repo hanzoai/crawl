@@ -7,13 +7,13 @@ edge cases, and integration scenarios.
 import asyncio
 import pytest
 from typing import List, Dict, Any
-from crawl4ai import AsyncUrlSeeder, SeedingConfig, AsyncLogger
+from crawl import AsyncUrlSeeder, SeedingConfig, AsyncLogger
 import json
 from datetime import datetime
 
-# Test domain - using docs.crawl4ai.com as it has the actual documentation
+# Test domain - using docs.hanzo.ai as it has the actual documentation
 TEST_DOMAIN = "kidocode.com"
-TEST_DOMAIN = "docs.crawl4ai.com"
+TEST_DOMAIN = "docs.hanzo.ai"
 TEST_DOMAIN = "www.bbc.com/sport"
 
 
@@ -288,7 +288,7 @@ class TestAsyncUrlSeederBM25:
         unicode_queries = [
             "网页爬虫",  # Chinese
             "веб-краулер",  # Russian
-            "🚀 crawl4ai",  # Emoji
+            "🚀 crawl",  # Emoji
             "naïve implementation",  # Accented characters
         ]
         
@@ -381,7 +381,7 @@ class TestAsyncUrlSeederBM25:
     @pytest.mark.asyncio
     async def test_many_urls_with_scoring(self, seeder):
         """Test many_urls method with BM25 scoring."""
-        domains = [TEST_DOMAIN, "docs.crawl4ai.com", "example.com"]
+        domains = [TEST_DOMAIN, "docs.hanzo.ai", "example.com"]
         
         config = SeedingConfig(
             source="sitemap",

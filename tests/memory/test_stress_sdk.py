@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Stress test for Crawl4AI's arun_many and dispatcher system.
+Stress test for Crawl's arun_many and dispatcher system.
 This version uses a local HTTP server and focuses on testing
 the SDK's ability to handle multiple URLs concurrently, with per-batch logging.
 """
@@ -20,8 +20,8 @@ from typing import List, Dict, Optional, Union, AsyncGenerator
 import shutil
 from rich.console import Console
 
-# Crawl4AI components
-from crawl4ai import (
+# Crawl components
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     BrowserConfig,
@@ -85,7 +85,7 @@ class SiteGenerator:
         console.print(f"[bold green]Successfully generated {self.page_count} test pages in [cyan]{self.site_path}[/cyan][/bold green]")
 
     def _create_index_page(self) -> None:
-        index_content = """<!doctype html><html><head><title>Test Site Index</title><meta charset="utf-8"></head><body><h1>Test Site Index</h1><p>This is an automatically generated site for testing Crawl4AI.</p><div class="page-links">\n"""
+        index_content = """<!doctype html><html><head><title>Test Site Index</title><meta charset="utf-8"></head><body><h1>Test Site Index</h1><p>This is an automatically generated site for testing Crawl.</p><div class="page-links">\n"""
         for i in range(self.page_count):
             index_content += f'        <a href="page_{i}.html">Test Page {i}</a><br>\n'
         index_content += """    </div></body></html>"""
@@ -235,7 +235,7 @@ class CrawlerStressTest:
         rate_limiter = RateLimiter(base_delay=(0.1, 0.3)) if self.use_rate_limiter else None
         dispatcher = MemoryAdaptiveDispatcher(max_session_permit=self.max_sessions, monitor=monitor, rate_limiter=rate_limiter)
 
-        console.print(f"\n[bold cyan]Crawl4AI Stress Test - {self.url_count} URLs, {self.max_sessions} max sessions[/bold cyan]")
+        console.print(f"\n[bold cyan]Crawl Stress Test - {self.url_count} URLs, {self.max_sessions} max sessions[/bold cyan]")
         console.print(f"[bold cyan]Mode:[/bold cyan] {'Streaming' if self.stream_mode else 'Batch'}, [bold cyan]Monitor:[/bold cyan] {self.monitor_mode.name}, [bold cyan]Chunk Size:[/bold cyan] {self.chunk_size}")
         console.print(f"[bold cyan]Initial Memory:[/bold cyan] {start_memory_str}")
 
@@ -444,7 +444,7 @@ async def run_full_test(args):
 # --- main Function (Added chunk_size argument) ---
 def main():
     """Main entry point for the script."""
-    parser = argparse.ArgumentParser(description="Crawl4AI SDK High Volume Stress Test using arun_many")
+    parser = argparse.ArgumentParser(description="Crawl SDK High Volume Stress Test using arun_many")
 
     # Test parameters
     parser.add_argument("--urls", type=int, default=DEFAULT_URL_COUNT, help=f"Number of URLs to test (default: {DEFAULT_URL_COUNT})")
@@ -470,7 +470,7 @@ def main():
     args = parser.parse_args()
 
     # Display config
-    console.print("[bold underline]Crawl4AI SDK Stress Test Configuration[/bold underline]")
+    console.print("[bold underline]Crawl SDK Stress Test Configuration[/bold underline]")
     console.print(f"URLs: {args.urls}, Max Sessions: {args.max_sessions}, Chunk Size: {args.chunk_size}") # Added chunk size
     console.print(f"Mode: {'Streaming' if args.stream else 'Batch'}, Monitor: {args.monitor_mode}, Rate Limit: {args.use_rate_limiter}")
     console.print(f"Site Path: {args.site_path}, Port: {args.port}, Report Path: {args.report_path}")

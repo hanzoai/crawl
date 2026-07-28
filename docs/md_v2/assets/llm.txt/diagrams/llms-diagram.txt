@@ -1,8 +1,8 @@
-# Crawl4AI
+# Crawl
 
 > Open-source LLM-friendly web crawler and scraper for AI applications
 
-Crawl4AI simplifies asynchronous web crawling and data extraction, making it accessible for large language models (LLMs) and AI applications. Built with Python and Playwright for high-performance crawling with structured data extraction.
+Crawl simplifies asynchronous web crawling and data extraction, making it accessible for large language models (LLMs) and AI applications. Built with Python and Playwright for high-performance crawling with structured data extraction.
 
 **Key Features:**
 - Asynchronous crawling with high concurrency
@@ -13,16 +13,16 @@ Crawl4AI simplifies asynchronous web crawling and data extraction, making it acc
 - Advanced anti-detection capabilities
 
 **Quick Links:**
-- [GitHub Repository](https://github.com/unclecode/crawl4ai)
-- [Documentation](https://docs.crawl4ai.com)
-- [Examples](https://github.com/unclecode/crawl4ai/tree/main/docs/examples)
+- [GitHub Repository](https://github.com/hanzoai/crawl)
+- [Documentation](https://docs.hanzo.ai)
+- [Examples](https://github.com/hanzoai/crawl/tree/main/docs/examples)
 
 ---
 
 
 ## Installation Workflows and Architecture
 
-Visual representations of Crawl4AI installation processes, deployment options, and system interactions.
+Visual representations of Crawl installation processes, deployment options, and system interactions.
 
 ### Installation Decision Flow
 
@@ -35,22 +35,22 @@ flowchart TD
     B -->|Research/Testing| E[Google Colab]
     B -->|CI/CD Pipeline| F[Automated Setup]
     
-    C --> C1[pip install crawl4ai]
-    C1 --> C2[crawl4ai-setup]
+    C --> C1[pip install crawl]
+    C1 --> C2[crawl-setup]
     C2 --> C3{Need Advanced Features?}
     
     C3 -->|No| C4[Basic Installation Complete]
-    C3 -->|Text Clustering| C5[pip install crawl4ai with torch]
-    C3 -->|Transformers| C6[pip install crawl4ai with transformer]
-    C3 -->|All Features| C7[pip install crawl4ai with all]
+    C3 -->|Text Clustering| C5[pip install crawl with torch]
+    C3 -->|Transformers| C6[pip install crawl with transformer]
+    C3 -->|All Features| C7[pip install crawl with all]
     
-    C5 --> C8[crawl4ai-download-models]
+    C5 --> C8[crawl-download-models]
     C6 --> C8
     C7 --> C8
     C8 --> C9[Advanced Installation Complete]
     
     D --> D1{Deployment Method?}
-    D1 -->|Pre-built Image| D2[docker pull unclecode/crawl4ai]
+    D1 -->|Pre-built Image| D2[docker pull hanzoai/crawl]
     D1 -->|Docker Compose| D3[Clone repo + docker compose]
     D1 -->|Custom Build| D4[docker buildx build]
     
@@ -69,7 +69,7 @@ flowchart TD
     F1 --> F2[Automated setup scripts]
     F2 --> F3[CI/CD Integration Complete]
     
-    C4 --> G[Verify with crawl4ai-doctor]
+    C4 --> G[Verify with crawl-doctor]
     C9 --> G
     D7 --> H[Health check via API]
     E4 --> I[Run test crawl]
@@ -98,15 +98,15 @@ sequenceDiagram
     participant Playwright
     participant Crawler
     
-    User->>PyPI: pip install crawl4ai
+    User->>PyPI: pip install crawl
     PyPI-->>User: Package downloaded
     
-    User->>System: crawl4ai-setup
+    User->>System: crawl-setup
     System->>Playwright: Install browser binaries
     Playwright-->>System: Chromium, Firefox installed
     System-->>User: Setup complete
     
-    User->>System: crawl4ai-doctor
+    User->>System: crawl-doctor
     System->>System: Check Python version
     System->>System: Verify Playwright installation
     System->>System: Test browser launch
@@ -124,7 +124,7 @@ sequenceDiagram
 ```mermaid
 graph TB
     subgraph "Host System"
-        A[Docker Engine] --> B[Crawl4AI Container]
+        A[Docker Engine] --> B[Crawl Container]
         C[.llm.env File] --> B
         D[Port 11235] --> B
     end
@@ -170,25 +170,25 @@ graph TB
 stateDiagram-v2
     [*] --> BasicInstall
     
-    BasicInstall --> FeatureChoice: crawl4ai installed
+    BasicInstall --> FeatureChoice: crawl installed
     
     FeatureChoice --> TorchInstall: Need text clustering
     FeatureChoice --> TransformerInstall: Need HuggingFace models
     FeatureChoice --> AllInstall: Need everything
     FeatureChoice --> Complete: Basic features sufficient
     
-    TorchInstall --> TorchSetup: pip install crawl4ai with torch
-    TransformerInstall --> TransformerSetup: pip install crawl4ai with transformer  
-    AllInstall --> AllSetup: pip install crawl4ai with all
+    TorchInstall --> TorchSetup: pip install crawl with torch
+    TransformerInstall --> TransformerSetup: pip install crawl with transformer  
+    AllInstall --> AllSetup: pip install crawl with all
     
-    TorchSetup --> ModelDownload: crawl4ai-setup
-    TransformerSetup --> ModelDownload: crawl4ai-setup
-    AllSetup --> ModelDownload: crawl4ai-setup
+    TorchSetup --> ModelDownload: crawl-setup
+    TransformerSetup --> ModelDownload: crawl-setup
+    AllSetup --> ModelDownload: crawl-setup
     
-    ModelDownload --> PreDownload: crawl4ai-download-models
+    ModelDownload --> PreDownload: crawl-download-models
     PreDownload --> Complete: All models cached
     
-    Complete --> Verification: crawl4ai-doctor
+    Complete --> Verification: crawl-doctor
     Verification --> [*]: Installation verified
     
     note right of TorchInstall : PyTorch for semantic operations
@@ -299,7 +299,7 @@ sequenceDiagram
     Docker->>Registry: Push multi-arch manifest
     Registry-->>Docker: Build complete
     
-    User->>Registry: docker pull unclecode/crawl4ai
+    User->>Registry: docker pull hanzoai/crawl
     Registry-->>User: Download appropriate architecture
     
     User->>Docker: docker run with configuration
@@ -313,7 +313,7 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[Installation Complete] --> B[Run crawl4ai-doctor]
+    A[Installation Complete] --> B[Run crawl-doctor]
     
     B --> C{Python Version Check}
     C -->|✓ 3.10+| D{Playwright Check}
@@ -321,7 +321,7 @@ flowchart TD
     C1 --> D
     
     D -->|✓ Installed| E{Browser Binaries}
-    D -->|✗ Missing| D1[Run crawl4ai-setup]
+    D -->|✗ Missing| D1[Run crawl-setup]
     D1 --> E
     
     E -->|✓ Available| F{Test Browser Launch}
@@ -387,7 +387,7 @@ graph TD
     style D1 fill:#e3f2fd
 ```
 
-**📖 Learn more:** [Installation Guide](https://docs.crawl4ai.com/core/installation/), [Docker Deployment](https://docs.crawl4ai.com/core/docker-deployment/), [System Requirements](https://docs.crawl4ai.com/core/installation/#prerequisites)
+**📖 Learn more:** [Installation Guide](https://docs.hanzo.ai/core/installation/), [Docker Deployment](https://docs.hanzo.ai/core/docker-deployment/), [System Requirements](https://docs.hanzo.ai/core/installation/#prerequisites)
 ---
 
 
@@ -801,13 +801,13 @@ flowchart TD
     style I fill:#c8e6c9
 ```
 
-**📖 Learn more:** [Simple Crawling Guide](https://docs.crawl4ai.com/core/simple-crawling/), [Configuration Options](https://docs.crawl4ai.com/core/browser-crawler-config/), [Result Processing](https://docs.crawl4ai.com/core/crawler-result/), [Table Extraction](https://docs.crawl4ai.com/extraction/no-llm-strategies/)
+**📖 Learn more:** [Simple Crawling Guide](https://docs.hanzo.ai/core/simple-crawling/), [Configuration Options](https://docs.hanzo.ai/core/browser-crawler-config/), [Result Processing](https://docs.hanzo.ai/core/crawler-result/), [Table Extraction](https://docs.hanzo.ai/extraction/no-llm-strategies/)
 ---
 
 
 ## Configuration Objects and System Architecture
 
-Visual representations of Crawl4AI's configuration system, object relationships, and data flow patterns.
+Visual representations of Crawl's configuration system, object relationships, and data flow patterns.
 
 ### Configuration Object Relationships
 
@@ -1304,7 +1304,7 @@ flowchart TD
 
 ## Advanced Configuration Workflows and Patterns
 
-Visual representations of advanced Crawl4AI configuration strategies, proxy management, session handling, and identity-based crawling patterns.
+Visual representations of advanced Crawl configuration strategies, proxy management, session handling, and identity-based crawling patterns.
 
 ### User Agent and Anti-Detection Strategy Flow
 
@@ -1616,7 +1616,7 @@ sequenceDiagram
 ```mermaid
 graph LR
     subgraph "Main Package Imports"
-        A[crawl4ai] --> A1[AsyncWebCrawler]
+        A[crawl] --> A1[AsyncWebCrawler]
         A --> A2[BrowserConfig]
         A --> A3[CrawlerRunConfig]
         A --> A4[LLMConfig]
@@ -2221,17 +2221,17 @@ flowchart TD
     style E fill:#f3e5f5
 ```
 
-**📖 Learn more:** [Advanced Features Guide](https://docs.crawl4ai.com/advanced/advanced-features/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Hooks System](https://docs.crawl4ai.com/advanced/hooks-auth/), [Performance Optimization](https://docs.crawl4ai.com/advanced/performance/)
+**📖 Learn more:** [Advanced Features Guide](https://docs.hanzo.ai/advanced/advanced-features/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Hooks System](https://docs.hanzo.ai/advanced/hooks-auth/), [Performance Optimization](https://docs.hanzo.ai/advanced/performance/)
 
-**📖 Learn more:** [Identity-Based Crawling](https://docs.crawl4ai.com/advanced/identity-based-crawling/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Proxy & Security](https://docs.crawl4ai.com/advanced/proxy-security/), [Content Selection](https://docs.crawl4ai.com/core/content-selection/)
+**📖 Learn more:** [Identity-Based Crawling](https://docs.hanzo.ai/advanced/identity-based-crawling/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Proxy & Security](https://docs.hanzo.ai/advanced/proxy-security/), [Content Selection](https://docs.hanzo.ai/core/content-selection/)
 
-**📖 Learn more:** [Configuration Reference](https://docs.crawl4ai.com/api/parameters/), [Best Practices](https://docs.crawl4ai.com/core/browser-crawler-config/), [Advanced Configuration](https://docs.crawl4ai.com/advanced/advanced-features/)
+**📖 Learn more:** [Configuration Reference](https://docs.hanzo.ai/api/parameters/), [Best Practices](https://docs.hanzo.ai/core/browser-crawler-config/), [Advanced Configuration](https://docs.hanzo.ai/advanced/advanced-features/)
 ---
 
 
 ## Extraction Strategy Workflows and Architecture
 
-Visual representations of Crawl4AI's data extraction approaches, strategy selection, and processing workflows.
+Visual representations of Crawl's data extraction approaches, strategy selection, and processing workflows.
 
 ### Extraction Strategy Decision Tree
 
@@ -2706,7 +2706,7 @@ flowchart TD
     style F fill:#f3e5f5
 ```
 
-**📖 Learn more:** [LLM Strategies](https://docs.crawl4ai.com/extraction/llm-strategies/), [Schema-Based Extraction](https://docs.crawl4ai.com/extraction/no-llm-strategies/), [Pattern Matching](https://docs.crawl4ai.com/extraction/no-llm-strategies/#regexextractionstrategy), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [LLM Strategies](https://docs.hanzo.ai/extraction/llm-strategies/), [Schema-Based Extraction](https://docs.hanzo.ai/extraction/no-llm-strategies/), [Pattern Matching](https://docs.hanzo.ai/extraction/no-llm-strategies/#regexextractionstrategy), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/)
 ---
 
 
@@ -3101,7 +3101,7 @@ graph TD
     style R fill:#ffcdd2
 ```
 
-**📖 Learn more:** [Multi-URL Crawling Guide](https://docs.crawl4ai.com/advanced/multi-url-crawling/), [Dispatcher Configuration](https://docs.crawl4ai.com/advanced/crawl-dispatcher/), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/#performance-optimization)
+**📖 Learn more:** [Multi-URL Crawling Guide](https://docs.hanzo.ai/advanced/multi-url-crawling/), [Dispatcher Configuration](https://docs.hanzo.ai/advanced/crawl-dispatcher/), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/#performance-optimization)
 ---
 
 
@@ -3532,13 +3532,13 @@ sequenceDiagram
     end
 ```
 
-**📖 Learn more:** [Deep Crawling Strategies](https://docs.crawl4ai.com/core/deep-crawling/), [Content Filtering](https://docs.crawl4ai.com/core/content-selection/), [Advanced Crawling Patterns](https://docs.crawl4ai.com/advanced/advanced-features/)
+**📖 Learn more:** [Deep Crawling Strategies](https://docs.hanzo.ai/core/deep-crawling/), [Content Filtering](https://docs.hanzo.ai/core/content-selection/), [Advanced Crawling Patterns](https://docs.hanzo.ai/advanced/advanced-features/)
 ---
 
 
 ## Docker Deployment Architecture and Workflows
 
-Visual representations of Crawl4AI Docker deployment, API architecture, configuration management, and service interactions.
+Visual representations of Crawl Docker deployment, API architecture, configuration management, and service interactions.
 
 ### Docker Deployment Decision Flow
 
@@ -3551,7 +3551,7 @@ flowchart TD
     B -->|Custom Build| E[Manual Build]
     B -->|Production| F[Production Setup]
     
-    C --> C1[docker pull unclecode/crawl4ai]
+    C --> C1[docker pull hanzoai/crawl]
     C1 --> C2{Need LLM Support?}
     C2 -->|Yes| C3[Setup .llm.env]
     C2 -->|No| C4[Basic run]
@@ -3604,7 +3604,7 @@ flowchart TD
 ```mermaid
 graph TB
     subgraph "Host Environment"
-        A[Docker Engine] --> B[Crawl4AI Container]
+        A[Docker Engine] --> B[Crawl Container]
         C[.llm.env] --> B
         D[Custom config.yml] --> B
         E[Port 11235] --> B
@@ -3813,7 +3813,7 @@ flowchart TD
         G --> G1[Ubuntu base image]
         G1 --> G2[Python 3.11 install]
         G2 --> G3[System dependencies]
-        G3 --> G4[Crawl4AI installation]
+        G3 --> G4[Crawl installation]
         G4 --> G5[Playwright setup]
         G5 --> G6[FastAPI configuration]
         G6 --> G7[AMD64 image ready]
@@ -3823,7 +3823,7 @@ flowchart TD
         H --> H1[Ubuntu ARM64 base]
         H1 --> H2[Python 3.11 install]
         H2 --> H3[ARM-specific deps]
-        H3 --> H4[Crawl4AI installation]
+        H3 --> H4[Crawl installation]
         H4 --> H5[Playwright setup]
         H5 --> H6[FastAPI configuration]
         H6 --> H7[ARM64 image ready]
@@ -3863,7 +3863,7 @@ graph TB
         E[Custom MCP Client] --> B
     end
     
-    subgraph "Crawl4AI MCP Server"
+    subgraph "Crawl MCP Server"
         B --> F[MCP Endpoint Router]
         F --> G[SSE Transport /mcp/sse]
         F --> H[WebSocket Transport /mcp/ws]
@@ -3881,7 +3881,7 @@ graph TB
         J --> Q[Tool: ask]
     end
     
-    subgraph "Crawl4AI Core Services"
+    subgraph "Crawl Core Services"
         K --> R[Markdown Generator]
         L --> S[HTML Preprocessor]
         M --> T[Screenshot Service]
@@ -4027,9 +4027,9 @@ graph TB
     end
     
     subgraph "Application Layer"
-        C --> E[Crawl4AI Instance 1]
-        C --> F[Crawl4AI Instance 2]
-        C --> G[Crawl4AI Instance N]
+        C --> E[Crawl Instance 1]
+        C --> F[Crawl Instance 2]
+        C --> G[Crawl Instance N]
         
         E --> H[FastAPI Server]
         F --> I[FastAPI Server]
@@ -4138,7 +4138,7 @@ graph TD
     style Y fill:#fff3e0
 ```
 
-**📖 Learn more:** [Docker Deployment Guide](https://docs.crawl4ai.com/core/docker-deployment/), [API Reference](https://docs.crawl4ai.com/api/), [MCP Integration](https://docs.crawl4ai.com/core/docker-deployment/#mcp-model-context-protocol-support), [Production Configuration](https://docs.crawl4ai.com/core/docker-deployment/#production-deployment)
+**📖 Learn more:** [Docker Deployment Guide](https://docs.hanzo.ai/core/docker-deployment/), [API Reference](https://docs.hanzo.ai/api/), [MCP Integration](https://docs.hanzo.ai/core/docker-deployment/#mcp-model-context-protocol-support), [Production Configuration](https://docs.hanzo.ai/core/docker-deployment/#production-deployment)
 ---
 
 
@@ -4355,7 +4355,7 @@ graph TB
         I[Manual Browser Control] --> H
         J[DevTools Interface] --> H
         K[External Automation] --> H
-        L[Crawl4AI Crawler] --> H
+        L[Crawl Crawler] --> H
     end
     
     subgraph "Profile Data"
@@ -4379,7 +4379,7 @@ graph TB
 ```mermaid
 graph TD
     subgraph "Global Configuration"
-        A[~/.crawl4ai/config.yml] --> B[Default Settings]
+        A[~/.crawl/config.yml] --> B[Default Settings]
         B --> C[LLM Providers]
         B --> D[Browser Defaults]
         B --> E[Output Preferences]
@@ -4486,8 +4486,8 @@ timeline
     title CLI Workflow Evolution
     
     section Setup Phase
-        Installation : pip install crawl4ai
-                    : crawl4ai-setup
+        Installation : pip install crawl
+                    : crawl-setup
         Basic Test   : crwl https://example.com
         Config Setup : crwl config set defaults
     
@@ -4566,7 +4566,7 @@ graph LR
     style D1 fill:#fff3e0
 ```
 
-**📖 Learn more:** [CLI Reference](https://docs.crawl4ai.com/core/cli/), [Identity-Based Crawling](https://docs.crawl4ai.com/advanced/identity-based-crawling/), [Profile Management](https://docs.crawl4ai.com/advanced/session-management/), [Authentication Strategies](https://docs.crawl4ai.com/advanced/hooks-auth/)
+**📖 Learn more:** [CLI Reference](https://docs.hanzo.ai/core/cli/), [Identity-Based Crawling](https://docs.hanzo.ai/advanced/identity-based-crawling/), [Profile Management](https://docs.hanzo.ai/advanced/session-management/), [Authentication Strategies](https://docs.hanzo.ai/advanced/hooks-auth/)
 ---
 
 
@@ -5041,7 +5041,7 @@ graph LR
     style Q fill:#c8e6c9
 ```
 
-**📖 Learn more:** [HTTP vs Browser Strategies](https://docs.crawl4ai.com/core/browser-crawler-config/), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/), [Error Handling](https://docs.crawl4ai.com/api/async-webcrawler/)
+**📖 Learn more:** [HTTP vs Browser Strategies](https://docs.hanzo.ai/core/browser-crawler-config/), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/), [Error Handling](https://docs.hanzo.ai/api/async-webcrawler/)
 ---
 
 
@@ -5485,7 +5485,7 @@ graph TB
     style CB3 fill:#f3e5f5
 ```
 
-**📖 Learn more:** [URL Seeding Guide](https://docs.crawl4ai.com/core/url-seeding/), [Performance Optimization](https://docs.crawl4ai.com/advanced/optimization/), [Multi-URL Crawling](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [URL Seeding Guide](https://docs.hanzo.ai/core/url-seeding/), [Performance Optimization](https://docs.hanzo.ai/advanced/optimization/), [Multi-URL Crawling](https://docs.hanzo.ai/advanced/multi-url-crawling/)
 ---
 
 
@@ -5889,13 +5889,13 @@ flowchart TD
     style T fill:#e8f5e8
 ```
 
-**📖 Learn more:** [Deep Crawling Strategy](https://docs.crawl4ai.com/core/deep-crawling/), [Performance Optimization](https://docs.crawl4ai.com/advanced/performance-tuning/), [Custom Implementations](https://docs.crawl4ai.com/advanced/custom-filters/)
+**📖 Learn more:** [Deep Crawling Strategy](https://docs.hanzo.ai/core/deep-crawling/), [Performance Optimization](https://docs.hanzo.ai/advanced/performance-tuning/), [Custom Implementations](https://docs.hanzo.ai/advanced/custom-filters/)
 ---
 
 
 ## Summary
 
-Crawl4AI provides a comprehensive solution for web crawling and data extraction optimized for AI applications. From simple page crawling to complex multi-URL operations with advanced filtering, the library offers the flexibility and performance needed for modern data extraction workflows.
+Crawl provides a comprehensive solution for web crawling and data extraction optimized for AI applications. From simple page crawling to complex multi-URL operations with advanced filtering, the library offers the flexibility and performance needed for modern data extraction workflows.
 
 **Key Takeaways:**
 - Start with basic installation and simple crawling patterns
@@ -5905,8 +5905,8 @@ Crawl4AI provides a comprehensive solution for web crawling and data extraction 
 - Implement advanced features like deep crawling and custom filters as needed
 
 **Next Steps:**
-- Explore the [GitHub repository](https://github.com/unclecode/crawl4ai) for latest updates
+- Explore the [GitHub repository](https://github.com/hanzoai/crawl) for latest updates
 - Join the [Discord community](https://discord.gg/jP8KfhDhyN) for support
-- Check out [example projects](https://github.com/unclecode/crawl4ai/tree/main/docs/examples) for inspiration
+- Check out [example projects](https://github.com/hanzoai/crawl/tree/main/docs/examples) for inspiration
 
 Happy crawling! 🕷️

@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-c4ai-discover — Stage‑1 Discovery CLI
+crawl-discover — Stage‑1 Discovery CLI
 
 Scrapes LinkedIn company search + their people pages and dumps two newline‑delimited
 JSON files: companies.jsonl and people.jsonl.
 
 Key design rules
 ----------------
-* No BeautifulSoup — Crawl4AI only for network + HTML fetch.
+* No BeautifulSoup — Crawl only for network + HTML fetch.
 * JsonCssExtractionStrategy for structured scraping; schema auto‑generated once
   from sample HTML provided by user and then cached under ./schemas/.
 * Defaults are embedded so the file runs inside VS Code debugger without CLI args.
 * If executed as a console script (argv > 1), CLI flags win.
-* Lightweight deps: argparse + Crawl4AI stack.
+* Lightweight deps: argparse + Crawl stack.
 
 Author: Tom @ Kidocode 2025‑04‑26
 """
@@ -50,7 +50,7 @@ from urllib.parse import quote
 from pathlib import Path
 from glob import glob
 
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CacheMode,
@@ -154,7 +154,7 @@ def _load_or_build_schema(
     schema = JsonCssExtractionStrategy.generate_schema(
         html=sample_html,
         llm_config=LLMConfig(
-            provider=os.getenv("C4AI_SCHEMA_PROVIDER", "openai/gpt-4o"),
+            provider=os.getenv("CRAWL_SCHEMA_PROVIDER", "openai/gpt-4o"),
             api_token=os.getenv("OPENAI_API_KEY", "env:OPENAI_API_KEY"),
         ),
         query=query,
@@ -270,7 +270,7 @@ async def crawl_people_page(
 # ---------------------------------------------------------------------------
 
 def build_arg_parser() -> argparse.ArgumentParser:
-    ap = argparse.ArgumentParser("c4ai-discover — Crawl4AI LinkedIn discovery")
+    ap = argparse.ArgumentParser("crawl-discover — Crawl LinkedIn discovery")
     sub = ap.add_subparsers(dest="cmd", required=False, help="run scope")
 
     def add_flags(parser: argparse.ArgumentParser):
@@ -279,7 +279,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
         parser.add_argument("--title-filters", default="Product,Engineering", help="comma list of job keywords")
         parser.add_argument("--max-companies", type=int, default=1000)
         parser.add_argument("--max-people", type=int, default=500)
-        parser.add_argument("--profile-name", default=str(pathlib.Path.home() / ".crawl4ai/profiles/profile_linkedin_uc"))
+        parser.add_argument("--profile-name", default=str(pathlib.Path.home() / ".crawl/profiles/profile_linkedin_uc"))
         parser.add_argument("--outdir", default="./output")
         parser.add_argument("--concurrency", type=int, default=4)
         parser.add_argument("--log-level", default="info", choices=["debug", "info", "warn", "error"])
@@ -292,13 +292,13 @@ def build_arg_parser() -> argparse.ArgumentParser:
     ap.add_argument(
         "--debug",
         action="store_true",
-        help="Use built-in demo defaults (same as C4AI_DEMO_DEBUG=1)",
+        help="Use built-in demo defaults (same as CRAWL_DEMO_DEBUG=1)",
     )
     return ap
 
 
 def detect_debug_defaults(force = False) -> SimpleNamespace:
-    if not force and sys.gettrace() is None and not os.getenv("C4AI_DEMO_DEBUG"):
+    if not force and sys.gettrace() is None and not os.getenv("CRAWL_DEMO_DEBUG"):
         return SimpleNamespace()
     # ----- debug‑friendly defaults -----
     return SimpleNamespace(

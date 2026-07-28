@@ -4,15 +4,15 @@ Unit tests for _merge_head_data() total_score calculation.
 Verifies that total_score is computed for all links, including those
 that fail head extraction and only have an intrinsic_score.
 
-Regression tests for https://github.com/unclecode/crawl4ai/issues/1749
+Regression tests for https://github.com/hanzoai/crawl/issues/1749
 """
 
 import pytest
 from unittest.mock import MagicMock
 
-from crawl4ai.models import Link, Links
-from crawl4ai.link_preview import LinkPreview
-from crawl4ai.utils import calculate_total_score
+from crawl.models import Link, Links
+from crawl.link_preview import LinkPreview
+from crawl.utils import calculate_total_score
 
 
 class TestCalculateTotalScore:

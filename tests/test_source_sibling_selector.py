@@ -1,7 +1,7 @@
 """Tests for the `source` (sibling selector) support in JSON extraction strategies."""
 
 import pytest
-from crawl4ai.extraction_strategy import (
+from crawl.extraction_strategy import (
     JsonCssExtractionStrategy,
     JsonXPathExtractionStrategy,
 )

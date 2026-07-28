@@ -10,10 +10,10 @@ from typing import List, Dict, Any, Optional, Union
 from lxml import html as lxml_html
 import re
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.async_configs import LLMConfig
-from crawl4ai import JsonCssExtractionStrategy, LLMExtractionStrategy
-from crawl4ai.utils import perform_completion_with_backoff
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.async_configs import LLMConfig
+from crawl import JsonCssExtractionStrategy, LLMExtractionStrategy
+from crawl.utils import perform_completion_with_backoff
 
 
 async def extract_pipeline_v2(
@@ -325,14 +325,14 @@ async def extract_pipeline_v2(
 async def main():
     """Test the improved extraction pipeline."""
     
-    print("\n🚀 CRAWL4AI EXTRACTION PIPELINE V2 TEST")
+    print("\n🚀 CRAWL EXTRACTION PIPELINE V2 TEST")
     print("="*50)
     
     try:
         # Test 1: Structural extraction (GitHub issues)
         print("\nTest 1: GitHub Issues (should use structural)")
         result = await extract_pipeline_v2(
-            base_url="https://github.com/unclecode/crawl4ai/issues",
+            base_url="https://github.com/hanzoai/crawl/issues",
             urls=None,
             query="Extract all issue titles, numbers, and authors",
             verbose=True
@@ -351,7 +351,7 @@ async def main():
         })
         
         result2 = await extract_pipeline_v2(
-            base_url="https://github.com/unclecode/crawl4ai/issues",
+            base_url="https://github.com/hanzoai/crawl/issues",
             urls=None,
             query="Extract GitHub issues",
             target_json_example=target_example,

@@ -1,10 +1,10 @@
 # `SSLCertificate` Reference
 
-The **`SSLCertificate`** class encapsulates an SSL certificate’s data and allows exporting it in various formats (PEM, DER, JSON, or text). It’s used within **Crawl4AI** whenever you set **`fetch_ssl_certificate=True`** in your **`CrawlerRunConfig`**.  
+The **`SSLCertificate`** class encapsulates an SSL certificate’s data and allows exporting it in various formats (PEM, DER, JSON, or text). It’s used within **Crawl** whenever you set **`fetch_ssl_certificate=True`** in your **`CrawlerRunConfig`**.  
 
 ## 1. Overview
 
-**Location**: `crawl4ai/ssl_certificate.py`
+**Location**: `crawl/ssl_certificate.py`
 
 ```python
 class SSLCertificate:
@@ -122,14 +122,14 @@ cert.to_der("certificate.der")
 
 ---
 
-## 5. Example Usage in Crawl4AI
+## 5. Example Usage in Crawl
 
 Below is a minimal sample showing how the crawler obtains an SSL cert from a site, then reads or exports it. The code snippet:
 
 ```python
 import asyncio
 import os
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def main():
     tmp_dir = "tmp"
@@ -165,7 +165,7 @@ if __name__ == "__main__":
 1. **Timeout**: `SSLCertificate.from_url` internally uses a default **10s** socket connect and wraps SSL.  
 2. **Binary Form**: The certificate is loaded in ASN.1 (DER) form, then re-parsed by `OpenSSL.crypto`.  
 3. **Validation**: This does **not** validate the certificate chain or trust store. It only fetches and parses.  
-4. **Integration**: Within Crawl4AI, you typically just set `fetch_ssl_certificate=True` in `CrawlerRunConfig`; the final result’s `ssl_certificate` is automatically built.  
+4. **Integration**: Within Crawl, you typically just set `fetch_ssl_certificate=True` in `CrawlerRunConfig`; the final result’s `ssl_certificate` is automatically built.  
 5. **Export**: If you need to store or analyze a cert, the `to_json` and `to_pem` are quite universal.
 
 ---

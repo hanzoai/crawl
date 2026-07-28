@@ -1,4 +1,4 @@
-# Crawl4AI Docker Guide 🐳
+# Crawl Docker Guide 🐳
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
@@ -51,7 +51,7 @@ Before we dive in, make sure you have:
 
 ## Installation
 
-We offer several ways to get the Crawl4AI server running. The quickest way is to use our pre-built Docker Hub images.
+We offer several ways to get the Crawl server running. The quickest way is to use our pre-built Docker Hub images.
 
 ### Option 1: Using Pre-built Docker Hub Images (Recommended)
 
@@ -63,10 +63,10 @@ Our latest stable release is `0.9.2`. Images are built with multi-arch manifests
 
 ```bash
 # Pull the latest stable version (0.9.2)
-docker pull unclecode/crawl4ai:0.8.6
+docker pull hanzoai/crawl:0.8.6
 
 # Or use the latest tag
-docker pull unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
 ```
 
 #### 2. Setup Environment (API Keys)
@@ -98,9 +98,9 @@ EOL
     ```bash
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai \
+      --name crawl \
       --shm-size=1g \
-      unclecode/crawl4ai:0.8.6
+      hanzoai/crawl:0.8.6
     ```
 
 *   **With LLM support:**
@@ -108,10 +108,10 @@ EOL
     # Make sure .llm.env is in the current directory
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai \
+      --name crawl \
       --env-file .llm.env \
       --shm-size=1g \
-      unclecode/crawl4ai:0.8.6
+      hanzoai/crawl:0.8.6
     ```
 
 > The server will be available at `http://localhost:11235`. Visit `/playground` to access the interactive testing interface.
@@ -119,14 +119,14 @@ EOL
 #### 4. Stopping the Container
 
 ```bash
-docker stop crawl4ai && docker rm crawl4ai
+docker stop crawl && docker rm crawl
 ```
 
 #### Docker Hub Versioning Explained
 
-*   **Image Name:** `unclecode/crawl4ai`
+*   **Image Name:** `hanzoai/crawl`
 *   **Tag Format:** `LIBRARY_VERSION[-SUFFIX]` (e.g., `0.7.0-r1`)
-    *   `LIBRARY_VERSION`: The semantic version of the core `crawl4ai` Python library
+    *   `LIBRARY_VERSION`: The semantic version of the core `crawl` Python library
     *   `SUFFIX`: Optional tag for release candidates (``) and revisions (`r1`)
 *   **`latest` Tag:** Points to the most recent stable version
 *   **Multi-Architecture Support:** All images support both `linux/amd64` and `linux/arm64` architectures through a single tag
@@ -138,8 +138,8 @@ Docker Compose simplifies building and running the service, especially for local
 #### 1. Clone Repository
 
 ```bash
-git clone https://github.com/unclecode/crawl4ai.git
-cd crawl4ai
+git clone https://github.com/hanzoai/crawl.git
+cd crawl
 ```
 
 #### 2. Environment Setup (API Keys)
@@ -147,7 +147,7 @@ cd crawl4ai
 If you plan to use LLMs, copy the example environment file and add your API keys. This file should be in the **project root directory**.
 
 ```bash
-# Make sure you are in the 'crawl4ai' root directory
+# Make sure you are in the 'crawl' root directory
 cp deploy/docker/.llm.env.example .llm.env
 
 # Now edit .llm.env and add your API keys
@@ -184,7 +184,7 @@ The `docker-compose.yml` file in the project root provides a simplified approach
     ```bash
     # Pulls and runs the release candidate from Docker Hub
     # Automatically selects the correct architecture
-    IMAGE=unclecode/crawl4ai:0.8.6 docker compose up -d
+    IMAGE=hanzoai/crawl:0.8.6 docker compose up -d
     ```
 
 *   **Build and Run Locally:**
@@ -218,25 +218,25 @@ If you prefer not to use Docker Compose for direct control over the build and ru
 
 #### 1. Clone Repository & Setup Environment
 
-Follow steps 1 and 2 from the Docker Compose section above (clone repo, `cd crawl4ai`, create `.llm.env` in the root).
+Follow steps 1 and 2 from the Docker Compose section above (clone repo, `cd crawl`, create `.llm.env` in the root).
 
 #### 2. Build the Image (Multi-Arch)
 
-Use `docker buildx` to build the image. Crawl4AI now uses buildx to handle multi-architecture builds automatically.
+Use `docker buildx` to build the image. Crawl now uses buildx to handle multi-architecture builds automatically.
 
 ```bash
-# Make sure you are in the 'crawl4ai' root directory
+# Make sure you are in the 'crawl' root directory
 # Build for the current architecture and load it into Docker
-docker buildx build -t crawl4ai-local:latest --load .
+docker buildx build -t crawl-local:latest --load .
 
 # Or build for multiple architectures (useful for publishing)
-docker buildx build --platform linux/amd64,linux/arm64 -t crawl4ai-local:latest --load .
+docker buildx build --platform linux/amd64,linux/arm64 -t crawl-local:latest --load .
 
 # Build with additional options
 docker buildx build \
   --build-arg INSTALL_TYPE=all \
   --build-arg ENABLE_GPU=false \
-  -t crawl4ai-local:latest --load .
+  -t crawl-local:latest --load .
 ```
 
 #### 3. Run the Container
@@ -245,9 +245,9 @@ docker buildx build \
     ```bash
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai-standalone \
+      --name crawl-standalone \
       --shm-size=1g \
-      crawl4ai-local:latest
+      crawl-local:latest
     ```
 
 *   **With LLM support:**
@@ -255,10 +255,10 @@ docker buildx build \
     # Make sure .llm.env is in the current directory (project root)
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai-standalone \
+      --name crawl-standalone \
       --env-file .llm.env \
       --shm-size=1g \
-      crawl4ai-local:latest
+      crawl-local:latest
     ```
 
 > The server will be available at `http://localhost:11235`.
@@ -266,14 +266,14 @@ docker buildx build \
 #### 4. Stopping the Manual Container
 
 ```bash
-docker stop crawl4ai-standalone && docker rm crawl4ai-standalone
+docker stop crawl-standalone && docker rm crawl-standalone
 ```
 
 ---
 
 ## MCP (Model Context Protocol) Support
 
-Crawl4AI server includes support for the Model Context Protocol (MCP), allowing you to connect the server's capabilities directly to MCP-compatible clients like Claude Code.
+Crawl server includes support for the Model Context Protocol (MCP), allowing you to connect the server's capabilities directly to MCP-compatible clients like Claude Code.
 
 ### What is MCP?
 
@@ -281,24 +281,24 @@ MCP is an open protocol that standardizes how applications provide context to LL
 
 ### Connecting via MCP
 
-The Crawl4AI server exposes two MCP endpoints:
+The Crawl server exposes two MCP endpoints:
 
 - **Server-Sent Events (SSE)**: `http://localhost:11235/mcp/sse`
 - **WebSocket**: `ws://localhost:11235/mcp/ws`
 
 ### Using with Claude Code
 
-You can add Crawl4AI as an MCP tool provider in Claude Code with a simple command:
+You can add Crawl as an MCP tool provider in Claude Code with a simple command:
 
 ```bash
-# Add the Crawl4AI server as an MCP provider
-claude mcp add --transport sse c4ai-sse http://localhost:11235/mcp/sse
+# Add the Crawl server as an MCP provider
+claude mcp add --transport sse crawl-sse http://localhost:11235/mcp/sse
 
 # List all MCP providers to verify it was added
 claude mcp list
 ```
 
-Once connected, Claude Code can directly use Crawl4AI's capabilities like screenshot capture, PDF generation, and HTML processing without having to make separate API calls.
+Once connected, Claude Code can directly use Crawl's capabilities like screenshot capture, PDF generation, and HTML processing without having to make separate API calls.
 
 ### Available MCP Tools
 
@@ -310,7 +310,7 @@ When connected via MCP, the following tools are available:
 - `pdf` - Generate PDF documents
 - `execute_js` - Run JavaScript on web pages
 - `crawl` - Perform multi-URL crawling
-- `ask` - Query the Crawl4AI library context
+- `ask` - Query the Crawl library context
 
 ### Testing MCP Connections
 
@@ -412,7 +412,7 @@ You can customize the image build process using build arguments (`--build-arg`).
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
   --build-arg INSTALL_TYPE=all \
-  -t yourname/crawl4ai-all:latest \
+  -t yourname/crawl-all:latest \
   --load \
   . # Build from root context
 ```
@@ -459,12 +459,12 @@ This is the easiest way to translate Python configuration to JSON requests when 
 
 ### Python SDK
 
-Install the SDK: `pip install crawl4ai`
+Install the SDK: `pip install crawl`
 
 ```python
 import asyncio
-from crawl4ai.docker_client import Crawl4aiDockerClient
-from crawl4ai import BrowserConfig, CrawlerRunConfig, CacheMode # Assuming you have crawl4ai installed
+from crawl.docker_client import Crawl4aiDockerClient
+from crawl import BrowserConfig, CrawlerRunConfig, CacheMode # Assuming you have crawl installed
 
 async def main():
     # Point to the correct server port
@@ -744,7 +744,7 @@ Add custom headers for authentication:
     "webhook_data_in_payload": false,
     "webhook_headers": {
       "X-Webhook-Secret": "your-secret-token",
-      "X-Service-ID": "crawl4ai-prod"
+      "X-Service-ID": "crawl-prod"
     }
   }
 }
@@ -869,7 +869,7 @@ Here's a detailed breakdown of the configuration options (using defaults from `d
 ```yaml
 # Application Configuration
 app:
-  title: "Crawl4AI API"
+  title: "Crawl API"
   version: "1.0.0" # Consider setting this to match library version, e.g., "0.5.1"
   host: "0.0.0.0"
   port: 8020 # NOTE: This port is used ONLY when running server.py directly. Gunicorn overrides this (see supervisord.conf).
@@ -953,18 +953,18 @@ You can override the default `config.yml`.
         ```bash
         # Assumes my-custom-config.yml is in the current directory
         docker run -d -p 11235:11235 \
-          --name crawl4ai-custom-config \
+          --name crawl-custom-config \
           --env-file .llm.env \
           --shm-size=1g \
           -v $(pwd)/my-custom-config.yml:/app/config.yml \
-          unclecode/crawl4ai:latest # Or your specific tag
+          hanzoai/crawl:latest # Or your specific tag
         ```
 
     *   **Using `docker-compose.yml`:** Add a `volumes` section to the service definition:
         ```yaml
         services:
-          crawl4ai-hub-amd64: # Or your chosen service
-            image: unclecode/crawl4ai:latest
+          crawl-hub-amd64: # Or your chosen service
+            image: hanzoai/crawl:latest
             profiles: ["hub-amd64"]
             <<: *base-config
             volumes:
@@ -1002,16 +1002,16 @@ You can override the default `config.yml`.
 
 ## Getting Help
 
-We're here to help you succeed with Crawl4AI! Here's how to get support:
+We're here to help you succeed with Crawl! Here's how to get support:
 
-- 📖 Check our [full documentation](https://docs.crawl4ai.com)
-- 🐛 Found a bug? [Open an issue](https://github.com/unclecode/crawl4ai/issues)
-- 💬 Join our [Discord community](https://discord.gg/crawl4ai)
+- 📖 Check our [full documentation](https://docs.hanzo.ai)
+- 🐛 Found a bug? [Open an issue](https://github.com/hanzoai/crawl/issues)
+- 💬 Join our [Discord community](https://discord.gg/crawl)
 - ⭐ Star us on GitHub to show support!
 
 ## Summary
 
-In this guide, we've covered everything you need to get started with Crawl4AI's Docker deployment:
+In this guide, we've covered everything you need to get started with Crawl's Docker deployment:
 - Building and running the Docker container
 - Configuring the environment
 - Using the interactive playground for testing
@@ -1024,7 +1024,7 @@ In this guide, we've covered everything you need to get started with Crawl4AI's 
 
 The new playground interface at `http://localhost:11235/playground` makes it much easier to test configurations and generate the corresponding JSON for API requests.
 
-For AI application developers, the MCP integration allows tools like Claude Code to directly access Crawl4AI's capabilities without complex API handling.
+For AI application developers, the MCP integration allows tools like Claude Code to directly access Crawl's capabilities without complex API handling.
 
 Remember, the examples in the `examples` folder are your friends - they show real-world usage patterns that you can adapt for your needs.
 

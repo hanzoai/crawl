@@ -19,12 +19,12 @@ We take security vulnerabilities seriously. If you discover a security issue, pl
 Instead, please report via one of these methods:
 
 1. **GitHub Security Advisories (Preferred)**
-   - Go to [Security Advisories](https://github.com/unclecode/crawl4ai/security/advisories)
+   - Go to [Security Advisories](https://github.com/hanzoai/crawl/security/advisories)
    - Click "New draft security advisory"
    - Fill in the details
 
 2. **Email**
-   - Send details to: unclecode@crawl4ai.com (CC: nasrin@crawl4ai.com and aravind@crawl4ai.com)
+   - Send details to: unclecode@crawl.hanzo.ai (CC: nasrin@crawl.hanzo.ai and aravind@crawl.hanzo.ai)
    - Use subject: `[SECURITY] Brief description`
    - Include:
      - Description of the vulnerability
@@ -53,7 +53,7 @@ Instead, please report via one of these methods:
 
 ### Docker API Deployment
 
-If you're running the Crawl4AI Docker API in production:
+If you're running the Crawl Docker API in production:
 
 1. **Enable Authentication**
    ```yaml
@@ -69,7 +69,7 @@ If you're running the Crawl4AI Docker API in production:
 
 2. **Hooks are Disabled by Default** (v0.8.0+)
    - Only enable if you trust all API users
-   - Set `CRAWL4AI_HOOKS_ENABLED=true` only when necessary
+   - Set `CRAWL_HOOKS_ENABLED=true` only when necessary
 
 3. **Network Security**
    - Run behind a reverse proxy (nginx, traefik)
@@ -83,7 +83,7 @@ If you're running the Crawl4AI Docker API in production:
 
 ### Library Usage
 
-When using Crawl4AI as a Python library:
+When using Crawl as a Python library:
 
 1. **Validate URLs** before crawling untrusted input
 2. **Sanitize extracted content** before using in other systems
@@ -104,7 +104,7 @@ When using Crawl4AI as a Python library:
 |----|----------|-------------|-----|
 | CVE-pending-3 | CRITICAL | RCE via deserialization + `eval()` in `/crawl` endpoint | Allowlisted deserializable types; AST-validated computed field expressions |
 
-See [Security Advisory](https://github.com/unclecode/crawl4ai/security/advisories) for details.
+See [Security Advisory](https://github.com/hanzoai/crawl/security/advisories) for details.
 
 ## Security Features
 
@@ -116,7 +116,7 @@ See [Security Advisory](https://github.com/unclecode/crawl4ai/security/advisorie
 ### v0.8.0+
 
 - **URL Scheme Validation**: Blocks `file://`, `javascript:`, `data:` URLs on API
-- **Hooks Disabled by Default**: Opt-in via `CRAWL4AI_HOOKS_ENABLED=true`
+- **Hooks Disabled by Default**: Opt-in via `CRAWL_HOOKS_ENABLED=true`
 - **Restricted Hook Builtins**: No `__import__`, `eval`, `exec`, `open`
 - **JWT Authentication**: Optional but recommended for production
 - **Rate Limiting**: Configurable request limits

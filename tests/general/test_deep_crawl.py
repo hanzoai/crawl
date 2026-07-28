@@ -2,10 +2,10 @@ import asyncio
 import time
 
 
-from crawl4ai import CrawlerRunConfig, AsyncWebCrawler, CacheMode
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
-# from crawl4ai.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
+from crawl import CrawlerRunConfig, AsyncWebCrawler, CacheMode
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.deep_crawling import BFSDeepCrawlStrategy
+# from crawl.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
 
 
 async def main():
@@ -25,7 +25,7 @@ async def main():
         start_time = time.perf_counter()
         print("\nStarting deep crawl in batch mode:")
         results = await crawler.arun(
-            url="https://docs.crawl4ai.com",
+            url="https://docs.hanzo.ai",
             config=config
         )
         print(f"Crawled {len(results)} pages")
@@ -36,7 +36,7 @@ async def main():
         config.stream = True
         start_time = time.perf_counter()
         async for result in await crawler.arun(
-            url="https://docs.crawl4ai.com",
+            url="https://docs.hanzo.ai",
             config=config
         ):
             print(f"→ {result.url} (Depth: {result.metadata.get('depth', 0)})")

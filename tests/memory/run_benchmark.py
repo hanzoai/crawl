@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Run a complete Crawl4AI benchmark test using test_stress_sdk.py and generate a report.
+Run a complete Crawl benchmark test using test_stress_sdk.py and generate a report.
 """
 
 import sys
@@ -52,7 +52,7 @@ def run_benchmark(config_name, custom_args=None, compare=True, clean=False):
         return False
 
     # Print header
-    title = "Crawl4AI SDK Benchmark Test"
+    title = "Crawl SDK Benchmark Test"
     if config_name != "custom":
         title += f" - {TEST_CONFIGS[config_name]['description']}"
     else:
@@ -197,7 +197,7 @@ def run_benchmark(config_name, custom_args=None, compare=True, clean=False):
     return True
 
 def main():
-    parser = argparse.ArgumentParser(description="Run a Crawl4AI SDK benchmark test and generate a report")
+    parser = argparse.ArgumentParser(description="Run a Crawl SDK benchmark test and generate a report")
 
     # --- Arguments ---
     parser.add_argument("config", choices=list(TEST_CONFIGS) + ["custom"],

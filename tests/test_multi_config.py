@@ -8,7 +8,7 @@ from pathlib import Path
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, MatchMode, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, MatchMode, CacheMode
 
 async def test_multi_config():
     # Create different configs for different URL patterns

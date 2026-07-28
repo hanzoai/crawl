@@ -1,14 +1,14 @@
 """
-Demonstration of C4A-Script integration with Crawl4AI
+Demonstration of C4A-Script integration with Crawl
 Shows various use cases and features
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import c4a_compile, CompilationResult
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import c4a_compile, CompilationResult
 
 async def example_basic_usage():
-    """Basic C4A-Script usage with Crawl4AI"""
+    """Basic C4A-Script usage with Crawl"""
     print("\n" + "="*60)
     print("Example 1: Basic C4A-Script Usage")
     print("="*60)
@@ -214,7 +214,7 @@ async def example_combining_with_extraction():
     print("Example 6: C4A-Script + Extraction Strategies")
     print("="*60)
     
-    from crawl4ai import JsonCssExtractionStrategy
+    from crawl import JsonCssExtractionStrategy
     
     # Script to prepare page for extraction
     prep_script = """
@@ -263,7 +263,7 @@ async def example_combining_with_extraction():
 
 async def main():
     """Run all examples"""
-    print("\n🚀 C4A-Script + Crawl4AI Integration Demo\n")
+    print("\n🚀 C4A-Script + Crawl Integration Demo\n")
     
     # Run all examples
     await example_basic_usage()

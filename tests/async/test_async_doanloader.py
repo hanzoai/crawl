@@ -9,12 +9,12 @@ import tempfile
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parent_dir)
 
-from crawl4ai.async_webcrawler import AsyncWebCrawler
+from crawl.async_webcrawler import AsyncWebCrawler
 
 
 class TestDownloads:
     def __init__(self):
-        self.temp_dir = tempfile.mkdtemp(prefix="crawl4ai_test_")
+        self.temp_dir = tempfile.mkdtemp(prefix="crawl_test_")
         self.download_dir = os.path.join(self.temp_dir, "downloads")
         os.makedirs(self.download_dir, exist_ok=True)
         self.results: List[str] = []

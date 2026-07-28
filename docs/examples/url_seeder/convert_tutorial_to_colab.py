@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Convert Crawl4AI URL Seeder tutorial markdown to Colab notebook format
+Convert Crawl URL Seeder tutorial markdown to Colab notebook format
 """
 
 import json
@@ -100,7 +100,7 @@ def create_colab_notebook(cells):
         "nbformat_minor": 0,
         "metadata": {
             "colab": {
-                "name": "Crawl4AI_URL_Seeder_Tutorial.ipynb",
+                "name": "Crawl_URL_Seeder_Tutorial.ipynb",
                 "provenance": [],
                 "collapsed_sections": [],
                 "toc_visible": True
@@ -141,7 +141,7 @@ def main():
     notebook = create_colab_notebook(cells)
     
     # Save notebook
-    output_path = Path("Crawl4AI_URL_Seeder_Tutorial.ipynb")
+    output_path = Path("Crawl_URL_Seeder_Tutorial.ipynb")
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(notebook, f, indent=2, ensure_ascii=False)
     

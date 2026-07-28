@@ -15,7 +15,7 @@ import json
 from typing import Dict, Any, List
 from unittest.mock import AsyncMock, MagicMock
 
-from crawl4ai.deep_crawling import (
+from crawl.deep_crawling import (
     BFSDeepCrawlStrategy,
     DFSDeepCrawlStrategy,
     BestFirstCrawlingStrategy,
@@ -23,7 +23,7 @@ from crawl4ai.deep_crawling import (
     URLPatternFilter,
     DomainFilter,
 )
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 
 # ============================================================================

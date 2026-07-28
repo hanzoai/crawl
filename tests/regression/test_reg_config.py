@@ -1,5 +1,5 @@
 """
-Regression tests for Crawl4AI configuration objects.
+Regression tests for Crawl configuration objects.
 
 Covers BrowserConfig, CrawlerRunConfig, ProxyConfig, GeolocationConfig,
 deep_merge logic, and serialization roundtrips.
@@ -8,14 +8,14 @@ deep_merge logic, and serialization roundtrips.
 import copy
 import pytest
 
-from crawl4ai import (
+from crawl import (
     BrowserConfig,
     CrawlerRunConfig,
     ProxyConfig,
     GeolocationConfig,
     CacheMode,
 )
-from crawl4ai.async_configs import to_serializable_dict, from_serializable_dict
+from crawl.async_configs import to_serializable_dict, from_serializable_dict
 
 
 # ---------------------------------------------------------------------------
@@ -265,7 +265,7 @@ class TestCrawlerRunConfigDefaults:
 
     def test_word_count_threshold_default(self):
         """Default word_count_threshold should match MIN_WORD_THRESHOLD (1)."""
-        from crawl4ai.config import MIN_WORD_THRESHOLD
+        from crawl.config import MIN_WORD_THRESHOLD
         cfg = CrawlerRunConfig()
         assert cfg.word_count_threshold == MIN_WORD_THRESHOLD
 
@@ -406,7 +406,7 @@ class TestCrawlerRunConfigSerialization:
     def test_dump_with_extraction_strategy(self):
         """CrawlerRunConfig with extraction_strategy should serialize."""
         try:
-            from crawl4ai import JsonCssExtractionStrategy
+            from crawl import JsonCssExtractionStrategy
             schema = {
                 "name": "test",
                 "baseSelector": "div.item",
@@ -425,7 +425,7 @@ class TestCrawlerRunConfigSerialization:
     def test_dump_with_deep_crawl_strategy(self):
         """CrawlerRunConfig with deep_crawl_strategy should serialize."""
         try:
-            from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+            from crawl.deep_crawling import BFSDeepCrawlStrategy
             strategy = BFSDeepCrawlStrategy(max_depth=2, max_pages=10)
             cfg = CrawlerRunConfig(deep_crawl_strategy=strategy)
             dumped = cfg.dump()
@@ -702,7 +702,7 @@ class TestSerializableDict:
     def test_crawler_run_config_with_extraction_strategy(self):
         """CrawlerRunConfig with extraction strategy should roundtrip."""
         try:
-            from crawl4ai import JsonCssExtractionStrategy
+            from crawl import JsonCssExtractionStrategy
             schema = {
                 "name": "products",
                 "baseSelector": "div.product",

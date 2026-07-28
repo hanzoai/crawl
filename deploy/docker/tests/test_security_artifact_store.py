@@ -13,10 +13,10 @@ import pytest
 @pytest.fixture
 def store(tmp_path, monkeypatch):
     """Point the artifact store at an isolated temp dir and reload it."""
-    monkeypatch.setenv("CRAWL4AI_ARTIFACT_DIR", str(tmp_path / "art"))
-    monkeypatch.setenv("CRAWL4AI_MAX_ARTIFACT_BYTES", "1024")
-    monkeypatch.setenv("CRAWL4AI_ARTIFACT_QUOTA_BYTES", "4096")
-    monkeypatch.setenv("CRAWL4AI_ARTIFACT_TTL_SECONDS", "3600")
+    monkeypatch.setenv("CRAWL_ARTIFACT_DIR", str(tmp_path / "art"))
+    monkeypatch.setenv("CRAWL_MAX_ARTIFACT_BYTES", "1024")
+    monkeypatch.setenv("CRAWL_ARTIFACT_QUOTA_BYTES", "4096")
+    monkeypatch.setenv("CRAWL_ARTIFACT_TTL_SECONDS", "3600")
     import importlib
     import artifacts
     importlib.reload(artifacts)

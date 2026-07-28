@@ -1,4 +1,4 @@
-# Solving the Virtual Scroll Puzzle: How Crawl4AI Captures What Others Miss
+# Solving the Virtual Scroll Puzzle: How Crawl Captures What Others Miss
 
 *Published on June 29, 2025 • 10 min read*
 
@@ -37,7 +37,7 @@ Traditional scrapers see this and capture... 5 items. Out of thousands. It's lik
 
 ## Why Virtual Scroll Broke Everything
 
-When I first encountered this with Crawl4AI, I thought it was a bug. My scraper would perfectly capture the initial tweets, but scrolling did... nothing. The DOM element count stayed constant. The HTML size barely changed. Yet visually, new content kept appearing.
+When I first encountered this with Crawl, I thought it was a bug. My scraper would perfectly capture the initial tweets, but scrolling did... nothing. The DOM element count stayed constant. The HTML size barely changed. Yet visually, new content kept appearing.
 
 It took me embarrassingly long to realize: **the website was gaslighting my scraper**.
 
@@ -77,10 +77,10 @@ Virtual scroll detected! Content is being replaced. This is where our new magic 
 
 ## Introducing VirtualScrollConfig
 
-Here's how Crawl4AI solves this puzzle:
+Here's how Crawl solves this puzzle:
 
 ```python
-from crawl4ai import AsyncWebCrawler, VirtualScrollConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, VirtualScrollConfig, CrawlerRunConfig
 
 # Configure virtual scroll handling
 virtual_config = VirtualScrollConfig(
@@ -107,7 +107,7 @@ But here's where it gets clever...
 
 ## The Magic Behind the Scenes
 
-When Crawl4AI encounters a virtual scroll container, it:
+When Crawl encounters a virtual scroll container, it:
 
 1. **Takes a snapshot** of the initial HTML
 2. **Scrolls** by the configured amount
@@ -187,7 +187,7 @@ During testing, we achieved remarkable results:
 | LinkedIn Feed | 5 posts | 200 posts | **40x** |
 | Reddit Comments | 25 comments | 500 comments | **20x** |
 
-The best part? It's automatic. If the page doesn't use virtual scroll, Crawl4AI handles it normally. No configuration changes needed.
+The best part? It's automatic. If the page doesn't use virtual scroll, Crawl handles it normally. No configuration changes needed.
 
 ## When to Use Virtual Scroll
 
@@ -289,7 +289,7 @@ Simple, but effective. We normalize text to catch duplicates even with slight HT
 
 ## What This Means for Web Scraping
 
-Virtual scroll support in Crawl4AI represents a paradigm shift. We're no longer limited to what's immediately visible or what traditional scrolling reveals. We can now capture the full content of virtually any modern website.
+Virtual scroll support in Crawl represents a paradigm shift. We're no longer limited to what's immediately visible or what traditional scrolling reveals. We can now capture the full content of virtually any modern website.
 
 This opens new possibilities:
 - **Complete social media analysis**: Every tweet, every comment, every reaction
@@ -304,7 +304,7 @@ Ready to capture what others miss? Here's a complete example to get you started:
 ```python
 # Save this as virtual_scroll_demo.py
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig
 
 async def main():
     # Configure virtual scroll
@@ -337,7 +337,7 @@ if __name__ == "__main__":
 
 ## Conclusion: The Future is Already Here
 
-Virtual scrolling was supposed to be the end of comprehensive web scraping. Instead, it became the catalyst for smarter, more sophisticated tools. With Crawl4AI's virtual scroll support, we're not just keeping up with modern web development—we're staying ahead of it.
+Virtual scrolling was supposed to be the end of comprehensive web scraping. Instead, it became the catalyst for smarter, more sophisticated tools. With Crawl's virtual scroll support, we're not just keeping up with modern web development—we're staying ahead of it.
 
 The web is evolving, becoming more dynamic, more efficient, and yes, more challenging to scrape. But with the right tools and understanding, every challenge becomes an opportunity.
 
@@ -347,9 +347,9 @@ Welcome to the future of web scraping. Welcome to a world where virtual scroll i
 
 ## Learn More
 
-- 📖 [Virtual Scroll Documentation](https://docs.crawl4ai.com/advanced/virtual-scroll) - Complete API reference and configuration options
-- 💻 [Interactive Examples](https://docs.crawl4ai.com/examples/virtual_scroll_example.py) - Try it yourself with our test server
-- 🚀 [Get Started with Crawl4AI](https://docs.crawl4ai.com/core/quickstart) - Full installation and setup guide
-- 🤝 [Join our Community](https://github.com/unclecode/crawl4ai) - Share your experiences and get help
+- 📖 [Virtual Scroll Documentation](https://docs.hanzo.ai/advanced/virtual-scroll) - Complete API reference and configuration options
+- 💻 [Interactive Examples](https://docs.hanzo.ai/examples/virtual_scroll_example.py) - Try it yourself with our test server
+- 🚀 [Get Started with Crawl](https://docs.hanzo.ai/core/quickstart) - Full installation and setup guide
+- 🤝 [Join our Community](https://github.com/hanzoai/crawl) - Share your experiences and get help
 
-*Have you encountered virtual scroll challenges? How did you solve them? Share your story in our [GitHub discussions](https://github.com/unclecode/crawl4ai/discussions)!*
+*Have you encountered virtual scroll challenges? How did you solve them? Share your story in our [GitHub discussions](https://github.com/hanzoai/crawl/discussions)!*

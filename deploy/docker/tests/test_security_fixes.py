@@ -106,39 +106,39 @@ class TestHooksEnabled(unittest.TestCase):
 
     def test_hooks_disabled_by_default(self):
         """Hooks must be disabled by default."""
-        original = os.environ.pop("CRAWL4AI_HOOKS_ENABLED", None)
+        original = os.environ.pop("CRAWL_HOOKS_ENABLED", None)
         try:
-            hooks_enabled = os.environ.get("CRAWL4AI_HOOKS_ENABLED", "false").lower() == "true"
+            hooks_enabled = os.environ.get("CRAWL_HOOKS_ENABLED", "false").lower() == "true"
             self.assertFalse(hooks_enabled)
         finally:
             if original is not None:
-                os.environ["CRAWL4AI_HOOKS_ENABLED"] = original
+                os.environ["CRAWL_HOOKS_ENABLED"] = original
 
     def test_hooks_enabled_when_true(self):
-        """Hooks must be enabled when CRAWL4AI_HOOKS_ENABLED=true."""
-        original = os.environ.get("CRAWL4AI_HOOKS_ENABLED")
+        """Hooks must be enabled when CRAWL_HOOKS_ENABLED=true."""
+        original = os.environ.get("CRAWL_HOOKS_ENABLED")
         try:
-            os.environ["CRAWL4AI_HOOKS_ENABLED"] = "true"
-            hooks_enabled = os.environ.get("CRAWL4AI_HOOKS_ENABLED", "false").lower() == "true"
+            os.environ["CRAWL_HOOKS_ENABLED"] = "true"
+            hooks_enabled = os.environ.get("CRAWL_HOOKS_ENABLED", "false").lower() == "true"
             self.assertTrue(hooks_enabled)
         finally:
             if original is not None:
-                os.environ["CRAWL4AI_HOOKS_ENABLED"] = original
+                os.environ["CRAWL_HOOKS_ENABLED"] = original
             else:
-                os.environ.pop("CRAWL4AI_HOOKS_ENABLED", None)
+                os.environ.pop("CRAWL_HOOKS_ENABLED", None)
 
     def test_hooks_disabled_when_false(self):
-        """Hooks must be disabled when CRAWL4AI_HOOKS_ENABLED=false."""
-        original = os.environ.get("CRAWL4AI_HOOKS_ENABLED")
+        """Hooks must be disabled when CRAWL_HOOKS_ENABLED=false."""
+        original = os.environ.get("CRAWL_HOOKS_ENABLED")
         try:
-            os.environ["CRAWL4AI_HOOKS_ENABLED"] = "false"
-            hooks_enabled = os.environ.get("CRAWL4AI_HOOKS_ENABLED", "false").lower() == "true"
+            os.environ["CRAWL_HOOKS_ENABLED"] = "false"
+            hooks_enabled = os.environ.get("CRAWL_HOOKS_ENABLED", "false").lower() == "true"
             self.assertFalse(hooks_enabled)
         finally:
             if original is not None:
-                os.environ["CRAWL4AI_HOOKS_ENABLED"] = original
+                os.environ["CRAWL_HOOKS_ENABLED"] = original
             else:
-                os.environ.pop("CRAWL4AI_HOOKS_ENABLED", None)
+                os.environ.pop("CRAWL_HOOKS_ENABLED", None)
 
 
 class TestComputedFieldExpressionDisabled(unittest.TestCase):
@@ -153,7 +153,7 @@ class TestComputedFieldExpressionDisabled(unittest.TestCase):
         import logging
         # Import the actual class
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
 
         schema = {
             "baseSelector": "div",
@@ -174,7 +174,7 @@ class TestComputedFieldExpressionDisabled(unittest.TestCase):
     def test_expression_does_not_execute_code(self):
         """expression must NEVER execute - even harmless code."""
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
 
         schema = {
             "baseSelector": "div",
@@ -196,7 +196,7 @@ class TestComputedFieldExpressionDisabled(unittest.TestCase):
     def test_function_key_still_works(self):
         """function key with Python callable must still work."""
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
 
         schema = {
             "baseSelector": "div",
@@ -268,7 +268,7 @@ class TestDeserializationAllowlist(unittest.TestCase):
 
 if __name__ == '__main__':
     print("=" * 60)
-    print("Crawl4AI Security Fixes - Unit Tests")
+    print("Crawl Security Fixes - Unit Tests")
     print("=" * 60)
     print()
     unittest.main(verbosity=2)

@@ -64,7 +64,7 @@ class AppDetailPage {
         if (!this.appData) return;
 
         // Update title
-        document.title = `${this.appData.name} - Crawl4AI Marketplace`;
+        document.title = `${this.appData.name} - Crawl Marketplace`;
 
         // Hero image
         const appImage = document.getElementById('app-image');
@@ -139,7 +139,7 @@ pip install git+${this.appData.github_url || 'https://github.com/example/repo'}`
         // Usage code - customize based on category
         const usageCode = document.getElementById('usage-code');
         if (this.appData.category === 'Browser Automation') {
-            usageCode.textContent = `from crawl4ai import AsyncWebCrawler
+            usageCode.textContent = `from crawl import AsyncWebCrawler
 from ${this.appData.slug.replace(/-/g, '_')} import ${this.appData.name.replace(/\s+/g, '')}
 
 async def main():
@@ -154,7 +154,7 @@ async def main():
         )
         print(result.markdown)`;
         } else if (this.appData.category === 'Proxy Services') {
-            usageCode.textContent = `from crawl4ai import AsyncWebCrawler
+            usageCode.textContent = `from crawl import AsyncWebCrawler
 import ${this.appData.slug.replace(/-/g, '_')}
 
 # Configure proxy
@@ -171,8 +171,8 @@ async with AsyncWebCrawler() as crawler:
     )
     print(result.status_code)`;
         } else if (this.appData.category === 'LLM Integration') {
-            usageCode.textContent = `from crawl4ai import AsyncWebCrawler, CacheMode
-from crawl4ai.extraction_strategy import LLMExtractionStrategy, LLMConfig
+            usageCode.textContent = `from crawl import AsyncWebCrawler, CacheMode
+from crawl.extraction_strategy import LLMExtractionStrategy, LLMConfig
 
 # Configure LLM extraction
 strategy = LLMExtractionStrategy(
@@ -196,14 +196,14 @@ async with AsyncWebCrawler() as crawler:
         integrationCode.textContent = this.appData.integration_guide ||
 `# Complete ${this.appData.name} Integration Example
 
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler
+from crawl.extraction_strategy import JsonCssExtractionStrategy
 import json
 
 async def crawl_with_${this.appData.slug.replace(/-/g, '_')}():
     """
     Complete example showing how to use ${this.appData.name}
-    with Crawl4AI for production web scraping
+    with Crawl for production web scraping
     """
 
     # Define extraction schema

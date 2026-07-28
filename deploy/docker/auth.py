@@ -1,5 +1,5 @@
 """
-Authentication primitives for the Crawl4AI Docker server.
+Authentication primitives for the Crawl Docker server.
 
 This module is PyJWT-only. The previous dual dependency on the GehirnInc `jwt`
 package *and* `PyJWT` (both install a top-level `jwt` module) meant the meaning
@@ -36,7 +36,7 @@ _ALGORITHMS = [ALGORITHM]  # a LIST on purpose: no substring matching, no alg:no
 _WEAK_SECRETS = {"mysecret", "secret", "password", "changeme", "test", "12345678"}
 _MIN_SECRET_LEN = 32
 
-_log = logging.getLogger("crawl4ai.security")
+_log = logging.getLogger("crawl.security")
 
 
 def resolve_secret_key(*, required: bool) -> str:

@@ -13,8 +13,8 @@ import httpx
 from threading import Thread, Event
 
 # Config
-IMAGE = "crawl4ai-local:latest"
-CONTAINER_NAME = "crawl4ai-test"
+IMAGE = "crawl-local:latest"
+CONTAINER_NAME = "crawl-test"
 PORT = 11235
 SPIKE_REQUESTS = 20  # Create some browsers
 IDLE_TIME = 90  # Wait 90s for janitor (runs every 60s)

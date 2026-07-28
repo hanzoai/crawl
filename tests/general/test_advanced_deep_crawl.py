@@ -2,12 +2,12 @@ import asyncio
 import time
 
 
-from crawl4ai import CrawlerRunConfig, AsyncWebCrawler, CacheMode
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
-from crawl4ai.deep_crawling.filters import FilterChain, URLPatternFilter, DomainFilter, ContentTypeFilter, ContentRelevanceFilter
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
-# from crawl4ai.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
+from crawl import CrawlerRunConfig, AsyncWebCrawler, CacheMode
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
+from crawl.deep_crawling.filters import FilterChain, URLPatternFilter, DomainFilter, ContentTypeFilter, ContentRelevanceFilter
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
+# from crawl.deep_crawling import BFSDeepCrawlStrategy, BestFirstCrawlingStrategy
 
 
 async def main():

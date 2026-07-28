@@ -6,7 +6,7 @@ import pytest
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parent_dir)
 
-from crawl4ai.async_webcrawler import AsyncWebCrawler
+from crawl.async_webcrawler import AsyncWebCrawler
 
 
 @pytest.mark.asyncio
@@ -72,7 +72,7 @@ async def test_screenshot():
 async def test_custom_user_agent():
     async with AsyncWebCrawler(verbose=True) as crawler:
         url = "https://www.nbcnews.com/business"
-        custom_user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Crawl4AI/1.0"
+        custom_user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Crawl/1.0"
         result = await crawler.arun(
             url=url, user_agent=custom_user_agent, bypass_cache=True
         )

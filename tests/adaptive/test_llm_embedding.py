@@ -1,6 +1,6 @@
 import asyncio
 import os
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig, LLMConfig
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig, LLMConfig
 
 
 async def test_configuration(name: str, config: AdaptiveConfig, url: str, query: str):
@@ -98,7 +98,7 @@ async def basic_adaptive_crawling():
         adaptive = AdaptiveCrawler(crawler)
         
         # Note: You can also use embedding strategy for semantic understanding:
-        # from crawl4ai import AdaptiveConfig
+        # from crawl import AdaptiveConfig
         # config = AdaptiveConfig(strategy="embedding")
         # adaptive = AdaptiveCrawler(crawler, config)
         

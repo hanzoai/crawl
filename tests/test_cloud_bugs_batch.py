@@ -14,9 +14,9 @@ import json
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from crawl4ai.antibot_detector import is_blocked, _looks_like_data, _structural_integrity_check
-from crawl4ai.deep_crawling.filters import URLPatternFilter
-from crawl4ai.async_configs import ALLOWED_DESERIALIZE_TYPES, to_serializable_dict, from_serializable_dict
+from crawl.antibot_detector import is_blocked, _looks_like_data, _structural_integrity_check
+from crawl.deep_crawling.filters import URLPatternFilter
+from crawl.async_configs import ALLOWED_DESERIALIZE_TYPES, to_serializable_dict, from_serializable_dict
 
 PASS = 0
 FAIL = 0
@@ -288,7 +288,7 @@ check("PDFContentScrapingStrategy in ALLOWED_DESERIALIZE_TYPES",
 print("\n--- Serialization roundtrip ---")
 
 try:
-    from crawl4ai.processors.pdf import PDFContentScrapingStrategy
+    from crawl.processors.pdf import PDFContentScrapingStrategy
 
     strategy = PDFContentScrapingStrategy(extract_images=False, batch_size=8)
     serialized = to_serializable_dict(strategy)
@@ -314,8 +314,8 @@ except Exception as e:
 print("\n--- CrawlerRunConfig with PDFContentScrapingStrategy ---")
 
 try:
-    from crawl4ai import CrawlerRunConfig
-    from crawl4ai.processors.pdf import PDFContentScrapingStrategy
+    from crawl import CrawlerRunConfig
+    from crawl.processors.pdf import PDFContentScrapingStrategy
 
     config = CrawlerRunConfig(
         scraping_strategy=PDFContentScrapingStrategy(extract_images=False, batch_size=4)
@@ -338,8 +338,8 @@ except Exception as e:
 print("\n--- Regression: other types still work ---")
 
 try:
-    from crawl4ai import CrawlerRunConfig, CacheMode, DefaultMarkdownGenerator
-    from crawl4ai import LXMLWebScrapingStrategy, RegexChunking
+    from crawl import CrawlerRunConfig, CacheMode, DefaultMarkdownGenerator
+    from crawl import LXMLWebScrapingStrategy, RegexChunking
 
     config = CrawlerRunConfig(
         cache_mode=CacheMode.BYPASS,

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Crawl4AI has simplified its content scraping architecture. The BeautifulSoup-based `WebScrapingStrategy` has been deprecated in favor of the faster LXML-based implementation. However, **no action is required** - your existing code will continue to work.
+Crawl has simplified its content scraping architecture. The BeautifulSoup-based `WebScrapingStrategy` has been deprecated in favor of the faster LXML-based implementation. However, **no action is required** - your existing code will continue to work.
 
 ## What Changed?
 
@@ -17,7 +17,7 @@ Crawl4AI has simplified its content scraping architecture. The BeautifulSoup-bas
 
 ```python
 # This still works perfectly
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, WebScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, WebScrapingStrategy
 
 config = CrawlerRunConfig(
     scraping_strategy=WebScrapingStrategy()  # Works as before
@@ -36,11 +36,11 @@ For clarity, you can update your imports:
 
 ```python
 # Old (still works)
-from crawl4ai import WebScrapingStrategy
+from crawl import WebScrapingStrategy
 strategy = WebScrapingStrategy()
 
 # New (more explicit)
-from crawl4ai import LXMLWebScrapingStrategy
+from crawl import LXMLWebScrapingStrategy
 strategy = LXMLWebScrapingStrategy()
 ```
 
@@ -57,7 +57,7 @@ config = CrawlerRunConfig()
 If you use type hints, both work:
 
 ```python
-from crawl4ai import WebScrapingStrategy, LXMLWebScrapingStrategy
+from crawl import WebScrapingStrategy, LXMLWebScrapingStrategy
 
 def process_with_strategy(strategy: WebScrapingStrategy) -> None:
     # Works with both WebScrapingStrategy and LXMLWebScrapingStrategy
@@ -89,4 +89,4 @@ By consolidating to LXML:
 
 ## Summary
 
-This change simplifies Crawl4AI's internals while maintaining 100% backward compatibility. Your existing code continues to work, and you get better performance automatically.
+This change simplifies Crawl's internals while maintaining 100% backward compatibility. Your existing code continues to work, and you get better performance automatically.

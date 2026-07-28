@@ -41,7 +41,7 @@ def crawl_url(url):
         "extraction_strategy": "NoExtractionStrategy",
         "chunking_strategy": "RegexChunking",
     }
-    response = requests.post("https://crawl4ai.com/crawl", json=data)
+    response = requests.post("https://crawl.hanzo.ai/crawl", json=data)
     response_data = response.json()
     response_data = response_data["results"][0]
     return response_data["markdown"]

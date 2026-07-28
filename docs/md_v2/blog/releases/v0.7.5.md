@@ -1,10 +1,10 @@
-# 🚀 Crawl4AI v0.7.5: The Docker Hooks & Security Update
+# 🚀 Crawl v0.7.5: The Docker Hooks & Security Update
 
 *September 29, 2025 • 8 min read*
 
 ---
 
-Today I'm releasing Crawl4AI v0.7.5—focused on extensibility and security. This update introduces the Docker Hooks System for pipeline customization, enhanced LLM integration, and important security improvements.
+Today I'm releasing Crawl v0.7.5—focused on extensibility and security. This update introduces the Docker Hooks System for pipeline customization, enhanced LLM integration, and important security improvements.
 
 ## 🎯 What's New at a Glance
 
@@ -50,7 +50,7 @@ async def hook(page, context, url, **kwargs):
     print(f"Hook: About to navigate to {url}")
     # Add custom headers
     await page.set_extra_http_headers({
-        'X-Test-Header': 'crawl4ai-hooks-test'
+        'X-Test-Header': 'crawl-hooks-test'
     })
     return page
 """
@@ -90,7 +90,7 @@ Writing hooks as strings works, but lacks IDE support and type checking. v0.7.5 
 **Option 1: Using the `hooks_to_string()` Utility**
 
 ```python
-from crawl4ai import hooks_to_string
+from crawl import hooks_to_string
 import requests
 
 # Define hooks as regular Python functions (with full IDE support!)
@@ -103,7 +103,7 @@ async def on_page_context_created(page, context, **kwargs):
 async def before_goto(page, context, url, **kwargs):
     """Add custom headers"""
     await page.set_extra_http_headers({
-        'X-Crawl4AI': 'v0.7.5',
+        'X-Crawl': 'v0.7.5',
         'X-Custom-Header': 'my-value'
     })
     return page
@@ -125,7 +125,7 @@ response = requests.post("http://localhost:11235/crawl", json=payload)
 **Option 2: Docker Client with Automatic Conversion (Recommended!)**
 
 ```python
-from crawl4ai.docker_client import Crawl4aiDockerClient
+from crawl.docker_client import Crawl4aiDockerClient
 
 # Define hooks as functions (same as above)
 async def on_page_context_created(page, context, **kwargs):
@@ -169,8 +169,8 @@ Enhanced LLM integration with custom providers, temperature control, and base UR
 ### Multi-Provider Support
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.extraction_strategy import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.extraction_strategy import LLMExtractionStrategy
 
 # Test with different providers
 async def test_llm_providers():
@@ -217,7 +217,7 @@ response = requests.post("http://localhost:11235/md", json=llm_payload)
 **Solution:** HTTPS preservation maintains secure protocols throughout crawling.
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, FilterChain, URLPatternFilter, BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, FilterChain, URLPatternFilter, BFSDeepCrawlStrategy
 
 async def test_https_preservation():
     # Enable HTTPS preservation
@@ -296,11 +296,11 @@ browser_config = BrowserConfig(
 
 ```bash
 # Install latest version
-pip install crawl4ai==0.7.5
+pip install crawl==0.7.5
 
 # Docker deployment
-docker pull unclecode/crawl4ai:latest
-docker run -p 11235:11235 unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
+docker run -p 11235:11235 hanzoai/crawl:latest
 ```
 
 **Try the Demo:**
@@ -310,9 +310,9 @@ python docs/releases_review/demo_v0.7.5.py
 ```
 
 **Resources:**
-- 📖 Documentation: [docs.crawl4ai.com](https://docs.crawl4ai.com)
-- 🐙 GitHub: [github.com/unclecode/crawl4ai](https://github.com/unclecode/crawl4ai)
-- 💬 Discord: [discord.gg/crawl4ai](https://discord.gg/jP8KfhDhyN)
+- 📖 Documentation: [docs.hanzo.ai](https://docs.hanzo.ai)
+- 🐙 GitHub: [github.com/hanzoai/crawl](https://github.com/hanzoai/crawl)
+- 💬 Discord: [discord.gg/crawl](https://discord.gg/jP8KfhDhyN)
 - 🐦 Twitter: [@unclecode](https://x.com/unclecode)
 
 Happy crawling! 🕷️

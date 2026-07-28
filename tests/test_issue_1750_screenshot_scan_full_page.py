@@ -11,7 +11,7 @@ import pytest
 from io import BytesIO
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 
 
 # ---------------------------------------------------------------------------
@@ -36,7 +36,7 @@ class TestTakeScreenshotRouting:
     @pytest.fixture
     def strategy(self):
         """Create a minimal AsyncPlaywrightCrawlerStrategy with mocked methods."""
-        from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+        from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
         s = object.__new__(AsyncPlaywrightCrawlerStrategy)
         s.logger = MagicMock()
         s.take_screenshot_naive = AsyncMock(return_value="naive_b64")

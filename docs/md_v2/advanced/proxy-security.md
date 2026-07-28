@@ -1,10 +1,10 @@
 # Proxy & Security
 
-This guide covers proxy configuration and security features in Crawl4AI, including SSL certificate analysis and proxy rotation strategies.
+This guide covers proxy configuration and security features in Crawl, including SSL certificate analysis and proxy rotation strategies.
 
 ## Understanding Proxy Configuration
 
-Crawl4AI recommends configuring proxies per request through `CrawlerRunConfig.proxy_config`. This gives you precise control, enables rotation strategies, and keeps examples simple enough to copy, paste, and run.
+Crawl recommends configuring proxies per request through `CrawlerRunConfig.proxy_config`. This gives you precise control, enables rotation strategies, and keeps examples simple enough to copy, paste, and run.
 
 ## Basic Proxy Setup
 
@@ -12,7 +12,7 @@ Configure proxies that apply to each crawl operation:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, ProxyConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, ProxyConfig
 
 run_config = CrawlerRunConfig(proxy_config=ProxyConfig(server="http://proxy.example.com:8080"))
 # run_config = CrawlerRunConfig(proxy_config={"server": "http://proxy.example.com:8080"})
@@ -38,7 +38,7 @@ if __name__ == "__main__":
 The `ProxyConfig.from_string()` method supports multiple formats:
 
 ```python
-from crawl4ai import ProxyConfig
+from crawl import ProxyConfig
 
 # HTTP proxy with authentication
 proxy1 = ProxyConfig.from_string("http://user:pass@192.168.1.1:8080")
@@ -62,7 +62,7 @@ For proxies requiring authentication:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler,BrowserConfig, CrawlerRunConfig, ProxyConfig
+from crawl import AsyncWebCrawler,BrowserConfig, CrawlerRunConfig, ProxyConfig
 
 run_config = CrawlerRunConfig(
     proxy_config=ProxyConfig(
@@ -96,7 +96,7 @@ Load proxies from environment variables for easy configuration:
 
 ```python
 import os
-from crawl4ai import ProxyConfig, CrawlerRunConfig
+from crawl import ProxyConfig, CrawlerRunConfig
 
 # Set environment variable
 os.environ["PROXIES"] = "ip1:port1:user1:pass1,ip2:port2:user2:pass2,ip3:port3"
@@ -112,14 +112,14 @@ if proxies:
 
 ## Rotating Proxies
 
-Crawl4AI supports automatic proxy rotation to distribute requests across multiple proxy servers. Rotation is applied per request using a rotation strategy on `CrawlerRunConfig`.
+Crawl supports automatic proxy rotation to distribute requests across multiple proxy servers. Rotation is applied per request using a rotation strategy on `CrawlerRunConfig`.
 
 ### Proxy Rotation (recommended)
 ```python
 import asyncio
 import re
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, ProxyConfig
-from crawl4ai.proxy_strategy import RoundRobinProxyStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, ProxyConfig
+from crawl.proxy_strategy import RoundRobinProxyStrategy
 
 async def main():
     # Load proxies from environment
@@ -174,7 +174,7 @@ Combine proxy usage with SSL certificate inspection for enhanced security analys
 ### Per-Request SSL Certificate Analysis
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 run_config = CrawlerRunConfig(
     proxy_config={
@@ -218,8 +218,8 @@ if __name__ == "__main__":
 
 ### 1. Proxy Rotation for Anonymity
 ```python
-from crawl4ai import CrawlerRunConfig, ProxyConfig
-from crawl4ai.proxy_strategy import RoundRobinProxyStrategy
+from crawl import CrawlerRunConfig, ProxyConfig
+from crawl.proxy_strategy import RoundRobinProxyStrategy
 
 # Use multiple proxies to avoid IP blocking
 proxies = ProxyConfig.from_env("PROXIES")
@@ -234,7 +234,7 @@ static_run_config = run_config
 
 ### 2. SSL Certificate Verification
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # Always verify SSL certificates when possible
 # Per-request (affects specific requests)
@@ -250,7 +250,7 @@ export PROXIES="ip1:port1:user1:pass1,ip2:port2:user2:pass2"
 
 ### 4. SOCKS5 for Enhanced Security
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # Prefer SOCKS5 proxies for better protocol support
 run_config = CrawlerRunConfig(proxy_config="socks5://proxy.example.com:1080")
@@ -263,17 +263,17 @@ run_config = CrawlerRunConfig(proxy_config="socks5://proxy.example.com:1080")
 
 ```python
 # Old (deprecated) approach
-# from crawl4ai import BrowserConfig
+# from crawl import BrowserConfig
 # browser_config = BrowserConfig(proxy_config="http://proxy.example.com:8080")
 
 # New (preferred) approach
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 run_config = CrawlerRunConfig(proxy_config="http://proxy.example.com:8080")
 ```
 
 ### Safe Logging of Proxies
 ```python
-from crawl4ai import ProxyConfig
+from crawl import ProxyConfig
 
 def safe_proxy_repr(proxy: ProxyConfig):
     if getattr(proxy, "username", None):

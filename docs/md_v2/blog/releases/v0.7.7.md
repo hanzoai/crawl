@@ -1,10 +1,10 @@
-# 🚀 Crawl4AI v0.7.7: The Self-Hosting & Monitoring Update
+# 🚀 Crawl v0.7.7: The Self-Hosting & Monitoring Update
 
 *November 14, 2025 • 10 min read*
 
 ---
 
-Today I'm releasing Crawl4AI v0.7.7—the Self-Hosting & Monitoring Update. This release transforms Crawl4AI Docker from a simple containerized crawler into a complete self-hosting platform with enterprise-grade real-time monitoring, full operational transparency, and production-ready observability.
+Today I'm releasing Crawl v0.7.7—the Self-Hosting & Monitoring Update. This release transforms Crawl Docker from a simple containerized crawler into a complete self-hosting platform with enterprise-grade real-time monitoring, full operational transparency, and production-ready observability.
 
 ## 🎯 What's New at a Glance
 
@@ -20,7 +20,7 @@ Today I'm releasing Crawl4AI v0.7.7—the Self-Hosting & Monitoring Update. This
 
 ## 📊 Real-time Monitoring Dashboard: Complete Visibility
 
-**The Problem:** Running Crawl4AI in Docker was like flying blind. Users had no visibility into what was happening inside the container—memory usage, active requests, browser pools, or errors. Troubleshooting required checking logs, and there was no way to monitor performance or manually intervene when issues occurred.
+**The Problem:** Running Crawl in Docker was like flying blind. Users had no visibility into what was happening inside the container—memory usage, active requests, browser pools, or errors. Troubleshooting required checking logs, and there was no way to monitor performance or manually intervene when issues occurred.
 
 **My Solution:** I built a complete real-time monitoring system with an interactive dashboard, comprehensive REST API, WebSocket streaming, and manual control actions. Now you have full transparency and control over your crawling infrastructure.
 
@@ -333,17 +333,17 @@ async def export_prometheus_metrics():
 
         # Export in Prometheus format
         metrics = f"""
-# HELP crawl4ai_memory_usage_percent Memory usage percentage
-# TYPE crawl4ai_memory_usage_percent gauge
-crawl4ai_memory_usage_percent {data['container']['memory_percent']}
+# HELP crawl_memory_usage_percent Memory usage percentage
+# TYPE crawl_memory_usage_percent gauge
+crawl_memory_usage_percent {data['container']['memory_percent']}
 
-# HELP crawl4ai_request_success_rate Request success rate
-# TYPE crawl4ai_request_success_rate gauge
-crawl4ai_request_success_rate {data['stats']['success_rate_percent']}
+# HELP crawl_request_success_rate Request success rate
+# TYPE crawl_request_success_rate gauge
+crawl_request_success_rate {data['stats']['success_rate_percent']}
 
-# HELP crawl4ai_browser_pool_count Total browsers in pool
-# TYPE crawl4ai_browser_pool_count gauge
-crawl4ai_browser_pool_count {data['pool']['permanent']['active'] + data['pool']['hot']['count'] + data['pool']['cold']['count']}
+# HELP crawl_browser_pool_count Total browsers in pool
+# TYPE crawl_browser_pool_count gauge
+crawl_browser_pool_count {data['pool']['permanent']['active'] + data['pool']['hot']['count'] + data['pool']['cold']['count']}
 """
         return metrics
 ```
@@ -536,17 +536,17 @@ async with AsyncWebCrawler() as crawler:
 
 ```bash
 # Pull the latest version
-docker pull unclecode/crawl4ai:0.7.7
+docker pull hanzoai/crawl:0.7.7
 
 # Or use the latest tag
-docker pull unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
 
 # Run with monitoring enabled (default)
 docker run -d \
   -p 11235:11235 \
   --shm-size=1g \
-  --name crawl4ai \
-  unclecode/crawl4ai:0.7.7
+  --name crawl \
+  hanzoai/crawl:0.7.7
 
 # Access the monitoring dashboard
 open http://localhost:11235/dashboard
@@ -556,10 +556,10 @@ open http://localhost:11235/dashboard
 
 ```bash
 # Upgrade to latest version
-pip install --upgrade crawl4ai
+pip install --upgrade crawl
 
 # Or install specific version
-pip install crawl4ai==0.7.7
+pip install crawl==0.7.7
 ```
 
 ## 🎬 Try the Demo
@@ -583,7 +583,7 @@ python docs/releases_review/demo_v0.7.7.py
 ## 📚 Documentation
 
 ### New Documentation
-- **[Self-Hosting Guide](https://docs.crawl4ai.com/core/self-hosting/)** - Complete self-hosting documentation with monitoring
+- **[Self-Hosting Guide](https://docs.hanzo.ai/core/self-hosting/)** - Complete self-hosting documentation with monitoring
 - **Demo Script**: `docs/releases_review/demo_v0.7.7.py` - Working examples
 
 ### Updated Documentation
@@ -611,15 +611,15 @@ The monitoring system was built based on real user needs for production deployme
 
 ## 📞 Support & Resources
 
-- **📖 Documentation**: [docs.crawl4ai.com](https://docs.crawl4ai.com)
-- **🐙 GitHub**: [github.com/unclecode/crawl4ai](https://github.com/unclecode/crawl4ai)
-- **💬 Discord**: [discord.gg/crawl4ai](https://discord.gg/jP8KfhDhyN)
+- **📖 Documentation**: [docs.hanzo.ai](https://docs.hanzo.ai)
+- **🐙 GitHub**: [github.com/hanzoai/crawl](https://github.com/hanzoai/crawl)
+- **💬 Discord**: [discord.gg/crawl](https://discord.gg/jP8KfhDhyN)
 - **🐦 Twitter**: [@unclecode](https://x.com/unclecode)
 - **📊 Dashboard**: `http://localhost:11235/dashboard` (when running)
 
 ---
 
-**Crawl4AI v0.7.7 delivers complete self-hosting with enterprise-grade monitoring. You now have full visibility and control over your web crawling infrastructure. The monitoring dashboard, comprehensive API, and WebSocket streaming give you everything needed for production deployments. Try the self-hosting platform—it's a game changer for operational excellence!**
+**Crawl v0.7.7 delivers complete self-hosting with enterprise-grade monitoring. You now have full visibility and control over your web crawling infrastructure. The monitoring dashboard, comprehensive API, and WebSocket streaming give you everything needed for production deployments. Try the self-hosting platform—it's a game changer for operational excellence!**
 
 **Happy crawling with full visibility!** 🕷️📊
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Dependency checker for Crawl4AI
+Dependency checker for Crawl
 Analyzes imports in the codebase and shows which files use them
 """
 
@@ -129,12 +129,12 @@ def extract_imports_from_file(filepath: Path) -> Dict[str, List[int]]:
 
 
 def get_codebase_imports_with_files(root_dir: Path) -> Dict[str, List[Tuple[str, List[int]]]]:
-    """Get all imports from the crawl4ai library and docs folders with file locations and line numbers"""
+    """Get all imports from the crawl library and docs folders with file locations and line numbers"""
     import_to_files = defaultdict(list)
     
-    # Only scan crawl4ai library folder and docs folder
+    # Only scan crawl library folder and docs folder
     target_dirs = [
-        root_dir / 'crawl4ai',
+        root_dir / 'crawl',
         root_dir / 'docs'
     ]
     
@@ -214,7 +214,7 @@ def normalize_package_name(name: str) -> str:
 
 def check_missing_dependencies():
     """Main function to check for missing dependencies"""
-    print("🔍 Analyzing crawl4ai library and docs folders...\n")
+    print("🔍 Analyzing crawl library and docs folders...\n")
     
     # Get all imports with their file locations
     root_dir = Path('.')
@@ -231,7 +231,7 @@ def check_missing_dependencies():
     local_imports = {}
     
     # Known local packages
-    local_packages = {'crawl4ai'}
+    local_packages = {'crawl'}
     
     for imp, file_info in import_to_files.items():
         # Skip standard library

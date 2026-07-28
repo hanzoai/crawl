@@ -2,24 +2,24 @@ import asyncio
 import time
 import re
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode, BrowserConfig, MemoryAdaptiveDispatcher, HTTPCrawlerConfig
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
-from crawl4ai.deep_crawling import (
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode, BrowserConfig, MemoryAdaptiveDispatcher, HTTPCrawlerConfig
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.deep_crawling import (
     BestFirstCrawlingStrategy,
     FilterChain,
     URLPatternFilter,
     DomainFilter,
     ContentTypeFilter,
 )
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
-from crawl4ai.async_crawler_strategy import AsyncHTTPCrawlerStrategy
-from crawl4ai import ProxyConfig
-from crawl4ai import RoundRobinProxyStrategy
-from crawl4ai.content_filter_strategy import LLMContentFilter
-from crawl4ai import DefaultMarkdownGenerator
-from crawl4ai import LLMConfig
-from crawl4ai import JsonCssExtractionStrategy
-from crawl4ai.processors.pdf import PDFCrawlerStrategy, PDFContentScrapingStrategy
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.async_crawler_strategy import AsyncHTTPCrawlerStrategy
+from crawl import ProxyConfig
+from crawl import RoundRobinProxyStrategy
+from crawl.content_filter_strategy import LLMContentFilter
+from crawl import DefaultMarkdownGenerator
+from crawl import LLMConfig
+from crawl import JsonCssExtractionStrategy
+from crawl.processors.pdf import PDFCrawlerStrategy, PDFContentScrapingStrategy
 from pprint import pprint
 
 
@@ -41,8 +41,8 @@ async def deep_crawl():
     filter_chain = FilterChain(
         [
             DomainFilter(
-                allowed_domains=["docs.crawl4ai.com"],
-                blocked_domains=["old.docs.crawl4ai.com"],
+                allowed_domains=["docs.hanzo.ai"],
+                blocked_domains=["old.docs.hanzo.ai"],
             ),
             URLPatternFilter(patterns=["*core*", "*advanced*"],),
             ContentTypeFilter(allowed_types=["text/html"]),
@@ -78,7 +78,7 @@ async def deep_crawl():
         start_time = time.perf_counter()
         results = []
         
-        async for result in await crawler.arun(url="https://docs.crawl4ai.com", config=deep_crawl_config):
+        async for result in await crawler.arun(url="https://docs.hanzo.ai", config=deep_crawl_config):
             # Print each result as it comes in
             depth = result.metadata.get("depth", 0)
             score = result.metadata.get("score", 0)
@@ -122,8 +122,8 @@ async def memory_adaptive_dispatcher():
     
     # Test URLs
     urls = [
-        "https://docs.crawl4ai.com", 
-        "https://github.com/unclecode/crawl4ai"
+        "https://docs.hanzo.ai", 
+        "https://github.com/hanzoai/crawl"
     ]
     
     async def batch_mode():
@@ -316,7 +316,7 @@ async def llm_content_filter():
     
     config = CrawlerRunConfig(markdown_generator=markdown_generator)
     async with AsyncWebCrawler() as crawler:
-        result = await crawler.arun("https://docs.crawl4ai.com", config=config)
+        result = await crawler.arun("https://docs.hanzo.ai", config=config)
         pprint(result.markdown.fit_markdown)
         print("\n✅ Generated focused markdown:")
 
@@ -371,7 +371,7 @@ async def pdf_processing():
         else:
             print("\n⚠️ No content extracted")
     
-    print("\n🔍 Key Takeaway: Crawl4AI can now process PDF files")
+    print("\n🔍 Key Takeaway: Crawl can now process PDF files")
     print("  to extract both text content and metadata.")
 
 
@@ -427,9 +427,9 @@ async def run_tutorial():
     """
     Main function to run all tutorial sections.
     """
-    print("\n🚀 CRAWL4AI v0.5.0 TUTORIAL 🚀")
+    print("\n🚀 CRAWL v0.5.0 TUTORIAL 🚀")
     print("===============================")
-    print("This tutorial demonstrates the key features of Crawl4AI v0.5.0")
+    print("This tutorial demonstrates the key features of Crawl v0.5.0")
     print("Including deep crawling, memory-adaptive dispatching, advanced filtering,")
     print("and more powerful extraction capabilities.")
     
@@ -451,8 +451,8 @@ async def run_tutorial():
             print(f"⚠️ Error in {section.__name__}: {e}")
     
     print("\n🎉 TUTORIAL COMPLETE! 🎉")
-    print("You've now explored the key features of Crawl4AI v0.5.0")
-    print("For more information, visit https://docs.crawl4ai.com")
+    print("You've now explored the key features of Crawl v0.5.0")
+    print("For more information, visit https://docs.hanzo.ai")
 
 
 # Run the tutorial

@@ -18,8 +18,8 @@ load_dotenv()  # Load environment variables from .env file
 console = Console()
 
 # --- Configuration ---
-BASE_URL = os.getenv("CRAWL4AI_TEST_URL", "http://localhost:8020")
-BASE_URL = os.getenv("CRAWL4AI_TEST_URL", "http://localhost:11235")
+BASE_URL = os.getenv("CRAWL_TEST_URL", "http://localhost:8020")
+BASE_URL = os.getenv("CRAWL_TEST_URL", "http://localhost:11235")
 # Target URLs
 SIMPLE_URL = "https://example.com"  # For demo purposes
 SIMPLE_URL = "https://httpbin.org/html"
@@ -29,8 +29,8 @@ BOOKS_URL = "http://books.toscrape.com/"  # For CSS extraction
 PYTHON_URL = "https://python.org"  # For deeper crawl
 # Use the same sample site as deep crawl tests for consistency
 DEEP_CRAWL_BASE_URL = os.getenv(
-    "DEEP_CRAWL_TEST_SITE", "https://docs.crawl4ai.com/samples/deepcrawl/")
-DEEP_CRAWL_DOMAIN = "docs.crawl4ai.com"
+    "DEEP_CRAWL_TEST_SITE", "https://docs.hanzo.ai/samples/deepcrawl/")
+DEEP_CRAWL_DOMAIN = "docs.hanzo.ai"
 
 # --- Helper Functions ---
 
@@ -462,7 +462,7 @@ async def demo_param_js_execution(client: httpx.AsyncClient):
                 # Simple JS to fill and maybe click (won't submit without more complex setup)
                 "js_code": """
                     (() => {
-                        document.querySelector('h1').innerText = 'Crawl4AI Demo';
+                        document.querySelector('h1').innerText = 'Crawl Demo';
                         return { filled_name: document.querySelector('h1').innerText };
                     })();
                 """,

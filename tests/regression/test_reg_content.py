@@ -1,5 +1,5 @@
 """
-Regression tests for Crawl4AI content processing pipeline.
+Regression tests for Crawl content processing pipeline.
 
 Covers markdown generation, content filtering (BM25, Pruning),
 link/image/table extraction, metadata extraction, tag exclusion,
@@ -13,9 +13,9 @@ Run:
 import pytest
 import json
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import BM25ContentFilter, PruningContentFilter
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import BM25ContentFilter, PruningContentFilter
 
 
 # ---------------------------------------------------------------------------
@@ -34,7 +34,7 @@ async def test_markdown_raw(local_server):
         assert md is not None
         assert isinstance(md, str)
         assert len(md) > 0
-        assert "Welcome to the Crawl4AI Test Site" in md
+        assert "Welcome to the Crawl Test Site" in md
         # Should have at least one markdown heading marker
         assert "#" in md
 
@@ -46,7 +46,7 @@ async def test_markdown_has_headings(local_server):
         result = await crawler.arun(url=f"{local_server}/", config=CrawlerRunConfig())
         assert result.success
         md = result.markdown
-        assert "# Welcome" in md or "# Welcome to the Crawl4AI Test Site" in md
+        assert "# Welcome" in md or "# Welcome to the Crawl Test Site" in md
         # h2 heading for Features Overview
         assert "## Features" in md or "## Features Overview" in md
 
@@ -456,7 +456,7 @@ async def test_css_selector_main(local_server):
         result = await crawler.arun(url=f"{local_server}/", config=config)
         assert result.success
         md = str(result.markdown)
-        assert "Welcome to the Crawl4AI Test Site" in md
+        assert "Welcome to the Crawl Test Site" in md
         # Footer should not be in the markdown since we targeted <main>
         assert "Footer content" not in md
 

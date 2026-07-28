@@ -95,7 +95,7 @@ curl -X DELETE "http://localhost:8000/models/my-gemini"
 
 ## Supported LLM Providers
 
-The API supports any LLM provider that crawl4ai supports, including:
+The API supports any LLM provider that crawl supports, including:
 
 - **Google Gemini**: `gemini/gemini-2.5-flash`, `gemini/gemini-pro`
 - **OpenAI**: `openai/gpt-4`, `openai/gpt-3.5-turbo`

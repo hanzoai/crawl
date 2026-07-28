@@ -13,7 +13,7 @@ import time
 if __name__ == "__main__":
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from crawl4ai.async_logger import AsyncLogger
+from crawl.async_logger import AsyncLogger
 
 # Create a logger for clear terminal output
 logger = AsyncLogger(verbose=True, log_file=None)

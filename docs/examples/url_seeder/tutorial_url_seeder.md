@@ -1,10 +1,10 @@
-# 🔬 Building an AI Research Assistant with Crawl4AI: Smart URL Discovery
+# 🔬 Building an AI Research Assistant with Crawl: Smart URL Discovery
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QIwVYrQaZGPJQGHQBvMSbkdnc5usqoGw#scrollTo=xbV1w9YM4LkW)
 
 ## Welcome to the Research Pipeline Workshop!
 
-In this tutorial, we'll build an **AI-powered research assistant** that intelligently discovers, filters, and analyzes web content. Instead of blindly crawling hundreds of pages, we'll use Crawl4AI's URL Seeder to:
+In this tutorial, we'll build an **AI-powered research assistant** that intelligently discovers, filters, and analyzes web content. Instead of blindly crawling hundreds of pages, we'll use Crawl's URL Seeder to:
 
 - 🔍 **Discover all available URLs** without crawling them first
 - 🎯 **Score and rank** them by relevance using AI
@@ -43,11 +43,11 @@ Let's begin! 🚀
 # cell 1 type:markdown
 ## Step 0: Environment Setup and Dependencies
 
-First, we'll set up our environment with all necessary libraries. We need Crawl4AI for intelligent web crawling, LiteLLM for AI integration, and Rich for beautiful terminal output. This foundation ensures our research assistant has all the tools it needs.
+First, we'll set up our environment with all necessary libraries. We need Crawl for intelligent web crawling, LiteLLM for AI integration, and Rich for beautiful terminal output. This foundation ensures our research assistant has all the tools it needs.
 
 # cell 2 type:code
 # Install required packages
-!pip install -q crawl4ai litellm rich
+!pip install -q crawl litellm rich
 
 # cell 3 type:code
 import asyncio
@@ -64,8 +64,8 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
-# Crawl4AI imports for intelligent crawling
-from crawl4ai import (
+# Crawl imports for intelligent crawling
+from crawl import (
     AsyncWebCrawler, 
     BrowserConfig, 
     CrawlerRunConfig,
@@ -73,8 +73,8 @@ from crawl4ai import (
     SeedingConfig,
     AsyncLogger
 )
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 # LiteLLM for AI capabilities
 import litellm
@@ -792,7 +792,7 @@ async def interactive_research_assistant():
     # Welcome message
     console.print(Panel.fit(
         "[bold cyan]🔬 AI Research Assistant[/bold cyan]\n\n"
-        "Powered by Crawl4AI's intelligent URL discovery\n"
+        "Powered by Crawl's intelligent URL discovery\n"
         "[dim]• Discover without crawling\n"
         "• Score by relevance\n"
         "• Crawl only what matters\n"
@@ -1026,10 +1026,10 @@ You've built a complete AI research assistant that:
 
 ### Resources
 
-- 🐙 **GitHub**: [github.com/unclecode/crawl4ai](https://github.com/unclecode/crawl4ai)
-- 📚 **Documentation**: [crawl4ai.com/docs](https://crawl4ai.com/docs)
-- 💬 **Discord**: [Join our community](https://discord.gg/crawl4ai)
+- 🐙 **GitHub**: [github.com/hanzoai/crawl](https://github.com/hanzoai/crawl)
+- 📚 **Documentation**: [crawl.hanzo.ai/docs](https://crawl.hanzo.ai/docs)
+- 💬 **Discord**: [Join our community](https://discord.gg/crawl)
 
-Thank you for learning with Crawl4AI! 🙏
+Thank you for learning with Crawl! 🙏
 
 Happy researching! 🚀🔬

@@ -1,6 +1,6 @@
 # `arun()` Parameter Guide (New Approach)
 
-In Crawl4AI’s **latest** configuration model, nearly all parameters that once went directly to `arun()` are now part of **`CrawlerRunConfig`**. When calling `arun()`, you provide:
+In Crawl’s **latest** configuration model, nearly all parameters that once went directly to `arun()` are now part of **`CrawlerRunConfig`**. When calling `arun()`, you provide:
 
 ```python
 await crawler.arun(
@@ -16,7 +16,7 @@ Below is an organized look at the parameters that can go inside `CrawlerRunConfi
 ## 1. Core Usage
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def main():
     run_config = CrawlerRunConfig(
@@ -214,8 +214,8 @@ Below is a snippet combining many parameters:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 
 async def main():
     # Example schema

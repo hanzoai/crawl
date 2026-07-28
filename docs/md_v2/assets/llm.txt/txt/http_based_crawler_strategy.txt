@@ -6,9 +6,9 @@ Fast, lightweight HTTP-only crawling without browser overhead for cases where Ja
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, HTTPCrawlerConfig, CacheMode
-from crawl4ai.async_crawler_strategy import AsyncHTTPCrawlerStrategy
-from crawl4ai.async_logger import AsyncLogger
+from crawl import AsyncWebCrawler, CrawlerRunConfig, HTTPCrawlerConfig, CacheMode
+from crawl.async_crawler_strategy import AsyncHTTPCrawlerStrategy
+from crawl.async_logger import AsyncLogger
 
 async def main():
     # Initialize HTTP strategy
@@ -108,7 +108,7 @@ async def setup_hooks():
     # Before request hook
     async def before_request(url, kwargs):
         print(f"Requesting: {url}")
-        kwargs['headers']['X-Custom-Header'] = 'crawl4ai'
+        kwargs['headers']['X-Custom-Header'] = 'crawl'
         kwargs['headers']['Authorization'] = 'Bearer token123'
     
     # After request hook
@@ -160,7 +160,7 @@ result = await strategy.crawl("https://slow-server.com", config=config)
 ### Error Handling and Retries
 
 ```python
-from crawl4ai.async_crawler_strategy import (
+from crawl.async_crawler_strategy import (
     ConnectionTimeoutError, 
     HTTPStatusError, 
     HTTPCrawlerError
@@ -256,7 +256,7 @@ async def concurrent_http_crawling():
 ### Integration with Content Processing
 
 ```python
-from crawl4ai import DefaultMarkdownGenerator, PruningContentFilter
+from crawl import DefaultMarkdownGenerator, PruningContentFilter
 
 async def http_with_processing():
     # HTTP strategy with content processing
@@ -307,7 +307,7 @@ async def strategy_comparison():
     http_time = time.time() - start_time
     
     # Browser Strategy (full features)
-    from crawl4ai import BrowserConfig
+    from crawl import BrowserConfig
     browser_config = BrowserConfig(headless=True)
     start_time = time.time()
     async with AsyncWebCrawler(config=browser_config) as crawler:
@@ -363,7 +363,7 @@ async def advanced_http_setup():
     # Custom headers for all requests
     http_config = HTTPCrawlerConfig(
         headers={
-            "User-Agent": "Crawl4AI-HTTP/1.0",
+            "User-Agent": "Crawl-HTTP/1.0",
             "Accept": "text/html,application/xhtml+xml",
             "Accept-Language": "en-US,en;q=0.9",
             "Accept-Encoding": "gzip, deflate, br",
@@ -385,4 +385,4 @@ async def advanced_http_setup():
     await strategy.close()
 ```
 
-**📖 Learn more:** [AsyncWebCrawler API](https://docs.crawl4ai.com/api/async-webcrawler/), [Browser vs HTTP Strategy](https://docs.crawl4ai.com/core/browser-crawler-config/), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [AsyncWebCrawler API](https://docs.hanzo.ai/api/async-webcrawler/), [Browser vs HTTP Strategy](https://docs.hanzo.ai/core/browser-crawler-config/), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/)

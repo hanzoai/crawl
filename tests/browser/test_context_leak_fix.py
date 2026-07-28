@@ -15,9 +15,9 @@ import asyncio
 import time
 import pytest
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_configs import ProxyConfig, GeolocationConfig
-from crawl4ai.browser_manager import BrowserManager
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.async_configs import ProxyConfig, GeolocationConfig
+from crawl.browser_manager import BrowserManager
 
 
 # ── Unit tests (no browser needed) ──────────────────────────────────────

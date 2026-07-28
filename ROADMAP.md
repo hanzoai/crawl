@@ -1,4 +1,4 @@
-# Crawl4AI Strategic Roadmap
+# Crawl Strategic Roadmap
 
 ```mermaid
 %%{init: {'themeVariables': { 'fontSize': '14px'}}}%%
@@ -49,11 +49,11 @@ graph TD
     linkStyle 0,1 stroke:none
 ```
 
-Crawl4AI is evolving to provide more intelligent, efficient, and versatile web crawling capabilities. This roadmap outlines the key developments and features planned for the project, organized into strategic sections that build upon our current foundation.
+Crawl is evolving to provide more intelligent, efficient, and versatile web crawling capabilities. This roadmap outlines the key developments and features planned for the project, organized into strategic sections that build upon our current foundation.
 
 ## 1. Advanced Crawling Systems 🔧
 
-This section introduces three powerful crawling systems that extend Crawl4AI's capabilities from basic web crawling to intelligent, purpose-driven data extraction.
+This section introduces three powerful crawling systems that extend Crawl's capabilities from basic web crawling to intelligent, purpose-driven data extraction.
 
 ### 1.1 Question-Based Crawler
 The Question-Based Crawler enhances our core engine by enabling automatic discovery and extraction of relevant web content based on natural language questions.
@@ -65,8 +65,8 @@ Key Features:
 - Cross-source validation
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.discovery import QuestionBasedDiscovery
+from crawl import AsyncWebCrawler
+from crawl.discovery import QuestionBasedDiscovery
 
 async with AsyncWebCrawler() as crawler:
     discovery = QuestionBasedDiscovery(crawler)
@@ -91,8 +91,8 @@ Key Features:
 - Objective-driven crawling paths
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.optimization import KnowledgeOptimizer
+from crawl import AsyncWebCrawler
+from crawl.optimization import KnowledgeOptimizer
 
 async with AsyncWebCrawler() as crawler:
     optimizer = KnowledgeOptimizer(
@@ -132,8 +132,8 @@ Key Features:
 - Automatic error recovery
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.agents import CrawlerAgent
+from crawl import AsyncWebCrawler
+from crawl.agents import CrawlerAgent
 
 async with AsyncWebCrawler() as crawler:
     agent = CrawlerAgent(crawler)
@@ -165,7 +165,7 @@ async with AsyncWebCrawler() as crawler:
 
 # Section 2: Specialized Features 🛠️
 
-This section introduces specialized tools and features that enhance Crawl4AI's capabilities for specific use cases and data extraction needs.
+This section introduces specialized tools and features that enhance Crawl's capabilities for specific use cases and data extraction needs.
 
 ### 2.1 Automated Schema Generator
 A system that automatically generates JsonCssExtractionStrategy schemas from natural language descriptions, making structured data extraction accessible to all users.
@@ -177,8 +177,8 @@ Key Features:
 - Chrome extension for visual schema building
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.schema import SchemaGenerator
+from crawl import AsyncWebCrawler
+from crawl.schema import SchemaGenerator
 
 # Generate schema from natural language description
 generator = SchemaGenerator()
@@ -231,8 +231,8 @@ Key Features:
 - Documentation site handling
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.extractors import AcademicExtractor, EcommerceExtractor
+from crawl import AsyncWebCrawler
+from crawl.extractors import AcademicExtractor, EcommerceExtractor
 
 async with AsyncWebCrawler() as crawler:
     # Academic paper extraction
@@ -271,8 +271,8 @@ Key Features:
 - Semantic search capabilities
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.indexing import WebIndex
+from crawl import AsyncWebCrawler
+from crawl.indexing import WebIndex
 
 # Initialize and build index
 index = WebIndex(model="efficient-mini")
@@ -306,15 +306,15 @@ async with AsyncWebCrawler() as crawler:
     )
 ```
 
-Each of these specialized features builds upon Crawl4AI's core functionality while providing targeted solutions for specific use cases. They can be used independently or combined for more complex data extraction and processing needs.
+Each of these specialized features builds upon Crawl's core functionality while providing targeted solutions for specific use cases. They can be used independently or combined for more complex data extraction and processing needs.
 
 # Section 3: Development Tools 🔧
 
-This section covers tools designed to enhance the development experience, monitoring, and deployment of Crawl4AI applications.
+This section covers tools designed to enhance the development experience, monitoring, and deployment of Crawl applications.
 
-### 3.1 Crawl4AI Playground 🎮
+### 3.1 Crawl Playground 🎮
 
-The Crawl4AI Playground is an interactive web-based development environment that simplifies web scraping experimentation, development, and deployment. With its intuitive interface and AI-powered assistance, users can quickly prototype, test, and deploy web scraping solutions.
+The Crawl Playground is an interactive web-based development environment that simplifies web scraping experimentation, development, and deployment. With its intuitive interface and AI-powered assistance, users can quickly prototype, test, and deploy web scraping solutions.
 
 #### Key Features 🌟
 
@@ -363,8 +363,8 @@ Key Features:
 - Customizable alerting system
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.monitor import CrawlMonitor
+from crawl import AsyncWebCrawler
+from crawl.monitor import CrawlMonitor
 
 # Initialize monitoring
 monitor = CrawlMonitor()
@@ -382,7 +382,7 @@ await monitor.start(
 
 # Example CLI output:
 """
-Crawl4AI Monitor (Live) - Press Q to exit
+Crawl Monitor (Live) - Press Q to exit
 ────────────────────────────────────────
 System Usage:
  ├─ CPU: ███████░░░ 70%
@@ -401,7 +401,7 @@ Metrics (Last 5min):
 ```
 
 ### 3.3 Cloud Integration
-Streamlined deployment tools for setting up Crawl4AI in various cloud environments, with support for scaling and monitoring.
+Streamlined deployment tools for setting up Crawl in various cloud environments, with support for scaling and monitoring.
 
 Key Features:
 - One-click deployment solutions
@@ -411,8 +411,8 @@ Key Features:
 - Monitoring integration
 
 ```python
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.deploy import CloudDeployer
+from crawl import AsyncWebCrawler
+from crawl.deploy import CloudDeployer
 
 # Initialize deployer
 deployer = CloudDeployer()
@@ -439,14 +439,14 @@ print(f"API Endpoint: {deployment.endpoint}")
 print(f"Monitor URL: {deployment.monitor_url}")
 ```
 
-These development tools work together to provide a comprehensive environment for developing, testing, monitoring, and deploying Crawl4AI applications. The Playground helps users experiment and generate optimal configurations, the Performance Monitor ensures smooth operation, and the Cloud Integration tools simplify deployment and scaling.
+These development tools work together to provide a comprehensive environment for developing, testing, monitoring, and deploying Crawl applications. The Playground helps users experiment and generate optimal configurations, the Performance Monitor ensures smooth operation, and the Cloud Integration tools simplify deployment and scaling.
 
 # Section 4: Community & Growth 🌱
 
-This section outlines initiatives designed to build and support the Crawl4AI community, provide educational resources, and ensure sustainable project growth.
+This section outlines initiatives designed to build and support the Crawl community, provide educational resources, and ensure sustainable project growth.
 
 ### 4.1 Sponsorship Program
-A structured program to support ongoing development and maintenance of Crawl4AI while providing valuable benefits to sponsors.
+A structured program to support ongoing development and maintenance of Crawl while providing valuable benefits to sponsors.
 
 Key Features:
 - Multiple sponsorship tiers
@@ -484,7 +484,7 @@ Sponsorship Tiers:
 ```
 
 ### 4.2 "How to Crawl" Video Series
-A comprehensive educational resource teaching users how to effectively use Crawl4AI for various web scraping and data extraction scenarios.
+A comprehensive educational resource teaching users how to effectively use Crawl for various web scraping and data extraction scenarios.
 
 Key Features:
 - Step-by-step tutorials
@@ -500,4 +500,4 @@ These community initiatives are designed to:
 - Share knowledge and best practices
 - Create opportunities for collaboration
 
-The combination of structured support through sponsorship, educational content through video series, and interactive learning through the playground creates a robust ecosystem for both new and experienced users of Crawl4AI.
+The combination of structured support through sponsorship, educational content through video series, and interactive learning through the playground creates a robust ecosystem for both new and experienced users of Crawl.

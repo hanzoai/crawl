@@ -5,8 +5,8 @@ Quick demo showing discovery → filter → crawl pipeline
 Note: Uses context manager for automatic cleanup of resources.
 """
 import asyncio, os
-from crawl4ai import AsyncUrlSeeder, AsyncWebCrawler, SeedingConfig, CrawlerRunConfig, AsyncLogger, DefaultMarkdownGenerator 
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl import AsyncUrlSeeder, AsyncWebCrawler, SeedingConfig, CrawlerRunConfig, AsyncLogger, DefaultMarkdownGenerator 
+from crawl.content_filter_strategy import PruningContentFilter
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 

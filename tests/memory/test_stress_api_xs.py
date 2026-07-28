@@ -1,4 +1,4 @@
-"""Lite Crawl4AI API stress‑tester.
+"""Lite Crawl API stress‑tester.
 
 ✔ batch or stream mode (single unified path)
 ✔ global stats + JSON summary
@@ -185,7 +185,7 @@ def main(
     stream: bool = typer.Option(None, help="Use /crawl/stream"),
     report: pathlib.Path = typer.Option("reports_api", help="Where to save JSON summary"),
 ):
-    """Run a stress test against a running Crawl4AI API server."""
+    """Run a stress test against a running Crawl API server."""
     if preset not in PRESETS and any(v is None for v in (urls, concurrent, chunk, stream)):
         console.print(f"[red]Unknown preset '{preset}' and custom params missing[/]")
         raise typer.Exit(1)

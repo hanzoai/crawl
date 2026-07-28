@@ -10,11 +10,11 @@ import threading
 import sys
 import os
 
-# Add the parent directory to the path to import crawl4ai
+# Add the parent directory to the path to import crawl
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-from crawl4ai.components.crawler_monitor import CrawlerMonitor
-from crawl4ai.models import CrawlStatus
+from crawl.hanzo.aiponents.crawler_monitor import CrawlerMonitor
+from crawl.models import CrawlStatus
 
 def simulate_crawler_task(monitor, task_id, url, simulate_failure=False):
     """Simulate a crawler task with different states."""

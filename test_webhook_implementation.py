@@ -14,7 +14,7 @@ import json
 from datetime import datetime, timezone
 
 # Add deploy/docker to path to import modules
-# sys.path.insert(0, '/home/user/crawl4ai/deploy/docker')
+# sys.path.insert(0, '/home/user/crawl/deploy/docker')
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'deploy', 'docker'))
 
 def test_imports():
@@ -62,7 +62,7 @@ def test_webhook_service_init():
                     "timeout_ms": 30000
                 },
                 "headers": {
-                    "User-Agent": "Crawl4AI-Webhook/1.0"
+                    "User-Agent": "Crawl-Webhook/1.0"
                 }
             }
         }

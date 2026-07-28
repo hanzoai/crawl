@@ -1,7 +1,7 @@
 import asyncio
-from crawl4ai.docs_manager import DocsManager
+from crawl.docs_manager import DocsManager
 from click.testing import CliRunner
-from crawl4ai.cli import cli
+from crawl.cli import cli
 
 
 def test_cli():

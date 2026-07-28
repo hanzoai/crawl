@@ -2,7 +2,7 @@
 """
 Builtin Browser Example
 
-This example demonstrates how to use Crawl4AI's builtin browser feature,
+This example demonstrates how to use Crawl's builtin browser feature,
 which simplifies the browser management process. With builtin mode:
 
 - No need to manually start or connect to a browser
@@ -16,7 +16,7 @@ call start() method on the crawler.
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 import time
 
 async def crawl_with_builtin_browser():
@@ -28,7 +28,7 @@ async def crawl_with_builtin_browser():
     2. No explicit start() call needed
     3. No explicit close() needed
     """
-    print("\n=== Crawl4AI Builtin Browser Example ===\n")
+    print("\n=== Crawl Builtin Browser Example ===\n")
     
     # Create a browser configuration with builtin mode
     browser_config = BrowserConfig(
@@ -52,7 +52,7 @@ async def crawl_with_builtin_browser():
     print("\n➡️ Crawling first URL...")
     t0 = time.time()
     result1 = await crawler.arun(
-        url="https://crawl4ai.com",
+        url="https://crawl.hanzo.ai",
         config=crawler_config
     )
     t1 = time.time()

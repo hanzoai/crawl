@@ -2,7 +2,7 @@
 import asyncio
 import pytest
 import pytest_asyncio
-from crawl4ai import DomainMapper, DomainMapperConfig
+from crawl import DomainMapper, DomainMapperConfig
 
 
 pytestmark = pytest.mark.network
@@ -54,7 +54,7 @@ class TestDomainMapperAdversarial:
             verbose=False,
             max_urls=5,
         )
-        results = await mapper.scan("https://docs.crawl4ai.com", config)
+        results = await mapper.scan("https://docs.hanzo.ai", config)
         assert len(results) >= 1
 
     @pytest.mark.asyncio
@@ -82,7 +82,7 @@ class TestDomainMapperAdversarial:
             hits_per_sec=2,
             verbose=False,
         )
-        results = await mapper.scan("docs.crawl4ai.com", config)
+        results = await mapper.scan("docs.hanzo.ai", config)
         assert isinstance(results, list)
 
     @pytest.mark.asyncio
@@ -93,7 +93,7 @@ class TestDomainMapperAdversarial:
             extract_head=False,
             verbose=False,
         )
-        results = await mapper.scan("docs.crawl4ai.com", config)
+        results = await mapper.scan("docs.hanzo.ai", config)
         for r in results:
             assert isinstance(r["url"], str)
 
@@ -131,6 +131,6 @@ class TestDomainMapperAdversarial:
             extract_head=False,
             verbose=False,
         )
-        results = await mapper.scan("docs.crawl4ai.com", config)
+        results = await mapper.scan("docs.hanzo.ai", config)
         # Should find at least / and /docs
         assert len(results) >= 1

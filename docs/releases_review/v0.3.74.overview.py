@@ -11,15 +11,15 @@ import asyncio
 from pathlib import Path
 import aiohttp
 import json
-from crawl4ai import AsyncWebCrawler, CacheMode
-from crawl4ai.content_filter_strategy import BM25ContentFilter
+from crawl import AsyncWebCrawler, CacheMode
+from crawl.content_filter_strategy import BM25ContentFilter
 
 
 # 1. File Download Processing Example
 async def download_example():
     """Example of downloading files from Python.org"""
     # downloads_path = os.path.join(os.getcwd(), "downloads")
-    downloads_path = os.path.join(Path.home(), ".crawl4ai", "downloads")
+    downloads_path = os.path.join(Path.home(), ".crawl", "downloads")
     os.makedirs(downloads_path, exist_ok=True)
 
     print(f"Downloads will be saved to: {downloads_path}")
@@ -105,7 +105,7 @@ async def markdown_generation_example():
             cache_mode=CacheMode.BYPASS,
         )
 
-        from crawl4ai.content_filter_strategy import BM25ContentFilter
+        from crawl.content_filter_strategy import BM25ContentFilter
 
         result = await crawler.arun(
             url="https://en.wikipedia.org/wiki/Apple",
@@ -162,7 +162,7 @@ async def markdown_generation_example():
 async def browser_management_example():
     """Example of using enhanced browser management features"""
     # Use the specified user directory path
-    user_data_dir = os.path.join(Path.home(), ".crawl4ai", "browser_profile")
+    user_data_dir = os.path.join(Path.home(), ".crawl", "browser_profile")
     os.makedirs(user_data_dir, exist_ok=True)
 
     print(f"Browser profile will be saved to: {user_data_dir}")
@@ -174,7 +174,7 @@ async def browser_management_example():
         verbose=True,
     ) as crawler:
         result = await crawler.arun(
-            url="https://crawl4ai.com",
+            url="https://crawl.hanzo.ai",
             # session_id="persistent_session_1",
             cache_mode=CacheMode.BYPASS,
         )
@@ -194,7 +194,7 @@ async def browser_management_example():
 # 5. API Usage Example
 async def api_example():
     """Example of using the new API endpoints"""
-    api_token = os.getenv("CRAWL4AI_API_TOKEN") or "test_api_code"
+    api_token = os.getenv("CRAWL_API_TOKEN") or "test_api_code"
     headers = {"Authorization": f"Bearer {api_token}"}
     async with aiohttp.ClientSession() as session:
         # Submit crawl job
@@ -254,7 +254,7 @@ async def api_example():
 
 # Main execution
 async def main():
-    # print("Running Crawl4AI feature examples...")
+    # print("Running Crawl feature examples...")
 
     # print("\n1. Running Download Example:")
     # await download_example()

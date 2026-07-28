@@ -13,7 +13,7 @@ import asyncio
 grandparent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(grandparent_dir)
 
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,

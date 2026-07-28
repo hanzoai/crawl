@@ -1,5 +1,5 @@
 """
-URL Seeder Demo - Interactive showcase of Crawl4AI's URL discovery capabilities
+URL Seeder Demo - Interactive showcase of Crawl's URL discovery capabilities
 
 This demo shows:
 1. Basic URL discovery from sitemaps and Common Crawl
@@ -20,7 +20,7 @@ from rich.table import Table
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, BarColumn, TimeElapsedColumn
 from rich.prompt import Prompt, Confirm
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     AsyncUrlSeeder,
@@ -29,9 +29,9 @@ from crawl4ai import (
 
 console = Console()
 
-console.rule("[bold green]🌐 Crawl4AI URL Seeder: Interactive Demo")
+console.rule("[bold green]🌐 Crawl URL Seeder: Interactive Demo")
 
-DOMAIN = "crawl4ai.com"
+DOMAIN = "crawl.hanzo.ai"
 
 # Utils
 
@@ -77,7 +77,7 @@ async def section_1_basic_exploration(seed: AsyncUrlSeeder):
 async def section_2_cache_demo(seed: AsyncUrlSeeder):
     console.rule("[bold cyan]2. Caching Demonstration")   
     console.print("[yellow]Using `force=True` to bypass cache and fetch fresh data.[/yellow]")
-    cfg = SeedingConfig(source="cc", pattern="*crawl4ai.com/core/*", verbose=False, force = True)
+    cfg = SeedingConfig(source="cc", pattern="*crawl.hanzo.ai/core/*", verbose=False, force = True)
     await seed.urls(DOMAIN, cfg)
 
 async def section_3_live_head(seed: AsyncUrlSeeder):
@@ -86,7 +86,7 @@ async def section_3_live_head(seed: AsyncUrlSeeder):
         extract_head=True,
         concurrency=10,
         hits_per_sec=5,
-        pattern="*crawl4ai.com/*",
+        pattern="*crawl.hanzo.ai/*",
         max_urls=10,
         verbose=False,
     )
@@ -139,7 +139,7 @@ async def section_5_keyword_filter_to_agent(seed: AsyncUrlSeeder):
         concurrency=20,
         hits_per_sec=10,
         max_urls=10,
-        pattern="*crawl4ai.com/*",
+        pattern="*crawl.hanzo.ai/*",
         force=True,
     )
     urls = await seed.urls(DOMAIN, cfg)
@@ -192,7 +192,7 @@ async def section_6_multi_domain(seed: AsyncUrlSeeder):
     console.rule("[bold cyan]6. Multi-Domain Discovery")
     console.print("[yellow]Discovering Python tutorials across multiple educational sites[/yellow]\n")
     
-    domains = ["docs.python.org", "realpython.com", "docs.crawl4ai.com"]
+    domains = ["docs.python.org", "realpython.com", "docs.hanzo.ai"]
     cfg = SeedingConfig(
         source="sitemap",
         extract_head=True,

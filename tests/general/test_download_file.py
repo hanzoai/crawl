@@ -1,12 +1,12 @@
 import asyncio
-from crawl4ai import CrawlerRunConfig, AsyncWebCrawler, BrowserConfig
+from crawl import CrawlerRunConfig, AsyncWebCrawler, BrowserConfig
 from pathlib import Path
 import os
 
 async def test_basic_download():
     
-    # Custom folder (otherwise defaults to ~/.crawl4ai/downloads)
-    downloads_path = os.path.join(Path.home(), ".crawl4ai", "downloads")
+    # Custom folder (otherwise defaults to ~/.crawl/downloads)
+    downloads_path = os.path.join(Path.home(), ".crawl", "downloads")
     os.makedirs(downloads_path, exist_ok=True)
     browser_config = BrowserConfig(
         accept_downloads=True,

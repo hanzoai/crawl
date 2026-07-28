@@ -51,7 +51,7 @@ You can directly provide the data as a dictionary:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     storage_dict = {
@@ -99,7 +99,7 @@ If you prefer a file-based approach, save the JSON above to `mystate.json` and r
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     async with AsyncWebCrawler(
@@ -131,8 +131,8 @@ A common scenario is when you need to log in to a site (entering username/passwo
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CacheMode
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def on_browser_created_hook(browser):
     # Access the default context and create a page
@@ -181,8 +181,8 @@ if __name__ == "__main__":
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CacheMode
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CacheMode
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def main():
     # Second run: no need to hook on_browser_created this time.

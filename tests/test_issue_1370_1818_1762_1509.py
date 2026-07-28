@@ -1,5 +1,5 @@
 """
-Regression tests for crawl4ai issue fixes:
+Regression tests for crawl issue fixes:
   #1762 — CLI encoding (utf-8 on all file writes)
   #1370 — Screenshot distortion on Elementor sites (dimension freezing)
   #1818 — Deep crawl timeout due to page reuse (window.stop + listener cleanup)
@@ -27,7 +27,7 @@ class TestIssue1762_CLIEncoding:
 
     def test_save_global_config_writes_utf8(self):
         """save_global_config must open the config file with encoding='utf-8'."""
-        from crawl4ai.cli import save_global_config
+        from crawl.cli import save_global_config
 
         m = mock_open()
         with patch("builtins.open", m), \
@@ -43,7 +43,7 @@ class TestIssue1762_CLIEncoding:
 
     def test_all_open_writes_in_cli_use_utf8(self):
         """Every open(..., 'w' ...) call in cli.py should include encoding='utf-8'."""
-        import crawl4ai.cli as cli_module
+        import crawl.cli as cli_module
         source = inspect.getsource(cli_module)
 
         # Find all open(..., "w" ...) patterns in source
@@ -92,7 +92,7 @@ def _make_strategy():
     strategy.logger = MagicMock()
 
     # Import the real method and bind it
-    from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+    from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
     strategy.take_screenshot_scroller = (
         AsyncPlaywrightCrawlerStrategy.take_screenshot_scroller.__get__(
             strategy, type(strategy)
@@ -132,7 +132,7 @@ class TestIssue1370_ScreenshotDistortion:
         # The first evaluate call should be the freeze JS
         first_eval = page.evaluate.call_args_list[0]
         js_code = first_eval[0][0]
-        assert "crawl4aiFrozen" in js_code, (
+        assert "crawlFrozen" in js_code, (
             "First JS evaluate should freeze element dimensions"
         )
         assert "important" in js_code, (
@@ -270,7 +270,7 @@ class TestIssue1818_DeepCrawlTimeout:
 
     def _make_crawl_mocks(self, session_id=None, capture_network=True):
         """Build strategy + config + page mocks for crawl tests."""
-        from crawl4ai.async_configs import CrawlerRunConfig
+        from crawl.async_configs import CrawlerRunConfig
 
         config = MagicMock(spec=CrawlerRunConfig)
         config.session_id = session_id
@@ -361,7 +361,7 @@ class TestIssue1818_DeepCrawlTimeout:
     async def test_source_code_listener_cleanup_outside_session_block(self):
         """Verify in source that listener removal is in the finally block,
         outside the 'if not config.session_id' guard."""
-        import crawl4ai.async_crawler_strategy as mod
+        import crawl.async_crawler_strategy as mod
         source = inspect.getsource(mod)
 
         # Find the finally block containing remove_listener and check that
@@ -391,8 +391,8 @@ class TestIssue1509_DeepCrawlArunMany:
 
     async def test_arun_many_with_deep_crawl_calls_arun_per_url(self):
         """With deep_crawl_strategy, arun_many should call arun() for each URL."""
-        from crawl4ai.async_webcrawler import AsyncWebCrawler
-        from crawl4ai.async_configs import BrowserConfig
+        from crawl.async_webcrawler import AsyncWebCrawler
+        from crawl.async_configs import BrowserConfig
 
         crawler = AsyncWebCrawler(config=BrowserConfig())
         # Avoid real initialization
@@ -418,8 +418,8 @@ class TestIssue1509_DeepCrawlArunMany:
 
     async def test_arun_many_deep_crawl_results_flattened(self):
         """Results from multiple deep-crawl URLs should be flattened into one list."""
-        from crawl4ai.async_webcrawler import AsyncWebCrawler
-        from crawl4ai.async_configs import BrowserConfig
+        from crawl.async_webcrawler import AsyncWebCrawler
+        from crawl.async_configs import BrowserConfig
 
         crawler = AsyncWebCrawler(config=BrowserConfig())
         crawler._setup_done = True
@@ -440,8 +440,8 @@ class TestIssue1509_DeepCrawlArunMany:
 
     async def test_arun_many_deep_crawl_streaming(self):
         """In streaming mode with deep_crawl_strategy, results are yielded."""
-        from crawl4ai.async_webcrawler import AsyncWebCrawler
-        from crawl4ai.async_configs import BrowserConfig
+        from crawl.async_webcrawler import AsyncWebCrawler
+        from crawl.async_configs import BrowserConfig
 
         crawler = AsyncWebCrawler(config=BrowserConfig())
         crawler._setup_done = True
@@ -468,8 +468,8 @@ class TestIssue1509_DeepCrawlArunMany:
 
     async def test_arun_many_without_deep_crawl_uses_dispatcher(self):
         """Without deep_crawl_strategy, arun_many should use the dispatcher."""
-        from crawl4ai.async_webcrawler import AsyncWebCrawler
-        from crawl4ai.async_configs import BrowserConfig
+        from crawl.async_webcrawler import AsyncWebCrawler
+        from crawl.async_configs import BrowserConfig
 
         crawler = AsyncWebCrawler(config=BrowserConfig())
         crawler._setup_done = True

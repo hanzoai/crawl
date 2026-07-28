@@ -1,5 +1,5 @@
 """
-Crawl4AI Regression Tests - Edge Cases and Error Handling
+Crawl Regression Tests - Edge Cases and Error Handling
 
 Adversarial tests for empty pages, malformed HTML, large pages, unicode,
 concurrent crawls, error recovery, and other boundary conditions.
@@ -10,8 +10,8 @@ All tests use real browser crawling with no mocking.
 import asyncio
 import pytest
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.cache_context import CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.cache_context import CacheMode
 
 
 # ---------------------------------------------------------------------------

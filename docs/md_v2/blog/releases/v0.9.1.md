@@ -1,10 +1,10 @@
-# Crawl4AI v0.9.1: Bug Fixes & PruningContentFilter Whitelist
+# Crawl v0.9.1: Bug Fixes & PruningContentFilter Whitelist
 
 *July 2026 - 3 min read*
 
 ---
 
-I'm releasing Crawl4AI v0.9.1, a patch release that ships 12 bug fixes across Docker, browser, core, and extraction, plus one new feature for `PruningContentFilter`.
+I'm releasing Crawl v0.9.1, a patch release that ships 12 bug fixes across Docker, browser, core, and extraction, plus one new feature for `PruningContentFilter`.
 
 No breaking changes. If you're on v0.9.0, upgrade freely.
 
@@ -21,8 +21,8 @@ No breaking changes. If you're on v0.9.0, upgrade freely.
 PruningContentFilter's density-based scoring is great at stripping boilerplate, but it sometimes takes short metadata elements — author names, timestamps, attribution lines — along with it. The new `preserve_classes` and `preserve_tags` parameters let you whitelist specific CSS classes or HTML tags that should never be pruned, regardless of their density score.
 
 ```python
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 filter = PruningContentFilter(
     threshold=0.48,
@@ -63,7 +63,7 @@ Whitelisted nodes skip scoring entirely. Default is empty sets — no behavior c
 
 ### Dependencies (1 fix)
 
-- **lxml 6.x**: Widened lxml ceiling from `<6` to `<7` so crawl4ai can co-install with packages requiring lxml 6.x (e.g. scrapling). (#2019)
+- **lxml 6.x**: Widened lxml ceiling from `<6` to `<7` so crawl can co-install with packages requiring lxml 6.x (e.g. scrapling). (#2019)
 
 ### Housekeeping
 
@@ -73,8 +73,8 @@ Whitelisted nodes skip scoring entirely. Default is empty sets — no behavior c
 ## Upgrade
 
 ```bash
-pip install -U crawl4ai
-crawl4ai-doctor  # verify installation
+pip install -U crawl
+crawl-doctor  # verify installation
 ```
 
 Docker users: pull the latest image once the Docker release workflow finishes.
@@ -85,6 +85,6 @@ Thanks to the community contributors who made this release possible: @hafezparas
 
 ## Support & Resources
 
-- [Documentation](https://docs.crawl4ai.com)
-- [GitHub Issues](https://github.com/unclecode/crawl4ai/issues)
-- [Discord Community](https://discord.gg/crawl4ai)
+- [Documentation](https://docs.hanzo.ai)
+- [GitHub Issues](https://github.com/hanzoai/crawl/issues)
+- [Discord Community](https://discord.gg/crawl)

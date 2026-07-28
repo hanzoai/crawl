@@ -1,22 +1,22 @@
-# 🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper.
+# 🚀🤖 Crawl: Open-source LLM Friendly Web Crawler & Scraper.
 
 <div align="center">
 
-<a href="https://trendshift.io/repositories/11716" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11716" alt="unclecode%2Fcrawl4ai | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/11716" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11716" alt="unclecode%2Fcrawl | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
-[![GitHub Stars](https://img.shields.io/github/stars/unclecode/crawl4ai?style=social)](https://github.com/unclecode/crawl4ai/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/unclecode/crawl4ai?style=social)](https://github.com/unclecode/crawl4ai/network/members)
+[![GitHub Stars](https://img.shields.io/github/stars/hanzoai/crawl?style=social)](https://github.com/hanzoai/crawl/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/hanzoai/crawl?style=social)](https://github.com/hanzoai/crawl/network/members)
 
-[![PyPI version](https://badge.fury.io/py/crawl4ai.svg)](https://badge.fury.io/py/crawl4ai)
-[![Python Version](https://img.shields.io/pypi/pyversions/crawl4ai)](https://pypi.org/project/crawl4ai/)
-[![Downloads](https://static.pepy.tech/badge/crawl4ai/month)](https://pepy.tech/project/crawl4ai)
+[![PyPI version](https://badge.fury.io/py/crawl.svg)](https://badge.fury.io/py/crawl)
+[![Python Version](https://img.shields.io/pypi/pyversions/crawl)](https://pypi.org/project/crawl/)
+[![Downloads](https://static.pepy.tech/badge/crawl/month)](https://pepy.tech/project/crawl)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/unclecode?style=flat&logo=GitHub-Sponsors&label=Sponsors&color=pink)](https://github.com/sponsors/unclecode)
 
 <p align="center">
-    <a href="https://x.com/crawl4ai">
+    <a href="https://x.com/crawl">
       <img src="https://img.shields.io/badge/Follow%20on%20X-000000?style=for-the-badge&logo=x&logoColor=white" alt="Follow on X" />
     </a>
-    <a href="https://www.linkedin.com/company/crawl4ai">
+    <a href="https://www.linkedin.com/company/crawl">
       <img src="https://img.shields.io/badge/Follow%20on%20LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Follow on LinkedIn" />
     </a>
     <a href="https://discord.gg/jP8KfhDhyN">
@@ -25,25 +25,25 @@
   </p>
 </div>
 
-Crawl4AI is the #1 trending GitHub repository, actively maintained by a vibrant community. It delivers blazing-fast, AI-ready web crawling tailored for LLMs, AI agents, and data pipelines. Open source, flexible, and built for real-time performance, Crawl4AI empowers developers with unmatched speed, precision, and deployment ease.  
+Crawl is the #1 trending GitHub repository, actively maintained by a vibrant community. It delivers blazing-fast, AI-ready web crawling tailored for LLMs, AI agents, and data pipelines. Open source, flexible, and built for real-time performance, Crawl empowers developers with unmatched speed, precision, and deployment ease.  
 
 [✨ Check out latest update v0.7.0](#-recent-updates)
 
-🎉 **Version 0.7.0 is now available!** The Adaptive Intelligence Update introduces groundbreaking features: Adaptive Crawling that learns website patterns, Virtual Scroll support for infinite pages, intelligent Link Preview with 3-layer scoring, Async URL Seeder for massive discovery, and significant performance improvements. [Read the release notes →](https://github.com/unclecode/crawl4ai/blob/main/docs/blog/release-v0.7.0.md)
+🎉 **Version 0.7.0 is now available!** The Adaptive Intelligence Update introduces groundbreaking features: Adaptive Crawling that learns website patterns, Virtual Scroll support for infinite pages, intelligent Link Preview with 3-layer scoring, Async URL Seeder for massive discovery, and significant performance improvements. [Read the release notes →](https://github.com/hanzoai/crawl/blob/main/docs/blog/release-v0.7.0.md)
 
 <details>
 <summary>🤓 <strong>My Personal Story</strong></summary>
 
 My journey with computers started in childhood when my dad, a computer scientist, introduced me to an Amstrad computer. Those early days sparked a fascination with technology, leading me to pursue computer science and specialize in NLP during my postgraduate studies. It was during this time that I first delved into web crawling, building tools to help researchers organize papers and extract information from publications a challenging yet rewarding experience that honed my skills in data extraction.
 
-Fast forward to 2023, I was working on a tool for a project and needed a crawler to convert a webpage into markdown. While exploring solutions, I found one that claimed to be open-source but required creating an account and generating an API token. Worse, it turned out to be a SaaS model charging $16, and its quality didn’t meet my standards. Frustrated, I realized this was a deeper problem. That frustration turned into turbo anger mode, and I decided to build my own solution. In just a few days, I created Crawl4AI. To my surprise, it went viral, earning thousands of GitHub stars and resonating with a global community.
+Fast forward to 2023, I was working on a tool for a project and needed a crawler to convert a webpage into markdown. While exploring solutions, I found one that claimed to be open-source but required creating an account and generating an API token. Worse, it turned out to be a SaaS model charging $16, and its quality didn’t meet my standards. Frustrated, I realized this was a deeper problem. That frustration turned into turbo anger mode, and I decided to build my own solution. In just a few days, I created Crawl. To my surprise, it went viral, earning thousands of GitHub stars and resonating with a global community.
 
-I made Crawl4AI open-source for two reasons. First, it’s my way of giving back to the open-source community that has supported me throughout my career. Second, I believe data should be accessible to everyone, not locked behind paywalls or monopolized by a few. Open access to data lays the foundation for the democratization of AI, a vision where individuals can train their own models and take ownership of their information. This library is the first step in a larger journey to create the best open-source data extraction and generation tool the world has ever seen, built collaboratively by a passionate community.
+I made Crawl open-source for two reasons. First, it’s my way of giving back to the open-source community that has supported me throughout my career. Second, I believe data should be accessible to everyone, not locked behind paywalls or monopolized by a few. Open access to data lays the foundation for the democratization of AI, a vision where individuals can train their own models and take ownership of their information. This library is the first step in a larger journey to create the best open-source data extraction and generation tool the world has ever seen, built collaboratively by a passionate community.
 
 Thank you to everyone who has supported this project, used it, and shared feedback. Your encouragement motivates me to dream even bigger. Join us, file issues, submit PRs, or spread the word. Together, we can build a tool that truly empowers people to access their own data and reshape the future of AI.
 </details>
 
-## 🧐 Why Crawl4AI?
+## 🧐 Why Crawl?
 
 1. **Built for LLMs**: Creates smart, concise Markdown optimized for RAG and fine-tuning applications.  
 2. **Lightning Fast**: Delivers results faster with real-time, cost-efficient performance.  
@@ -54,19 +54,19 @@ Thank you to everyone who has supported this project, used it, and shared feedba
 
 ## 🚀 Quick Start 
 
-1. Install Crawl4AI:
+1. Install Crawl:
 ```bash
 # Install the package
-pip install -U crawl4ai
+pip install -U crawl
 
 # For pre release versions
-pip install crawl4ai --pre
+pip install crawl --pre
 
 # Run post-installation setup
-crawl4ai-setup
+crawl-setup
 
 # Verify your installation
-crawl4ai-doctor
+crawl-doctor
 ```
 
 If you encounter any browser-related issues, you can install them manually:
@@ -77,7 +77,7 @@ python -m playwright install --with-deps chromium
 2. Run a simple web crawl with Python:
 ```python
 import asyncio
-from crawl4ai import *
+from crawl import *
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 crwl https://www.nbcnews.com/business -o markdown
 
 # Deep crawl with BFS strategy, max 10 pages
-crwl https://docs.crawl4ai.com --deep-crawl bfs --max-pages 10
+crwl https://docs.hanzo.ai --deep-crawl bfs --max-pages 10
 
 # Use LLM extraction with a specific question
 crwl https://www.example.com/products -q "Extract all product prices"
@@ -184,11 +184,11 @@ crwl https://www.example.com/products -q "Extract all product prices"
 
 ✨ Play around with this [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1SgRPrByQLzjRfwoRNq1wSGE9nYY_EE8C?usp=sharing)
 
-✨ Visit our [Documentation Website](https://docs.crawl4ai.com/)
+✨ Visit our [Documentation Website](https://docs.hanzo.ai/)
 
 ## Installation 🛠️
 
-Crawl4AI offers flexible installation options to suit various use cases. You can install it as a Python package or use Docker.
+Crawl offers flexible installation options to suit various use cases. You can install it as a Python package or use Docker.
 
 <details>
 <summary>🐍 <strong>Using pip</strong></summary>
@@ -200,13 +200,13 @@ Choose the installation option that best fits your needs:
 For basic web crawling and scraping tasks:
 
 ```bash
-pip install crawl4ai
-crawl4ai-setup # Setup the browser
+pip install crawl
+crawl-setup # Setup the browser
 ```
 
-By default, this will install the asynchronous version of Crawl4AI, using Playwright for web crawling.
+By default, this will install the asynchronous version of Crawl, using Playwright for web crawling.
 
-👉 **Note**: When you install Crawl4AI, the `crawl4ai-setup` should automatically install and set up Playwright. However, if you encounter any Playwright-related errors, you can manually install it using one of these methods:
+👉 **Note**: When you install Crawl, the `crawl-setup` should automatically install and set up Playwright. However, if you encounter any Playwright-related errors, you can manually install it using one of these methods:
 
 1. Through the command line:
 
@@ -229,7 +229,7 @@ This second method has proven to be more reliable in some cases.
 The sync version is deprecated and will be removed in future versions. If you need the synchronous version using Selenium:
 
 ```bash
-pip install crawl4ai[sync]
+pip install crawl[sync]
 ```
 
 ---
@@ -239,8 +239,8 @@ pip install crawl4ai[sync]
 For contributors who plan to modify the source code:
 
 ```bash
-git clone https://github.com/unclecode/crawl4ai.git
-cd crawl4ai
+git clone https://github.com/hanzoai/crawl.git
+cd crawl
 pip install -e .                    # Basic installation in editable mode
 ```
 
@@ -275,13 +275,13 @@ The new Docker implementation includes:
 
 ```bash
 # Pull and run the latest release candidate
-docker pull unclecode/crawl4ai:0.7.0
-docker run -d -p 11235:11235 --name crawl4ai --shm-size=1g unclecode/crawl4ai:0.7.0
+docker pull hanzoai/crawl:0.7.0
+docker run -d -p 11235:11235 --name crawl --shm-size=1g hanzoai/crawl:0.7.0
 
 # Visit the playground at http://localhost:11235/playground
 ```
 
-For complete documentation, see our [Docker Deployment Guide](https://docs.crawl4ai.com/core/docker-deployment/).
+For complete documentation, see our [Docker Deployment Guide](https://docs.hanzo.ai/core/docker-deployment/).
 
 </details>
 
@@ -313,23 +313,23 @@ else:
     result = requests.get(f"http://localhost:11235/task/{task_id}")
 ```
 
-For more examples, see our [Docker Examples](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/docker_example.py). For advanced configuration, environment variables, and usage examples, see our [Docker Deployment Guide](https://docs.crawl4ai.com/basic/docker-deployment/).
+For more examples, see our [Docker Examples](https://github.com/hanzoai/crawl/blob/main/docs/examples/docker_example.py). For advanced configuration, environment variables, and usage examples, see our [Docker Deployment Guide](https://docs.hanzo.ai/basic/docker-deployment/).
 
 </details>
 
 
 ## 🔬 Advanced Usage Examples 🔬
 
-You can check the project structure in the directory [docs/examples](https://github.com/unclecode/crawl4ai/tree/main/docs/examples). Over there, you can find a variety of examples; here, some popular examples are shared.
+You can check the project structure in the directory [docs/examples](https://github.com/hanzoai/crawl/tree/main/docs/examples). Over there, you can find a variety of examples; here, some popular examples are shared.
 
 <details>
 <summary>📝 <strong>Heuristic Markdown Generation with Clean and Fit Markdown</strong></summary>
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai.content_filter_strategy import PruningContentFilter, BM25ContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl.content_filter_strategy import PruningContentFilter, BM25ContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def main():
     browser_config = BrowserConfig(
@@ -365,8 +365,8 @@ if __name__ == "__main__":
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 import json
 
 async def main():
@@ -439,8 +439,8 @@ if __name__ == "__main__":
 ```python
 import os
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
-from crawl4ai import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode, LLMConfig
+from crawl import LLMExtractionStrategy
 from pydantic import BaseModel, Field
 
 class OpenAIModelFee(BaseModel):
@@ -485,11 +485,11 @@ if __name__ == "__main__":
 import os, sys
 from pathlib import Path
 import asyncio, time
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def test_news_crawl():
     # Create a persistent user data directory
-    user_data_dir = os.path.join(Path.home(), ".crawl4ai", "browser_profile")
+    user_data_dir = os.path.join(Path.home(), ".crawl", "browser_profile")
     os.makedirs(user_data_dir, exist_ok=True)
 
     browser_config = BrowserConfig(
@@ -582,11 +582,11 @@ async def test_news_crawl():
 
 - **⚡ Performance Boost**: Up to 3x faster with optimized resource handling and memory efficiency
 
-Read the full details in our [0.7.0 Release Notes](https://docs.crawl4ai.com/blog/release-v0.7.0) or check the [CHANGELOG](https://github.com/unclecode/crawl4ai/blob/main/CHANGELOG.md).
+Read the full details in our [0.7.0 Release Notes](https://docs.hanzo.ai/blog/release-v0.7.0) or check the [CHANGELOG](https://github.com/hanzoai/crawl/blob/main/CHANGELOG.md).
 
-## Version Numbering in Crawl4AI
+## Version Numbering in Crawl
 
-Crawl4AI follows standard Python version numbering conventions (PEP 440) to help users understand the stability and features of each release.
+Crawl follows standard Python version numbering conventions (PEP 440) to help users understand the stability and features of each release.
 
 ### Version Numbers Explained
 
@@ -603,17 +603,17 @@ We use different suffixes to indicate development stages:
 #### Installation
 - Regular installation (stable version):
   ```bash
-  pip install -U crawl4ai
+  pip install -U crawl
   ```
 
 - Install pre-release versions:
   ```bash
-  pip install crawl4ai --pre
+  pip install crawl --pre
   ```
 
 - Install specific version:
   ```bash
-  pip install crawl4ai==0.4.3b1
+  pip install crawl==0.4.3b1
   ```
 
 #### Why Pre-releases?
@@ -629,9 +629,9 @@ For production environments, we recommend using the stable version. For testing 
 
 > 🚨 **Documentation Update Alert**: We're undertaking a major documentation overhaul next week to reflect recent updates and improvements. Stay tuned for a more comprehensive and up-to-date guide!
 
-For current documentation, including installation instructions, advanced features, and API reference, visit our [Documentation Website](https://docs.crawl4ai.com/).
+For current documentation, including installation instructions, advanced features, and API reference, visit our [Documentation Website](https://docs.hanzo.ai/).
 
-To check our development plans and upcoming features, visit our [Roadmap](https://github.com/unclecode/crawl4ai/blob/main/ROADMAP.md).
+To check our development plans and upcoming features, visit our [Roadmap](https://github.com/hanzoai/crawl/blob/main/ROADMAP.md).
 
 <details>
 <summary>📈 <strong>Development TODOs</strong></summary>
@@ -653,7 +653,7 @@ To check our development plans and upcoming features, visit our [Roadmap](https:
 
 ## 🤝 Contributing 
 
-We welcome contributions from the open-source community. Check out our [contribution guidelines](https://github.com/unclecode/crawl4ai/blob/main/CONTRIBUTORS.md) for more information.
+We welcome contributions from the open-source community. Check out our [contribution guidelines](https://github.com/hanzoai/crawl/blob/main/CONTRIBUTORS.md) for more information.
 
 I'll help modify the license section with badges. For the halftone effect, here's a version with it:
 
@@ -661,76 +661,76 @@ Here's the updated license section:
 
 ## 📄 License & Attribution
 
-This project is licensed under the Apache License 2.0, attribution is recommended via the badges below. See the [Apache 2.0 License](https://github.com/unclecode/crawl4ai/blob/main/LICENSE) file for details.
+This project is licensed under the Apache License 2.0, attribution is recommended via the badges below. See the [Apache 2.0 License](https://github.com/hanzoai/crawl/blob/main/LICENSE) file for details.
 
 ### Attribution Requirements
-When using Crawl4AI, you must include one of the following attribution methods:
+When using Crawl, you must include one of the following attribution methods:
 
 #### 1. Badge Attribution (Recommended)
 Add one of these badges to your README, documentation, or website:
 
 | Theme | Badge |
 |-------|-------|
-| **Disco Theme (Animated)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-disco.svg" alt="Powered by Crawl4AI" width="200"/></a> |
-| **Night Theme (Dark with Neon)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-night.svg" alt="Powered by Crawl4AI" width="200"/></a> |
-| **Dark Theme (Classic)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-dark.svg" alt="Powered by Crawl4AI" width="200"/></a> |
-| **Light Theme (Classic)** | <a href="https://github.com/unclecode/crawl4ai"><img src="./docs/assets/powered-by-light.svg" alt="Powered by Crawl4AI" width="200"/></a> |
+| **Disco Theme (Animated)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-disco.svg" alt="Powered by Crawl" width="200"/></a> |
+| **Night Theme (Dark with Neon)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-night.svg" alt="Powered by Crawl" width="200"/></a> |
+| **Dark Theme (Classic)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-dark.svg" alt="Powered by Crawl" width="200"/></a> |
+| **Light Theme (Classic)** | <a href="https://github.com/hanzoai/crawl"><img src="./docs/assets/powered-by-light.svg" alt="Powered by Crawl" width="200"/></a> |
  
 
 HTML code for adding the badges:
 ```html
 <!-- Disco Theme (Animated) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-disco.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-disco.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Night Theme (Dark with Neon) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-night.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-night.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Dark Theme (Classic) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-dark.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-dark.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Light Theme (Classic) -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/assets/powered-by-light.svg" alt="Powered by Crawl4AI" width="200"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/assets/powered-by-light.svg" alt="Powered by Crawl" width="200"/>
 </a>
 
 <!-- Simple Shield Badge -->
-<a href="https://github.com/unclecode/crawl4ai">
-  <img src="https://img.shields.io/badge/Powered%20by-Crawl4AI-blue?style=flat-square" alt="Powered by Crawl4AI"/>
+<a href="https://github.com/hanzoai/crawl">
+  <img src="https://img.shields.io/badge/Powered%20by-Crawl-blue?style=flat-square" alt="Powered by Crawl"/>
 </a>
 ```
 
 #### 2. Text Attribution
 Add this line to your documentation:
 ```
-This project uses Crawl4AI (https://github.com/unclecode/crawl4ai) for web data extraction.
+This project uses Crawl (https://github.com/hanzoai/crawl) for web data extraction.
 ```
 
 ## 📚 Citation
 
-If you use Crawl4AI in your research or project, please cite:
+If you use Crawl in your research or project, please cite:
 
 ```bibtex
-@software{crawl4ai2024,
+@software{crawl2024,
   author = {UncleCode},
-  title = {Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper},
+  title = {Crawl: Open-source LLM Friendly Web Crawler & Scraper},
   year = {2024},
   publisher = {GitHub},
   journal = {GitHub Repository},
-  howpublished = {\url{https://github.com/unclecode/crawl4ai}},
+  howpublished = {\url{https://github.com/hanzoai/crawl}},
   commit = {Please use the commit hash you're working with}
 }
 ```
 
 Text citation format:
 ```
-UncleCode. (2024). Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper [Computer software]. 
-GitHub. https://github.com/unclecode/crawl4ai
+UncleCode. (2024). Crawl: Open-source LLM Friendly Web Crawler & Scraper [Computer software]. 
+GitHub. https://github.com/hanzoai/crawl
 ```
 
 ## 📧 Contact 
@@ -739,15 +739,15 @@ For questions, suggestions, or feedback, feel free to reach out:
 
 - GitHub: [unclecode](https://github.com/unclecode)
 - Twitter: [@unclecode](https://twitter.com/unclecode)
-- Website: [crawl4ai.com](https://crawl4ai.com)
+- Website: [crawl.hanzo.ai](https://crawl.hanzo.ai)
 
 Happy Crawling! 🕸️🚀
 
-## 💖 Support Crawl4AI
+## 💖 Support Crawl
 
 > 🎉 **Sponsorship Program Just Launched!** Be among the first 50 **Founding Sponsors** and get permanent recognition in our Hall of Fame!
 
-Crawl4AI is the #1 trending open-source web crawler with 51K+ stars. Your support ensures we stay independent, innovative, and free forever.
+Crawl is the #1 trending open-source web crawler with 51K+ stars. Your support ensures we stay independent, innovative, and free forever.
 
 <div align="center">
 
@@ -781,7 +781,7 @@ Thank you to all our sponsors who make this project possible!
 
 ## 🗾 Mission
 
-Our mission is to unlock the value of personal and enterprise data by transforming digital footprints into structured, tradeable assets. Crawl4AI empowers individuals and organizations with open-source tools to extract and structure data, fostering a shared data economy.  
+Our mission is to unlock the value of personal and enterprise data by transforming digital footprints into structured, tradeable assets. Crawl empowers individuals and organizations with open-source tools to extract and structure data, fostering a shared data economy.  
 
 We envision a future where AI is powered by real human knowledge, ensuring data creators directly benefit from their contributions. By democratizing data and enabling ethical sharing, we are laying the foundation for authentic AI advancement.
 
@@ -806,4 +806,4 @@ For more details, see our [full mission statement](./MISSION.md).
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=unclecode/crawl4ai&type=Date)](https://star-history.com/#unclecode/crawl4ai&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=hanzoai/crawl&type=Date)](https://star-history.com/#hanzoai/crawl&Date)

@@ -1,6 +1,6 @@
 # C4A-Script Interactive Tutorial
 
-A comprehensive web-based tutorial for learning and experimenting with C4A-Script - Crawl4AI's visual web automation language.
+A comprehensive web-based tutorial for learning and experimenting with C4A-Script - Crawl's visual web automation language.
 
 ## 🚀 Quick Start
 
@@ -12,8 +12,8 @@ A comprehensive web-based tutorial for learning and experimenting with C4A-Scrip
 
 1. **Clone and Navigate**
    ```bash
-   git clone https://github.com/unclecode/crawl4ai.git
-   cd crawl4ai/docs/examples/c4a_script/tutorial/
+   git clone https://github.com/hanzoai/crawl.git
+   cd crawl/docs/examples/c4a_script/tutorial/
    ```
 
 2. **Install Dependencies**
@@ -31,7 +31,7 @@ A comprehensive web-based tutorial for learning and experimenting with C4A-Scrip
    http://localhost:8000
    ```
 
-**🌐 Try Online**: [Live Demo](https://docs.crawl4ai.com/c4a-script/demo)
+**🌐 Try Online**: [Live Demo](https://docs.hanzo.ai/c4a-script/demo)
 
 ### 2. Try Your First Script
 
@@ -237,12 +237,12 @@ handle_popups
    - All IF statements need THEN
    - Format: `IF (condition) THEN action`
 
-## 🚀 Using with Crawl4AI
+## 🚀 Using with Crawl
 
-Once you've mastered C4A-Script in the tutorial, use it with Crawl4AI:
+Once you've mastered C4A-Script in the tutorial, use it with Crawl:
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 config = CrawlerRunConfig(
     url="https://example.com",
@@ -365,7 +365,7 @@ Enable detailed logging by setting `DEBUG = True` in `assets/app.js`
 
 - **[C4A-Script Documentation](../../md_v2/core/c4a-script.md)** - Complete language guide
 - **[API Reference](../../md_v2/api/c4a-script-reference.md)** - Detailed command documentation
-- **[Live Demo](https://docs.crawl4ai.com/c4a-script/demo)** - Try without installation
+- **[Live Demo](https://docs.hanzo.ai/c4a-script/demo)** - Try without installation
 - **[Example Scripts](../)** - More automation examples
 
 ## 🤝 Contributing
@@ -393,4 +393,4 @@ Enable detailed logging by setting `DEBUG = True` in `assets/app.js`
 
 **Happy Automating!** 🎉
 
-Need help? Check our [documentation](https://docs.crawl4ai.com) or open an issue on [GitHub](https://github.com/unclecode/crawl4ai).
+Need help? Check our [documentation](https://docs.hanzo.ai) or open an issue on [GitHub](https://github.com/hanzoai/crawl).

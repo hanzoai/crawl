@@ -21,7 +21,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 import psutil
 import pytest
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 
 # ---------------------------------------------------------------------------
@@ -705,7 +705,7 @@ async def test_global_pages_in_use_cleared(test_server):
         await asyncio.sleep(0.5)
 
         # After recycle, pages_in_use for old endpoint should be empty
-        from crawl4ai.browser_manager import BrowserManager
+        from crawl.browser_manager import BrowserManager
         if bm._browser_endpoint_key:
             piu = BrowserManager._global_pages_in_use.get(
                 bm._browser_endpoint_key, set()

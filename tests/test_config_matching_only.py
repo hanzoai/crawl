@@ -7,7 +7,7 @@ from pathlib import Path
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from crawl4ai.async_configs import CrawlerRunConfig, MatchMode
+from crawl.async_configs import CrawlerRunConfig, MatchMode
 
 def test_all_matching_scenarios():
     print("Testing CrawlerRunConfig.is_match() method")

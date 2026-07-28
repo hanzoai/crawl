@@ -11,7 +11,7 @@ Domains used:
 """
 
 import pytest
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 
 # ---------------------------------------------------------------------------

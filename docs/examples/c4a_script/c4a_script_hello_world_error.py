@@ -3,7 +3,7 @@ C4A-Script Hello World - Error Example
 Shows how error handling works
 """
 
-from crawl4ai.script.c4a_compile import compile
+from crawl.script.c4a_compile import compile
 
 # Define a script with an error (missing THEN)
 script = """
@@ -25,7 +25,7 @@ if result.success:
     for i, js in enumerate(result.js_code, 1):
         print(f"{i}. {js}\n")
     
-    # In real usage, you'd pass result.js_code to Crawl4AI:
+    # In real usage, you'd pass result.js_code to Crawl:
     # config = CrawlerRunConfig(js_code=result.js_code)
     
 else:

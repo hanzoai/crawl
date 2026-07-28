@@ -37,7 +37,7 @@ This setting removes all images very early in the processing pipeline, which sig
 
 > **Prerequisites**  
 > - You have completed or are familiar with the [AsyncWebCrawler Basics](../core/simple-crawling.md) tutorial.  
-> - You can run Crawl4AI in your environment (Playwright, Python, etc.).
+> - You can run Crawl in your environment (Playwright, Python, etc.).
 
 ---
 
@@ -49,12 +49,12 @@ Below is a revised version of the **Link Extraction** and **Media Extraction** s
 
 ### 1.1 `result.links`
 
-When you call `arun()` or `arun_many()` on a URL, Crawl4AI automatically extracts links and stores them in the `links` field of `CrawlResult`. By default, the crawler tries to distinguish **internal** links (same domain) from **external** links (different domains).
+When you call `arun()` or `arun_many()` on a URL, Crawl automatically extracts links and stores them in the `links` field of `CrawlResult`. By default, the crawler tries to distinguish **internal** links (same domain) from **external** links (different domains).
 
 **Basic Example**:
 
 ```python
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async with AsyncWebCrawler() as crawler:
     result = await crawler.arun("https://www.example.com")
@@ -124,8 +124,8 @@ Here's a full example you can copy, paste, and run immediately:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import LinkPreviewConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import LinkPreviewConfig
 
 async def extract_link_heads_example():
     """
@@ -237,7 +237,7 @@ if __name__ == "__main__":
 The `LinkPreviewConfig` class supports these options:
 
 ```python
-from crawl4ai import LinkPreviewConfig
+from crawl import LinkPreviewConfig
 
 link_preview_config = LinkPreviewConfig(
     # BASIC SETTINGS
@@ -477,7 +477,7 @@ Some websites contain hundreds of third-party or affiliate links. You can filter
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 async def main():
     crawler_cfg = CrawlerRunConfig(
@@ -520,7 +520,7 @@ This approach is handy when you still want external links but need to block cert
 
 ### 4.1 Accessing `result.media`
 
-By default, Crawl4AI collects images, audio and video URLs it finds on the page. These are stored in `result.media`, a dictionary keyed by media type (e.g., `images`, `videos`, `audio`).
+By default, Crawl collects images, audio and video URLs it finds on the page. These are stored in `result.media`, a dictionary keyed by media type (e.g., `images`, `videos`, `audio`).
 **Note: Tables have been moved from `result.media["tables"]` to the new `result.tables` format for better organization and direct access.**
 
 **Basic Example**:
@@ -564,7 +564,7 @@ result.media = {
 }
 ```
 
-Depending on your Crawl4AI version or scraping strategy, these dictionaries can include fields like:
+Depending on your Crawl version or scraping strategy, these dictionaries can include fields like:
 
 - **`src`**: The media URL (e.g., image source)  
 - **`alt`**: The alt text for images (if present)  
@@ -599,7 +599,7 @@ This setting attempts to discard images from outside the primary domain, keeping
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     crawler_cfg = CrawlerRunConfig(
@@ -635,7 +635,7 @@ Here’s a combined example demonstrating how to filter out external links, skip
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 async def main():
     # Suppose we want to keep only internal links, remove certain domains, 
@@ -684,7 +684,7 @@ if __name__ == "__main__":
    - `exclude_external_images=True` but want to keep some external images? Currently no partial domain-based setting for images, so you might need a custom approach or hook logic.
 
 2. **Relevancy Scores**:  
-   - If your version of Crawl4AI or your scraping strategy includes an `img["score"]`, it’s typically a heuristic based on size, position, or content analysis. Evaluate carefully if you rely on it.
+   - If your version of Crawl or your scraping strategy includes an `img["score"]`, it’s typically a heuristic based on size, position, or content analysis. Evaluate carefully if you rely on it.
 
 3. **Performance**:  
    - Excluding certain domains or external images can speed up your crawl, especially for large, media-heavy pages.  

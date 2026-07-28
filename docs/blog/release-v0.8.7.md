@@ -1,10 +1,10 @@
-# Crawl4AI v0.8.7: Security Hardening, DomainMapper & Community Fixes
+# Crawl v0.8.7: Security Hardening, DomainMapper & Community Fixes
 
 *June 2026 - 7 min read*
 
 ---
 
-I'm releasing Crawl4AI v0.8.7, a security-hardening release. It bundles every responsibly-disclosed vulnerability we patched since v0.8.6, adds the new DomainMapper feature, and ships a batch of scraping, deep-crawl, and LLM fixes from our team and the community.
+I'm releasing Crawl v0.8.7, a security-hardening release. It bundles every responsibly-disclosed vulnerability we patched since v0.8.6, adds the new DomainMapper feature, and ships a batch of scraping, deep-crawl, and LLM fixes from our team and the community.
 
 If you self-host the Docker API server, please upgrade right away. This release closes several critical issues, and two GitHub Security Advisories accompany it.
 
@@ -41,9 +41,9 @@ v0.8.7 is, first and foremost, a security release. Every issue below was reporte
 
 ### File Write, XSS, and JS Execution
 
-- **Arbitrary file write (CVSS 9.1)**: `/screenshot` and `/pdf` honored any `output_path`. Writes are now restricted to `CRAWL4AI_OUTPUT_DIR`, and `..` traversal is rejected.
+- **Arbitrary file write (CVSS 9.1)**: `/screenshot` and `/pdf` honored any `output_path`. Writes are now restricted to `CRAWL_OUTPUT_DIR`, and `..` traversal is rejected.
 - **Stored XSS in the monitor dashboard (CVSS 6.1)**: crawled URLs were rendered via `innerHTML` without escaping. We escape on both the server and the client now.
-- **Arbitrary JS execution via `/execute_js` (CVSS 8.1)**: the endpoint is disabled by default behind `CRAWL4AI_EXECUTE_JS_ENABLED`, we removed `--disable-web-security` from default browser args, and added an SSRF blocklist on the destination.
+- **Arbitrary JS execution via `/execute_js` (CVSS 8.1)**: the endpoint is disabled by default behind `CRAWL_EXECUTE_JS_ENABLED`, we removed `--disable-web-security` from default browser args, and added an SSRF blocklist on the destination.
 
 We also replaced the `eval()` in `/config/dump` with Pydantic-validated JSON input, and added type validation for `markdown_generator` in `CrawlerRunConfig`.
 
@@ -103,7 +103,7 @@ The Docker API now accepts a list of configs aligned with the list of URLs, so y
 ## Upgrade
 
 ```bash
-pip install -U crawl4ai
+pip install -U crawl
 ```
 
 Docker users should pull the latest image once the Docker release workflow finishes.

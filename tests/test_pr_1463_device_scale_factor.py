@@ -3,7 +3,7 @@
 import pytest
 import pytest_asyncio
 import base64
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 
 class TestDeviceScaleFactorConfig:

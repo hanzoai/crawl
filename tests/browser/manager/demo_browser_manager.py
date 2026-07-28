@@ -8,9 +8,9 @@ import asyncio
 import time
 import random
 
-from crawl4ai.browser.manager import BrowserManager, UnavailableBehavior
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_logger import AsyncLogger
+from crawl.browser.manager import BrowserManager, UnavailableBehavior
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_logger import AsyncLogger
 
 import playwright
 

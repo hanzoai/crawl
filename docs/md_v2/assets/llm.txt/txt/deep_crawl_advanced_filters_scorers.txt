@@ -5,7 +5,7 @@ Advanced URL filtering and scoring strategies for intelligent deep crawling with
 ### URL Filters - Content and Domain Control
 
 ```python
-from crawl4ai.deep_crawling.filters import (
+from crawl.deep_crawling.filters import (
     URLPatternFilter, DomainFilter, ContentTypeFilter, 
     FilterChain, ContentRelevanceFilter, SEOFilter
 )
@@ -115,7 +115,7 @@ print(f"Relevance: {relevance_score}, SEO: {seo_score}")
 ### URL Scorers - Quality and Relevance Scoring
 
 ```python
-from crawl4ai.deep_crawling.scorers import (
+from crawl.deep_crawling.scorers import (
     KeywordRelevanceScorer, PathDepthScorer, ContentTypeScorer,
     FreshnessScorer, DomainAuthorityScorer, CompositeScorer
 )
@@ -322,7 +322,7 @@ filtered = await batch_filter_urls(large_url_list, optimized_chain)
 ### Custom Filter Implementation
 
 ```python
-from crawl4ai.deep_crawling.filters import URLFilter
+from crawl.deep_crawling.filters import URLFilter
 import re
 
 class CustomLanguageFilter(URLFilter):
@@ -356,7 +356,7 @@ class CustomLanguageFilter(URLFilter):
         return False
 
 # Custom scorer implementation
-from crawl4ai.deep_crawling.scorers import URLScorer
+from crawl.deep_crawling.scorers import URLScorer
 
 class CustomComplexityScorer(URLScorer):
     """Score URLs by content complexity indicators"""
@@ -396,8 +396,8 @@ print(f"Complexity score: {complexity_score}")
 ### Integration with Deep Crawling
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import DeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import DeepCrawlStrategy
 
 async def deep_crawl_with_filtering():
     # Create comprehensive filter chain
@@ -443,4 +443,4 @@ async def deep_crawl_with_filtering():
 await deep_crawl_with_filtering()
 ```
 
-**📖 Learn more:** [Deep Crawling Strategy](https://docs.crawl4ai.com/core/deep-crawling/), [Custom Filter Development](https://docs.crawl4ai.com/advanced/custom-filters/), [Performance Optimization](https://docs.crawl4ai.com/advanced/performance-tuning/)
+**📖 Learn more:** [Deep Crawling Strategy](https://docs.hanzo.ai/core/deep-crawling/), [Custom Filter Development](https://docs.hanzo.ai/advanced/custom-filters/), [Performance Optimization](https://docs.hanzo.ai/advanced/performance-tuning/)

@@ -7,7 +7,7 @@ sys.path.append(grandparent_dir)
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 import asyncio
-from crawl4ai.deep_crawling.filters import URLPatternFilter
+from crawl.deep_crawling.filters import URLPatternFilter
 
 
 def test_prefix_boundary_matching():

@@ -24,30 +24,30 @@ class ScriptBuilder {
   }
   
   showStartScreen() {
-    const toolbarContent = this.toolbar.querySelector('.c4ai-toolbar-content');
+    const toolbarContent = this.toolbar.querySelector('.crawl-toolbar-content');
     toolbarContent.innerHTML = `
-      <div class="c4ai-toolbar-status">
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Script Builder</span>
-          <span class="c4ai-status-value">Ready</span>
+      <div class="crawl-toolbar-status">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Script Builder</span>
+          <span class="crawl-status-value">Ready</span>
         </div>
       </div>
-      <div class="c4ai-toolbar-hint" id="c4ai-script-hint">
+      <div class="crawl-toolbar-hint" id="crawl-script-hint">
         Click "Start Recording" to begin capturing your actions. <span style="color: #ff3c74; font-size: 11px;">(Alpha - May contain bugs)</span>
       </div>
-      <div class="c4ai-toolbar-actions c4ai-start-actions">
-        <button id="c4ai-start-recording" class="c4ai-action-btn c4ai-primary-btn">
+      <div class="crawl-toolbar-actions crawl-start-actions">
+        <button id="crawl-start-recording" class="crawl-action-btn crawl-primary-btn">
           <span>🔴</span> Start Recording
         </button>
-        <button id="c4ai-saved-flows" class="c4ai-action-btn c4ai-secondary-btn">
+        <button id="crawl-saved-flows" class="crawl-action-btn crawl-secondary-btn">
           <span>📂</span> Saved Flows
         </button>
       </div>
     `;
     
     // Add event listeners
-    document.getElementById('c4ai-start-recording').addEventListener('click', () => this.startRecording());
-    document.getElementById('c4ai-saved-flows').addEventListener('click', () => this.showSavedFlows());
+    document.getElementById('crawl-start-recording').addEventListener('click', () => this.startRecording());
+    document.getElementById('crawl-saved-flows').addEventListener('click', () => this.showSavedFlows());
   }
   
   startRecording() {
@@ -58,46 +58,46 @@ class ScriptBuilder {
     this.injectEventCapture();
     
     // Update toolbar to show recording controls
-    const toolbarContent = this.toolbar.querySelector('.c4ai-toolbar-content');
+    const toolbarContent = this.toolbar.querySelector('.crawl-toolbar-content');
     toolbarContent.innerHTML = `
-      <div class="c4ai-toolbar-status">
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Actions:</span>
-          <span class="c4ai-status-value" id="c4ai-action-count">0</span>
+      <div class="crawl-toolbar-status">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Actions:</span>
+          <span class="crawl-status-value" id="crawl-action-count">0</span>
         </div>
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Format:</span>
-          <select id="c4ai-output-format" class="c4ai-format-select">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Format:</span>
+          <select id="crawl-output-format" class="crawl-format-select">
             <option value="js">JavaScript</option>
             <option value="c4a">C4A Script</option>
           </select>
         </div>
       </div>
-      <div class="c4ai-toolbar-hint" id="c4ai-script-hint">
+      <div class="crawl-toolbar-hint" id="crawl-script-hint">
         Recording your actions... Click, type, and scroll to build your script.
       </div>
-      <div class="c4ai-toolbar-actions c4ai-recording-actions">
-        <button id="c4ai-add-wait" class="c4ai-action-btn c4ai-secondary-btn">
-          <span class="c4ai-wait-icon">⏱</span> Add Wait
+      <div class="crawl-toolbar-actions crawl-recording-actions">
+        <button id="crawl-add-wait" class="crawl-action-btn crawl-secondary-btn">
+          <span class="crawl-wait-icon">⏱</span> Add Wait
         </button>
-        <button id="c4ai-pause-recording" class="c4ai-action-btn c4ai-secondary-btn">
-          <span class="c4ai-pause-icon">⏸</span> Pause
+        <button id="crawl-pause-recording" class="crawl-action-btn crawl-secondary-btn">
+          <span class="crawl-pause-icon">⏸</span> Pause
         </button>
-        <button id="c4ai-stop-generate" class="c4ai-action-btn c4ai-primary-btn">
-          <span class="c4ai-generate-icon">⚡</span> Stop & Generate
+        <button id="crawl-stop-generate" class="crawl-action-btn crawl-primary-btn">
+          <span class="crawl-generate-icon">⚡</span> Stop & Generate
         </button>
-        <button id="c4ai-saved-flows" class="c4ai-action-btn c4ai-secondary-btn">
+        <button id="crawl-saved-flows" class="crawl-action-btn crawl-secondary-btn">
           <span>📂</span> Saved Flows
         </button>
       </div>
     `;
     
     // Re-add event listeners
-    document.getElementById('c4ai-pause-recording').addEventListener('click', () => this.togglePause());
-    document.getElementById('c4ai-stop-generate').addEventListener('click', () => this.stopAndGenerate());
-    document.getElementById('c4ai-add-wait').addEventListener('click', () => this.showWaitDialog());
-    document.getElementById('c4ai-saved-flows').addEventListener('click', () => this.showSavedFlows());
-    document.getElementById('c4ai-output-format').addEventListener('change', (e) => {
+    document.getElementById('crawl-pause-recording').addEventListener('click', () => this.togglePause());
+    document.getElementById('crawl-stop-generate').addEventListener('click', () => this.stopAndGenerate());
+    document.getElementById('crawl-add-wait').addEventListener('click', () => this.showWaitDialog());
+    document.getElementById('crawl-saved-flows').addEventListener('click', () => this.showSavedFlows());
+    document.getElementById('crawl-output-format').addEventListener('change', (e) => {
       this.outputFormat = e.target.value;
     });
     
@@ -117,9 +117,9 @@ class ScriptBuilder {
 
   createRecordingIndicator() {
     this.recordingIndicator = document.createElement('div');
-    this.recordingIndicator.className = 'c4ai-recording-indicator';
+    this.recordingIndicator.className = 'crawl-recording-indicator';
     this.recordingIndicator.innerHTML = `
-      <div class="c4ai-recording-dot"></div>
+      <div class="crawl-recording-dot"></div>
       <span>Recording</span>
     `;
     document.body.appendChild(this.recordingIndicator);
@@ -127,43 +127,43 @@ class ScriptBuilder {
 
   createToolbar() {
     this.toolbar = document.createElement('div');
-    this.toolbar.className = 'c4ai-script-toolbar';
+    this.toolbar.className = 'crawl-script-toolbar';
     this.toolbar.innerHTML = `
-      <div class="c4ai-toolbar-titlebar">
-        <div class="c4ai-titlebar-dots">
-          <button class="c4ai-dot c4ai-dot-close" id="c4ai-script-close"></button>
-          <button class="c4ai-dot c4ai-dot-minimize"></button>
-          <button class="c4ai-dot c4ai-dot-maximize"></button>
+      <div class="crawl-toolbar-titlebar">
+        <div class="crawl-titlebar-dots">
+          <button class="crawl-dot crawl-dot-close" id="crawl-script-close"></button>
+          <button class="crawl-dot crawl-dot-minimize"></button>
+          <button class="crawl-dot crawl-dot-maximize"></button>
         </div>
-        <img src="${chrome.runtime.getURL('icons/icon-16.png')}" class="c4ai-titlebar-icon" alt="Crawl4AI">
-        <div class="c4ai-titlebar-title">Crawl4AI Script Builder <span style="color: #ff3c74; font-size: 10px; margin-left: 8px;">(ALPHA)</span></div>
+        <img src="${chrome.runtime.getURL('icons/icon-16.png')}" class="crawl-titlebar-icon" alt="Crawl">
+        <div class="crawl-titlebar-title">Crawl Script Builder <span style="color: #ff3c74; font-size: 10px; margin-left: 8px;">(ALPHA)</span></div>
       </div>
-      <div class="c4ai-toolbar-content" id="c4ai-toolbar-content">
+      <div class="crawl-toolbar-content" id="crawl-toolbar-content">
         <!-- Content will be dynamically updated -->
       </div>
     `;
     document.body.appendChild(this.toolbar);
 
     // Add close button listener
-    document.getElementById('c4ai-script-close').addEventListener('click', () => this.stop());
+    document.getElementById('crawl-script-close').addEventListener('click', () => this.stop());
 
     // Make toolbar draggable
-    window.C4AI_Utils.makeDraggable(this.toolbar);
+    window.CRAWL_Utils.makeDraggable(this.toolbar);
   }
 
   showStartScreen() {
-    const content = document.getElementById('c4ai-toolbar-content');
+    const content = document.getElementById('crawl-toolbar-content');
     content.innerHTML = `
-      <div class="c4ai-start-screen">
-        <div class="c4ai-welcome-message">
+      <div class="crawl-start-screen">
+        <div class="crawl-welcome-message">
           <h3>Welcome to Script Builder</h3>
           <p>Record your actions to create automation scripts. <span style="color: #ff3c74;">Alpha version - may contain bugs</span></p>
         </div>
-        <div class="c4ai-start-actions">
-          <button id="c4ai-start-recording" class="c4ai-action-btn c4ai-primary-btn">
+        <div class="crawl-start-actions">
+          <button id="crawl-start-recording" class="crawl-action-btn crawl-primary-btn">
             <span>🔴</span> Start Recording
           </button>
-          <button id="c4ai-saved-flows" class="c4ai-action-btn c4ai-secondary-btn">
+          <button id="crawl-saved-flows" class="crawl-action-btn crawl-secondary-btn">
             <span>📂</span> Saved Flows
           </button>
         </div>
@@ -171,51 +171,51 @@ class ScriptBuilder {
     `;
     
     // Add event listeners
-    document.getElementById('c4ai-start-recording').addEventListener('click', () => this.startRecording());
-    document.getElementById('c4ai-saved-flows').addEventListener('click', () => this.showSavedFlows());
+    document.getElementById('crawl-start-recording').addEventListener('click', () => this.startRecording());
+    document.getElementById('crawl-saved-flows').addEventListener('click', () => this.showSavedFlows());
   }
 
   showRecordingUI() {
-    const content = document.getElementById('c4ai-toolbar-content');
+    const content = document.getElementById('crawl-toolbar-content');
     content.innerHTML = `
-      <div class="c4ai-toolbar-status">
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Actions:</span>
-          <span class="c4ai-status-value" id="c4ai-action-count">0</span>
+      <div class="crawl-toolbar-status">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Actions:</span>
+          <span class="crawl-status-value" id="crawl-action-count">0</span>
         </div>
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Format:</span>
-          <select id="c4ai-output-format" class="c4ai-format-select">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Format:</span>
+          <select id="crawl-output-format" class="crawl-format-select">
             <option value="js">JavaScript</option>
             <option value="c4a">C4A Script</option>
           </select>
         </div>
       </div>
-      <div class="c4ai-toolbar-hint" id="c4ai-script-hint">
+      <div class="crawl-toolbar-hint" id="crawl-script-hint">
         Recording your actions... Click, type, and scroll to build your script.
       </div>
-      <div class="c4ai-toolbar-actions">
-        <button id="c4ai-saved-flows" class="c4ai-action-btn c4ai-secondary-btn">
+      <div class="crawl-toolbar-actions">
+        <button id="crawl-saved-flows" class="crawl-action-btn crawl-secondary-btn">
           <span>📂</span> Saved Flows
         </button>
-        <button id="c4ai-add-wait" class="c4ai-action-btn c4ai-secondary-btn">
-          <span class="c4ai-wait-icon">⏱</span> Add Wait
+        <button id="crawl-add-wait" class="crawl-action-btn crawl-secondary-btn">
+          <span class="crawl-wait-icon">⏱</span> Add Wait
         </button>
-        <button id="c4ai-pause-recording" class="c4ai-action-btn c4ai-pause-btn">
-          <span class="c4ai-pause-icon">⏸</span> Pause
+        <button id="crawl-pause-recording" class="crawl-action-btn crawl-pause-btn">
+          <span class="crawl-pause-icon">⏸</span> Pause
         </button>
-        <button id="c4ai-stop-generate" class="c4ai-action-btn c4ai-primary-btn">
-          <span class="c4ai-generate-icon">⚡</span> Stop & Generate
+        <button id="crawl-stop-generate" class="crawl-action-btn crawl-primary-btn">
+          <span class="crawl-generate-icon">⚡</span> Stop & Generate
         </button>
       </div>
     `;
     
     // Re-add event listeners
-    document.getElementById('c4ai-pause-recording').addEventListener('click', () => this.togglePause());
-    document.getElementById('c4ai-stop-generate').addEventListener('click', () => this.stopAndGenerate());
-    document.getElementById('c4ai-add-wait').addEventListener('click', () => this.showWaitDialog());
-    document.getElementById('c4ai-saved-flows').addEventListener('click', () => this.showSavedFlows());
-    document.getElementById('c4ai-output-format').addEventListener('change', (e) => {
+    document.getElementById('crawl-pause-recording').addEventListener('click', () => this.togglePause());
+    document.getElementById('crawl-stop-generate').addEventListener('click', () => this.stopAndGenerate());
+    document.getElementById('crawl-add-wait').addEventListener('click', () => this.showWaitDialog());
+    document.getElementById('crawl-saved-flows').addEventListener('click', () => this.showSavedFlows());
+    document.getElementById('crawl-output-format').addEventListener('change', (e) => {
       this.outputFormat = e.target.value;
     });
   }
@@ -223,47 +223,47 @@ class ScriptBuilder {
 
   togglePause() {
     this.isPaused = !this.isPaused;
-    const pauseBtn = document.getElementById('c4ai-pause-recording');
-    const recordingIndicator = document.querySelector('.c4ai-recording-indicator');
+    const pauseBtn = document.getElementById('crawl-pause-recording');
+    const recordingIndicator = document.querySelector('.crawl-recording-indicator');
     
     if (this.isPaused) {
-      pauseBtn.innerHTML = '<span class="c4ai-play-icon">▶</span> Resume';
-      pauseBtn.classList.add('c4ai-paused');
-      recordingIndicator.classList.add('c4ai-paused');
-      document.getElementById('c4ai-script-hint').textContent = 'Recording paused. Click Resume to continue.';
+      pauseBtn.innerHTML = '<span class="crawl-play-icon">▶</span> Resume';
+      pauseBtn.classList.add('crawl-paused');
+      recordingIndicator.classList.add('crawl-paused');
+      document.getElementById('crawl-script-hint').textContent = 'Recording paused. Click Resume to continue.';
     } else {
-      pauseBtn.innerHTML = '<span class="c4ai-pause-icon">⏸</span> Pause';
-      pauseBtn.classList.remove('c4ai-paused');
-      recordingIndicator.classList.remove('c4ai-paused');
-      document.getElementById('c4ai-script-hint').textContent = 'Recording your actions... Click, type, and scroll to build your script.';
+      pauseBtn.innerHTML = '<span class="crawl-pause-icon">⏸</span> Pause';
+      pauseBtn.classList.remove('crawl-paused');
+      recordingIndicator.classList.remove('crawl-paused');
+      document.getElementById('crawl-script-hint').textContent = 'Recording your actions... Click, type, and scroll to build your script.';
     }
   }
 
   showWaitDialog() {
     const dialog = document.createElement('div');
-    dialog.className = 'c4ai-wait-dialog';
+    dialog.className = 'crawl-wait-dialog';
     dialog.innerHTML = `
-      <div class="c4ai-wait-dialog-content">
+      <div class="crawl-wait-dialog-content">
         <h4>Add Wait Command</h4>
-        <div class="c4ai-wait-options">
-          <label class="c4ai-wait-option">
+        <div class="crawl-wait-options">
+          <label class="crawl-wait-option">
             <input type="radio" name="wait-type" value="time" checked>
             <span>Wait for time (seconds)</span>
           </label>
-          <label class="c4ai-wait-option">
+          <label class="crawl-wait-option">
             <input type="radio" name="wait-type" value="selector">
             <span>Wait for element</span>
           </label>
         </div>
-        <div class="c4ai-wait-input" id="c4ai-wait-time-input">
-          <input type="number" id="c4ai-wait-seconds" min="0.5" step="0.5" value="2" placeholder="Seconds">
+        <div class="crawl-wait-input" id="crawl-wait-time-input">
+          <input type="number" id="crawl-wait-seconds" min="0.5" step="0.5" value="2" placeholder="Seconds">
         </div>
-        <div class="c4ai-wait-input c4ai-hidden" id="c4ai-wait-selector-input">
+        <div class="crawl-wait-input crawl-hidden" id="crawl-wait-selector-input">
           <p>Click on an element to wait for</p>
         </div>
-        <div class="c4ai-wait-actions">
-          <button id="c4ai-wait-cancel" class="c4ai-action-btn">Cancel</button>
-          <button id="c4ai-wait-add" class="c4ai-action-btn c4ai-primary">Add Wait</button>
+        <div class="crawl-wait-actions">
+          <button id="crawl-wait-cancel" class="crawl-action-btn">Cancel</button>
+          <button id="crawl-wait-add" class="crawl-action-btn crawl-primary">Add Wait</button>
         </div>
       </div>
     `;
@@ -272,30 +272,30 @@ class ScriptBuilder {
     // Handle radio button changes
     dialog.querySelectorAll('input[name="wait-type"]').forEach(radio => {
       radio.addEventListener('change', (e) => {
-        const timeInput = document.getElementById('c4ai-wait-time-input');
-        const selectorInput = document.getElementById('c4ai-wait-selector-input');
+        const timeInput = document.getElementById('crawl-wait-time-input');
+        const selectorInput = document.getElementById('crawl-wait-selector-input');
         
         if (e.target.value === 'time') {
-          timeInput.classList.remove('c4ai-hidden');
-          selectorInput.classList.add('c4ai-hidden');
+          timeInput.classList.remove('crawl-hidden');
+          selectorInput.classList.add('crawl-hidden');
         } else {
-          timeInput.classList.add('c4ai-hidden');
-          selectorInput.classList.remove('c4ai-hidden');
+          timeInput.classList.add('crawl-hidden');
+          selectorInput.classList.remove('crawl-hidden');
           this.waitForElementSelection(dialog);
         }
       });
     });
 
     // Handle buttons
-    document.getElementById('c4ai-wait-cancel').addEventListener('click', () => {
+    document.getElementById('crawl-wait-cancel').addEventListener('click', () => {
       dialog.remove();
     });
 
-    document.getElementById('c4ai-wait-add').addEventListener('click', () => {
+    document.getElementById('crawl-wait-add').addEventListener('click', () => {
       const waitType = dialog.querySelector('input[name="wait-type"]:checked').value;
       
       if (waitType === 'time') {
-        const seconds = parseFloat(document.getElementById('c4ai-wait-seconds').value) || 2;
+        const seconds = parseFloat(document.getElementById('crawl-wait-seconds').value) || 2;
         this.addWaitCommand('time', seconds);
         dialog.remove();
       }
@@ -306,7 +306,7 @@ class ScriptBuilder {
     this.isPaused = true; // Pause recording during element selection
     
     const highlightBox = document.createElement('div');
-    highlightBox.className = 'c4ai-highlight-box c4ai-wait-mode';
+    highlightBox.className = 'crawl-highlight-box crawl-wait-mode';
     document.body.appendChild(highlightBox);
 
     const handleMouseMove = (e) => {
@@ -352,7 +352,7 @@ class ScriptBuilder {
 
   highlightElement(element, highlightBox) {
     if (!highlightBox) {
-      highlightBox = document.querySelector('.c4ai-highlight-box');
+      highlightBox = document.querySelector('.crawl-highlight-box');
     }
     
     const rect = element.getBoundingClientRect();
@@ -364,11 +364,11 @@ class ScriptBuilder {
   }
 
   isOurElement(element) {
-    return window.C4AI_Utils.isOurElement(element);
+    return window.CRAWL_Utils.isOurElement(element);
   }
 
   getElementSelector(element) {
-    return window.C4AI_Utils.getElementSelector(element);
+    return window.CRAWL_Utils.getElementSelector(element);
   }
 
   injectEventCapture() {
@@ -379,12 +379,12 @@ class ScriptBuilder {
     const captureEvent = (type, event) => {
       // Skip events from our own UI
       if (event.target.classList && 
-          (event.target.classList.contains('c4ai-script-toolbar') ||
-           event.target.closest('.c4ai-script-toolbar') ||
-           event.target.classList.contains('c4ai-wait-dialog') ||
-           event.target.closest('.c4ai-wait-dialog') ||
-           event.target.classList.contains('c4ai-timeline-modal') ||
-           event.target.closest('.c4ai-timeline-modal'))) {
+          (event.target.classList.contains('crawl-script-toolbar') ||
+           event.target.closest('.crawl-script-toolbar') ||
+           event.target.classList.contains('crawl-wait-dialog') ||
+           event.target.closest('.crawl-wait-dialog') ||
+           event.target.classList.contains('crawl-timeline-modal') ||
+           event.target.closest('.crawl-timeline-modal'))) {
         return;
       }
       
@@ -523,7 +523,7 @@ class ScriptBuilder {
 
   handleRecordedEvent(event) {
     // Skip events from our own UI
-    if (event.targetClass && typeof event.targetClass === 'string' && event.targetClass.includes('c4ai-')) return;
+    if (event.targetClass && typeof event.targetClass === 'string' && event.targetClass.includes('crawl-')) return;
 
     // Add time since start
     event.timeSinceStart = (event.timestamp - this.startTime) / 1000;
@@ -767,7 +767,7 @@ class ScriptBuilder {
   }
 
   updateToolbar() {
-    const actionCount = document.getElementById('c4ai-action-count');
+    const actionCount = document.getElementById('crawl-action-count');
     if (actionCount) {
       actionCount.textContent = this.groupedEvents.length;
     }
@@ -787,65 +787,65 @@ class ScriptBuilder {
 
   showRecordingSummary() {
     // Update toolbar to show summary
-    const toolbarContent = this.toolbar.querySelector('.c4ai-toolbar-content');
+    const toolbarContent = this.toolbar.querySelector('.crawl-toolbar-content');
     
     toolbarContent.innerHTML = `
-      <div class="c4ai-toolbar-status">
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Recording Complete</span>
-          <span class="c4ai-status-value">${this.groupedEvents.length} actions</span>
+      <div class="crawl-toolbar-status">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Recording Complete</span>
+          <span class="crawl-status-value">${this.groupedEvents.length} actions</span>
         </div>
       </div>
-      <div class="c4ai-toolbar-hint" id="c4ai-script-hint">
+      <div class="crawl-toolbar-hint" id="crawl-script-hint">
         Recording stopped. You can replay, save, or generate code.
       </div>
-      <div class="c4ai-toolbar-actions c4ai-summary-actions">
-        <button id="c4ai-replay" class="c4ai-action-btn c4ai-replay-btn">
+      <div class="crawl-toolbar-actions crawl-summary-actions">
+        <button id="crawl-replay" class="crawl-action-btn crawl-replay-btn">
           <span>▶</span> Replay
         </button>
-        <button id="c4ai-save-flow" class="c4ai-action-btn c4ai-save-btn">
+        <button id="crawl-save-flow" class="crawl-action-btn crawl-save-btn">
           <span>💾</span> Save Flow
         </button>
-        <button id="c4ai-show-timeline" class="c4ai-action-btn c4ai-timeline-btn">
+        <button id="crawl-show-timeline" class="crawl-action-btn crawl-timeline-btn">
           <span>📋</span> Review & Generate
         </button>
-        <button id="c4ai-record-again" class="c4ai-action-btn c4ai-record-btn">
+        <button id="crawl-record-again" class="crawl-action-btn crawl-record-btn">
           <span>🔄</span> Record Again
         </button>
       </div>
     `;
 
     // Add event listeners
-    document.getElementById('c4ai-replay')?.addEventListener('click', () => this.replayRecording());
-    document.getElementById('c4ai-save-flow')?.addEventListener('click', () => this.saveFlow());
-    document.getElementById('c4ai-show-timeline')?.addEventListener('click', () => this.showTimeline());
-    document.getElementById('c4ai-record-again')?.addEventListener('click', () => this.recordAgain());
+    document.getElementById('crawl-replay')?.addEventListener('click', () => this.replayRecording());
+    document.getElementById('crawl-save-flow')?.addEventListener('click', () => this.saveFlow());
+    document.getElementById('crawl-show-timeline')?.addEventListener('click', () => this.showTimeline());
+    document.getElementById('crawl-record-again')?.addEventListener('click', () => this.recordAgain());
   }
 
   showTimeline() {
     this.timelineModal = document.createElement('div');
-    this.timelineModal.className = 'c4ai-timeline-modal';
+    this.timelineModal.className = 'crawl-timeline-modal';
     this.timelineModal.innerHTML = `
-      <div class="c4ai-timeline-content">
-        <div class="c4ai-timeline-header">
+      <div class="crawl-timeline-content">
+        <div class="crawl-timeline-header">
           <h2>Review Your Actions</h2>
-          <button class="c4ai-close-modal" id="c4ai-close-timeline">✕</button>
+          <button class="crawl-close-modal" id="crawl-close-timeline">✕</button>
         </div>
-        <div class="c4ai-timeline-body">
-          <div class="c4ai-timeline-controls">
-            <button class="c4ai-action-btn" id="c4ai-select-all">Select All</button>
-            <button class="c4ai-action-btn" id="c4ai-clear-all">Clear All</button>
+        <div class="crawl-timeline-body">
+          <div class="crawl-timeline-controls">
+            <button class="crawl-action-btn" id="crawl-select-all">Select All</button>
+            <button class="crawl-action-btn" id="crawl-clear-all">Clear All</button>
           </div>
-          <div class="c4ai-timeline-events" id="c4ai-timeline-events">
+          <div class="crawl-timeline-events" id="crawl-timeline-events">
             ${this.renderTimelineEvents()}
           </div>
         </div>
-        <div class="c4ai-timeline-footer">
-          <select id="c4ai-final-format" class="c4ai-format-select">
+        <div class="crawl-timeline-footer">
+          <select id="crawl-final-format" class="crawl-format-select">
             <option value="js" ${this.outputFormat === 'js' ? 'selected' : ''}>JavaScript</option>
             <option value="c4a" ${this.outputFormat === 'c4a' ? 'selected' : ''}>C4A Script</option>
           </select>
-          <button class="c4ai-action-btn c4ai-download-btn" id="c4ai-download-script">
+          <button class="crawl-action-btn crawl-download-btn" id="crawl-download-script">
             <span>⬇</span> Generate & Download
           </button>
         </div>
@@ -854,20 +854,20 @@ class ScriptBuilder {
     document.body.appendChild(this.timelineModal);
 
     // Event listeners
-    document.getElementById('c4ai-close-timeline').addEventListener('click', () => {
+    document.getElementById('crawl-close-timeline').addEventListener('click', () => {
       this.timelineModal.remove();
       // Don't stop the toolbar, just close the modal
     });
 
-    document.getElementById('c4ai-select-all').addEventListener('click', () => {
-      document.querySelectorAll('.c4ai-event-checkbox').forEach(cb => cb.checked = true);
+    document.getElementById('crawl-select-all').addEventListener('click', () => {
+      document.querySelectorAll('.crawl-event-checkbox').forEach(cb => cb.checked = true);
     });
 
-    document.getElementById('c4ai-clear-all').addEventListener('click', () => {
-      document.querySelectorAll('.c4ai-event-checkbox').forEach(cb => cb.checked = false);
+    document.getElementById('crawl-clear-all').addEventListener('click', () => {
+      document.querySelectorAll('.crawl-event-checkbox').forEach(cb => cb.checked = false);
     });
 
-    document.getElementById('c4ai-download-script').addEventListener('click', () => {
+    document.getElementById('crawl-download-script').addEventListener('click', () => {
       this.generateAndDownload();
     });
   }
@@ -876,12 +876,12 @@ class ScriptBuilder {
     return this.groupedEvents.map((event, index) => {
       const detail = this.getEventDetail(event);
       return `
-        <div class="c4ai-timeline-event">
-          <input type="checkbox" class="c4ai-event-checkbox" id="event-${index}" checked>
-          <label for="event-${index}" class="c4ai-event-label">
-            <span class="c4ai-event-time">${event.time.toFixed(1)}s</span>
-            <span class="c4ai-event-type">${event.type.replace(/_/g, ' ')}</span>
-            <span class="c4ai-event-detail" title="${detail.replace(/"/g, '&quot;')}">${detail}</span>
+        <div class="crawl-timeline-event">
+          <input type="checkbox" class="crawl-event-checkbox" id="event-${index}" checked>
+          <label for="event-${index}" class="crawl-event-label">
+            <span class="crawl-event-time">${event.time.toFixed(1)}s</span>
+            <span class="crawl-event-type">${event.type.replace(/_/g, ' ')}</span>
+            <span class="crawl-event-detail" title="${detail.replace(/"/g, '&quot;')}">${detail}</span>
           </label>
         </div>
       `;
@@ -921,10 +921,10 @@ class ScriptBuilder {
   }
 
   generateAndDownload() {
-    const format = document.getElementById('c4ai-final-format').value;
+    const format = document.getElementById('crawl-final-format').value;
     const selectedEvents = [];
     
-    document.querySelectorAll('.c4ai-event-checkbox').forEach((cb, index) => {
+    document.querySelectorAll('.crawl-event-checkbox').forEach((cb, index) => {
       if (cb.checked && this.groupedEvents[index]) {
         selectedEvents.push(this.groupedEvents[index]);
       }
@@ -941,13 +941,13 @@ class ScriptBuilder {
       action: 'downloadScript',
       code: code,
       format: format,
-      filename: `crawl4ai_script_${Date.now()}.py`
+      filename: `crawl_script_${Date.now()}.py`
     }, (response) => {
       if (response && response.success) {
         this.timelineModal.remove();
         // Don't stop the toolbar after download
         // Show success message in toolbar
-        document.getElementById('c4ai-script-hint').textContent = '✅ Script downloaded successfully!';
+        document.getElementById('crawl-script-hint').textContent = '✅ Script downloaded successfully!';
       }
     });
   }
@@ -1094,31 +1094,31 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
   createReplayOverlay() {
     // Create visual indicator for current action
     this.replayIndicator = document.createElement('div');
-    this.replayIndicator.className = 'c4ai-replay-indicator';
+    this.replayIndicator.className = 'crawl-replay-indicator';
     this.replayIndicator.innerHTML = `
-      <div class="c4ai-replay-content">
-        <div class="c4ai-replay-header">
-          <span class="c4ai-replay-icon">▶️</span>
-          <span class="c4ai-replay-title">Replaying Actions</span>
+      <div class="crawl-replay-content">
+        <div class="crawl-replay-header">
+          <span class="crawl-replay-icon">▶️</span>
+          <span class="crawl-replay-title">Replaying Actions</span>
         </div>
-        <div class="c4ai-replay-progress">
-          <div class="c4ai-replay-progress-bar" id="c4ai-replay-progress"></div>
+        <div class="crawl-replay-progress">
+          <div class="crawl-replay-progress-bar" id="crawl-replay-progress"></div>
         </div>
-        <div class="c4ai-replay-status" id="c4ai-replay-status">
+        <div class="crawl-replay-status" id="crawl-replay-status">
           Preparing...
         </div>
-        <button class="c4ai-replay-stop" id="c4ai-replay-stop">Stop Replay</button>
+        <button class="crawl-replay-stop" id="crawl-replay-stop">Stop Replay</button>
       </div>
     `;
     document.body.appendChild(this.replayIndicator);
     
     // Create highlight overlay for showing where actions happen
     this.replayHighlight = document.createElement('div');
-    this.replayHighlight.className = 'c4ai-replay-highlight';
+    this.replayHighlight.className = 'crawl-replay-highlight';
     document.body.appendChild(this.replayHighlight);
     
     // Add stop button listener
-    document.getElementById('c4ai-replay-stop').addEventListener('click', () => {
+    document.getElementById('crawl-replay-stop').addEventListener('click', () => {
       this.stopReplay();
     });
   }
@@ -1135,8 +1135,8 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
       const progress = ((i + 1) / totalEvents) * 100;
       
       // Update progress
-      document.getElementById('c4ai-replay-progress').style.width = `${progress}%`;
-      document.getElementById('c4ai-replay-status').textContent = 
+      document.getElementById('crawl-replay-progress').style.width = `${progress}%`;
+      document.getElementById('crawl-replay-status').textContent = 
         `Action ${i + 1}/${totalEvents}: ${this.getReplayActionDescription(event)}`;
       
       // Execute the action with visual feedback
@@ -1253,12 +1253,12 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
 
   async replayWaitAction(event) {
     if (event.waitType === 'time') {
-      document.getElementById('c4ai-replay-status').textContent = 
+      document.getElementById('crawl-replay-status').textContent = 
         `Waiting ${event.value} seconds...`;
       await this.wait(event.value * 1000);
     } else {
       // Wait for element
-      document.getElementById('c4ai-replay-status').textContent = 
+      document.getElementById('crawl-replay-status').textContent = 
         `Waiting for element: ${event.value}`;
       await this.waitForElement(event.value, 5000); // 5 second timeout
     }
@@ -1302,7 +1302,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     const centerY = rect.top + rect.height / 2;
     
     const clickIndicator = document.createElement('div');
-    clickIndicator.className = 'c4ai-click-indicator';
+    clickIndicator.className = 'crawl-click-indicator';
     clickIndicator.style.left = `${centerX}px`;
     clickIndicator.style.top = `${centerY}px`;
     document.body.appendChild(clickIndicator);
@@ -1313,7 +1313,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
 
   showKeyboardOverlay(keys) {
     const overlay = document.createElement('div');
-    overlay.className = 'c4ai-keyboard-overlay';
+    overlay.className = 'crawl-keyboard-overlay';
     overlay.textContent = keys;
     document.body.appendChild(overlay);
     
@@ -1385,13 +1385,13 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     
     // Update toolbar
     if (completed) {
-      document.getElementById('c4ai-script-hint').textContent = '✅ Replay completed!';
+      document.getElementById('crawl-script-hint').textContent = '✅ Replay completed!';
     } else {
-      document.getElementById('c4ai-script-hint').textContent = '⏹️ Replay stopped';
+      document.getElementById('crawl-script-hint').textContent = '⏹️ Replay stopped';
     }
     
     // Re-enable replay button
-    const replayBtn = document.getElementById('c4ai-replay');
+    const replayBtn = document.getElementById('crawl-replay');
     if (replayBtn) {
       replayBtn.disabled = false;
       replayBtn.innerHTML = '<span>▶</span> Replay';
@@ -1401,7 +1401,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
   createDebuggerWindow() {
     // Create debugger modal
     this.debuggerModal = document.createElement('div');
-    this.debuggerModal.className = 'c4ai-debugger-modal';
+    this.debuggerModal.className = 'crawl-debugger-modal';
     
     // Set initial position for dragging
     this.debuggerModal.style.position = 'fixed';
@@ -1409,34 +1409,34 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     this.debuggerModal.style.right = '20px';
     
     this.debuggerModal.innerHTML = `
-      <div class="c4ai-debugger-content">
-        <div class="c4ai-debugger-header">
+      <div class="crawl-debugger-content">
+        <div class="crawl-debugger-header">
           <h2>Action Debugger <span style="color: #ff3c74; font-size: 12px;">(ALPHA)</span></h2>
-          <button class="c4ai-close-modal" id="c4ai-close-debugger">✕</button>
+          <button class="crawl-close-modal" id="crawl-close-debugger">✕</button>
         </div>
-        <div class="c4ai-debugger-body">
-          <div class="c4ai-debugger-controls">
-            <button class="c4ai-debug-btn c4ai-run-btn" id="c4ai-debug-run" title="Run to end or next breakpoint">
+        <div class="crawl-debugger-body">
+          <div class="crawl-debugger-controls">
+            <button class="crawl-debug-btn crawl-run-btn" id="crawl-debug-run" title="Run to end or next breakpoint">
               <span>▶</span> Run
             </button>
-            <button class="c4ai-debug-btn c4ai-step-btn" id="c4ai-debug-step" title="Execute next action">
+            <button class="crawl-debug-btn crawl-step-btn" id="crawl-debug-step" title="Execute next action">
               <span>⏭</span> Step
             </button>
-            <button class="c4ai-debug-btn c4ai-pause-btn" id="c4ai-debug-pause" disabled title="Pause execution">
+            <button class="crawl-debug-btn crawl-pause-btn" id="crawl-debug-pause" disabled title="Pause execution">
               <span>⏸</span> Pause
             </button>
-            <button class="c4ai-debug-btn c4ai-stop-btn" id="c4ai-debug-stop" title="Stop debugging">
+            <button class="crawl-debug-btn crawl-stop-btn" id="crawl-debug-stop" title="Stop debugging">
               <span>⏹</span> Stop
             </button>
-            <button class="c4ai-debug-btn c4ai-restart-btn" id="c4ai-debug-restart" title="Restart from beginning">
+            <button class="crawl-debug-btn crawl-restart-btn" id="crawl-debug-restart" title="Restart from beginning">
               <span>🔄</span> Restart
             </button>
           </div>
-          <div class="c4ai-debugger-status">
-            <span class="c4ai-debug-label">Status:</span>
-            <span class="c4ai-debug-value" id="c4ai-debug-status">Ready</span>
+          <div class="crawl-debugger-status">
+            <span class="crawl-debug-label">Status:</span>
+            <span class="crawl-debug-value" id="crawl-debug-status">Ready</span>
           </div>
-          <div class="c4ai-debugger-actions" id="c4ai-debugger-actions">
+          <div class="crawl-debugger-actions" id="crawl-debugger-actions">
             ${this.renderDebuggerActions()}
           </div>
         </div>
@@ -1456,7 +1456,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     
     // Create replay highlight element
     this.replayHighlight = document.createElement('div');
-    this.replayHighlight.className = 'c4ai-replay-highlight';
+    this.replayHighlight.className = 'crawl-replay-highlight';
     document.body.appendChild(this.replayHighlight);
     
     // Add event listeners
@@ -1471,22 +1471,22 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     return events.map((event, index) => {
       const detail = this.getEventDetail(event);
       return `
-        <div class="c4ai-debug-action ${index === 0 ? 'c4ai-current' : ''}" data-index="${index}">
-          <div class="c4ai-debug-action-left">
-            <input type="checkbox" class="c4ai-breakpoint-checkbox" data-index="${index}" title="Toggle breakpoint">
-            <span class="c4ai-action-number">${index + 1}</span>
-            <span class="c4ai-action-indicator">➤</span>
+        <div class="crawl-debug-action ${index === 0 ? 'crawl-current' : ''}" data-index="${index}">
+          <div class="crawl-debug-action-left">
+            <input type="checkbox" class="crawl-breakpoint-checkbox" data-index="${index}" title="Toggle breakpoint">
+            <span class="crawl-action-number">${index + 1}</span>
+            <span class="crawl-action-indicator">➤</span>
           </div>
-          <div class="c4ai-debug-action-content">
-            <div class="c4ai-action-type">${event.type.replace(/_/g, ' ')}</div>
-            <div class="c4ai-action-detail" contenteditable="true" data-index="${index}" data-field="detail">
+          <div class="crawl-debug-action-content">
+            <div class="crawl-action-type">${event.type.replace(/_/g, ' ')}</div>
+            <div class="crawl-action-detail" contenteditable="true" data-index="${index}" data-field="detail">
               ${detail}
             </div>
           </div>
-          <div class="c4ai-debug-action-right">
-            <button class="c4ai-action-play" data-index="${index}" title="Execute this action">▶</button>
-            <button class="c4ai-action-edit" data-index="${index}" title="Edit action">✏️</button>
-            <button class="c4ai-action-delete" data-index="${index}" title="Delete action">🗑</button>
+          <div class="crawl-debug-action-right">
+            <button class="crawl-action-play" data-index="${index}" title="Execute this action">▶</button>
+            <button class="crawl-action-edit" data-index="${index}" title="Edit action">✏️</button>
+            <button class="crawl-action-delete" data-index="${index}" title="Delete action">🗑</button>
           </div>
         </div>
       `;
@@ -1495,15 +1495,15 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
 
   attachDebuggerListeners() {
     // Control buttons
-    document.getElementById('c4ai-debug-run').addEventListener('click', () => this.debugRun());
-    document.getElementById('c4ai-debug-step').addEventListener('click', () => this.debugStep());
-    document.getElementById('c4ai-debug-pause').addEventListener('click', () => this.debugPause());
-    document.getElementById('c4ai-debug-stop').addEventListener('click', () => this.debugStop());
-    document.getElementById('c4ai-debug-restart').addEventListener('click', () => this.debugRestart());
-    document.getElementById('c4ai-close-debugger').addEventListener('click', () => this.closeDebugger());
+    document.getElementById('crawl-debug-run').addEventListener('click', () => this.debugRun());
+    document.getElementById('crawl-debug-step').addEventListener('click', () => this.debugStep());
+    document.getElementById('crawl-debug-pause').addEventListener('click', () => this.debugPause());
+    document.getElementById('crawl-debug-stop').addEventListener('click', () => this.debugStop());
+    document.getElementById('crawl-debug-restart').addEventListener('click', () => this.debugRestart());
+    document.getElementById('crawl-close-debugger').addEventListener('click', () => this.closeDebugger());
     
     // Breakpoint checkboxes
-    document.querySelectorAll('.c4ai-breakpoint-checkbox').forEach(cb => {
+    document.querySelectorAll('.crawl-breakpoint-checkbox').forEach(cb => {
       cb.addEventListener('change', (e) => {
         const index = parseInt(e.target.dataset.index);
         if (e.target.checked) {
@@ -1516,7 +1516,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     });
     
     // Play buttons
-    document.querySelectorAll('.c4ai-action-play').forEach(btn => {
+    document.querySelectorAll('.crawl-action-play').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const index = parseInt(e.target.dataset.index);
         this.executeActionOnPage(this.debuggerState.editedEvents[index], index);
@@ -1524,7 +1524,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     });
     
     // Delete buttons
-    document.querySelectorAll('.c4ai-action-delete').forEach(btn => {
+    document.querySelectorAll('.crawl-action-delete').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const index = parseInt(e.target.dataset.index);
         this.deleteDebugAction(index);
@@ -1532,7 +1532,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     });
     
     // Edit buttons
-    document.querySelectorAll('.c4ai-action-edit').forEach(btn => {
+    document.querySelectorAll('.crawl-action-edit').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const index = parseInt(e.target.dataset.index);
         this.editDebugAction(index);
@@ -1540,7 +1540,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     });
     
     // Inline editing
-    document.querySelectorAll('.c4ai-action-detail[contenteditable]').forEach(elem => {
+    document.querySelectorAll('.crawl-action-detail[contenteditable]').forEach(elem => {
       elem.addEventListener('blur', (e) => {
         const index = parseInt(e.target.dataset.index);
         this.updateActionDetail(index, e.target.textContent);
@@ -1641,17 +1641,17 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
 
   setCurrentAction(index) {
     // Remove previous current marker
-    document.querySelectorAll('.c4ai-debug-action').forEach(elem => {
-      elem.classList.remove('c4ai-current');
+    document.querySelectorAll('.crawl-debug-action').forEach(elem => {
+      elem.classList.remove('crawl-current');
     });
     
     // Add current marker
-    const currentElem = document.querySelector(`.c4ai-debug-action[data-index="${index}"]`);
+    const currentElem = document.querySelector(`.crawl-debug-action[data-index="${index}"]`);
     if (currentElem) {
-      currentElem.classList.add('c4ai-current');
+      currentElem.classList.add('crawl-current');
       
       // Better scrolling into view
-      const scrollContainer = document.querySelector('.c4ai-debugger-actions');
+      const scrollContainer = document.querySelector('.crawl-debugger-actions');
       if (scrollContainer) {
         const containerRect = scrollContainer.getBoundingClientRect();
         const elemRect = currentElem.getBoundingClientRect();
@@ -1672,9 +1672,9 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
   }
 
   updateDebugControls() {
-    const runBtn = document.getElementById('c4ai-debug-run');
-    const stepBtn = document.getElementById('c4ai-debug-step');
-    const pauseBtn = document.getElementById('c4ai-debug-pause');
+    const runBtn = document.getElementById('crawl-debug-run');
+    const stepBtn = document.getElementById('crawl-debug-step');
+    const pauseBtn = document.getElementById('crawl-debug-pause');
     
     if (this.debuggerState.isRunning) {
       runBtn.disabled = true;
@@ -1688,11 +1688,11 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
   }
 
   updateDebugStatus(status) {
-    document.getElementById('c4ai-debug-status').textContent = status;
+    document.getElementById('crawl-debug-status').textContent = status;
   }
 
   updateBreakpointVisual(index, hasBreakpoint) {
-    const actionElem = document.querySelector(`.c4ai-debug-action[data-index="${index}"]`);
+    const actionElem = document.querySelector(`.crawl-debug-action[data-index="${index}"]`);
     if (actionElem) {
       if (hasBreakpoint) {
         actionElem.classList.add('has-breakpoint');
@@ -1712,7 +1712,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
       );
       
       // Re-render actions
-      document.getElementById('c4ai-debugger-actions').innerHTML = this.renderDebuggerActions();
+      document.getElementById('crawl-debugger-actions').innerHTML = this.renderDebuggerActions();
       this.attachDebuggerListeners();
       
       // Adjust current index if needed
@@ -1726,13 +1726,13 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
   editDebugAction(index) {
     const event = this.debuggerState.editedEvents[index];
     const dialog = document.createElement('div');
-    dialog.className = 'c4ai-edit-dialog';
+    dialog.className = 'crawl-edit-dialog';
     dialog.innerHTML = `
-      <div class="c4ai-edit-content">
+      <div class="crawl-edit-content">
         <h3>Edit Action</h3>
-        <div class="c4ai-edit-field">
+        <div class="crawl-edit-field">
           <label>Type:</label>
-          <select id="c4ai-edit-type">
+          <select id="crawl-edit-type">
             <option value="CLICK" ${event.type === 'CLICK' ? 'selected' : ''}>Click</option>
             <option value="TYPE" ${event.type === 'TYPE' ? 'selected' : ''}>Type</option>
             <option value="SET" ${event.type === 'SET' ? 'selected' : ''}>Set</option>
@@ -1740,22 +1740,22 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
             <option value="WAIT" ${event.type === 'WAIT' ? 'selected' : ''}>Wait</option>
           </select>
         </div>
-        <div class="c4ai-edit-field">
+        <div class="crawl-edit-field">
           <label>Selector/Value:</label>
-          <input type="text" id="c4ai-edit-value" value="${event.selector || event.value || ''}">
+          <input type="text" id="crawl-edit-value" value="${event.selector || event.value || ''}">
         </div>
-        <div class="c4ai-edit-actions">
-          <button id="c4ai-edit-save">Save</button>
-          <button id="c4ai-edit-cancel">Cancel</button>
+        <div class="crawl-edit-actions">
+          <button id="crawl-edit-save">Save</button>
+          <button id="crawl-edit-cancel">Cancel</button>
         </div>
       </div>
     `;
     
     document.body.appendChild(dialog);
     
-    document.getElementById('c4ai-edit-save').addEventListener('click', () => {
-      const newType = document.getElementById('c4ai-edit-type').value;
-      const newValue = document.getElementById('c4ai-edit-value').value;
+    document.getElementById('crawl-edit-save').addEventListener('click', () => {
+      const newType = document.getElementById('crawl-edit-type').value;
+      const newValue = document.getElementById('crawl-edit-value').value;
       
       // Update event based on type
       this.debuggerState.editedEvents[index] = {
@@ -1766,12 +1766,12 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
       };
       
       // Re-render
-      document.getElementById('c4ai-debugger-actions').innerHTML = this.renderDebuggerActions();
+      document.getElementById('crawl-debugger-actions').innerHTML = this.renderDebuggerActions();
       this.attachDebuggerListeners();
       dialog.remove();
     });
     
-    document.getElementById('c4ai-edit-cancel').addEventListener('click', () => {
+    document.getElementById('crawl-edit-cancel').addEventListener('click', () => {
       dialog.remove();
     });
   }
@@ -2190,7 +2190,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
         } else {
           alert(`Flow "${flowName}" saved successfully!`);
           // Update hint text
-          document.getElementById('c4ai-script-hint').textContent = `✅ Flow "${flowName}" saved!`;
+          document.getElementById('crawl-script-hint').textContent = `✅ Flow "${flowName}" saved!`;
         }
       });
     });
@@ -2205,32 +2205,32 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
       
       // Create modal
       const modal = document.createElement('div');
-      modal.className = 'c4ai-saved-flows-modal';
+      modal.className = 'crawl-saved-flows-modal';
       modal.innerHTML = `
-        <div class="c4ai-saved-flows-content">
-          <div class="c4ai-saved-flows-header">
+        <div class="crawl-saved-flows-content">
+          <div class="crawl-saved-flows-header">
             <h2>Saved Flows for ${domain}</h2>
-            <button class="c4ai-close-modal" id="c4ai-close-flows">✕</button>
+            <button class="crawl-close-modal" id="crawl-close-flows">✕</button>
           </div>
-          <div class="c4ai-saved-flows-body">
+          <div class="crawl-saved-flows-body">
             ${flows.length === 0 ? 
-              '<p class="c4ai-no-flows">No saved flows for this domain yet. Record and save your first flow!</p>' :
-              `<div class="c4ai-flows-list">
+              '<p class="crawl-no-flows">No saved flows for this domain yet. Record and save your first flow!</p>' :
+              `<div class="crawl-flows-list">
                 ${flows.map(flow => `
-                  <div class="c4ai-flow-item" data-flow-id="${flow.id}">
-                    <div class="c4ai-flow-info">
+                  <div class="crawl-flow-item" data-flow-id="${flow.id}">
+                    <div class="crawl-flow-info">
                       <h3>${flow.name}</h3>
-                      <p class="c4ai-flow-meta">
+                      <p class="crawl-flow-meta">
                         <span>${flow.events.length} actions</span>
                         <span>•</span>
                         <span>${new Date(flow.createdAt).toLocaleDateString()}</span>
                       </p>
                     </div>
-                    <div class="c4ai-flow-actions">
-                      <button class="c4ai-action-btn c4ai-load-flow-btn" data-flow-id="${flow.id}">
+                    <div class="crawl-flow-actions">
+                      <button class="crawl-action-btn crawl-load-flow-btn" data-flow-id="${flow.id}">
                         <span>▶</span> Load
                       </button>
-                      <button class="c4ai-action-btn c4ai-delete-flow-btn" data-flow-id="${flow.id}">
+                      <button class="crawl-action-btn crawl-delete-flow-btn" data-flow-id="${flow.id}">
                         <span>🗑</span>
                       </button>
                     </div>
@@ -2245,12 +2245,12 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
       document.body.appendChild(modal);
       
       // Add event listeners
-      document.getElementById('c4ai-close-flows').addEventListener('click', () => {
+      document.getElementById('crawl-close-flows').addEventListener('click', () => {
         modal.remove();
       });
       
       // Load flow buttons
-      modal.querySelectorAll('.c4ai-load-flow-btn').forEach(btn => {
+      modal.querySelectorAll('.crawl-load-flow-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const flowId = e.target.closest('button').dataset.flowId;
           const flow = flows.find(f => f.id === flowId);
@@ -2262,7 +2262,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
       });
       
       // Delete flow buttons
-      modal.querySelectorAll('.c4ai-delete-flow-btn').forEach(btn => {
+      modal.querySelectorAll('.crawl-delete-flow-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const flowId = e.target.closest('button').dataset.flowId;
           if (confirm('Are you sure you want to delete this flow?')) {
@@ -2288,7 +2288,7 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     this.showRecordingSummary();
     
     // Update hint
-    document.getElementById('c4ai-script-hint').textContent = `Loaded flow: "${flow.name}"`;
+    document.getElementById('crawl-script-hint').textContent = `Loaded flow: "${flow.name}"`;
   }
 
   deleteFlow(flowId) {
@@ -2325,46 +2325,46 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     this.lastEventTime = this.startTime;
     
     // Reset toolbar content to recording state
-    const toolbarContent = this.toolbar.querySelector('.c4ai-toolbar-content');
+    const toolbarContent = this.toolbar.querySelector('.crawl-toolbar-content');
     toolbarContent.innerHTML = `
-      <div class="c4ai-toolbar-status">
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Actions:</span>
-          <span class="c4ai-status-value" id="c4ai-action-count">0</span>
+      <div class="crawl-toolbar-status">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Actions:</span>
+          <span class="crawl-status-value" id="crawl-action-count">0</span>
         </div>
-        <div class="c4ai-status-item">
-          <span class="c4ai-status-label">Format:</span>
-          <select id="c4ai-output-format" class="c4ai-format-select">
+        <div class="crawl-status-item">
+          <span class="crawl-status-label">Format:</span>
+          <select id="crawl-output-format" class="crawl-format-select">
             <option value="js">JavaScript</option>
             <option value="c4a">C4A Script</option>
           </select>
         </div>
       </div>
-      <div class="c4ai-toolbar-hint" id="c4ai-script-hint">
+      <div class="crawl-toolbar-hint" id="crawl-script-hint">
         Recording your actions... Click, type, and scroll to build your script.
       </div>
-      <div class="c4ai-toolbar-actions">
-        <button id="c4ai-saved-flows" class="c4ai-action-btn c4ai-flows-btn">
+      <div class="crawl-toolbar-actions">
+        <button id="crawl-saved-flows" class="crawl-action-btn crawl-flows-btn">
           <span>📂</span> Saved Flows
         </button>
-        <button id="c4ai-add-wait" class="c4ai-action-btn c4ai-wait-btn">
-          <span class="c4ai-wait-icon">⏱</span> Add Wait
+        <button id="crawl-add-wait" class="crawl-action-btn crawl-wait-btn">
+          <span class="crawl-wait-icon">⏱</span> Add Wait
         </button>
-        <button id="c4ai-pause-recording" class="c4ai-action-btn c4ai-pause-btn">
-          <span class="c4ai-pause-icon">⏸</span> Pause
+        <button id="crawl-pause-recording" class="crawl-action-btn crawl-pause-btn">
+          <span class="crawl-pause-icon">⏸</span> Pause
         </button>
-        <button id="c4ai-stop-generate" class="c4ai-action-btn c4ai-generate-btn">
-          <span class="c4ai-generate-icon">⚡</span> Stop & Generate
+        <button id="crawl-stop-generate" class="crawl-action-btn crawl-generate-btn">
+          <span class="crawl-generate-icon">⚡</span> Stop & Generate
         </button>
       </div>
     `;
     
     // Re-add event listeners
-    document.getElementById('c4ai-pause-recording').addEventListener('click', () => this.togglePause());
-    document.getElementById('c4ai-stop-generate').addEventListener('click', () => this.stopAndGenerate());
-    document.getElementById('c4ai-add-wait').addEventListener('click', () => this.showWaitDialog());
-    document.getElementById('c4ai-saved-flows').addEventListener('click', () => this.showSavedFlows());
-    document.getElementById('c4ai-output-format').addEventListener('change', (e) => {
+    document.getElementById('crawl-pause-recording').addEventListener('click', () => this.togglePause());
+    document.getElementById('crawl-stop-generate').addEventListener('click', () => this.stopAndGenerate());
+    document.getElementById('crawl-add-wait').addEventListener('click', () => this.showWaitDialog());
+    document.getElementById('crawl-saved-flows').addEventListener('click', () => this.showSavedFlows());
+    document.getElementById('crawl-output-format').addEventListener('change', (e) => {
       this.outputFormat = e.target.value;
     });
     
@@ -2379,13 +2379,13 @@ el.dispatchEvent(new Event('blur', {bubbles: true}));`;
     if (format === 'js') {
       return `#!/usr/bin/env python3
 """
-Generated by Crawl4AI Chrome Extension - Script Builder (ALPHA)
+Generated by Crawl Chrome Extension - Script Builder (ALPHA)
 URL: ${currentUrl}
 Generated: ${timestamp}
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 # JavaScript code to execute
 JS_SCRIPT = """
@@ -2429,15 +2429,15 @@ if __name__ == "__main__":
       // C4A Script format
       return `#!/usr/bin/env python3
 """
-Generated by Crawl4AI Chrome Extension - Script Builder (ALPHA)
+Generated by Crawl Chrome Extension - Script Builder (ALPHA)
 URL: ${currentUrl}
 Generated: ${timestamp}
 """
 
 import asyncio
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import JsonCssExtractionStrategy
 
 # C4A Script commands
 C4A_SCRIPT = """
@@ -2455,7 +2455,7 @@ print(C4A_SCRIPT)
 
 # Note: To execute C4A scripts, you'll need to use the C4A Script compiler
 # Example:
-# from crawl4ai.script import C4ACompiler
+# from crawl.script import C4ACompiler
 # compiler = C4ACompiler()
 # js_code = compiler.compile(C4A_SCRIPT)
 # 

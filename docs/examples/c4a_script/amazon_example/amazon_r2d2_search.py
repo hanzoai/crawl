@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Amazon R2D2 Product Search Example using Crawl4AI
+Amazon R2D2 Product Search Example using Crawl
 
 This example demonstrates:
 1. Using LLM to generate C4A-Script from HTML snippets
@@ -9,7 +9,7 @@ This example demonstrates:
 4. Complete workflow: homepage → search → extract products
 
 Requirements:
-- Crawl4AI with generate_script support
+- Crawl with generate_script support
 - LLM API key (configured in environment)
 """
 
@@ -19,9 +19,9 @@ import os
 from pathlib import Path
 from typing import List, Dict, Any
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
-from crawl4ai.script.c4a_compile import C4ACompiler
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
+from crawl.script.c4a_compile import C4ACompiler
 
 
 class AmazonR2D2Scraper:

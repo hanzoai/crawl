@@ -1,8 +1,8 @@
-# Crawl4AI v0.7.6 Release Notes
+# Crawl v0.7.6 Release Notes
 
 *Release Date: October 22, 2025*
 
-I'm excited to announce Crawl4AI v0.7.6, featuring a complete webhook infrastructure for the Docker job queue API! This release eliminates polling and brings real-time notifications to both crawling and LLM extraction workflows.
+I'm excited to announce Crawl v0.7.6, featuring a complete webhook infrastructure for the Docker job queue API! This release eliminates polling and brings real-time notifications to both crawling and LLM extraction workflows.
 
 ## 🎯 What's New
 
@@ -246,7 +246,7 @@ webhooks:
     max_delay_ms: 32000
     timeout_ms: 30000
   headers:
-    User-Agent: "Crawl4AI-Webhook/1.0"
+    User-Agent: "Crawl-Webhook/1.0"
 ```
 
 ## 🚀 Upgrade Instructions
@@ -255,23 +255,23 @@ webhooks:
 
 ```bash
 # Pull the latest image
-docker pull unclecode/crawl4ai:0.7.6
+docker pull hanzoai/crawl:0.7.6
 
 # Or use latest tag
-docker pull unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
 
 # Run with webhook support
 docker run -d \
   -p 11235:11235 \
   --env-file .llm.env \
-  --name crawl4ai \
-  unclecode/crawl4ai:0.7.6
+  --name crawl \
+  hanzoai/crawl:0.7.6
 ```
 
 ### Python Package
 
 ```bash
-pip install --upgrade crawl4ai
+pip install --upgrade crawl
 ```
 
 ## 💡 Pro Tips
@@ -303,9 +303,9 @@ Thank you to the community for the feedback that shaped this feature! Special th
 
 ## 📞 Support
 
-- **Documentation**: https://docs.crawl4ai.com
-- **GitHub Issues**: https://github.com/unclecode/crawl4ai/issues
-- **Discord**: https://discord.gg/crawl4ai
+- **Documentation**: https://docs.hanzo.ai
+- **GitHub Issues**: https://github.com/hanzoai/crawl/issues
+- **Discord**: https://discord.gg/crawl
 
 ---
 

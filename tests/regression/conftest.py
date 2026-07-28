@@ -1,5 +1,5 @@
 """
-Crawl4AI Regression Test Suite - Shared Fixtures
+Crawl Regression Test Suite - Shared Fixtures
 
 Provides a local HTTP test server with crafted pages for deterministic testing,
 plus markers for network-dependent tests against real URLs.
@@ -35,9 +35,9 @@ HOME_HTML = """\
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Crawl4AI Test Home</title>
-    <meta name="description" content="Regression test page for Crawl4AI">
-    <meta name="keywords" content="crawl4ai, testing, regression">
+    <title>Crawl Test Home</title>
+    <meta name="description" content="Regression test page for Crawl">
+    <meta name="keywords" content="crawl, testing, regression">
     <meta property="og:title" content="Test OG Title">
     <meta property="og:description" content="Test OG description for social sharing">
     <meta property="og:image" content="/images/og-image.jpg">
@@ -53,9 +53,9 @@ HOME_HTML = """\
         <a href="/tables">Tables</a>
     </nav>
     <main>
-        <h1>Welcome to the Crawl4AI Test Site</h1>
+        <h1>Welcome to the Crawl Test Site</h1>
         <p>This is a comprehensive test page designed for regression testing of the
-        Crawl4AI web crawling library. It contains various HTML elements to verify
+        Crawl web crawling library. It contains various HTML elements to verify
         content extraction, markdown generation, and link discovery work correctly.</p>
 
         <h2>Features Overview</h2>
@@ -71,7 +71,7 @@ HOME_HTML = """\
         </ul>
 
         <h2>Code Example</h2>
-        <pre><code>from crawl4ai import AsyncWebCrawler
+        <pre><code>from crawl import AsyncWebCrawler
 
 async with AsyncWebCrawler() as crawler:
     result = await crawler.arun("https://example.com")
@@ -85,7 +85,7 @@ async with AsyncWebCrawler() as crawler:
 
         <h3>External Links</h3>
         <a href="https://example.com">Example.com</a>
-        <a href="https://github.com/unclecode/crawl4ai">Crawl4AI GitHub</a>
+        <a href="https://github.com/hanzoai/crawl">Crawl GitHub</a>
 
         <img src="/images/hero.jpg" alt="Hero image for testing" width="800" height="400">
         <img src="/images/icon.png" alt="" width="16" height="16">
@@ -320,7 +320,7 @@ STRUCTURED_DATA_HTML = """\
         <h1>Web Crawling Best Practices</h1>
         <p class="byline">By Test Author | Published June 15, 2025</p>
         <p>Web crawling is the process of systematically browsing the web to extract
-        information. Modern crawlers like Crawl4AI provide sophisticated tools for
+        information. Modern crawlers like Crawl provide sophisticated tools for
         content extraction, including markdown generation, structured data extraction,
         and intelligent link following.</p>
         <h2>Key Techniques</h2>
@@ -357,9 +357,9 @@ REGEX_TEST_HTML = """\
 <head><title>Regex Test Content</title></head>
 <body>
     <h1>Contact Information</h1>
-    <p>Email us at support@crawl4ai.com or sales@example.org for inquiries.</p>
+    <p>Email us at support@crawl.hanzo.ai or sales@example.org for inquiries.</p>
     <p>Call us: +1-555-123-4567 or (800) 555-0199</p>
-    <p>Visit https://crawl4ai.com or https://docs.crawl4ai.com/api/v2</p>
+    <p>Visit https://crawl.hanzo.ai or https://docs.hanzo.ai/api/v2</p>
     <p>Server IP: 192.168.1.100</p>
     <p>Request ID: 550e8400-e29b-41d4-a716-446655440000</p>
     <p>Price: $199.99 or EUR 175.50</p>
@@ -368,7 +368,7 @@ REGEX_TEST_HTML = """\
     <p>Updated: 03/15/2025</p>
     <p>Meeting at 14:30 or 09:00</p>
     <p>Zip code: 94105 or 94105-1234</p>
-    <p>Follow @crawl4ai on social media</p>
+    <p>Follow @crawl on social media</p>
     <p>Tags: #WebCrawling #DataExtraction #Python</p>
     <p>Color theme: #FF5733</p>
 </body>

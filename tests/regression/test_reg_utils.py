@@ -1,5 +1,5 @@
 """
-Regression tests for Crawl4AI utility functions.
+Regression tests for Crawl utility functions.
 
 Covers extract_xml_data, URL normalization, CacheContext/CacheMode,
 sanitize_input_encode, content hashing, and image scoring.
@@ -7,7 +7,7 @@ sanitize_input_encode, content hashing, and image scoring.
 
 import pytest
 
-from crawl4ai.utils import (
+from crawl.utils import (
     extract_xml_data,
     extract_xml_data_legacy,
     normalize_url,
@@ -16,7 +16,7 @@ from crawl4ai.utils import (
     sanitize_input_encode,
     generate_content_hash,
 )
-from crawl4ai.cache_context import CacheContext, CacheMode
+from crawl.cache_context import CacheContext, CacheMode
 
 
 # ===================================================================
@@ -491,10 +491,10 @@ class TestImageScoring:
 
     def test_image_score_threshold_exists(self):
         """IMAGE_SCORE_THRESHOLD config constant should exist."""
-        from crawl4ai.config import IMAGE_SCORE_THRESHOLD
+        from crawl.config import IMAGE_SCORE_THRESHOLD
         assert isinstance(IMAGE_SCORE_THRESHOLD, (int, float))
 
     def test_image_description_threshold_exists(self):
         """IMAGE_DESCRIPTION_MIN_WORD_THRESHOLD should exist."""
-        from crawl4ai.config import IMAGE_DESCRIPTION_MIN_WORD_THRESHOLD
+        from crawl.config import IMAGE_DESCRIPTION_MIN_WORD_THRESHOLD
         assert isinstance(IMAGE_DESCRIPTION_MIN_WORD_THRESHOLD, (int, float))

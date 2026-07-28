@@ -1,6 +1,6 @@
 import asyncio
 import capsolver
-from crawl4ai import *
+from crawl import *
 
 
 # TODO: set your config

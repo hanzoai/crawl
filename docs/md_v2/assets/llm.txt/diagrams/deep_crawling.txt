@@ -425,4 +425,4 @@ sequenceDiagram
     end
 ```
 
-**📖 Learn more:** [Deep Crawling Strategies](https://docs.crawl4ai.com/core/deep-crawling/), [Content Filtering](https://docs.crawl4ai.com/core/content-selection/), [Advanced Crawling Patterns](https://docs.crawl4ai.com/advanced/advanced-features/)
+**📖 Learn more:** [Deep Crawling Strategies](https://docs.hanzo.ai/core/deep-crawling/), [Content Filtering](https://docs.hanzo.ai/core/content-selection/), [Advanced Crawling Patterns](https://docs.hanzo.ai/advanced/advanced-features/)

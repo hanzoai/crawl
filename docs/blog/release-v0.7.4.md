@@ -1,10 +1,10 @@
-# 🚀 Crawl4AI v0.7.4: The Intelligent Table Extraction & Performance Update
+# 🚀 Crawl v0.7.4: The Intelligent Table Extraction & Performance Update
 
 *August 17, 2025 • 6 min read*
 
 ---
 
-Today I'm releasing Crawl4AI v0.7.4—the Intelligent Table Extraction & Performance Update. This release introduces revolutionary LLM-powered table extraction with intelligent chunking, significant performance improvements for concurrent crawling, enhanced browser management, and critical stability fixes that make Crawl4AI more robust for production workloads.
+Today I'm releasing Crawl v0.7.4—the Intelligent Table Extraction & Performance Update. This release introduces revolutionary LLM-powered table extraction with intelligent chunking, significant performance improvements for concurrent crawling, enhanced browser management, and critical stability fixes that make Crawl more robust for production workloads.
 
 ## 🎯 What's New at a Glance
 
@@ -25,7 +25,7 @@ Today I'm releasing Crawl4AI v0.7.4—the Intelligent Table Extraction & Perform
 ### Technical Implementation
 
 ```python
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig, 
     LLMConfig,
@@ -214,7 +214,7 @@ config = CrawlerRunConfig(
 
 ```python
 # Multiple proxy configuration formats now supported
-from crawl4ai import BrowserConfig, ProxyConfig
+from crawl import BrowserConfig, ProxyConfig
 
 # String format
 proxy_config = ProxyConfig("http://proxy.example.com:8080")
@@ -256,15 +256,15 @@ Thanks to our contributors and community for feedback, bug reports, and feature 
 
 ## 📚 Resources
 
-- [Full Documentation](https://docs.crawl4ai.com)
-- [GitHub Repository](https://github.com/unclecode/crawl4ai)
-- [Discord Community](https://discord.gg/crawl4ai)
-- [LLM Table Extraction Examples](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/llm_table_extraction_example.py)
+- [Full Documentation](https://docs.hanzo.ai)
+- [GitHub Repository](https://github.com/hanzoai/crawl)
+- [Discord Community](https://discord.gg/crawl)
+- [LLM Table Extraction Examples](https://github.com/hanzoai/crawl/blob/main/docs/examples/llm_table_extraction_example.py)
 
 ---
 
-*Crawl4AI v0.7.4 delivers intelligent table extraction and significant performance improvements. The new LLMTableExtraction strategy handles complex tables that were previously impossible to process, while concurrency improvements make batch operations 3-4x faster. Try the intelligent table extraction—it's a game changer for data extraction workflows!*
+*Crawl v0.7.4 delivers intelligent table extraction and significant performance improvements. The new LLMTableExtraction strategy handles complex tables that were previously impossible to process, while concurrency improvements make batch operations 3-4x faster. Try the intelligent table extraction—it's a game changer for data extraction workflows!*
 
 **Happy Crawling! 🕷️**
 
-*- The Crawl4AI Team*
+*- The Crawl Team*

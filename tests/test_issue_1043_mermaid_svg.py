@@ -7,7 +7,7 @@ during HTML scraping, rather than being stripped entirely.
 
 import pytest
 from lxml import html as lhtml
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
 
 
 @pytest.fixture

@@ -1,6 +1,6 @@
-# 🚀 Crawl4AI Interactive Apps
+# 🚀 Crawl Interactive Apps
 
-Welcome to the Crawl4AI Apps Hub - your gateway to interactive tools and demos that make web scraping more intuitive and powerful.
+Welcome to the Crawl Apps Hub - your gateway to interactive tools and demos that make web scraping more intuitive and powerful.
 
 <style>
 .apps-container {
@@ -142,7 +142,7 @@ Welcome to the Crawl4AI Apps Hub - your gateway to interactive tools and demos t
 <div class="intro-section">
 <h2>🛠️ Interactive Tools for Modern Web Scraping</h2>
 <p>
-Our apps are designed to make Crawl4AI more accessible and powerful. Whether you're learning browser automation, designing extraction strategies, or building complex scrapers, these tools provide visual, interactive ways to work with Crawl4AI's features.
+Our apps are designed to make Crawl more accessible and powerful. Whether you're learning browser automation, designing extraction strategies, or building complex scrapers, these tools provide visual, interactive ways to work with Crawl's features.
 </p>
 </div>
 
@@ -172,7 +172,7 @@ Our apps are designed to make Crawl4AI more accessible and powerful. Whether you
     <span class="app-status status-available">Available</span>
     <h3>🧠 LLM Context Builder</h3>
     <p class="app-description">
-        Generate optimized context files for your favorite LLM when working with Crawl4AI. Get focused, relevant documentation based on your needs.
+        Generate optimized context files for your favorite LLM when working with Crawl. Get focused, relevant documentation based on your needs.
     </p>
     <ul class="app-features">
         <li>Modular context generation</li>
@@ -205,7 +205,7 @@ Our apps are designed to make Crawl4AI more accessible and powerful. Whether you
 
 <div class="app-card">
     <span class="app-status status-available">Available</span>
-    <h3>🔍 Crawl4AI Assistant (Chrome Extension)</h3>
+    <h3>🔍 Crawl Assistant (Chrome Extension)</h3>
     <p class="app-description">
         Visual schema builder Chrome extension - click on webpage elements to generate extraction schemas and Python code!
     </p>
@@ -217,7 +217,7 @@ Our apps are designed to make Crawl4AI more accessible and powerful. Whether you
         <li>One-click installation</li>
     </ul>
     <div class="app-action">
-        <a href="crawl4ai-assistant/" class="app-btn">Install Extension →</a>
+        <a href="crawl-assistant/" class="app-btn">Install Extension →</a>
     </div>
 </div>
 
@@ -277,7 +277,7 @@ Our apps are designed to make Crawl4AI more accessible and powerful. Whether you
 ## 🚀 Why Use These Apps?
 
 ### 🎯 **Accelerate Learning**
-Visual tools help you understand Crawl4AI's concepts faster than reading documentation alone.
+Visual tools help you understand Crawl's concepts faster than reading documentation alone.
 
 ### 💡 **Reduce Development Time**
 Generate working code instantly instead of writing everything from scratch.
@@ -286,17 +286,17 @@ Generate working code instantly instead of writing everything from scratch.
 Test and refine your approach before deploying to production.
 
 ### 🤝 **Community Driven**
-These tools are built based on user feedback. Have an idea? [Let us know](https://github.com/unclecode/crawl4ai/issues)!
+These tools are built based on user feedback. Have an idea? [Let us know](https://github.com/hanzoai/crawl/issues)!
 
 ## 📢 Stay Updated
 
 Want to know when new apps are released? 
 
-- ⭐ [Star us on GitHub](https://github.com/unclecode/crawl4ai) to get notifications
+- ⭐ [Star us on GitHub](https://github.com/hanzoai/crawl) to get notifications
 - 🐦 Follow [@unclecode](https://twitter.com/unclecode) for announcements
-- 💬 Join our [Discord community](https://discord.gg/crawl4ai) for early access
+- 💬 Join our [Discord community](https://discord.gg/crawl) for early access
 
 ---
 
 !!! tip "Developer Resources"
-    Building your own tools with Crawl4AI? Check out our [API Reference](../api/async-webcrawler.md) and [Integration Guide](../advanced/advanced-features.md) for comprehensive documentation.
+    Building your own tools with Crawl? Check out our [API Reference](../api/async-webcrawler.md) and [Integration Guide](../advanced/advanced-features.md) for comprehensive documentation.

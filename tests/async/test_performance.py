@@ -7,7 +7,7 @@ import time
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parent_dir)
 
-from crawl4ai.async_webcrawler import AsyncWebCrawler
+from crawl.async_webcrawler import AsyncWebCrawler
 
 
 @pytest.mark.asyncio

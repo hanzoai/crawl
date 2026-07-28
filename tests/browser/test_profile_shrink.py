@@ -12,7 +12,7 @@ import shutil
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
-from crawl4ai.browser_profiler import (
+from crawl.browser_profiler import (
     ShrinkLevel,
     KEEP_PATTERNS,
     shrink_profile,
@@ -397,12 +397,12 @@ class TestCLIIntegration:
 
     def test_cli_import(self):
         """Verify CLI imports work."""
-        from crawl4ai.cli import shrink_cmd
+        from crawl.cli import shrink_cmd
         assert callable(shrink_cmd)
 
     def test_shrink_level_import(self):
         """Verify ShrinkLevel can be imported from cli."""
-        from crawl4ai.browser_profiler import ShrinkLevel
+        from crawl.browser_profiler import ShrinkLevel
         assert ShrinkLevel.AGGRESSIVE.value == "aggressive"
 
 
@@ -543,7 +543,7 @@ class TestEdgeCases:
 
         # storage_state.json doesn't match keep patterns, so it gets removed
         # This is expected - the shrink function preserves Chrome's auth files,
-        # not Crawl4AI's exported state file
+        # not Crawl's exported state file
         # If we want to keep it, we need to add it to KEEP_PATTERNS
 
     def test_shrink_with_very_deep_nesting(self, tmp_path):

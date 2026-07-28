@@ -1,6 +1,6 @@
-# Contributing to Crawl4AI
+# Contributing to Crawl
 
-Welcome to the Crawl4AI project! As an open-source library for web crawling and AI integration, we value contributions from the community. This guide explains our branching strategy, how to contribute effectively, and the overall release process. Our goal is to maintain a stable, collaborative environment where bug fixes, features, and improvements can be integrated smoothly while allowing for experimental development.
+Welcome to the Crawl project! As an open-source library for web crawling and AI integration, we value contributions from the community. This guide explains our branching strategy, how to contribute effectively, and the overall release process. Our goal is to maintain a stable, collaborative environment where bug fixes, features, and improvements can be integrated smoothly while allowing for experimental development.
 
 We follow a GitFlow-inspired workflow to ensure predictability and quality. Releases occur approximately every two weeks, with a focus on semantic versioning, comprehensive documentation, and user-friendly updates.
 
@@ -97,6 +97,6 @@ Before submitting a PR:
 - Join our Discord (link in README) for real-time help.
 - After releases, announcements go to GitHub, Discord, and social media.
 
-Thanks for contributing to Crawl4AI — we appreciate your help in making it better!
+Thanks for contributing to Crawl — we appreciate your help in making it better!
 
 *Last Updated: Feb 3, 2026*

@@ -1,6 +1,6 @@
 # Fit Markdown with Pruning & BM25
 
-**Fit Markdown** is a specialized **filtered** version of your page’s markdown, focusing on the most relevant content. By default, Crawl4AI converts the entire HTML into a broad **raw_markdown**. With fit markdown, we apply a **content filter** algorithm (e.g., **Pruning** or **BM25**) to remove or rank low-value sections—such as repetitive sidebars, shallow text blocks, or irrelevancies—leaving a concise textual “core.”
+**Fit Markdown** is a specialized **filtered** version of your page’s markdown, focusing on the most relevant content. By default, Crawl converts the entire HTML into a broad **raw_markdown**. With fit markdown, we apply a **content filter** algorithm (e.g., **Pruning** or **BM25**) to remove or rank low-value sections—such as repetitive sidebars, shallow text blocks, or irrelevancies—leaving a concise textual “core.”
 
 ---
 
@@ -30,9 +30,9 @@ In **`CrawlerRunConfig`**, you can specify a **`content_filter`** to shape how c
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def main():
     # Step 1: Create a pruning filter
@@ -95,9 +95,9 @@ if __name__ == "__main__":
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.content_filter_strategy import BM25ContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.content_filter_strategy import BM25ContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 async def main():
     # 1) A BM25 filter with a user query
@@ -209,7 +209,7 @@ Thus, **multi-level** filtering occurs:
 If you need a different approach (like a specialized ML model or site-specific heuristics), you can create a new class inheriting from `RelevantContentFilter` and implement `filter_content(html)`. Then inject it into your **markdown generator**:
 
 ```python
-from crawl4ai.content_filter_strategy import RelevantContentFilter
+from crawl.content_filter_strategy import RelevantContentFilter
 
 class MyCustomFilter(RelevantContentFilter):
     def filter_content(self, html, min_word_threshold=None):

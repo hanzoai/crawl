@@ -12,9 +12,9 @@ import sys
 if __name__ == "__main__":
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from crawl4ai.browser import BrowserManager
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_logger import AsyncLogger
+from crawl.browser import BrowserManager
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_logger import AsyncLogger
 
 # Create a logger for clear terminal output
 logger = AsyncLogger(verbose=True, log_file=None)
@@ -76,7 +76,7 @@ async def test_builtin_browser_status():
     """Test getting status of the builtin browser."""
     logger.info("Testing builtin browser status", tag="TEST")
     
-    from crawl4ai.browser.strategies import BuiltinBrowserStrategy
+    from crawl.browser.strategies import BuiltinBrowserStrategy
     
     browser_config = BrowserConfig(
         browser_mode="builtin",

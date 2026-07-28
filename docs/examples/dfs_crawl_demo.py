@@ -5,11 +5,11 @@ Run with:  python docs/examples/dfs_crawl_demo.py
 """
 import asyncio
 
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_webcrawler import AsyncWebCrawler
-from crawl4ai.cache_context import CacheMode
-from crawl4ai.deep_crawling.dfs_strategy import DFSDeepCrawlStrategy
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_webcrawler import AsyncWebCrawler
+from crawl.cache_context import CacheMode
+from crawl.deep_crawling.dfs_strategy import DFSDeepCrawlStrategy
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 
 async def main() -> None:

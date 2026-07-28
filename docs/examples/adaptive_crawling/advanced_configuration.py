@@ -7,7 +7,7 @@ including threshold tuning, persistence, and custom parameters.
 
 import asyncio
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
 
 
 async def main():

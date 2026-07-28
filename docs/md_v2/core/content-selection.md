@@ -1,6 +1,6 @@
 # Content Selection
 
-Crawl4AI provides multiple ways to **select**, **filter**, and **refine** the content from your crawls. Whether you need to target a specific CSS region, exclude entire tags, filter out external links, or remove certain domains and images, **`CrawlerRunConfig`** offers a wide range of parameters.
+Crawl provides multiple ways to **select**, **filter**, and **refine** the content from your crawls. Whether you need to target a specific CSS region, exclude entire tags, filter out external links, or remove certain domains and images, **`CrawlerRunConfig`** offers a wide range of parameters.
 
 Below, we show how to configure these parameters and combine them for precise control.
 
@@ -16,7 +16,7 @@ A straightforward way to **limit** your crawl results to a certain region of the
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     config = CrawlerRunConfig(
@@ -42,7 +42,7 @@ The `target_elements` parameter provides more flexibility by allowing you to tar
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     config = CrawlerRunConfig(
@@ -121,7 +121,7 @@ By default in case you set `exclude_social_media_links=True`, the following soci
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def main():
     config = CrawlerRunConfig(
@@ -163,7 +163,7 @@ config = CrawlerRunConfig(
 **Usage**:
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     config = CrawlerRunConfig(
@@ -203,7 +203,7 @@ config = CrawlerRunConfig(
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def main():
     config = CrawlerRunConfig(
@@ -224,11 +224,11 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-When `flatten_shadow_dom=True` is set, Crawl4AI also injects an init script that force-opens **closed** shadow roots (by patching `Element.prototype.attachShadow`), so even components that use `mode: 'closed'` become accessible.
+When `flatten_shadow_dom=True` is set, Crawl also injects an init script that force-opens **closed** shadow roots (by patching `Element.prototype.attachShadow`), so even components that use `mode: 'closed'` become accessible.
 
 > **Tip**: Web components need JavaScript to run before they render content (a process called *hydration*). Use `wait_until="load"` and a `delay_before_return_html` of 2–5 seconds to ensure components are fully hydrated before flattening.
 
-For a complete runnable example, see [`shadow_dom_crawling.py`](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/shadow_dom_crawling.py).
+For a complete runnable example, see [`shadow_dom_crawling.py`](https://github.com/hanzoai/crawl/blob/main/docs/examples/shadow_dom_crawling.py).
 
 ---
 
@@ -241,8 +241,8 @@ You can combine content selection with a more advanced extraction strategy. For 
 ```python
 import asyncio
 import json
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 
 async def main():
     # Minimal schema for repeated items
@@ -293,8 +293,8 @@ if __name__ == "__main__":
 import asyncio
 import json
 from pydantic import BaseModel, Field
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
-from crawl4ai import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
+from crawl import LLMExtractionStrategy
 
 class ArticleData(BaseModel):
     headline: str
@@ -338,8 +338,8 @@ Below is a short function that unifies **CSS selection**, **exclusion** logic, a
 ```python
 import asyncio
 import json
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 
 async def extract_main_articles(url: str):
     schema = {
@@ -401,12 +401,12 @@ if __name__ == "__main__":
 
 ## 6. Scraping Modes
 
-Crawl4AI uses `LXMLWebScrapingStrategy` (LXML-based) as the default scraping strategy for HTML content processing. This strategy offers excellent performance, especially for large HTML documents.
+Crawl uses `LXMLWebScrapingStrategy` (LXML-based) as the default scraping strategy for HTML content processing. This strategy offers excellent performance, especially for large HTML documents.
 
 **Note:** For backward compatibility, `WebScrapingStrategy` is still available as an alias for `LXMLWebScrapingStrategy`.
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LXMLWebScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, LXMLWebScrapingStrategy
 
 async def main():
     # Default configuration already uses LXMLWebScrapingStrategy
@@ -427,7 +427,7 @@ async def main():
 You can also create your own custom scraping strategy by inheriting from `ContentScrapingStrategy`. The strategy must return a `ScrapingResult` object with the following structure:
 
 ```python
-from crawl4ai import ContentScrapingStrategy, ScrapingResult, MediaItem, Media, Link, Links
+from crawl import ContentScrapingStrategy, ScrapingResult, MediaItem, Media, Link, Links
 
 class CustomScrapingStrategy(ContentScrapingStrategy):
     def scrap(self, url: str, html: str, **kwargs) -> ScrapingResult:
@@ -498,7 +498,7 @@ You can combine `css_selector` and `target_elements` in powerful ways to achieve
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def main():
     # Target specific content but preserve page context

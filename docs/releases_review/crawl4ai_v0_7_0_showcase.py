@@ -1,5 +1,5 @@
 """
-🚀 Crawl4AI v0.7.0 Feature Showcase
+🚀 Crawl v0.7.0 Feature Showcase
 =====================================
 This demo showcases the major features introduced in v0.7.0:
 1. Link Preview/Peek - Advanced link analysis with 3-layer scoring
@@ -26,10 +26,10 @@ from rich.layout import Layout
 from rich.live import Live
 from rich import box
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, AdaptiveCrawler, AdaptiveConfig, BrowserConfig, CacheMode
-from crawl4ai import AsyncUrlSeeder, SeedingConfig
-from crawl4ai import LinkPreviewConfig, VirtualScrollConfig
-from crawl4ai import c4a_compile, CompilationResult
+from crawl import AsyncWebCrawler, CrawlerRunConfig, AdaptiveCrawler, AdaptiveConfig, BrowserConfig, CacheMode
+from crawl import AsyncUrlSeeder, SeedingConfig
+from crawl import LinkPreviewConfig, VirtualScrollConfig
+from crawl import c4a_compile, CompilationResult
 
 # Initialize Rich console for beautiful output
 console = Console()
@@ -1088,7 +1088,7 @@ WAIT 1"""
     console.print(Panel(syntax, border_style="cyan"))
     
     # Compile it
-    from crawl4ai import c4a_compile
+    from crawl import c4a_compile
     
     console.print("\n[cyan]Transpiling to JavaScript...[/cyan]")
     result = c4a_compile(simple_script)
@@ -1218,8 +1218,8 @@ EVAL `console.log('Found ' + document.querySelectorAll('.product-card').length +
     else:
         await asyncio.sleep(1)
     
-    # Demo 4: Integration with Crawl4AI - LIVE DEMO
-    console.print("\n[bold yellow]Demo 4: Live Integration with Crawl4AI[/bold yellow]\n")
+    # Demo 4: Integration with Crawl - LIVE DEMO
+    console.print("\n[bold yellow]Demo 4: Live Integration with Crawl[/bold yellow]\n")
     
     console.print("[cyan]Let's see C4A Script in action with real web crawling![/cyan]\n")
     
@@ -1241,7 +1241,7 @@ WAIT 1"""
     
     try:
         # Import necessary components
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
         
         # Define extraction schema
         schema = {
@@ -1473,7 +1473,7 @@ async def interactive_menu():
         console.clear()
         
         print_banner(
-            "🚀 CRAWL4AI v0.7.0 SHOWCASE",
+            "🚀 CRAWL v0.7.0 SHOWCASE",
             "Interactive Demo Menu"
         )
         
@@ -1488,7 +1488,7 @@ async def interactive_menu():
         choice = Prompt.ask("\n[bold]Enter your choice[/bold]", choices=list(demos.keys()))
         
         if choice == "0":
-            console.print("\n[yellow]Thanks for exploring Crawl4AI v0.7.0![/yellow]")
+            console.print("\n[yellow]Thanks for exploring Crawl v0.7.0![/yellow]")
             break
         elif choice == "7":
             # Run all demos
@@ -1558,7 +1558,7 @@ async def main():
             # await llm_context_demo()
             
             console.print("\n[bold green]✨ All demos completed![/bold green]")
-            console.print("\nTo explore individual demos, run: [cyan]python crawl4ai_v0_7_0_showcase.py --interactive[/cyan]")
+            console.print("\nTo explore individual demos, run: [cyan]python crawl_v0_7_0_showcase.py --interactive[/cyan]")
             
         except KeyboardInterrupt:
             console.print("\n[yellow]Demo interrupted by user[/yellow]")
@@ -1573,8 +1573,8 @@ if __name__ == "__main__":
     
     # Show usage if --help is provided
     if "--help" in sys.argv or "-h" in sys.argv:
-        console.print("\n[bold]Crawl4AI v0.7.0 Feature Showcase[/bold]\n")
-        console.print("Usage: python crawl4ai_v0_7_0_showcase.py [options]\n")
+        console.print("\n[bold]Crawl v0.7.0 Feature Showcase[/bold]\n")
+        console.print("Usage: python crawl_v0_7_0_showcase.py [options]\n")
         console.print("Options:")
         console.print("  --interactive, -i    Interactive menu to select demos")
         console.print("  --auto              Run all demos without user prompts")

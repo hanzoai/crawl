@@ -1,6 +1,6 @@
-# Getting Started with Crawl4AI
+# Getting Started with Crawl
 
-Welcome to **Crawl4AI**, an open-source LLM-friendly Web Crawler & Scraper. In this tutorial, you’ll:
+Welcome to **Crawl**, an open-source LLM-friendly Web Crawler & Scraper. In this tutorial, you’ll:
 
 1. Run your **first crawl** using minimal configuration.  
 2. Generate **Markdown** output (and learn how it’s influenced by content filters).  
@@ -12,7 +12,7 @@ Welcome to **Crawl4AI**, an open-source LLM-friendly Web Crawler & Scraper. In t
 
 ## 1. Introduction
 
-Crawl4AI provides:
+Crawl provides:
 
 - An asynchronous crawler, **`AsyncWebCrawler`**.  
 - Configurable browser and run settings via **`BrowserConfig`** and **`CrawlerRunConfig`**.  
@@ -29,7 +29,7 @@ Here’s a minimal Python script that creates an **`AsyncWebCrawler`**, fetches 
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -43,7 +43,7 @@ if __name__ == "__main__":
 **What’s happening?**
 - **`AsyncWebCrawler`** launches a headless browser (Chromium by default).
 - It fetches `https://example.com`.
-- Crawl4AI automatically converts the HTML into Markdown.
+- Crawl automatically converts the HTML into Markdown.
 
 You now have a simple, working crawl!
 
@@ -51,7 +51,7 @@ You now have a simple, working crawl!
 
 ## 3. Basic Configuration (Light Introduction)
 
-Crawl4AI’s crawler can be heavily customized using two main classes:
+Crawl’s crawler can be heavily customized using two main classes:
 
 1. **`BrowserConfig`**: Controls browser behavior (headless or full UI, user agent, JavaScript toggles, etc.).  
 2. **`CrawlerRunConfig`**: Controls how each crawl runs (caching, extraction, timeouts, hooking, etc.).
@@ -60,7 +60,7 @@ Below is an example with minimal usage:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def main():
     browser_conf = BrowserConfig(headless=True)  # or False to see the browser
@@ -87,7 +87,7 @@ We’ll explore more advanced config in later tutorials (like enabling proxies, 
 
 ## 4. Generating Markdown Output
 
-By default, Crawl4AI automatically generates Markdown from each crawled page. However, the exact output depends on whether you specify a **markdown generator** or **content filter**.
+By default, Crawl automatically generates Markdown from each crawled page. However, the exact output depends on whether you specify a **markdown generator** or **content filter**.
 
 - **`result.markdown`**:  
   The direct HTML-to-Markdown conversion.  
@@ -97,9 +97,9 @@ By default, Crawl4AI automatically generates Markdown from each crawled page. Ho
 ### Example: Using a Filter with `DefaultMarkdownGenerator`
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai.content_filter_strategy import PruningContentFilter
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
 md_generator = DefaultMarkdownGenerator(
     content_filter=PruningContentFilter(threshold=0.4, threshold_type="fixed")
@@ -122,13 +122,13 @@ async with AsyncWebCrawler() as crawler:
 
 ## 5. Simple Data Extraction (CSS-based)
 
-Crawl4AI can also extract structured data (JSON) using CSS or XPath selectors. Below is a minimal CSS-based example:
+Crawl can also extract structured data (JSON) using CSS or XPath selectors. Below is a minimal CSS-based example:
 
-> **New!** Crawl4AI now provides a powerful utility to automatically generate extraction schemas using LLM. This is a one-time cost that gives you a reusable schema for fast, LLM-free extractions:
+> **New!** Crawl now provides a powerful utility to automatically generate extraction schemas using LLM. This is a one-time cost that gives you a reusable schema for fast, LLM-free extractions:
 
 ```python
-from crawl4ai import JsonCssExtractionStrategy
-from crawl4ai import LLMConfig
+from crawl import JsonCssExtractionStrategy
+from crawl import LLMConfig
 
 # Generate a schema (one-time cost)
 html = "<div class='product'><h2>Gaming Laptop</h2><span class='price'>$999.99</span></div>"
@@ -156,8 +156,8 @@ Here's a basic extraction example:
 ```python
 import asyncio
 import json
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 
 async def main():
     schema = {
@@ -198,7 +198,7 @@ if __name__ == "__main__":
 
 ## 6. Simple Data Extraction (LLM-based)
 
-For more complex or irregular pages, a language model can parse text intelligently into a structure you define. Crawl4AI supports **open-source** or **closed-source** providers:
+For more complex or irregular pages, a language model can parse text intelligently into a structure you define. Crawl supports **open-source** or **closed-source** providers:
 
 - **Open-Source Models** (e.g., `ollama/llama3.3`, `no_token`)  
 - **OpenAI Models** (e.g., `openai/gpt-4`, requires `api_token`)  
@@ -211,8 +211,8 @@ import os
 import json
 import asyncio
 from pydantic import BaseModel, Field
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
-from crawl4ai import LLMExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, LLMConfig
+from crawl import LLMExtractionStrategy
 
 class OpenAIModelFee(BaseModel):
     model_name: str = Field(..., description="Name of the OpenAI model.")
@@ -274,11 +274,11 @@ if __name__ == "__main__":
 
 ## 7. Adaptive Crawling (New!)
 
-Crawl4AI now includes intelligent adaptive crawling that automatically determines when sufficient information has been gathered. Here's a quick example:
+Crawl now includes intelligent adaptive crawling that automatically determines when sufficient information has been gathered. Here's a quick example:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler
+from crawl import AsyncWebCrawler, AdaptiveCrawler
 
 async def adaptive_example():
     async with AsyncWebCrawler() as crawler:
@@ -310,11 +310,11 @@ if __name__ == "__main__":
 
 ## 8. Multi-URL Concurrency (Preview)
 
-If you need to crawl multiple URLs in **parallel**, you can use `arun_many()`. By default, Crawl4AI employs a **MemoryAdaptiveDispatcher**, automatically adjusting concurrency based on system resources. Here’s a quick glimpse:
+If you need to crawl multiple URLs in **parallel**, you can use `arun_many()`. By default, Crawl employs a **MemoryAdaptiveDispatcher**, automatically adjusting concurrency based on system resources. Here’s a quick glimpse:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def quick_parallel_example():
     urls = [
@@ -363,8 +363,8 @@ Some sites require multiple “page clicks” or dynamic JavaScript updates. Bel
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 
 async def extract_structured_data_using_css_extractor():
     print("\n--- Using JsonCssExtractionStrategy for Fast Structured Output ---")
@@ -462,4 +462,4 @@ If you’re ready for more, check out:
 - **Deployment**: Explore ephemeral testing in Docker or plan for the upcoming stable Docker release.  
 - **Browser Management**: Delve into user simulation, stealth modes, and concurrency best practices.  
 
-Crawl4AI is a powerful, flexible tool. Enjoy building out your scrapers, data pipelines, or AI-driven extraction flows. Happy crawling!
+Crawl is a powerful, flexible tool. Enjoy building out your scrapers, data pipelines, or AI-driven extraction flows. Happy crawling!

@@ -7,7 +7,7 @@ embedding strategy, including fine-tuning parameters for different use cases.
 
 import asyncio
 import os
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
 
 
 async def test_configuration(name: str, config: AdaptiveConfig, url: str, query: str):

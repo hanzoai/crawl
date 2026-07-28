@@ -6,7 +6,7 @@ Basic web crawling operations with AsyncWebCrawler, configurations, and response
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 async def main():
     browser_config = BrowserConfig()  # Default browser settings
@@ -26,8 +26,8 @@ if __name__ == "__main__":
 ### Understanding CrawlResult
 
 ```python
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
 
 config = CrawlerRunConfig(
     markdown_generator=DefaultMarkdownGenerator(
@@ -93,7 +93,7 @@ async with AsyncWebCrawler(config=browser_config) as crawler:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def comprehensive_crawl():
     browser_config = BrowserConfig(verbose=True)
@@ -166,7 +166,7 @@ Extract structured data from HTML tables with automatic detection and scoring.
 ```python
 import asyncio
 import pandas as pd
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 async def extract_tables():
     async with AsyncWebCrawler() as crawler:
@@ -195,7 +195,7 @@ asyncio.run(extract_tables())
 ### Advanced Table Processing
 
 ```python
-from crawl4ai import LXMLWebScrapingStrategy
+from crawl import LXMLWebScrapingStrategy
 
 async def process_financial_tables():
     config = CrawlerRunConfig(
@@ -362,4 +362,4 @@ config = CrawlerRunConfig(
 ```
 
 
-**📖 Learn more:** [CrawlResult API Reference](https://docs.crawl4ai.com/api/crawl-result/), [Browser & Crawler Configuration](https://docs.crawl4ai.com/core/browser-crawler-config/), [Cache Modes](https://docs.crawl4ai.com/core/cache-modes/)
+**📖 Learn more:** [CrawlResult API Reference](https://docs.hanzo.ai/api/crawl-result/), [Browser & Crawler Configuration](https://docs.hanzo.ai/core/browser-crawler-config/), [Cache Modes](https://docs.hanzo.ai/core/cache-modes/)

@@ -18,19 +18,19 @@ fi
 export REDIS_PASSWORD
 
 # --- API token: prefer a mounted secret, else an existing env var. -----------
-if [[ -z "${CRAWL4AI_API_TOKEN:-}" && -f /run/secrets/api_token ]]; then
-    export CRAWL4AI_API_TOKEN="$(cat /run/secrets/api_token)"
+if [[ -z "${CRAWL_API_TOKEN:-}" && -f /run/secrets/api_token ]]; then
+    export CRAWL_API_TOKEN="$(cat /run/secrets/api_token)"
 fi
 
 # --- Bind resolution: loopback unless a credential is present. ---------------
-PORT="${CRAWL4AI_PORT:-11235}"
-if [[ -n "${CRAWL4AI_API_TOKEN:-}" || "${CRAWL4AI_JWT_ENABLED:-false}" == "true" ]]; then
+PORT="${CRAWL_PORT:-11235}"
+if [[ -n "${CRAWL_API_TOKEN:-}" || "${CRAWL_JWT_ENABLED:-false}" == "true" ]]; then
     # A credential is configured -> the operator may expose all interfaces.
     GUNICORN_BIND="${GUNICORN_BIND:-[::]:${PORT}}"
 else
     # No credential -> refuse to expose; serve loopback only.
     GUNICORN_BIND="127.0.0.1:${PORT}"
-    echo "entrypoint: no CRAWL4AI_API_TOKEN set; binding loopback only (${GUNICORN_BIND})." >&2
+    echo "entrypoint: no CRAWL_API_TOKEN set; binding loopback only (${GUNICORN_BIND})." >&2
 fi
 export GUNICORN_BIND
 

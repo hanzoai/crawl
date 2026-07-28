@@ -156,7 +156,7 @@ log_info "Step 5b: Starting server on port $SERVER_PORT..."
 cd deploy/docker
 
 # Start server in background
-python3 -m uvicorn server:app --host 0.0.0.0 --port $SERVER_PORT > /tmp/crawl4ai_server.log 2>&1 &
+python3 -m uvicorn server:app --host 0.0.0.0 --port $SERVER_PORT > /tmp/crawl_server.log 2>&1 &
 SERVER_PID=$!
 cd "$PROJECT_ROOT"
 
@@ -172,7 +172,7 @@ for i in {1..30}; do
     if [ $i -eq 30 ]; then
         log_error "Server failed to start within 30 seconds"
         log_info "Server logs:"
-        tail -50 /tmp/crawl4ai_server.log
+        tail -50 /tmp/crawl_server.log
         exit 1
     fi
     echo -n "."
@@ -191,7 +191,7 @@ from flask import Flask, request, jsonify
 from threading import Thread, Event
 
 # Configuration
-CRAWL4AI_BASE_URL = "http://localhost:11235"
+CRAWL_BASE_URL = "http://localhost:11235"
 WEBHOOK_BASE_URL = "http://localhost:8080"
 
 # Flask app for webhook receiver
@@ -229,7 +229,7 @@ payload = {
 }
 
 response = requests.post(
-    f"{CRAWL4AI_BASE_URL}/crawl/job",
+    f"{CRAWL_BASE_URL}/crawl/job",
     json=payload,
     headers={"Content-Type": "application/json"}
 )
@@ -267,7 +267,7 @@ else:
     # Try polling as fallback
     print("⏳ Trying to poll job status...")
     for i in range(10):
-        status_response = requests.get(f"{CRAWL4AI_BASE_URL}/crawl/job/{task_id}")
+        status_response = requests.get(f"{CRAWL_BASE_URL}/crawl/job/{task_id}")
         if status_response.ok:
             status = status_response.json()
             print(f"   Status: {status.get('status')}")
@@ -296,7 +296,7 @@ if [ $TEST_EXIT_CODE -eq 0 ]; then
 else
     log_error "❌ Webhook test FAILED (exit code: $TEST_EXIT_CODE)"
     log_info "Server logs:"
-    tail -100 /tmp/crawl4ai_server.log
+    tail -100 /tmp/crawl_server.log
     exit 1
 fi
 

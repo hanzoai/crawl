@@ -1,9 +1,9 @@
 # Application Configuration
 app:
-  title: "Crawl4AI API"
+  title: "Crawl API"
   version: "1.0.0"
   # Loopback by default. Exposing on 0.0.0.0 requires a credential
-  # (CRAWL4AI_API_TOKEN); the startup auth guard refuses an open non-loopback
+  # (CRAWL_API_TOKEN); the startup auth guard refuses an open non-loopback
   # bind without one. Put a TLS-terminating reverse proxy in front for exposure.
   host: "127.0.0.1"
   port: 11235
@@ -56,7 +56,7 @@ rate_limiting:
 # WARNING: For production deployments, enable security and use proper SECRET_KEY:
 #   - Set jwt_enabled: true for authentication
 #   - Set SECRET_KEY environment variable to a secure random value
-#   - Set CRAWL4AI_HOOKS_ENABLED=true only if you need hooks (RCE risk)
+#   - Set CRAWL_HOOKS_ENABLED=true only if you need hooks (RCE risk)
 security:
   enabled: true
   jwt_enabled: false
@@ -104,7 +104,7 @@ crawler:
       # --disable-web-security removed for security (enables cross-origin access)
       # --allow-insecure-localhost / --ignore-certificate-errors removed: they
       # disabled TLS verification for every crawl (MITM / SSRF-to-internal-TLS).
-      # Set CRAWL4AI_ALLOW_INSECURE_TLS=true only for trusted internal testing.
+      # Set CRAWL_ALLOW_INSECURE_TLS=true only for trusted internal testing.
 
 # Logging Configuration
 logging:
@@ -130,4 +130,4 @@ webhooks:
     max_delay_ms: 32000
     timeout_ms: 30000  # 30s timeout per webhook call
   headers:  # Optional: default headers to include
-    User-Agent: "Crawl4AI-Webhook/1.0"
+    User-Agent: "Crawl-Webhook/1.0"

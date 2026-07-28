@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI v0.7.6 Release Demo
+Crawl v0.7.6 Release Demo
 ============================
 
 This demo showcases the major feature in v0.7.6:
@@ -16,7 +16,7 @@ Features Demonstrated:
 7. Exponential backoff retry for reliable delivery
 
 Prerequisites:
-- Crawl4AI Docker container running on localhost:11235
+- Crawl Docker container running on localhost:11235
 - Flask installed: pip install flask requests
 - LLM API key configured (for LLM examples)
 
@@ -31,7 +31,7 @@ from flask import Flask, request, jsonify
 from threading import Thread
 
 # Configuration
-CRAWL4AI_BASE_URL = "http://localhost:11235"
+CRAWL_BASE_URL = "http://localhost:11235"
 WEBHOOK_BASE_URL = "http://localhost:8080"
 
 # Flask app for webhook receiver
@@ -100,7 +100,7 @@ def demo_1_crawl_webhook_notification_only():
         }
     }
 
-    response = requests.post(f"{CRAWL4AI_BASE_URL}/crawl/job", json=payload)
+    response = requests.post(f"{CRAWL_BASE_URL}/crawl/job", json=payload)
     if response.ok:
         task_id = response.json()['task_id']
         print(f"✅ Job submitted: {task_id}")
@@ -132,7 +132,7 @@ def demo_2_crawl_webhook_with_data():
         }
     }
 
-    response = requests.post(f"{CRAWL4AI_BASE_URL}/crawl/job", json=payload)
+    response = requests.post(f"{CRAWL_BASE_URL}/crawl/job", json=payload)
     if response.ok:
         task_id = response.json()['task_id']
         print(f"✅ Job submitted: {task_id}")
@@ -165,7 +165,7 @@ def demo_3_llm_webhook_notification_only():
         }
     }
 
-    response = requests.post(f"{CRAWL4AI_BASE_URL}/llm/job", json=payload)
+    response = requests.post(f"{CRAWL_BASE_URL}/llm/job", json=payload)
     if response.ok:
         task_id = response.json()['task_id']
         print(f"✅ Job submitted: {task_id}")
@@ -213,7 +213,7 @@ def demo_4_llm_webhook_with_schema():
         }
     }
 
-    response = requests.post(f"{CRAWL4AI_BASE_URL}/llm/job", json=payload)
+    response = requests.post(f"{CRAWL_BASE_URL}/llm/job", json=payload)
     if response.ok:
         task_id = response.json()['task_id']
         print(f"✅ Job submitted: {task_id}")
@@ -301,19 +301,19 @@ def print_summary():
 def main():
     """Run all demos."""
     print("\n" + "="*70)
-    print("🚀 Crawl4AI v0.7.6 Release Demo")
+    print("🚀 Crawl v0.7.6 Release Demo")
     print("="*70)
     print("Feature: Webhook Support for Docker Job Queue API")
     print("="*70)
 
     # Check if server is running
     try:
-        health = requests.get(f"{CRAWL4AI_BASE_URL}/health", timeout=5)
-        print(f"✅ Crawl4AI server is running")
+        health = requests.get(f"{CRAWL_BASE_URL}/health", timeout=5)
+        print(f"✅ Crawl server is running")
     except:
-        print(f"❌ Cannot connect to Crawl4AI at {CRAWL4AI_BASE_URL}")
+        print(f"❌ Cannot connect to Crawl at {CRAWL_BASE_URL}")
         print("Please start Docker container:")
-        print("  docker run -d -p 11235:11235 --env-file .llm.env unclecode/crawl4ai:0.7.6")
+        print("  docker run -d -p 11235:11235 --env-file .llm.env hanzoai/crawl:0.7.6")
         return
 
     # Start webhook server
@@ -352,7 +352,7 @@ def main():
     print("   • deploy/docker/WEBHOOK_EXAMPLES.md")
     print("   • docs/examples/docker_webhook_example.py")
     print("\n🔗 Upgrade:")
-    print("   docker pull unclecode/crawl4ai:0.7.6")
+    print("   docker pull hanzoai/crawl:0.7.6")
 
 
 if __name__ == "__main__":

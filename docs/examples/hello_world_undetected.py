@@ -1,5 +1,5 @@
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,
@@ -8,7 +8,7 @@ from crawl4ai import (
     CrawlResult,
     UndetectedAdapter
 )
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 
 async def main():

@@ -2,23 +2,23 @@
 
 **Last updated: April 20, 2026**
 
-These Terms of Service ("Terms") govern your use of the Crawl4AI hosted services, including the API, dashboard, integrations, Workspace add-ons, and any other software offered by **CRAWL4AI** ("we", "us", "our") at crawl4ai.com and its subdomains (collectively, the "Service").
+These Terms of Service ("Terms") govern your use of the Crawl hosted services, including the API, dashboard, integrations, Workspace add-ons, and any other software offered by **CRAWL** ("we", "us", "our") at crawl.hanzo.ai and its subdomains (collectively, the "Service").
 
 By creating an account or using the Service, you agree to these Terms. If you are using the Service on behalf of an organisation, you represent that you have authority to bind that organisation, and "you" refers to both you and the organisation.
 
-The open-source `crawl4ai` Python library is governed separately by its [open-source licence](https://github.com/unclecode/crawl4ai/blob/main/LICENSE) and is not subject to these Terms.
+The open-source `crawl` Python library is governed separately by its [open-source licence](https://github.com/hanzoai/crawl/blob/main/LICENSE) and is not subject to these Terms.
 
 ---
 
 ## 1. Your account
 
-You must provide accurate information when creating an account and keep it current. You are responsible for activity under your account and for keeping your API keys confidential. Notify us immediately at [unclecode@crawl4ai.com](mailto:unclecode@crawl4ai.com) if you believe an unauthorised party has accessed your account.
+You must provide accurate information when creating an account and keep it current. You are responsible for activity under your account and for keeping your API keys confidential. Notify us immediately at [unclecode@crawl.hanzo.ai](mailto:unclecode@crawl.hanzo.ai) if you believe an unauthorised party has accessed your account.
 
 You must be at least 16 years old, or the age of digital consent in your jurisdiction, whichever is greater.
 
 ## 2. Plans, credits, and billing
 
-The Service is offered as a freemium model with paid plans. Each plan defines a daily credit limit, rate limits, storage allowance, and feature set. Current plans are listed at [crawl4ai.com/pricing](https://crawl4ai.com/pricing).
+The Service is offered as a freemium model with paid plans. Each plan defines a daily credit limit, rate limits, storage allowance, and feature set. Current plans are listed at [crawl.hanzo.ai/pricing](https://crawl.hanzo.ai/pricing).
 
 **Billing.** Paid plans are billed in advance on a recurring basis (monthly or annual). All fees are exclusive of taxes, which you are responsible for. Payment is processed through Stripe.
 
@@ -48,11 +48,11 @@ We may suspend or terminate accounts that violate these rules, with or without n
 
 **Extracted content.** Pages you crawl belong to their respective owners. Your right to crawl, store, or republish that content depends on the source's terms and applicable law. You are solely responsible for ensuring your usage complies.
 
-**Our materials.** The Crawl4AI brand, logos, dashboard UI, documentation, and hosted infrastructure are our intellectual property. The open-source library is licensed under its own [open-source terms](https://github.com/unclecode/crawl4ai/blob/main/LICENSE).
+**Our materials.** The Crawl brand, logos, dashboard UI, documentation, and hosted infrastructure are our intellectual property. The open-source library is licensed under its own [open-source terms](https://github.com/hanzoai/crawl/blob/main/LICENSE).
 
 ## 5. Workspace add-ons
 
-When you install a Crawl4AI Workspace add-on (e.g. Google Sheets):
+When you install a Crawl Workspace add-on (e.g. Google Sheets):
 
 - The add-on operates on the active document you have open and writes results back into it
 - We do not access other documents in your Drive
@@ -71,7 +71,7 @@ The Service integrates with third-party providers (OpenAI, Anthropic, Google, St
 
 ## 8. Confidentiality and security
 
-We take reasonable measures to protect your data (see [Privacy Policy](/privacy/)). You agree not to publicly disclose non-public information about the Service obtained through your account (such as private API responses, internal error messages, or security findings) except as required by law or pursuant to our [security disclosure process](mailto:unclecode@crawl4ai.com).
+We take reasonable measures to protect your data (see [Privacy Policy](/privacy/)). You agree not to publicly disclose non-public information about the Service obtained through your account (such as private API responses, internal error messages, or security findings) except as required by law or pursuant to our [security disclosure process](mailto:unclecode@crawl.hanzo.ai).
 
 ## 9. Disclaimers
 
@@ -103,6 +103,6 @@ We may update these Terms from time to time. Material changes will be announced 
 
 ## 15. Contact
 
-**Crawl4AI**
+**Crawl**
 38 Beach Road, #26-12, South Beach Tower, Singapore 189767
-[unclecode@crawl4ai.com](mailto:unclecode@crawl4ai.com)
+[unclecode@crawl.hanzo.ai](mailto:unclecode@crawl.hanzo.ai)

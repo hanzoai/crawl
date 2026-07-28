@@ -1,14 +1,14 @@
 """
-NSTProxy Integration Examples for crawl4ai
+NSTProxy Integration Examples for crawl
 ------------------------------------------
 
 NSTProxy is a premium residential proxy provider.
 👉 Purchase Proxies: https://nstproxy.com
-💰 Use coupon code "crawl4ai" for 10% off your plan.
+💰 Use coupon code "crawl" for 10% off your plan.
 
 """
 import asyncio
-from crawl4ai import AsyncWebCrawler, BrowserConfig
+from crawl import AsyncWebCrawler, BrowserConfig
 
 
 async def main():

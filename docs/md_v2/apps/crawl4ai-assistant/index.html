@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crawl4AI Assistant - Chrome Extension for Visual Web Scraping</title>
+    <title>Crawl Assistant - Chrome Extension for Visual Web Scraping</title>
     <link rel="stylesheet" href="assistant.css">
 </head>
 <body>
@@ -11,16 +11,16 @@
         <div class="header">
             <div class="header-content">
                 <div class="logo-section">
-                    <img src="../../img/favicon-32x32.png" alt="Crawl4AI Logo" class="logo">
+                    <img src="../../img/favicon-32x32.png" alt="Crawl Logo" class="logo">
                     <div>
-                        <h1>Crawl4AI Assistant</h1>
+                        <h1>Crawl Assistant</h1>
                         <p class="tagline">Chrome Extension for Visual Web Scraping</p>
                     </div>
                 </div>
                 <nav class="nav-links">
                     <a href="../../" class="nav-link">← Back to Docs</a>
                     <a href="../" class="nav-link">All Apps</a>
-                    <a href="https://github.com/unclecode/crawl4ai" class="nav-link" target="_blank">GitHub</a>
+                    <a href="https://github.com/hanzoai/crawl" class="nav-link" target="_blank">GitHub</a>
                 </nav>
             </div>
         </div>
@@ -41,7 +41,7 @@
                 <div class="cloud-banner">
                     <div class="cloud-banner-content">
                         <div class="cloud-banner-text">
-                            <h3>You don't need Puppeteer. You need Crawl4AI Cloud.</h3>
+                            <h3>You don't need Puppeteer. You need Crawl Cloud.</h3>
                             <p>One API call. JS-rendered. No browser cluster to maintain.</p>
                         </div>
                         <button class="cloud-banner-btn" id="joinWaitlistBanner">
@@ -55,10 +55,10 @@
             <section class="intro-section">
                 <div class="terminal-window">
                     <div class="terminal-header">
-                        <span class="terminal-title">About Crawl4AI Assistant</span>
+                        <span class="terminal-title">About Crawl Assistant</span>
                     </div>
                     <div class="terminal-content">
-                        <p>Transform any website into structured data with just a few clicks! The Crawl4AI Assistant Chrome Extension provides three powerful tools for web scraping and data extraction.</p>
+                        <p>Transform any website into structured data with just a few clicks! The Crawl Assistant Chrome Extension provides three powerful tools for web scraping and data extraction.</p>
                         
                         <div style="background: #0fbbaa; color: #070708; padding: 12px 16px; border-radius: 8px; margin: 16px 0; font-weight: 600;">
                             🎉 NEW: Click2Crawl extracts data INSTANTLY without any LLM! Test your schema and see JSON results immediately in the browser!
@@ -83,7 +83,7 @@
                             <!-- <div class="feature-card">
                                 <span class="feature-icon">🐍</span>
                                 <h3>Python Code</h3>
-                                <p>Get production-ready Crawl4AI code instantly</p>
+                                <p>Get production-ready Crawl code instantly</p>
                             </div> -->
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                 <div class="step-content">
                                     <h4>Download the Extension</h4>
                                     <p>Get the latest release from GitHub or use the button below</p>
-                                    <a href="crawl4ai-assistant-v1.3.0.zip" class="download-button" download>
+                                    <a href="crawl-assistant-v1.3.0.zip" class="download-button" download>
                                         <span class="button-icon">↓</span>
                                         Download Extension (v1.3.0)
                                     </a>
@@ -253,7 +253,7 @@
                                     <div class="step-number">3</div>
                                     <div class="step-content">
                                         <h4>Export Script</h4>
-                                        <p>Get JavaScript for Crawl4AI's js_code parameter</p>
+                                        <p>Get JavaScript for Crawl's js_code parameter</p>
                                         <div class="step-visual">
                                             <span class="highlight-accent">📝</span> Automation ready
                                         </div>
@@ -315,7 +315,7 @@
                                 <div class="feature-tag">Multi-select with Ctrl/Cmd</div>
                                 <div class="feature-tag">Visual Text Mode (As You See)</div>
                                 <div class="feature-tag">Clean markdown output</div>
-                                <div class="feature-tag">Export to Crawl4AI Cloud (soon)</div>
+                                <div class="feature-tag">Export to Crawl Cloud (soon)</div>
                             </div>
                         </div>
                     </div>
@@ -346,13 +346,13 @@
                                     <pre><code><span class="comment">#!/usr/bin/env python3</span>
 <span class="comment">"""
 🎉 NO LLM NEEDED! Direct extraction with CSS selectors
-Generated by Crawl4AI Chrome Extension - Click2Crawl
+Generated by Crawl Chrome Extension - Click2Crawl
 """</span>
 
 <span class="keyword">import</span> asyncio
 <span class="keyword">import</span> json
-<span class="keyword">from</span> crawl4ai <span class="keyword">import</span> AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-<span class="keyword">from</span> crawl4ai.extraction_strategy <span class="keyword">import</span> JsonCssExtractionStrategy
+<span class="keyword">from</span> crawl <span class="keyword">import</span> AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+<span class="keyword">from</span> crawl.extraction_strategy <span class="keyword">import</span> JsonCssExtractionStrategy
 
 <span class="comment"># The EXACT schema from Click2Crawl - no guessing!</span>
 EXTRACTION_SCHEMA = {
@@ -465,7 +465,7 @@ data = asyncio.run(extract_data(<span class="string">"https://example.com/produc
                             </div>
                             <div class="terminal-content">
                                 <pre><code><span class="keyword">import</span> asyncio
-<span class="keyword">from</span> crawl4ai <span class="keyword">import</span> AsyncWebCrawler, CrawlerRunConfig
+<span class="keyword">from</span> crawl <span class="keyword">import</span> AsyncWebCrawler, CrawlerRunConfig
 
 <span class="comment"># JavaScript generated from your recorded actions</span>
 js_script = <span class="string">"""
@@ -573,10 +573,10 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
             </section>
 
 
-            <!-- Crawl4AI Cloud Section -->
+            <!-- Crawl Cloud Section -->
             <section class="cloud-section">
                 <div class="cloud-announcement">
-                    <h2>Crawl4AI Cloud</h2>
+                    <h2>Crawl Cloud</h2>
                     <p class="cloud-tagline">Your browser cluster without the cluster.</p>
                     
                     <div class="cloud-features-preview">
@@ -607,7 +607,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                         <button class="close-signup" id="closeSignup">×</button>
                         
                         <div class="signup-content" id="signupForm">
-                            <h3>🚀 Join C4AI Cloud Waiting List</h3>
+                            <h3>🚀 Join CRAWL Cloud Waiting List</h3>
                             <p>Be among the first to experience the future of web scraping</p>
                             
                             <form id="waitlistForm" class="waitlist-form">
@@ -627,7 +627,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                                 </div>
                                 
                                 <div class="form-field">
-                                    <label for="useCase">What will you use Crawl4AI Cloud for?</label>
+                                    <label for="useCase">What will you use Crawl Cloud for?</label>
                                     <select id="useCase" name="useCase">
                                         <option value="">Select use case...</option>
                                         <option value="price-monitoring">Price Monitoring</option>
@@ -648,10 +648,10 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                         <div class="crawl-animation" id="crawlAnimation" style="display: none;">
                             <div class="terminal-window crawl-terminal">
                                 <div class="terminal-header">
-                                    <span class="terminal-title">Crawl4AI Cloud Demo</span>
+                                    <span class="terminal-title">Crawl Cloud Demo</span>
                                 </div>
                                 <div class="terminal-content">
-                                    <pre id="crawlOutput" class="crawl-log"><code>$ crawl4ai cloud extract --url "signup-form" --auto-detect</code></pre>
+                                    <pre id="crawlOutput" class="crawl-log"><code>$ crawl cloud extract --url "signup-form" --auto-detect</code></pre>
                                 </div>
                             </div>
                             
@@ -663,7 +663,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                             <div class="success-message" id="successMessage" style="display: none;">
                                 <div class="success-icon">✅</div>
                                 <h3>Data Uploaded Successfully!</h3>
-                                <p>You're on the Crawl4AI Cloud waiting list!</p>
+                                <p>You're on the Crawl Cloud waiting list!</p>
                                 <p>What you just witnessed:</p>
                                 <ul>
                                     <li>⚡ Real-time extraction of your form data</li>
@@ -671,7 +671,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                                     <li>📤 Instant cloud processing</li>
                                     <li>✨ No code required - just like that!</li>
                                 </ul>
-                                <p class="success-note">We'll notify you at <strong id="userEmailDisplay"></strong> when Crawl4AI Cloud launches!</p>
+                                <p class="success-note">We'll notify you at <strong id="userEmailDisplay"></strong> when Crawl Cloud launches!</p>
                                 <button class="continue-button" id="continueBtn">Continue Exploring</button>
                             </div>
                         </div>
@@ -687,7 +687,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                         <span class="terminal-title">Roadmap</span>
                     </div>
                     <div class="terminal-content">
-                        <p class="intro-text">We're continuously expanding C4AI Assistant with powerful new features:</p>
+                        <p class="intro-text">We're continuously expanding CRAWL Assistant with powerful new features:</p>
                         
                         <div class="coming-features">
                             <div class="coming-feature">
@@ -714,7 +714,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                         </div>
                         
                         <div class="stay-tuned">
-                            <p>🚀 Stay tuned for updates! Follow our <a href="https://github.com/unclecode/crawl4ai" target="_blank">GitHub</a> for the latest releases.</p>
+                            <p>🚀 Stay tuned for updates! Follow our <a href="https://github.com/hanzoai/crawl" target="_blank">GitHub</a> for the latest releases.</p>
                         </div>
                     </div>
                 </div>
@@ -726,7 +726,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                     <div class="footer-section">
                         <h4>Resources</h4>
                         <ul>
-                            <li><a href="https://github.com/unclecode/crawl4ai">GitHub Repository</a></li>
+                            <li><a href="https://github.com/hanzoai/crawl">GitHub Repository</a></li>
                             <li><a href="../../">Documentation</a></li>
                             <li><a href="https://discord.gg/jP8KfhDhyN">Discord Community</a></li>
                         </ul>
@@ -740,7 +740,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>Made with 🚀 by the Crawl4AI team</p>
+                    <p>Made with 🚀 by the Crawl team</p>
                 </div>
             </footer>
         </div>
@@ -815,7 +815,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
             });
         });
         
-        // Crawl4AI Cloud Interactive Demo
+        // Crawl Cloud Interactive Demo
         const joinWaitlistBtn = document.getElementById('joinWaitlist');
         const signupOverlay = document.getElementById('signupOverlay');
         const closeSignupBtn = document.getElementById('closeSignup');
@@ -878,7 +878,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                 company: document.getElementById('userCompany').value || 'Not specified',
                 useCase: document.getElementById('useCase').value || 'General web scraping',
                 timestamp: new Date().toISOString(),
-                source: 'Crawl4AI Assistant Landing Page'
+                source: 'Crawl Assistant Landing Page'
             };
             
             // Update email display
@@ -890,20 +890,20 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
             
             // Clear previous output
             const codeElement = crawlOutput.querySelector('code');
-            codeElement.innerHTML = '$ crawl4ai cloud extract --url "signup-form" --auto-detect\n\n';
+            codeElement.innerHTML = '$ crawl cloud extract --url "signup-form" --auto-detect\n\n';
             
-            // Simulate crawling process with proper C4AI log format
+            // Simulate crawling process with proper CRAWL log format
             const crawlSteps = [
                 { 
-                    log: '<span class="log-init">[INIT]....</span> → Crawl4AI Cloud 1.0.0',
+                    log: '<span class="log-init">[INIT]....</span> → Crawl Cloud 1.0.0',
                     time: '0.12s'
                 },
                 { 
-                    log: '<span class="log-fetch">[FETCH]...</span> ↓ https://crawl4ai.com/waitlist-form',
+                    log: '<span class="log-fetch">[FETCH]...</span> ↓ https://crawl.hanzo.ai/waitlist-form',
                     time: '0.45s'
                 },
                 { 
-                    log: '<span class="log-scrape">[SCRAPE]..</span> ◆ https://crawl4ai.com/waitlist-form',
+                    log: '<span class="log-scrape">[SCRAPE]..</span> ◆ https://crawl.hanzo.ai/waitlist-form',
                     time: '0.28s'
                 },
                 { 
@@ -911,7 +911,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                     time: '0.55s'
                 },
                 { 
-                    log: '<span class="log-complete">[COMPLETE]</span> ● https://crawl4ai.com/waitlist-form',
+                    log: '<span class="log-complete">[COMPLETE]</span> ● https://crawl.hanzo.ai/waitlist-form',
                     time: '1.40s'
                 }
             ];
@@ -931,7 +931,7 @@ Today, finding a 24-hour restaurant in Manhattan requires genuine effort. The pa
                 } else {
                     // Show extracted data
                     setTimeout(() => {
-                        codeElement.innerHTML += '\n<span class="log-success">[UPLOAD]..</span> ↑ Uploading to Crawl4AI Cloud...';
+                        codeElement.innerHTML += '\n<span class="log-success">[UPLOAD]..</span> ↑ Uploading to Crawl Cloud...';
                         
                         setTimeout(() => {
                             extractedPreview.style.display = 'block';

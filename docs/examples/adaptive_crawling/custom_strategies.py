@@ -8,8 +8,8 @@ for domain-specific crawling needs.
 import asyncio
 import re
 from typing import List, Dict, Set
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
-from crawl4ai.adaptive_crawler import CrawlState, Link
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl.adaptive_crawler import CrawlState, Link
 import math
 
 

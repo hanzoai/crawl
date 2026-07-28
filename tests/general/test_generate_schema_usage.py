@@ -17,12 +17,12 @@ from dataclasses import dataclass
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch, MagicMock
 
-from crawl4ai.extraction_strategy import JsonElementExtractionStrategy, JsonCssExtractionStrategy
-from crawl4ai.models import TokenUsage
+from crawl.extraction_strategy import JsonElementExtractionStrategy, JsonCssExtractionStrategy
+from crawl.models import TokenUsage
 
 # The functions are imported lazily inside method bodies via `from .utils import ...`
 # so we must patch at the source module.
-PATCH_TARGET = "crawl4ai.utils.aperform_completion_with_backoff"
+PATCH_TARGET = "crawl.utils.aperform_completion_with_backoff"
 
 
 # ---------------------------------------------------------------------------

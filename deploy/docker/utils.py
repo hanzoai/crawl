@@ -21,7 +21,7 @@ class FilterType(str, Enum):
 
 DEFAULT_CONFIG = {
     "app": {
-        "title": "Crawl4AI API",
+        "title": "Crawl API",
         "version": "1.0.0",
         "host": "0.0.0.0",
         "port": 11235,
@@ -95,7 +95,7 @@ DEFAULT_CONFIG = {
             "max_delay_ms": 32000,
             "timeout_ms": 30000,
         },
-        "headers": {"User-Agent": "Crawl4AI-Webhook/1.0"},
+        "headers": {"User-Agent": "Crawl-Webhook/1.0"},
     },
 }
 
@@ -348,12 +348,12 @@ _BLOCKED_HOSTNAMES = {
 }
 
 
-ALLOW_INTERNAL_URLS = os.environ.get("CRAWL4AI_ALLOW_INTERNAL_URLS", "false").lower() == "true"
+ALLOW_INTERNAL_URLS = os.environ.get("CRAWL_ALLOW_INTERNAL_URLS", "false").lower() == "true"
 
 
 def validate_url_destination(url: str) -> None:
     """Block crawl URLs targeting internal/private networks (SSRF protection).
-    Skipped when CRAWL4AI_ALLOW_INTERNAL_URLS=true.
+    Skipped when CRAWL_ALLOW_INTERNAL_URLS=true.
     Skipped for raw: URLs (inline HTML, no network fetch)."""
     if ALLOW_INTERNAL_URLS:
         return

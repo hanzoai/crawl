@@ -1,4 +1,4 @@
-# Crawl4AI Docker Memory & Pool Optimization - Implementation Log
+# Crawl Docker Memory & Pool Optimization - Implementation Log
 
 ## Critical Issues Identified
 
@@ -147,7 +147,7 @@ Permanent browser now matches endpoint config signatures
 cd deploy/docker/tests
 pip install -r requirements.txt
 # Rebuild after code changes:
-cd /path/to/repo && docker buildx build -t crawl4ai-local:latest --load .
+cd /path/to/repo && docker buildx build -t crawl-local:latest --load .
 # Run test:
 python test_N_name.py
 ```
@@ -216,12 +216,12 @@ async def generate_html(...):
 
 **Check Pool Activity**:
 ```bash
-docker logs crawl4ai-test | grep -E "(🔥|♨️|❄️|🆕|⬆️)"
+docker logs crawl-test | grep -E "(🔥|♨️|❄️|🆕|⬆️)"
 ```
 
 **Verify Config Signature**:
 ```python
-from crawl4ai import BrowserConfig
+from crawl import BrowserConfig
 import json, hashlib
 cfg = BrowserConfig(...)
 sig = hashlib.sha1(json.dumps(cfg.to_dict(), sort_keys=True).encode()).hexdigest()
@@ -230,7 +230,7 @@ print(sig[:8])  # Compare with logs
 
 **Monitor Memory**:
 ```bash
-docker stats crawl4ai-test
+docker stats crawl-test
 ```
 
 ## Known Limitations

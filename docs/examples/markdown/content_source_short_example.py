@@ -3,7 +3,7 @@ Example demonstrating how to use the content_source parameter in MarkdownGenerat
 """
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, DefaultMarkdownGenerator
+from crawl import AsyncWebCrawler, CrawlerRunConfig, DefaultMarkdownGenerator
 
 async def demo_markdown_source_config():
     print("\n=== Demo: Configuring Markdown Source ===")

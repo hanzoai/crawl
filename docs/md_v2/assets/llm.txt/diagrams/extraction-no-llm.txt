@@ -1,6 +1,6 @@
 ## Extraction Strategy Workflows and Architecture
 
-Visual representations of Crawl4AI's data extraction approaches, strategy selection, and processing workflows.
+Visual representations of Crawl's data extraction approaches, strategy selection, and processing workflows.
 
 ### Extraction Strategy Decision Tree
 
@@ -475,4 +475,4 @@ flowchart TD
     style F fill:#f3e5f5
 ```
 
-**📖 Learn more:** [LLM Strategies](https://docs.crawl4ai.com/extraction/llm-strategies/), [Schema-Based Extraction](https://docs.crawl4ai.com/extraction/no-llm-strategies/), [Pattern Matching](https://docs.crawl4ai.com/extraction/no-llm-strategies/#regexextractionstrategy), [Performance Optimization](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [LLM Strategies](https://docs.hanzo.ai/extraction/llm-strategies/), [Schema-Based Extraction](https://docs.hanzo.ai/extraction/no-llm-strategies/), [Pattern Matching](https://docs.hanzo.ai/extraction/no-llm-strategies/#regexextractionstrategy), [Performance Optimization](https://docs.hanzo.ai/advanced/multi-url-crawling/)

@@ -1,6 +1,6 @@
 # Webhook Feature Examples
 
-This document provides examples of how to use the webhook feature for crawl jobs in Crawl4AI.
+This document provides examples of how to use the webhook feature for crawl jobs in Crawl.
 
 ## Overview
 
@@ -23,7 +23,7 @@ webhooks:
     max_delay_ms: 32000
     timeout_ms: 30000  # 30s timeout per webhook call
   headers:  # Optional: default headers to include
-    User-Agent: "Crawl4AI-Webhook/1.0"
+    User-Agent: "Crawl-Webhook/1.0"
 ```
 
 ## API Usage Examples
@@ -117,7 +117,7 @@ curl -X POST http://localhost:11235/crawl/job \
       "webhook_data_in_payload": false,
       "webhook_headers": {
         "X-Webhook-Secret": "my-secret-token",
-        "X-Service-ID": "crawl4ai-production"
+        "X-Service-ID": "crawl-production"
       }
     }
   }'
@@ -374,5 +374,5 @@ Webhook delivery attempts are logged at INFO level:
 
 Check the application logs for webhook delivery status:
 ```bash
-docker logs crawl4ai-container | grep -i webhook
+docker logs crawl-container | grep -i webhook
 ```

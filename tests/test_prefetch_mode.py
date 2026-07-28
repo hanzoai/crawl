@@ -1,7 +1,7 @@
 """Unit tests for the quick_extract_links function used in prefetch mode."""
 
 import pytest
-from crawl4ai.utils import quick_extract_links
+from crawl.utils import quick_extract_links
 
 
 class TestQuickExtractLinks:

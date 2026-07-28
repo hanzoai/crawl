@@ -1,5 +1,5 @@
 """
-Crawl4AI Crypto Trading Analysis Demo
+Crawl Crypto Trading Analysis Demo
 Author: Unclecode
 Date: 2024-03-15
 
@@ -21,14 +21,14 @@ import pandas as pd
 import numpy as np
 import re
 import plotly.express as px
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig,
     CrawlerRunConfig,
     CacheMode,
     LXMLWebScrapingStrategy,
 )
-from crawl4ai import CrawlResult
+from crawl import CrawlResult
 from typing import List
 
 __current_dir__ = __file__.rsplit("/", 1)[0]

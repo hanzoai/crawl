@@ -1,17 +1,17 @@
-# Self-Hosting Crawl4AI 🚀
+# Self-Hosting Crawl 🚀
 
 > **🔐 0.9.0 is secure-by-default (breaking changes).** The self-hosted Docker
 > server now requires authentication by default, binds to loopback unless you
 > set a token, validates request bodies against a strict trust boundary, uses
 > declarative hooks instead of inline Python, and returns artifact ids for
 > screenshot/pdf. If you are upgrading from 0.8.x, read the
-> [migration guide](https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md)
+> [migration guide](https://github.com/hanzoai/crawl/blob/main/deploy/docker/MIGRATION.md)
 > first. Some examples below are being updated for 0.9.0; the migration guide is
 > the authoritative reference for the new defaults.
 
 **Take Control of Your Web Crawling Infrastructure**
 
-Self-hosting Crawl4AI gives you complete control over your web crawling and data extraction pipeline. Unlike cloud-based solutions, you own your data, infrastructure, and destiny.
+Self-hosting Crawl gives you complete control over your web crawling and data extraction pipeline. Unlike cloud-based solutions, you own your data, infrastructure, and destiny.
 
 ## Why Self-Host?
 
@@ -68,7 +68,7 @@ Before we dive in, make sure you have:
 
 ## Installation
 
-We offer several ways to get the Crawl4AI server running. The quickest way is to use our pre-built Docker Hub images.
+We offer several ways to get the Crawl server running. The quickest way is to use our pre-built Docker Hub images.
 
 ### Option 1: Using Pre-built Docker Hub Images (Recommended)
 
@@ -82,10 +82,10 @@ Our latest release is `0.8.0`. Images are built with multi-arch manifests, so Do
 
 ```bash
 # Pull the latest version
-docker pull unclecode/crawl4ai:0.8.0
+docker pull hanzoai/crawl:0.8.0
 
 # Or pull using the latest tag
-docker pull unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
 ```
 
 #### 2. Setup Environment (API Keys)
@@ -127,9 +127,9 @@ EOL
     ```bash
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai \
+      --name crawl \
       --shm-size=1g \
-      unclecode/crawl4ai:latest
+      hanzoai/crawl:latest
     ```
 
 *   **With LLM support:**
@@ -137,10 +137,10 @@ EOL
     # Make sure .llm.env is in the current directory
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai \
+      --name crawl \
       --env-file .llm.env \
       --shm-size=1g \
-      unclecode/crawl4ai:latest
+      hanzoai/crawl:latest
     ```
 
 > The server will be available at `http://localhost:11235`. Visit `/playground` to access the interactive testing interface.
@@ -148,14 +148,14 @@ EOL
 #### 4. Stopping the Container
 
 ```bash
-docker stop crawl4ai && docker rm crawl4ai
+docker stop crawl && docker rm crawl
 ```
 
 #### Docker Hub Versioning Explained
 
-*   **Image Name:** `unclecode/crawl4ai`
+*   **Image Name:** `hanzoai/crawl`
 *   **Tag Format:** `LIBRARY_VERSION[-SUFFIX]` (e.g., `0.8.0`)
-    *   `LIBRARY_VERSION`: The semantic version of the core `crawl4ai` Python library
+    *   `LIBRARY_VERSION`: The semantic version of the core `crawl` Python library
     *   `SUFFIX`: Optional tag for release candidates (``) and revisions (`r1`)
 *   **`latest` Tag:** Points to the most recent stable version
 *   **Multi-Architecture Support:** All images support both `linux/amd64` and `linux/arm64` architectures through a single tag
@@ -167,8 +167,8 @@ Docker Compose simplifies building and running the service, especially for local
 #### 1. Clone Repository
 
 ```bash
-git clone https://github.com/unclecode/crawl4ai.git
-cd crawl4ai
+git clone https://github.com/hanzoai/crawl.git
+cd crawl
 ```
 
 #### 2. Environment Setup (API Keys)
@@ -176,7 +176,7 @@ cd crawl4ai
 If you plan to use LLMs, copy the example environment file and add your API keys. This file should be in the **project root directory**.
 
 ```bash
-# Make sure you are in the 'crawl4ai' root directory
+# Make sure you are in the 'crawl' root directory
 cp deploy/docker/.llm.env.example .llm.env
 
 # Now edit .llm.env and add your API keys
@@ -230,7 +230,7 @@ The `docker-compose.yml` file in the project root provides a simplified approach
     ```bash
     # Pulls and runs the release candidate from Docker Hub
     # Automatically selects the correct architecture
-    IMAGE=unclecode/crawl4ai:latest docker compose up -d
+    IMAGE=hanzoai/crawl:latest docker compose up -d
     ```
 
 *   **Build and Run Locally:**
@@ -264,25 +264,25 @@ If you prefer not to use Docker Compose for direct control over the build and ru
 
 #### 1. Clone Repository & Setup Environment
 
-Follow steps 1 and 2 from the Docker Compose section above (clone repo, `cd crawl4ai`, create `.llm.env` in the root).
+Follow steps 1 and 2 from the Docker Compose section above (clone repo, `cd crawl`, create `.llm.env` in the root).
 
 #### 2. Build the Image (Multi-Arch)
 
-Use `docker buildx` to build the image. Crawl4AI now uses buildx to handle multi-architecture builds automatically.
+Use `docker buildx` to build the image. Crawl now uses buildx to handle multi-architecture builds automatically.
 
 ```bash
-# Make sure you are in the 'crawl4ai' root directory
+# Make sure you are in the 'crawl' root directory
 # Build for the current architecture and load it into Docker
-docker buildx build -t crawl4ai-local:latest --load .
+docker buildx build -t crawl-local:latest --load .
 
 # Or build for multiple architectures (useful for publishing)
-docker buildx build --platform linux/amd64,linux/arm64 -t crawl4ai-local:latest --load .
+docker buildx build --platform linux/amd64,linux/arm64 -t crawl-local:latest --load .
 
 # Build with additional options
 docker buildx build \
   --build-arg INSTALL_TYPE=all \
   --build-arg ENABLE_GPU=false \
-  -t crawl4ai-local:latest --load .
+  -t crawl-local:latest --load .
 ```
 
 #### 3. Run the Container
@@ -291,9 +291,9 @@ docker buildx build \
     ```bash
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai-standalone \
+      --name crawl-standalone \
       --shm-size=1g \
-      crawl4ai-local:latest
+      crawl-local:latest
     ```
 
 *   **With LLM support:**
@@ -301,10 +301,10 @@ docker buildx build \
     # Make sure .llm.env is in the current directory (project root)
     docker run -d \
       -p 11235:11235 \
-      --name crawl4ai-standalone \
+      --name crawl-standalone \
       --env-file .llm.env \
       --shm-size=1g \
-      crawl4ai-local:latest
+      crawl-local:latest
     ```
 
 > The server will be available at `http://localhost:11235`.
@@ -312,14 +312,14 @@ docker buildx build \
 #### 4. Stopping the Manual Container
 
 ```bash
-docker stop crawl4ai-standalone && docker rm crawl4ai-standalone
+docker stop crawl-standalone && docker rm crawl-standalone
 ```
 
 ---
 
 ## MCP (Model Context Protocol) Support
 
-Crawl4AI server includes support for the Model Context Protocol (MCP), allowing you to connect the server's capabilities directly to MCP-compatible clients like Claude Code.
+Crawl server includes support for the Model Context Protocol (MCP), allowing you to connect the server's capabilities directly to MCP-compatible clients like Claude Code.
 
 ### What is MCP?
 
@@ -327,24 +327,24 @@ MCP is an open protocol that standardizes how applications provide context to LL
 
 ### Connecting via MCP
 
-The Crawl4AI server exposes two MCP endpoints:
+The Crawl server exposes two MCP endpoints:
 
 - **Server-Sent Events (SSE)**: `http://localhost:11235/mcp/sse`
 - **WebSocket**: `ws://localhost:11235/mcp/ws`
 
 ### Using with Claude Code
 
-You can add Crawl4AI as an MCP tool provider in Claude Code with a simple command:
+You can add Crawl as an MCP tool provider in Claude Code with a simple command:
 
 ```bash
-# Add the Crawl4AI server as an MCP provider
-claude mcp add --transport sse c4ai-sse http://localhost:11235/mcp/sse
+# Add the Crawl server as an MCP provider
+claude mcp add --transport sse crawl-sse http://localhost:11235/mcp/sse
 
 # List all MCP providers to verify it was added
 claude mcp list
 ```
 
-Once connected, Claude Code can directly use Crawl4AI's capabilities like screenshot capture, PDF generation, and HTML processing without having to make separate API calls.
+Once connected, Claude Code can directly use Crawl's capabilities like screenshot capture, PDF generation, and HTML processing without having to make separate API calls.
 
 ### Available MCP Tools
 
@@ -356,7 +356,7 @@ When connected via MCP, the following tools are available:
 - `pdf` - Generate PDF documents
 - `execute_js` - Run JavaScript on web pages
 - `crawl` - Perform multi-URL crawling
-- `ask` - Query the Crawl4AI library context
+- `ask` - Query the Crawl library context
 
 ### Testing MCP Connections
 
@@ -456,7 +456,7 @@ Executes JavaScript snippets on the specified URL and returns the full crawl res
 > unauthenticated code-execution surface). 0.9.0 replaces it with **declarative
 > hooks**: a fixed set of safe, server-validated actions (for example
 > `add_cookies`, `set_headers`, `block_resources`) supplied as JSON, with no code
-> execution. See the [migration guide](https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md)
+> execution. See the [migration guide](https://github.com/hanzoai/crawl/blob/main/deploy/docker/MIGRATION.md)
 > for the declarative hook format. The inline-code examples in this section apply
 > to 0.8.x only and are kept for reference until this page is fully rewritten.
 
@@ -810,7 +810,7 @@ async def hook(page, context, **kwargs):
 async def hook(page, context, url, **kwargs):
     # Add custom headers for testing
     await page.set_extra_http_headers({
-        "X-Test-Header": "crawl4ai-test",
+        "X-Test-Header": "crawl-test",
         "Accept-Language": "en-US,en;q=0.9"
     })
     print(f"[HOOK] Navigating to: {url}")
@@ -861,7 +861,7 @@ else:
 
 ### Hooks Utility: Function-Based Approach (Python)
 
-For Python developers, Crawl4AI provides a more convenient way to work with hooks using the `hooks_to_string()` utility function and Docker client integration.
+For Python developers, Crawl provides a more convenient way to work with hooks using the `hooks_to_string()` utility function and Docker client integration.
 
 #### Why Use Function-Based Hooks?
 
@@ -878,7 +878,7 @@ async def hook(page, context, **kwargs):
 
 **Function-Based Approach (recommended for Python)**:
 ```python
-from crawl4ai import Crawl4aiDockerClient
+from crawl import Crawl4aiDockerClient
 
 async def my_hook(page, context, **kwargs):
     await page.set_viewport_size({"width": 1920, "height": 1080})
@@ -903,7 +903,7 @@ async with Crawl4aiDockerClient(base_url="http://localhost:11235") as client:
 The `hooks_to_string()` utility converts Python function objects to the string format required by the API:
 
 ```python
-from crawl4ai import hooks_to_string
+from crawl import hooks_to_string
 
 # Define your hooks as functions
 async def setup_hook(page, context, **kwargs):
@@ -935,7 +935,7 @@ hooks_string = hooks_to_string(hooks_dict)
 The Docker client automatically detects and converts function objects:
 
 ```python
-from crawl4ai import Crawl4aiDockerClient
+from crawl import Crawl4aiDockerClient
 
 async def auth_hook(page, context, **kwargs):
     """Add authentication cookies"""
@@ -1024,7 +1024,7 @@ class CrawlHooks:
 
 # Use in your application
 from hooks_library import CrawlHooks
-from crawl4ai import Crawl4aiDockerClient
+from crawl import Crawl4aiDockerClient
 
 async def crawl_with_optimizations(url):
     async with Crawl4aiDockerClient() as client:
@@ -1054,7 +1054,7 @@ async def crawl_with_optimizations(url):
 #### Complete Example with Function Hooks
 
 ```python
-from crawl4ai import Crawl4aiDockerClient, BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl import Crawl4aiDockerClient, BrowserConfig, CrawlerRunConfig, CacheMode
 
 # Define hooks as regular Python functions
 async def setup_environment(page, context, **kwargs):
@@ -1068,7 +1068,7 @@ async def setup_environment(page, context, **kwargs):
     # Add custom headers
     await page.set_extra_http_headers({
         "Accept-Language": "en-US",
-        "X-Custom-Header": "Crawl4AI"
+        "X-Custom-Header": "Crawl"
     })
 
     print("[HOOK] Environment configured")
@@ -1597,7 +1597,7 @@ You can customize the image build process using build arguments (`--build-arg`).
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
   --build-arg INSTALL_TYPE=all \
-  -t yourname/crawl4ai-all:latest \
+  -t yourname/crawl-all:latest \
   --load \
   . # Build from root context
 ```
@@ -1644,14 +1644,14 @@ This is the easiest way to translate Python configuration to JSON requests when 
 
 ### Python SDK
 
-Install the SDK: `pip install crawl4ai`
+Install the SDK: `pip install crawl`
 
 The Python SDK provides a convenient way to interact with the Docker API, including **automatic hook conversion** when using function objects.
 
 ```python
 import asyncio
-from crawl4ai.docker_client import Crawl4aiDockerClient
-from crawl4ai import BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl.docker_client import Crawl4aiDockerClient
+from crawl import BrowserConfig, CrawlerRunConfig, CacheMode
 
 async def main():
     # Point to the correct server port
@@ -1971,7 +1971,7 @@ async def test_stream_crawl(token: str = None): # Made token optional
 
 ## Real-time Monitoring & Operations
 
-One of the key advantages of self-hosting is complete visibility into your infrastructure. Crawl4AI includes a comprehensive real-time monitoring system that gives you full transparency and control.
+One of the key advantages of self-hosting is complete visibility into your infrastructure. Crawl includes a comprehensive real-time monitoring system that gives you full transparency and control.
 
 ### Monitoring Dashboard
 
@@ -1981,7 +1981,7 @@ Access the **built-in real-time monitoring dashboard** for complete operational 
 http://localhost:11235/monitor
 ```
 
-![Monitoring Dashboard](https://via.placeholder.com/800x400?text=Crawl4AI+Monitoring+Dashboard)
+![Monitoring Dashboard](https://via.placeholder.com/800x400?text=Crawl+Monitoring+Dashboard)
 
 **Dashboard Features:**
 
@@ -2196,7 +2196,7 @@ async def monitor_server():
     uri = "ws://localhost:11235/monitor/ws"
 
     async with websockets.connect(uri) as websocket:
-        print("Connected to Crawl4AI monitor")
+        print("Connected to Crawl monitor")
 
         while True:
             # Receive update every 2 seconds
@@ -2322,11 +2322,11 @@ async def integrate_monitoring():
             data = json.loads(await ws.recv())
 
             # Push to your monitoring system
-            push_metric("crawl4ai.memory.percent",
+            push_metric("crawl.memory.percent",
                        data['health']['container']['memory_percent'])
-            push_metric("crawl4ai.active_requests",
+            push_metric("crawl.active_requests",
                        len(data['requests']['active']))
-            push_metric("crawl4ai.browser_count",
+            push_metric("crawl.browser_count",
                        len(data['browsers']))
 ```
 
@@ -2369,7 +2369,7 @@ def aggregate_errors():
     for error in errors:
         log_to_system({
             'timestamp': datetime.fromtimestamp(error['timestamp']),
-            'service': 'crawl4ai',
+            'service': 'crawl',
             'endpoint': error['endpoint'],
             'url': error['url'],
             'message': error['error'],
@@ -2448,7 +2448,7 @@ Here's a detailed breakdown of the configuration options (using defaults from `d
 ```yaml
 # Application Configuration
 app:
-  title: "Crawl4AI API"
+  title: "Crawl API"
   version: "1.0.0" # Consider setting this to match library version, e.g., "0.5.1"
   host: "0.0.0.0"
   port: 8020 # NOTE: This port is used ONLY when running server.py directly. Gunicorn overrides this (see supervisord.conf).
@@ -2481,7 +2481,7 @@ rate_limiting:
 # secure-by-default - authentication is required, the server binds loopback
 # unless a token is set, and request bodies are validated against a trust
 # boundary. See the migration guide for the 0.9.0 defaults and config keys:
-# https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md
+# https://github.com/hanzoai/crawl/blob/main/deploy/docker/MIGRATION.md
 security:
   enabled: false # Master toggle for security features
   jwt_enabled: false # Enable JWT authentication (requires security.enabled=true)
@@ -2538,18 +2538,18 @@ You can override the default `config.yml`.
         ```bash
         # Assumes my-custom-config.yml is in the current directory
         docker run -d -p 11235:11235 \
-          --name crawl4ai-custom-config \
+          --name crawl-custom-config \
           --env-file .llm.env \
           --shm-size=1g \
           -v $(pwd)/my-custom-config.yml:/app/config.yml \
-          unclecode/crawl4ai:latest # Or your specific tag
+          hanzoai/crawl:latest # Or your specific tag
         ```
 
     *   **Using `docker-compose.yml`:** Add a `volumes` section to the service definition:
         ```yaml
         services:
-          crawl4ai-hub-amd64: # Or your chosen service
-            image: unclecode/crawl4ai:latest
+          crawl-hub-amd64: # Or your chosen service
+            image: hanzoai/crawl:latest
             profiles: ["hub-amd64"]
             <<: *base-config
             volumes:
@@ -2587,16 +2587,16 @@ You can override the default `config.yml`.
 
 ## Getting Help
 
-We're here to help you succeed with Crawl4AI! Here's how to get support:
+We're here to help you succeed with Crawl! Here's how to get support:
 
-- 📖 Check our [full documentation](https://docs.crawl4ai.com)
-- 🐛 Found a bug? [Open an issue](https://github.com/unclecode/crawl4ai/issues)
-- 💬 Join our [Discord community](https://discord.gg/crawl4ai)
+- 📖 Check our [full documentation](https://docs.hanzo.ai)
+- 🐛 Found a bug? [Open an issue](https://github.com/hanzoai/crawl/issues)
+- 💬 Join our [Discord community](https://discord.gg/crawl)
 - ⭐ Star us on GitHub to show support!
 
 ## Summary
 
-Congratulations! You now have everything you need to self-host your own Crawl4AI infrastructure with complete control and visibility.
+Congratulations! You now have everything you need to self-host your own Crawl infrastructure with complete control and visibility.
 
 **What You've Learned:**
 - ✅ Multiple deployment options (Docker Hub, Docker Compose, manual builds)
@@ -2611,7 +2611,7 @@ Congratulations! You now have everything you need to self-host your own Crawl4AI
 
 **Why This Matters:**
 
-By self-hosting Crawl4AI, you:
+By self-hosting Crawl, you:
 - 🔒 **Own Your Data**: Everything stays in your infrastructure
 - 📊 **See Everything**: Real-time dashboard shows exactly what's happening
 - 💰 **Control Costs**: Scale within your resources, no per-request fees

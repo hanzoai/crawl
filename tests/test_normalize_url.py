@@ -1,5 +1,5 @@
 import unittest
-from crawl4ai.utils import normalize_url
+from crawl.utils import normalize_url
 
 class TestNormalizeUrl(unittest.TestCase):
 

@@ -5,10 +5,10 @@
 ### Standard Release
 ```bash
 # 1. Update version
-vim crawl4ai/__version__.py  # Set to "1.2.3"
+vim crawl/__version__.py  # Set to "1.2.3"
 
 # 2. Commit and tag
-git add crawl4ai/__version__.py
+git add crawl/__version__.py
 git commit -m "chore: bump version to 1.2.3"
 git tag v1.2.3
 git push origin main
@@ -92,14 +92,14 @@ gh release delete v1.2.3
 ### release.yml
 | Output | Location | Time |
 |--------|----------|------|
-| PyPI Package | https://pypi.org/project/crawl4ai/ | ~2-3 min |
+| PyPI Package | https://pypi.org/project/crawl/ | ~2-3 min |
 | GitHub Release | Repository → Releases | ~2-3 min |
 | Workflow Summary | Actions → Run → Summary | Immediate |
 
 ### docker-release.yml
 | Output | Location | Time |
 |--------|----------|------|
-| Docker Images | https://hub.docker.com/r/unclecode/crawl4ai | ~1-15 min |
+| Docker Images | https://hub.docker.com/r/hanzoai/crawl | ~1-15 min |
 | Workflow Summary | Actions → Run → Summary | Immediate |
 
 ---
@@ -108,7 +108,7 @@ gh release delete v1.2.3
 
 | Issue | Solution |
 |-------|----------|
-| Version mismatch | Update `crawl4ai/__version__.py` to match tag |
+| Version mismatch | Update `crawl/__version__.py` to match tag |
 | PyPI 403 Forbidden | Check `PYPI_TOKEN` secret |
 | PyPI 400 File exists | Version already published, increment version |
 | Docker auth failed | Regenerate `DOCKER_TOKEN` |
@@ -188,7 +188,7 @@ Docker:
 ### Pre-Tag Checklist
 ```bash
 # Check current version
-python -c "from crawl4ai.__version__ import __version__; print(__version__)"
+python -c "from crawl.__version__ import __version__; print(__version__)"
 
 # Verify it matches intended tag
 # If tag is v1.2.3, version should be "1.2.3"
@@ -197,12 +197,12 @@ python -c "from crawl4ai.__version__ import __version__; print(__version__)"
 ### Post-Release Verification
 ```bash
 # PyPI
-pip install crawl4ai==1.2.3
-python -c "import crawl4ai; print(crawl4ai.__version__)"
+pip install crawl==1.2.3
+python -c "import crawl; print(crawl.__version__)"
 
 # Docker
-docker pull unclecode/crawl4ai:1.2.3
-docker run unclecode/crawl4ai:1.2.3 python -c "import crawl4ai; print(crawl4ai.__version__)"
+docker pull hanzoai/crawl:1.2.3
+docker run hanzoai/crawl:1.2.3 python -c "import crawl; print(crawl.__version__)"
 ```
 
 ---
@@ -212,8 +212,8 @@ docker run unclecode/crawl4ai:1.2.3 python -c "import crawl4ai; print(crawl4ai._
 | Service | URL |
 |---------|-----|
 | GitHub Actions | `https://github.com/{owner}/{repo}/actions` |
-| PyPI Project | `https://pypi.org/project/crawl4ai/` |
-| Docker Hub | `https://hub.docker.com/r/unclecode/crawl4ai` |
+| PyPI Project | `https://pypi.org/project/crawl/` |
+| Docker Hub | `https://hub.docker.com/r/hanzoai/crawl` |
 | GitHub Releases | `https://github.com/{owner}/{repo}/releases` |
 
 ---

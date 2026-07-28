@@ -1,5 +1,5 @@
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     HTTPCrawlerConfig,
@@ -7,8 +7,8 @@ from crawl4ai import (
     DefaultMarkdownGenerator,
     PruningContentFilter
 )
-from crawl4ai.async_crawler_strategy import AsyncHTTPCrawlerStrategy
-from crawl4ai.async_logger import AsyncLogger
+from crawl.async_crawler_strategy import AsyncHTTPCrawlerStrategy
+from crawl.async_logger import AsyncLogger
 
 async def main():
     # Initialize HTTP crawler strategy

@@ -24,27 +24,27 @@ class MarkdownExtraction {
   createToolbar() {
     // Create floating toolbar
     this.toolbar = document.createElement('div');
-    this.toolbar.className = 'c4ai-c2c-toolbar';
+    this.toolbar.className = 'crawl-c2c-toolbar';
     this.toolbar.innerHTML = `
-      <div class="c4ai-toolbar-header">
-        <div class="c4ai-toolbar-dots">
-          <span class="c4ai-dot c4ai-dot-red"></span>
-          <span class="c4ai-dot c4ai-dot-yellow"></span>
-          <span class="c4ai-dot c4ai-dot-green"></span>
+      <div class="crawl-toolbar-header">
+        <div class="crawl-toolbar-dots">
+          <span class="crawl-dot crawl-dot-red"></span>
+          <span class="crawl-dot crawl-dot-yellow"></span>
+          <span class="crawl-dot crawl-dot-green"></span>
         </div>
-        <span class="c4ai-toolbar-title">Markdown Extraction</span>
-        <button class="c4ai-close-btn" title="Close">×</button>
+        <span class="crawl-toolbar-title">Markdown Extraction</span>
+        <button class="crawl-close-btn" title="Close">×</button>
       </div>
-      <div class="c4ai-toolbar-content">
-        <div class="c4ai-selection-info">
-          <span class="c4ai-selection-count">0 elements selected</span>
-          <button class="c4ai-clear-btn" title="Clear selection" disabled>Clear</button>
+      <div class="crawl-toolbar-content">
+        <div class="crawl-selection-info">
+          <span class="crawl-selection-count">0 elements selected</span>
+          <button class="crawl-clear-btn" title="Clear selection" disabled>Clear</button>
         </div>
-        <div class="c4ai-toolbar-actions">
-          <button class="c4ai-preview-btn" disabled>Preview Markdown</button>
-          <button class="c4ai-copy-btn" disabled>Copy to Clipboard</button>
+        <div class="crawl-toolbar-actions">
+          <button class="crawl-preview-btn" disabled>Preview Markdown</button>
+          <button class="crawl-copy-btn" disabled>Copy to Clipboard</button>
         </div>
-        <div class="c4ai-toolbar-instructions">
+        <div class="crawl-toolbar-instructions">
           <p>💡 <strong>Ctrl/Cmd + Click</strong> to select multiple elements</p>
           <p>📝 Selected elements will be converted to clean markdown</p>
           <p>⌨️ Press <strong>ESC</strong> to exit</p>
@@ -64,22 +64,22 @@ class MarkdownExtraction {
   
   setupEventListeners() {
     // Close button
-    this.toolbar.querySelector('.c4ai-close-btn').addEventListener('click', () => {
+    this.toolbar.querySelector('.crawl-close-btn').addEventListener('click', () => {
       this.deactivate();
     });
     
     // Clear selection button
-    this.toolbar.querySelector('.c4ai-clear-btn').addEventListener('click', () => {
+    this.toolbar.querySelector('.crawl-clear-btn').addEventListener('click', () => {
       this.clearSelection();
     });
     
     // Preview button
-    this.toolbar.querySelector('.c4ai-preview-btn').addEventListener('click', () => {
+    this.toolbar.querySelector('.crawl-preview-btn').addEventListener('click', () => {
       this.showPreview();
     });
     
     // Copy button
-    this.toolbar.querySelector('.c4ai-copy-btn').addEventListener('click', () => {
+    this.toolbar.querySelector('.crawl-copy-btn').addEventListener('click', () => {
       this.copyToClipboard();
     });
     
@@ -120,9 +120,9 @@ class MarkdownExtraction {
     const element = event.target;
     
     // Don't select our own UI elements
-    if (element.closest('.c4ai-c2c-toolbar') || 
-        element.closest('.c4ai-c2c-preview') ||
-        element.closest('.c4ai-highlight-box')) {
+    if (element.closest('.crawl-c2c-toolbar') || 
+        element.closest('.crawl-c2c-preview') ||
+        element.closest('.crawl-highlight-box')) {
       return;
     }
     
@@ -140,20 +140,20 @@ class MarkdownExtraction {
     const element = event.target;
     
     // Don't hover our own UI elements
-    if (element.closest('.c4ai-c2c-toolbar') || 
-        element.closest('.c4ai-c2c-preview') ||
-        element.closest('.c4ai-highlight-box') ||
-        element.hasAttribute('data-c4ai-badge')) {
+    if (element.closest('.crawl-c2c-toolbar') || 
+        element.closest('.crawl-c2c-preview') ||
+        element.closest('.crawl-highlight-box') ||
+        element.hasAttribute('data-crawl-badge')) {
       return;
     }
     
     // Add hover class
-    element.classList.add('c4ai-hover-candidate');
+    element.classList.add('crawl-hover-candidate');
   }
   
   handleElementMouseOut(event) {
     const element = event.target;
-    element.classList.remove('c4ai-hover-candidate');
+    element.classList.remove('crawl-hover-candidate');
   }
   
   handleKeyboard(event) {
@@ -193,7 +193,7 @@ class MarkdownExtraction {
     this.highlightBoxes.set(element, box);
     
     // Add selected class
-    element.classList.add('c4ai-selected');
+    element.classList.add('crawl-selected');
     
     this.selectionCounter++;
   }
@@ -218,15 +218,15 @@ class MarkdownExtraction {
     element.style.outlineOffset = '';
     
     // Remove attributes
-    element.removeAttribute('data-c4ai-selection-order');
-    element.classList.remove('c4ai-selected');
+    element.removeAttribute('data-crawl-selection-order');
+    element.classList.remove('crawl-selected');
     
     this.selectionCounter--;
   }
   
   createHighlightBox(element) {
     // Add a data attribute to track selection order
-    element.setAttribute('data-c4ai-selection-order', this.selectionCounter + 1);
+    element.setAttribute('data-crawl-selection-order', this.selectionCounter + 1);
     
     // Add selection outline directly to the element
     element.style.outline = '2px solid #0fbbaa';
@@ -234,9 +234,9 @@ class MarkdownExtraction {
     
     // Create badge with fixed positioning
     const badge = document.createElement('div');
-    badge.className = 'c4ai-selection-badge-fixed';
+    badge.className = 'crawl-selection-badge-fixed';
     badge.textContent = this.selectionCounter + 1;
-    badge.setAttribute('data-c4ai-badge', 'true');
+    badge.setAttribute('data-crawl-badge', 'true');
     badge.title = 'Click to deselect';
     
     // Get element position and set badge position
@@ -325,8 +325,8 @@ class MarkdownExtraction {
       element.style.outlineOffset = '';
       
       // Remove attributes
-      element.removeAttribute('data-c4ai-selection-order');
-      element.classList.remove('c4ai-selected');
+      element.removeAttribute('data-crawl-selection-order');
+      element.classList.remove('crawl-selected');
     });
     
     this.selectedElements.clear();
@@ -340,14 +340,14 @@ class MarkdownExtraction {
     const count = this.selectedElements.size;
     
     // Update selection count
-    this.toolbar.querySelector('.c4ai-selection-count').textContent = 
+    this.toolbar.querySelector('.crawl-selection-count').textContent = 
       `${count} element${count !== 1 ? 's' : ''} selected`;
     
     // Enable/disable buttons
     const hasSelection = count > 0;
-    this.toolbar.querySelector('.c4ai-preview-btn').disabled = !hasSelection;
-    this.toolbar.querySelector('.c4ai-copy-btn').disabled = !hasSelection;
-    this.toolbar.querySelector('.c4ai-clear-btn').disabled = !hasSelection;
+    this.toolbar.querySelector('.crawl-preview-btn').disabled = !hasSelection;
+    this.toolbar.querySelector('.crawl-copy-btn').disabled = !hasSelection;
+    this.toolbar.querySelector('.crawl-clear-btn').disabled = !hasSelection;
   }
   
   async showPreview() {
@@ -364,18 +364,18 @@ class MarkdownExtraction {
   
   /* createPreviewPanel() {
     this.previewPanel = document.createElement('div');
-    this.previewPanel.className = 'c4ai-c2c-preview';
+    this.previewPanel.className = 'crawl-c2c-preview';
     this.previewPanel.innerHTML = `
-      <div class="c4ai-preview-header">
-        <div class="c4ai-toolbar-dots">
-          <span class="c4ai-dot c4ai-dot-red"></span>
-          <span class="c4ai-dot c4ai-dot-yellow"></span>
-          <span class="c4ai-dot c4ai-dot-green"></span>
+      <div class="crawl-preview-header">
+        <div class="crawl-toolbar-dots">
+          <span class="crawl-dot crawl-dot-red"></span>
+          <span class="crawl-dot crawl-dot-yellow"></span>
+          <span class="crawl-dot crawl-dot-green"></span>
         </div>
-        <span class="c4ai-preview-title">Markdown Preview</span>
-        <button class="c4ai-preview-close">×</button>
+        <span class="crawl-preview-title">Markdown Preview</span>
+        <button class="crawl-preview-close">×</button>
       </div>
-      <div class="c4ai-preview-options">
+      <div class="crawl-preview-options">
         <label><input type="checkbox" name="textOnly"> 👁️ Visual Text Mode (As You See) TRY THIS!!!</label>
         <label><input type="checkbox" name="includeImages" checked> Include Images</label>
         <label><input type="checkbox" name="preserveTables" checked> Preserve Tables</label>
@@ -385,19 +385,19 @@ class MarkdownExtraction {
         <label><input type="checkbox" name="addSeparators" checked> Add Separators</label>
         <label><input type="checkbox" name="includeXPath"> Include XPath Headers</label>
       </div>
-      <div class="c4ai-preview-content">
-        <div class="c4ai-preview-tabs">
-          <button class="c4ai-tab active" data-tab="preview">Preview</button>
-          <button class="c4ai-tab" data-tab="markdown">Markdown</button>
-          <button class="c4ai-wrap-toggle" title="Toggle word wrap">↔️ Wrap</button>
+      <div class="crawl-preview-content">
+        <div class="crawl-preview-tabs">
+          <button class="crawl-tab active" data-tab="preview">Preview</button>
+          <button class="crawl-tab" data-tab="markdown">Markdown</button>
+          <button class="crawl-wrap-toggle" title="Toggle word wrap">↔️ Wrap</button>
         </div>
-        <div class="c4ai-preview-pane active" data-pane="preview"></div>
-        <div class="c4ai-preview-pane" data-pane="markdown"></div>
+        <div class="crawl-preview-pane active" data-pane="preview"></div>
+        <div class="crawl-preview-pane" data-pane="markdown"></div>
       </div>
-      <div class="c4ai-preview-actions">
-        <button class="c4ai-download-btn">Download .md</button>
-        <button class="c4ai-copy-markdown-btn">Copy Markdown</button>
-        <button class="c4ai-cloud-btn" disabled>Send to Cloud (Coming Soon)</button>
+      <div class="crawl-preview-actions">
+        <button class="crawl-download-btn">Download .md</button>
+        <button class="crawl-copy-markdown-btn">Copy Markdown</button>
+        <button class="crawl-cloud-btn" disabled>Send to Cloud (Coming Soon)</button>
       </div>
     `;
     
@@ -416,12 +416,12 @@ class MarkdownExtraction {
   
   /* setupPreviewEventListeners() {
     // Close button
-    this.previewPanel.querySelector('.c4ai-preview-close').addEventListener('click', () => {
+    this.previewPanel.querySelector('.crawl-preview-close').addEventListener('click', () => {
       this.previewPanel.style.display = 'none';
     });
     
     // Tab switching
-    this.previewPanel.querySelectorAll('.c4ai-tab').forEach(tab => {
+    this.previewPanel.querySelectorAll('.crawl-tab').forEach(tab => {
       tab.addEventListener('click', (e) => {
         const tabName = e.target.dataset.tab;
         this.switchPreviewTab(tabName);
@@ -429,9 +429,9 @@ class MarkdownExtraction {
     });
     
     // Wrap toggle
-    const wrapToggle = this.previewPanel.querySelector('.c4ai-wrap-toggle');
+    const wrapToggle = this.previewPanel.querySelector('.crawl-wrap-toggle');
     wrapToggle.addEventListener('click', () => {
-      const panes = this.previewPanel.querySelectorAll('.c4ai-preview-pane');
+      const panes = this.previewPanel.querySelectorAll('.crawl-preview-pane');
       panes.forEach(pane => {
         pane.classList.toggle('wrap');
       });
@@ -476,23 +476,23 @@ class MarkdownExtraction {
     });
     
     // Action buttons
-    this.previewPanel.querySelector('.c4ai-copy-markdown-btn').addEventListener('click', () => {
+    this.previewPanel.querySelector('.crawl-copy-markdown-btn').addEventListener('click', () => {
       this.copyToClipboard();
     });
     
-    this.previewPanel.querySelector('.c4ai-download-btn').addEventListener('click', () => {
+    this.previewPanel.querySelector('.crawl-download-btn').addEventListener('click', () => {
       this.downloadMarkdown();
     });
   } */
   
   /* switchPreviewTab(tabName) {
     // Update active tab
-    this.previewPanel.querySelectorAll('.c4ai-tab').forEach(tab => {
+    this.previewPanel.querySelectorAll('.crawl-tab').forEach(tab => {
       tab.classList.toggle('active', tab.dataset.tab === tabName);
     });
     
     // Update active pane
-    this.previewPanel.querySelectorAll('.c4ai-preview-pane').forEach(pane => {
+    this.previewPanel.querySelectorAll('.crawl-preview-pane').forEach(pane => {
       pane.classList.toggle('active', pane.dataset.pane === tabName);
     });
   } */
@@ -517,10 +517,10 @@ class MarkdownExtraction {
       
       // Render markdown to HTML
       const html = marked.parse(markdown);
-      previewPane.innerHTML = `<div class="c4ai-markdown-preview">${html}</div>`;
+      previewPane.innerHTML = `<div class="crawl-markdown-preview">${html}</div>`;
     } else {
       // Fallback if marked.js is not available
-      previewPane.innerHTML = `<div class="c4ai-markdown-preview"><pre>${this.escapeHtml(markdown)}</pre></div>`;
+      previewPane.innerHTML = `<div class="crawl-markdown-preview"><pre>${this.escapeHtml(markdown)}</pre></div>`;
     }
   } */
   
@@ -540,8 +540,8 @@ class MarkdownExtraction {
     
     // Sort elements by their selection order
     const sortedElements = elements.sort((a, b) => {
-      const orderA = parseInt(a.getAttribute('data-c4ai-selection-order') || '0');
-      const orderB = parseInt(b.getAttribute('data-c4ai-selection-order') || '0');
+      const orderA = parseInt(a.getAttribute('data-crawl-selection-order') || '0');
+      const orderB = parseInt(b.getAttribute('data-crawl-selection-order') || '0');
       return orderA - orderB;
     });
     
@@ -644,7 +644,7 @@ class MarkdownExtraction {
   
   showNotification(message, type = 'success') {
     const notification = document.createElement('div');
-    notification.className = `c4ai-notification c4ai-notification-${type}`;
+    notification.className = `crawl-notification crawl-notification-${type}`;
     notification.textContent = message;
     
     document.body.appendChild(notification);
@@ -682,8 +682,8 @@ class MarkdownExtraction {
     }
     
     // Remove hover styles
-    document.querySelectorAll('.c4ai-hover-candidate').forEach(el => {
-      el.classList.remove('c4ai-hover-candidate');
+    document.querySelectorAll('.crawl-hover-candidate').forEach(el => {
+      el.classList.remove('crawl-hover-candidate');
     });
     
     // Notify background script (with error handling)

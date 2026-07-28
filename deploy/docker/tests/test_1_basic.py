@@ -11,8 +11,8 @@ import docker
 import httpx
 
 # Config
-IMAGE = "crawl4ai-local:latest"
-CONTAINER_NAME = "crawl4ai-test"
+IMAGE = "crawl-local:latest"
+CONTAINER_NAME = "crawl-test"
 PORT = 11235
 REQUESTS = 10
 

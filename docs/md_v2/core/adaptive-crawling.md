@@ -31,7 +31,7 @@ When these metrics indicate sufficient information has been gathered, crawling s
 ### Basic Usage
 
 ```python
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler
+from crawl import AsyncWebCrawler, AdaptiveCrawler
 
 async def main():
     async with AsyncWebCrawler() as crawler:
@@ -56,7 +56,7 @@ async def main():
 ### Configuration Options
 
 ```python
-from crawl4ai import AdaptiveConfig
+from crawl import AdaptiveConfig
 
 config = AdaptiveConfig(
     confidence_threshold=0.8,    # Stop when 80% confident (default: 0.7)
@@ -109,7 +109,7 @@ config = AdaptiveConfig(
 )
 
 # With separate LLM configs for embeddings and query expansion (recommended)
-from crawl4ai import LLMConfig
+from crawl import LLMConfig
 
 config = AdaptiveConfig(
     strategy="embedding",
@@ -358,7 +358,7 @@ result = await adaptive.digest(
 
 - Learn about [Advanced Adaptive Strategies](../advanced/adaptive-strategies.md)
 - Explore the [AdaptiveCrawler API Reference](../api/adaptive-crawler.md)
-- See more [Examples](https://github.com/unclecode/crawl4ai/tree/main/docs/examples/adaptive_crawling)
+- See more [Examples](https://github.com/hanzoai/crawl/tree/main/docs/examples/adaptive_crawling)
 
 ## FAQ
 

@@ -6,7 +6,7 @@ import asyncio
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from firecrawl import FirecrawlApp
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 __data__ = os.path.join(os.path.dirname(__file__), "..", "..") + "/.data"
 
@@ -41,7 +41,7 @@ async def compare():
         print(f"Time taken: {end - start} seconds")
         print(len(result.markdown))
         # save the markdown content with provider name
-        with open(f"{__data__}/crawl4ai_simple.md", "w") as f:
+        with open(f"{__data__}/crawl_simple.md", "w") as f:
             f.write(result.markdown)
         # count how many "cldnry.s-nbcnews.com" are in the markdown
         print(result.markdown.count("cldnry.s-nbcnews.com"))
@@ -60,7 +60,7 @@ async def compare():
         print(f"Time taken: {end - start} seconds")
         print(len(result.markdown))
         # save the markdown content with provider name
-        with open(f"{__data__}/crawl4ai_js.md", "w") as f:
+        with open(f"{__data__}/crawl_js.md", "w") as f:
             f.write(result.markdown)
         # count how many "cldnry.s-nbcnews.com" are in the markdown
         print(result.markdown.count("cldnry.s-nbcnews.com"))

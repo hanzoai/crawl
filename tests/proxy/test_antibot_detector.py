@@ -10,7 +10,7 @@ Tests are organized into:
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
-from crawl4ai.antibot_detector import is_blocked
+from crawl.antibot_detector import is_blocked
 
 PASS = 0
 FAIL = 0

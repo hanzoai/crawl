@@ -1,6 +1,6 @@
 # Extracting JSON (No LLM)
 
-One of Crawl4AI's **most powerful** features is extracting **structured JSON** from websites **without** relying on large language models. Crawl4AI offers several strategies for LLM-free extraction:
+One of Crawl's **most powerful** features is extracting **structured JSON** from websites **without** relying on large language models. Crawl offers several strategies for LLM-free extraction:
 
 1. **Schema-based extraction** with CSS or XPath selectors via `JsonCssExtractionStrategy` and `JsonXPathExtractionStrategy`
 2. **Regular expression extraction** with `RegexExtractionStrategy` for fast pattern matching
@@ -37,8 +37,8 @@ Let's begin with a **simple** schema-based extraction using the `JsonCssExtracti
 ```python
 import json
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import JsonCssExtractionStrategy
 
 async def extract_crypto_prices():
     # 1. Define a simple extraction schema
@@ -108,8 +108,8 @@ Below is a short example demonstrating **XPath** extraction plus the **`raw://`*
 ```python
 import json
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import JsonXPathExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import JsonXPathExtractionStrategy
 
 async def extract_crypto_prices_xpath():
     # 1. Minimal dummy HTML with some repeating rows
@@ -191,7 +191,7 @@ Real sites often have **nested** or repeated data—like categories containing p
 
 We have a **sample e-commerce** HTML file on GitHub (example):
 ```
-https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/examples/sample_ecommerce.html
+https://raw.githubusercontent.com/hanzoai/crawl/main/docs/examples/sample_ecommerce.html
 ```
 This snippet includes categories, products, features, reviews, and related items. Let's see how to define a schema that fully captures that structure **without LLM**.
 
@@ -309,8 +309,8 @@ Key Takeaways:
 ```python
 import json
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import JsonCssExtractionStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import JsonCssExtractionStrategy
 
 ecommerce_schema = {
     # ... the advanced schema from above ...
@@ -323,7 +323,7 @@ async def extract_ecommerce_data():
     
     async with AsyncWebCrawler(verbose=True) as crawler:
         result = await crawler.arun(
-            url="https://raw.githubusercontent.com/unclecode/crawl4ai/main/docs/examples/sample_ecommerce.html",
+            url="https://raw.githubusercontent.com/hanzoai/crawl/main/docs/examples/sample_ecommerce.html",
             extraction_strategy=strategy,
             config=config
         )
@@ -345,7 +345,7 @@ If all goes well, you get a **structured** JSON array with each "category," cont
 
 ## 4. RegexExtractionStrategy - Fast Pattern-Based Extraction
 
-Crawl4AI now offers a powerful new zero-LLM extraction strategy: `RegexExtractionStrategy`. This strategy provides lightning-fast extraction of common data types like emails, phone numbers, URLs, dates, and more using pre-compiled regular expressions.
+Crawl now offers a powerful new zero-LLM extraction strategy: `RegexExtractionStrategy`. This strategy provides lightning-fast extraction of common data types like emails, phone numbers, URLs, dates, and more using pre-compiled regular expressions.
 
 ### Key Features
 
@@ -362,7 +362,7 @@ The easiest way to start is by using the built-in pattern catalog:
 ```python
 import json
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     RegexExtractionStrategy
@@ -442,7 +442,7 @@ For more targeted extraction, you can provide custom patterns:
 ```python
 import json
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     RegexExtractionStrategy
@@ -478,7 +478,7 @@ For complex or site-specific patterns, you can use an LLM once to generate an op
 import json
 import asyncio
 from pathlib import Path
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     RegexExtractionStrategy,
@@ -692,7 +692,7 @@ The `score` and `author` fields first navigate to the next sibling `<tr>`, then 
 
 ## 10. Schema Generation Utility
 
-While manually crafting schemas is powerful and precise, Crawl4AI now offers a convenient utility to **automatically generate** extraction schemas using LLM. This is particularly useful when:
+While manually crafting schemas is powerful and precise, Crawl now offers a convenient utility to **automatically generate** extraction schemas using LLM. This is particularly useful when:
 
 1. You're dealing with a new website structure and want a quick starting point
 2. You need to extract complex nested data structures
@@ -703,8 +703,8 @@ While manually crafting schemas is powerful and precise, Crawl4AI now offers a c
 The schema generator is available as a static method on both `JsonCssExtractionStrategy` and `JsonXPathExtractionStrategy`. You can choose between OpenAI's GPT-4 or the open-source Ollama for schema generation:
 
 ```python
-from crawl4ai import JsonCssExtractionStrategy, JsonXPathExtractionStrategy
-from crawl4ai import LLMConfig
+from crawl import JsonCssExtractionStrategy, JsonXPathExtractionStrategy
+from crawl import LLMConfig
 
 # Sample HTML with product information
 html = """
@@ -766,8 +766,8 @@ The generator also understands sibling layouts — for sites like Hacker News wh
 `generate_schema` may make multiple LLM calls internally (field inference, schema generation, validation retries). To track the total token consumption across all of these calls, pass a `TokenUsage` accumulator:
 
 ```python
-from crawl4ai import JsonCssExtractionStrategy
-from crawl4ai.models import TokenUsage
+from crawl import JsonCssExtractionStrategy
+from crawl.models import TokenUsage
 
 usage = TokenUsage()
 
@@ -839,7 +839,7 @@ Page C: Manufacturer is in row 7  → selector FAILS
 **The Solution:** Provide multiple HTML samples so the LLM identifies stable patterns that work across all pages.
 
 ```python
-from crawl4ai import JsonCssExtractionStrategy, LLMConfig
+from crawl import JsonCssExtractionStrategy, LLMConfig
 
 # Collect HTML samples from different pages
 html_sample_1 = """
@@ -925,7 +925,7 @@ This approach lets you generate schemas once that work reliably across hundreds 
 
 ## 11. Conclusion
 
-With Crawl4AI's LLM-free extraction strategies - `JsonCssExtractionStrategy`, `JsonXPathExtractionStrategy`, and now `RegexExtractionStrategy` - you can build powerful pipelines that:
+With Crawl's LLM-free extraction strategies - `JsonCssExtractionStrategy`, `JsonXPathExtractionStrategy`, and now `RegexExtractionStrategy` - you can build powerful pipelines that:
 
 - Scrape any consistent site for structured data.  
 - Support nested objects, repeating lists, or pattern-based extraction.  
@@ -937,7 +937,7 @@ With Crawl4AI's LLM-free extraction strategies - `JsonCssExtractionStrategy`, `J
 - Use **`JsonCssExtractionStrategy`** or **`JsonXPathExtractionStrategy`** for structured data with clear HTML patterns
 - If you need both: first extract structured data with JSON strategies, then use regex on specific fields
 
-**Remember**: For repeated, structured data, you don't need to pay for or wait on an LLM. Well-crafted schemas and regex patterns get you the data faster, cleaner, and cheaper—**the real power** of Crawl4AI.
+**Remember**: For repeated, structured data, you don't need to pay for or wait on an LLM. Well-crafted schemas and regex patterns get you the data faster, cleaner, and cheaper—**the real power** of Crawl.
 
 **Last Updated**: 2025-05-02
 

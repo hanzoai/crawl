@@ -21,7 +21,7 @@ import asyncio
 import logging
 from typing import Awaitable, Callable, Dict, Optional
 
-logger = logging.getLogger("crawl4ai.workqueue")
+logger = logging.getLogger("crawl.workqueue")
 
 JobFactory = Callable[[], Awaitable[None]]
 

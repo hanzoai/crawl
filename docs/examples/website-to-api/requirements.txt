@@ -1,4 +1,4 @@
-crawl4ai
+crawl
 fastapi
 uvicorn
 pydantic

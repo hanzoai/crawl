@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from crawl4ai.browser_manager import BrowserManager
+from crawl.browser_manager import BrowserManager
 
 
 class _Context:

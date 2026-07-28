@@ -64,7 +64,7 @@ class AppDetailPage {
         if (!this.appData) return;
 
         // Update title
-        document.title = `${this.appData.name} - Crawl4AI Marketplace`;
+        document.title = `${this.appData.name} - Crawl Marketplace`;
 
         // Hero image
         const appImage = document.getElementById('app-image');

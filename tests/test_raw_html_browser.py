@@ -8,7 +8,7 @@ set_content() instead of goto().
 
 import pytest
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 
 @pytest.mark.asyncio

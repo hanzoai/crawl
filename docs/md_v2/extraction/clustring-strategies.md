@@ -1,6 +1,6 @@
 # Cosine Strategy
 
-The Cosine Strategy in Crawl4AI uses similarity-based clustering to identify and extract relevant content sections from web pages. This strategy is particularly useful when you need to find and extract content based on semantic similarity rather than structural patterns.
+The Cosine Strategy in Crawl uses similarity-based clustering to identify and extract relevant content sections from web pages. This strategy is particularly useful when you need to find and extract content based on semantic similarity rather than structural patterns.
 
 ## How It Works
 
@@ -14,7 +14,7 @@ The Cosine Strategy:
 ## Basic Usage
 
 ```python
-from crawl4ai import CosineStrategy
+from crawl import CosineStrategy
 
 strategy = CosineStrategy(
     semantic_filter="product reviews",    # Target content type

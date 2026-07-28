@@ -1,5 +1,5 @@
 """
-Test implementation of AI Assistant extract pipeline using only Crawl4AI capabilities.
+Test implementation of AI Assistant extract pipeline using only Crawl capabilities.
 This follows the exact flow discussed: query enhancement, classification, HTML skimming,
 parent extraction, schema generation, and extraction.
 """
@@ -11,10 +11,10 @@ from typing import List, Dict, Any, Optional, Union
 from lxml import html as lxml_html
 import re
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.async_configs import LLMConfig
-from crawl4ai import JsonCssExtractionStrategy, LLMExtractionStrategy
-from crawl4ai.utils import perform_completion_with_backoff
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.async_configs import LLMConfig
+from crawl import JsonCssExtractionStrategy, LLMExtractionStrategy
+from crawl.utils import perform_completion_with_backoff
 
 
 async def extract_pipeline(
@@ -26,14 +26,14 @@ async def extract_pipeline(
     verbose: bool = True
 ) -> Union[Dict, List[Dict]]:
     """
-    Full implementation of the AI-powered extraction pipeline using only Crawl4AI.
+    Full implementation of the AI-powered extraction pipeline using only Crawl.
     
     Pipeline:
     1. Quick crawl & HTML skimming
     2. Classification (structural vs semantic) using LLM
     3. Parent element extraction using LLM (for structural)
-    4. Schema generation using Crawl4AI's generate_schema
-    5. Extraction execution using Crawl4AI strategies
+    4. Schema generation using Crawl's generate_schema
+    5. Extraction execution using Crawl strategies
     """
     
     # Normalize URLs
@@ -258,7 +258,7 @@ async def extract_pipeline(
                 sample_html = lxml_html.tostring(parent_elements[0], encoding='unicode')
                 vprint(f"Generating schema from sample HTML ({len(sample_html)} chars)")
                 
-                # Generate schema using Crawl4AI
+                # Generate schema using Crawl
                 schema_params = {
                     "html": sample_html,
                     "query": query,
@@ -340,13 +340,13 @@ async def extract_pipeline(
 async def main():
     """Test the extraction pipeline."""
     
-    print("\n🚀 CRAWL4AI EXTRACTION PIPELINE TEST")
+    print("\n🚀 CRAWL EXTRACTION PIPELINE TEST")
     print("="*50)
     
     # Test structural extraction
     try:
         result = await extract_pipeline(
-            base_url="https://github.com/unclecode/crawl4ai/issues",
+            base_url="https://github.com/hanzoai/crawl/issues",
             urls=None,
             query="I want to extract all issue titles, numbers, and who opened them",
             verbose=True

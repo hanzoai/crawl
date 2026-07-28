@@ -202,7 +202,7 @@ adaptive = AdaptiveCrawler(crawler, config=config)
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
 
 async def main():
     # Configure adaptive crawling

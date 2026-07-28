@@ -1,7 +1,7 @@
 """
 Deep Crawl Cancellation Example
 
-This example demonstrates how to implement cancellable deep crawls in Crawl4AI.
+This example demonstrates how to implement cancellable deep crawls in Crawl.
 Useful for cloud platforms, job management systems, or any scenario where you
 need to stop a running crawl mid-execution and retrieve partial results.
 
@@ -13,14 +13,14 @@ Features demonstrated:
 5. Strategy reuse after cancellation
 
 Requirements:
-    pip install crawl4ai redis
+    pip install crawl redis
 """
 
 import asyncio
 import json
 from typing import Dict, Any, List
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import (
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import (
     BFSDeepCrawlStrategy,
     DFSDeepCrawlStrategy,
     BestFirstCrawlingStrategy,
@@ -78,7 +78,7 @@ async def example_callback_cancellation():
 
     async with AsyncWebCrawler() as crawler:
         results = await crawler.arun(
-            "https://docs.crawl4ai.com",
+            "https://docs.hanzo.ai",
             config=config
         )
 
@@ -127,7 +127,7 @@ async def example_direct_cancellation():
 
         try:
             results = await crawler.arun(
-                "https://docs.crawl4ai.com",
+                "https://docs.hanzo.ai",
                 config=config
             )
         finally:
@@ -179,7 +179,7 @@ async def example_streaming_cancellation():
     results = []
     async with AsyncWebCrawler() as crawler:
         async for result in await crawler.arun(
-            "https://docs.crawl4ai.com",
+            "https://docs.hanzo.ai",
             config=config
         ):
             results_count += 1
@@ -228,7 +228,7 @@ async def example_strategy_reuse():
         crawl_number = 1
         print("First crawl (will be cancelled)...")
         results1 = await crawler.arun(
-            "https://docs.crawl4ai.com",
+            "https://docs.hanzo.ai",
             config=config
         )
         print(f"  - Results: {len(results1)}, Cancelled: {strategy.cancelled}")
@@ -237,7 +237,7 @@ async def example_strategy_reuse():
         crawl_number = 2
         print("\nSecond crawl (should complete normally)...")
         results2 = await crawler.arun(
-            "https://docs.crawl4ai.com",
+            "https://docs.hanzo.ai",
             config=config
         )
         print(f"  - Results: {len(results2)}, Cancelled: {strategy.cancelled}")
@@ -263,7 +263,7 @@ async def example_best_first_cancellation():
     print("Example 5: Best-First Strategy with Cancellation")
     print("="*60)
 
-    from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+    from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
     pages_crawled = 0
     cancel_threshold = 5
@@ -301,7 +301,7 @@ async def example_best_first_cancellation():
     results = []
     async with AsyncWebCrawler() as crawler:
         async for result in await crawler.arun(
-            "https://docs.crawl4ai.com",
+            "https://docs.hanzo.ai",
             config=config
         ):
             results.append(result)
@@ -377,7 +377,7 @@ async def example_production_pattern():
 
         try:
             results = await crawler.arun(
-                "https://docs.crawl4ai.com",
+                "https://docs.hanzo.ai",
                 config=config
             )
         finally:

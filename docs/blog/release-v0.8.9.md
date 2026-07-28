@@ -1,12 +1,12 @@
-# Crawl4AI v0.8.9: Proxy SSRF Patch
+# Crawl v0.8.9: Proxy SSRF Patch
 
 *June 2026 - 2 min read*
 
 ---
 
-I'm releasing Crawl4AI v0.8.9, a follow-up security patch for the self-hosted Docker API server. It closes a server-side request forgery path that v0.8.8 did not cover. It is backward compatible: upgrade in place, no configuration changes required.
+I'm releasing Crawl v0.8.9, a follow-up security patch for the self-hosted Docker API server. It closes a server-side request forgery path that v0.8.8 did not cover. It is backward compatible: upgrade in place, no configuration changes required.
 
-If you run the Docker server, please upgrade. If it is exposed to a network, also set `CRAWL4AI_API_TOKEN`. A security advisory accompanies this release.
+If you run the Docker server, please upgrade. If it is exposed to a network, also set `CRAWL_API_TOKEN`. A security advisory accompanies this release.
 
 ## What it fixes
 
@@ -24,8 +24,8 @@ A legitimate public proxy still works. The only behavior change: set proxies thr
 ## Upgrade
 
 ```bash
-pip install -U crawl4ai
-docker pull unclecode/crawl4ai:0.8.9
+pip install -U crawl
+docker pull hanzoai/crawl:0.8.9
 ```
 
 ## Still coming: a secure-by-default Docker server (~1-2 weeks)
@@ -34,4 +34,4 @@ The next release remains a larger, secure-by-default update for the Docker API s
 
 Thanks to Geo for the responsible disclosure.
 
-Live long and import crawl4ai
+Live long and import crawl

@@ -3,9 +3,9 @@ requires = ["setuptools>=64.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Crawl4AI"
+name = "Crawl"
 dynamic = ["version"]
-description = "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & scraper"
+description = "🚀🤖 Crawl: Open-source LLM Friendly Web Crawler & scraper"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
@@ -76,25 +76,25 @@ all = [
 ]
 
 [project.scripts]
-crawl4ai-download-models = "crawl4ai.model_loader:main"
-crawl4ai-migrate = "crawl4ai.migrations:main"
-crawl4ai-setup = "crawl4ai.install:post_install"
-crawl4ai-doctor = "crawl4ai.install:doctor"
-crwl = "crawl4ai.cli:main"
+crawl-download-models = "crawl.model_loader:main"
+crawl-migrate = "crawl.migrations:main"
+crawl-setup = "crawl.install:post_install"
+crawl-doctor = "crawl.install:doctor"
+crwl = "crawl.cli:main"
 
 [tool.setuptools]
-packages = {find = {where = ["."], include = ["crawl4ai*"]}}
+packages = {find = {where = ["."], include = ["crawl*"]}}
 
 [tool.setuptools.package-data]
-crawl4ai = ["js_snippet/*.js", "crawlers/google_search/*.js"]
+crawl = ["js_snippet/*.js", "crawlers/google_search/*.js"]
 
 [tool.setuptools.dynamic]
-version = {attr = "crawl4ai.__version__.__version__"}
+version = {attr = "crawl.__version__.__version__"}
 
 [tool.uv.sources]
-crawl4ai = { workspace = true }
+crawl = { workspace = true }
 
 [dependency-groups]
 dev = [
-    "crawl4ai",
+    "crawl",
 ]

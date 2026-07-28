@@ -556,7 +556,7 @@ class AdminDashboard {
                 </div>
                 <div class="form-group">
                     <label>Author</label>
-                    <input type="text" id="form-author" value="${article?.author || 'Crawl4AI Team'}">
+                    <input type="text" id="form-author" value="${article?.author || 'Crawl Team'}">
                 </div>
                 <div class="form-group">
                     <label>Category</label>

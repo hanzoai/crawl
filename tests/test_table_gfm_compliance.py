@@ -4,7 +4,7 @@ Unit tests for GFM-compliant markdown table generation.
 Tests that html2text generates tables with proper leading and trailing
 pipe delimiters as per GitHub Flavored Markdown specification.
 
-Fixes: https://github.com/unclecode/crawl4ai/issues/1731
+Fixes: https://github.com/hanzoai/crawl/issues/1731
 """
 
 import pytest
@@ -14,7 +14,7 @@ import os
 # Add parent directory to path to import html2text
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from crawl4ai.html2text import HTML2Text
+from crawl.html2text import HTML2Text
 
 
 def _table_lines(result: str) -> list[str]:

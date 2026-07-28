@@ -1,10 +1,10 @@
-# Crawl4AI v0.8.5: Anti-Bot, Shadow DOM & 60+ Bug Fixes
+# Crawl v0.8.5: Anti-Bot, Shadow DOM & 60+ Bug Fixes
 
 *March 2026 • 10 min read*
 
 ---
 
-I'm releasing Crawl4AI v0.8.5—our biggest release since v0.8.0. This update brings automatic anti-bot detection with proxy escalation, Shadow DOM flattening, deep crawl cancellation, and over 60 bug fixes from both our team and the community. If you're running crawls at scale or dealing with protected sites, this one's for you.
+I'm releasing Crawl v0.8.5—our biggest release since v0.8.0. This update brings automatic anti-bot detection with proxy escalation, Shadow DOM flattening, deep crawl cancellation, and over 60 bug fixes from both our team and the community. If you're running crawls at scale or dealing with protected sites, this one's for you.
 
 ## What's New at a Glance
 
@@ -25,7 +25,7 @@ I'm releasing Crawl4AI v0.8.5—our biggest release since v0.8.0. This update br
 
 ### 1. Anti-Bot Detection, Retry & Fallback
 
-This is the headline feature. Crawl4AI now automatically detects when a page is blocked by anti-bot protection and takes action—retrying with different proxies or falling back to an alternative fetch method.
+This is the headline feature. Crawl now automatically detects when a page is blocked by anti-bot protection and takes action—retrying with different proxies or falling back to an alternative fetch method.
 
 The detection uses three tiers:
 - **Tier 1**: Known vendor patterns (Cloudflare, Akamai, DataDome, PerimeterX, etc.)
@@ -33,8 +33,8 @@ The detection uses three tiers:
 - **Tier 3**: Structural integrity checks (empty shells, script-heavy pages with no content)
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.async_configs import ProxyConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.async_configs import ProxyConfig
 
 config = CrawlerRunConfig(
     # Try direct first, then proxy on bot detection
@@ -77,7 +77,7 @@ The implementation patches `attachShadow` to force-open closed shadow roots, rec
 All deep crawl strategies (BFS, DFS, BestFirst) now support graceful cancellation:
 
 ```python
-from crawl4ai.deep_crawling import DFSDeepCrawlStrategy
+from crawl.deep_crawling import DFSDeepCrawlStrategy
 
 pages_found = 0
 
@@ -109,7 +109,7 @@ You can also call `strategy.cancel()` directly from another thread or coroutine.
 Tired of repeating the same parameters? Set defaults once and they apply to every new instance:
 
 ```python
-from crawl4ai import BrowserConfig, CrawlerRunConfig
+from crawl import BrowserConfig, CrawlerRunConfig
 
 # Set organization-wide defaults
 BrowserConfig.set_defaults(headless=True, text_mode=True)
@@ -132,7 +132,7 @@ BrowserConfig.reset_defaults()         # Back to normal
 Many sites split a single item's data across sibling elements (think Hacker News, where title and score are in separate `<tr>` rows). The new `"source"` field navigates to a sibling before extracting:
 
 ```python
-from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+from crawl.extraction_strategy import JsonCssExtractionStrategy
 
 schema = {
     "name": "HackerNewsItems",
@@ -333,17 +333,17 @@ If you pin Redis versions in your deployment, update to 7.2.7 or later.
 ### Python Package
 
 ```bash
-pip install --upgrade crawl4ai
+pip install --upgrade crawl
 # or
-pip install crawl4ai==0.8.5
+pip install crawl==0.8.5
 ```
 
 ### Docker
 
 ```bash
-docker pull unclecode/crawl4ai:0.8.5
+docker pull hanzoai/crawl:0.8.5
 
-docker run -d -p 11235:11235 --shm-size=1g unclecode/crawl4ai:0.8.5
+docker run -d -p 11235:11235 --shm-size=1g hanzoai/crawl:0.8.5
 ```
 
 ---
@@ -370,9 +370,9 @@ Issues fixed: #462, #880, #943, #1031, #1077, #1183, #1213, #1251, #1281, #1290,
 
 ## Support & Resources
 
-- **Documentation**: [docs.crawl4ai.com](https://docs.crawl4ai.com)
-- **GitHub**: [github.com/unclecode/crawl4ai](https://github.com/unclecode/crawl4ai)
-- **Discord**: [discord.gg/crawl4ai](https://discord.gg/jP8KfhDhyN)
+- **Documentation**: [docs.hanzo.ai](https://docs.hanzo.ai)
+- **GitHub**: [github.com/hanzoai/crawl](https://github.com/hanzoai/crawl)
+- **Discord**: [discord.gg/crawl](https://discord.gg/jP8KfhDhyN)
 - **Twitter**: [@unclecode](https://x.com/unclecode)
 
 ---

@@ -1,6 +1,6 @@
-# Crawl4AI Chrome Extension
+# Crawl Chrome Extension
 
-Visual extraction tools for Crawl4AI - Click to extract data and content from any webpage!
+Visual extraction tools for Crawl - Click to extract data and content from any webpage!
 
 ## 🚀 Features
 
@@ -8,8 +8,8 @@ Visual extraction tools for Crawl4AI - Click to extract data and content from an
 - **Markdown Extraction**: Select elements and export as clean markdown
 - **Script Builder (Alpha)**: Record browser actions to create automation scripts
 - **Smart Element Selection**: Container and field selection with visual feedback
-- **Code Generation**: Generates complete Python code for Crawl4AI
-- **Beautiful Dark UI**: Consistent with Crawl4AI's design language
+- **Code Generation**: Generates complete Python code for Crawl
+- **Beautiful Dark UI**: Consistent with Crawl's design language
 
 ## 📦 Installation
 
@@ -18,7 +18,7 @@ Visual extraction tools for Crawl4AI - Click to extract data and content from an
 1. Open Chrome and navigate to `chrome://extensions/`
 2. Enable "Developer mode" in the top right corner
 3. Click "Load unpacked"
-4. Select the `crawl4ai-assistant` folder
+4. Select the `crawl-assistant` folder
 5. The extension icon (🚀🤖) will appear in your toolbar
 
 ### Method 2: Generate Icons First
@@ -37,7 +37,7 @@ If you want proper icons:
 ### Using Click2Crawl
 
 1. **Navigate to any website** you want to extract data from
-2. **Click the Crawl4AI extension icon** in your toolbar
+2. **Click the Crawl extension icon** in your toolbar
 3. **Click "Click2Crawl"** to start the capture mode
 4. **Select a container element**:
    - Hover over elements (they'll highlight in blue)
@@ -71,10 +71,10 @@ async def test_extraction():
 
 To use it:
 
-1. Install Crawl4AI: `pip install crawl4ai`
-2. Run the script: `python crawl4ai_schema_*.py`
+1. Install Crawl: `pip install crawl`
+2. Run the script: `python crawl_schema_*.py`
 3. The script will generate a `generated_schema.json` file
-4. Use this schema in your Crawl4AI projects!
+4. Use this schema in your Crawl projects!
 
 ## 🎨 Visual Feedback
 
@@ -92,7 +92,7 @@ To use it:
 
 - Built with Manifest V3 for security and performance
 - Pure client-side - no data sent to external servers
-- Generates code that uses Crawl4AI's LLM integration
+- Generates code that uses Crawl's LLM integration
 - Smart selector generation prioritizes stable attributes
 
 ## 🐛 Troubleshooting
@@ -108,17 +108,17 @@ To use it:
 - Make sure you clicked "Schema Builder" first
 
 ### Generated code doesn't work
-- Ensure you have Crawl4AI installed
+- Ensure you have Crawl installed
 - Check that you have an LLM API key configured
 - Make sure the website structure hasn't changed
 
 ## 🤝 Contributing
 
-This extension is part of the Crawl4AI project. Contributions are welcome!
+This extension is part of the Crawl project. Contributions are welcome!
 
-- Report issues: [GitHub Issues](https://github.com/unclecode/crawl4ai/issues)
-- Join discussion: [Discord](https://discord.gg/crawl4ai)
+- Report issues: [GitHub Issues](https://github.com/hanzoai/crawl/issues)
+- Join discussion: [Discord](https://discord.gg/crawl)
 
 ## 📄 License
 
-Same as Crawl4AI - see main project for details.
+Same as Crawl - see main project for details.

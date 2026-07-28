@@ -11,12 +11,12 @@ import json
 import os
 import pytest
 
-from crawl4ai.extraction_strategy import (
+from crawl.extraction_strategy import (
     _strip_markdown_fences,
     JsonCssExtractionStrategy,
     JsonXPathExtractionStrategy,
 )
-from crawl4ai.async_configs import LLMConfig
+from crawl.async_configs import LLMConfig
 
 
 # ---------------------------------------------------------------------------
@@ -151,8 +151,8 @@ class TestRealAnthropicSchemaGeneration:
 
     @pytest.mark.asyncio
     @pytest.mark.skipif(
-        not os.getenv("CRAWL4AI_ANTHROPIC_KEY"),
-        reason="CRAWL4AI_ANTHROPIC_KEY not set",
+        not os.getenv("CRAWL_ANTHROPIC_KEY"),
+        reason="CRAWL_ANTHROPIC_KEY not set",
     )
     async def test_anthropic_haiku_css_schema(self):
         """Reproduce the original bug: anthropic/claude-haiku-4-5 + CSS schema."""
@@ -162,7 +162,7 @@ class TestRealAnthropicSchemaGeneration:
             query="Extract all quotes with their text, author, and tags",
             llm_config=LLMConfig(
                 provider="anthropic/claude-haiku-4-5",
-                api_token=os.getenv("CRAWL4AI_ANTHROPIC_KEY"),
+                api_token=os.getenv("CRAWL_ANTHROPIC_KEY"),
             ),
         )
         _validate_schema(schema)
@@ -170,8 +170,8 @@ class TestRealAnthropicSchemaGeneration:
 
     @pytest.mark.asyncio
     @pytest.mark.skipif(
-        not os.getenv("CRAWL4AI_ANTHROPIC_KEY"),
-        reason="CRAWL4AI_ANTHROPIC_KEY not set",
+        not os.getenv("CRAWL_ANTHROPIC_KEY"),
+        reason="CRAWL_ANTHROPIC_KEY not set",
     )
     async def test_anthropic_haiku_xpath_schema(self):
         """Anthropic haiku with XPath schema type."""
@@ -181,7 +181,7 @@ class TestRealAnthropicSchemaGeneration:
             query="Extract all quotes with their text, author, and tags",
             llm_config=LLMConfig(
                 provider="anthropic/claude-haiku-4-5",
-                api_token=os.getenv("CRAWL4AI_ANTHROPIC_KEY"),
+                api_token=os.getenv("CRAWL_ANTHROPIC_KEY"),
             ),
         )
         _validate_schema(schema)
@@ -189,8 +189,8 @@ class TestRealAnthropicSchemaGeneration:
 
     @pytest.mark.asyncio
     @pytest.mark.skipif(
-        not os.getenv("CRAWL4AI_ANTHROPIC_KEY"),
-        reason="CRAWL4AI_ANTHROPIC_KEY not set",
+        not os.getenv("CRAWL_ANTHROPIC_KEY"),
+        reason="CRAWL_ANTHROPIC_KEY not set",
     )
     async def test_anthropic_no_query(self):
         """Anthropic with no query — should auto-detect schema from page structure."""
@@ -199,7 +199,7 @@ class TestRealAnthropicSchemaGeneration:
             schema_type="CSS",
             llm_config=LLMConfig(
                 provider="anthropic/claude-haiku-4-5",
-                api_token=os.getenv("CRAWL4AI_ANTHROPIC_KEY"),
+                api_token=os.getenv("CRAWL_ANTHROPIC_KEY"),
             ),
         )
         _validate_schema(schema)
@@ -211,8 +211,8 @@ class TestRealOpenAISchemaGeneration:
 
     @pytest.mark.asyncio
     @pytest.mark.skipif(
-        not os.getenv("CRAWL4AI_OPENAI_KEY"),
-        reason="CRAWL4AI_OPENAI_KEY not set",
+        not os.getenv("CRAWL_OPENAI_KEY"),
+        reason="CRAWL_OPENAI_KEY not set",
     )
     async def test_openai_gpt4o_mini_css_schema(self):
         """OpenAI gpt-4o-mini with CSS — this already worked, must not regress."""
@@ -222,7 +222,7 @@ class TestRealOpenAISchemaGeneration:
             query="Extract all quotes with their text, author, and tags",
             llm_config=LLMConfig(
                 provider="openai/gpt-4o-mini",
-                api_token=os.getenv("CRAWL4AI_OPENAI_KEY"),
+                api_token=os.getenv("CRAWL_OPENAI_KEY"),
             ),
         )
         _validate_schema(schema)
@@ -234,12 +234,12 @@ class TestRealGroqSchemaGeneration:
 
     @pytest.mark.asyncio
     @pytest.mark.skipif(
-        not os.getenv("CRAWL4AI_GROQ_KEY") and not os.getenv("GROQ_API_KEY"),
+        not os.getenv("CRAWL_GROQ_KEY") and not os.getenv("GROQ_API_KEY"),
         reason="No Groq API key set",
     )
     async def test_groq_llama33_css_schema(self):
         """Groq with llama-3.3-70b-versatile (replacement for decommissioned 3.1)."""
-        api_key = os.getenv("CRAWL4AI_GROQ_KEY") or os.getenv("GROQ_API_KEY")
+        api_key = os.getenv("CRAWL_GROQ_KEY") or os.getenv("GROQ_API_KEY")
         schema = await JsonCssExtractionStrategy.agenerate_schema(
             url=TEST_URL,
             schema_type="CSS",

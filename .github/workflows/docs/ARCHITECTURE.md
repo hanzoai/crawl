@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the technical architecture of the split release pipeline for Crawl4AI.
+This document describes the technical architecture of the split release pipeline for Crawl.
 
 ---
 
@@ -90,10 +90,10 @@ This document describes the technical architecture of the split release pipeline
 │  │  ┌──────────────────────────────────────────────┐     │   │
 │  │  │ 6. Push to Docker Hub                         │     │   │
 │  │  │    Tags:                                      │     │   │
-│  │  │    - unclecode/crawl4ai:1.2.3                │     │   │
-│  │  │    - unclecode/crawl4ai:1.2                  │     │   │
-│  │  │    - unclecode/crawl4ai:1                    │     │   │
-│  │  │    - unclecode/crawl4ai:latest               │     │   │
+│  │  │    - hanzoai/crawl:1.2.3                │     │   │
+│  │  │    - hanzoai/crawl:1.2                  │     │   │
+│  │  │    - hanzoai/crawl:1                    │     │   │
+│  │  │    - hanzoai/crawl:latest               │     │   │
 │  │  └──────────────────────────────────────────────┘     │   │
 │  └────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────┘
@@ -105,8 +105,8 @@ This document describes the technical architecture of the split release pipeline
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐         │
 │  │    PyPI      │  │  Docker Hub  │  │   GitHub     │         │
 │  │              │  │              │  │              │         │
-│  │  crawl4ai    │  │ unclecode/   │  │  Releases    │         │
-│  │  1.2.3       │  │ crawl4ai     │  │  v1.2.3      │         │
+│  │  crawl    │  │ unclecode/   │  │  Releases    │         │
+│  │  1.2.3       │  │ crawl     │  │  v1.2.3      │         │
 │  └──────────────┘  └──────────────┘  └──────────────┘         │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -141,13 +141,13 @@ echo "VERSION=$TAG_VERSION" >> $GITHUB_OUTPUT
 ##### Stage 2: Version Validation
 ```bash
 Input:  TAG_VERSION=1.2.3
-Check:  crawl4ai/__version__.py contains __version__ = "1.2.3"
+Check:  crawl/__version__.py contains __version__ = "1.2.3"
 Output: Pass/Fail
 ```
 
 **Implementation**:
 ```bash
-PACKAGE_VERSION=$(python -c "from crawl4ai.__version__ import __version__; print(__version__)")
+PACKAGE_VERSION=$(python -c "from crawl.__version__ import __version__; print(__version__)")
 if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
   exit 1
 fi
@@ -156,8 +156,8 @@ fi
 ##### Stage 3: Package Build
 ```bash
 Input:  Source code + pyproject.toml
-Output: dist/crawl4ai-1.2.3.tar.gz
-        dist/crawl4ai-1.2.3-py3-none-any.whl
+Output: dist/crawl-1.2.3.tar.gz
+        dist/crawl-1.2.3-py3-none-any.whl
 ```
 
 **Implementation**:
@@ -201,7 +201,7 @@ with:
 ```
 
 #### Output
-- **PyPI Package**: https://pypi.org/project/crawl4ai/1.2.3/
+- **PyPI Package**: https://pypi.org/project/crawl/1.2.3/
 - **GitHub Release**: Published release on repository
 - **Event**: `release.published` (triggers Docker workflow)
 
@@ -322,10 +322,10 @@ Cache Hit/Miss Logic:
 Input:  VERSION=1.2.3, MAJOR=1, MINOR=1.2
 
 Output Tags:
-  - unclecode/crawl4ai:1.2.3    (exact version)
-  - unclecode/crawl4ai:1.2      (minor version)
-  - unclecode/crawl4ai:1        (major version)
-  - unclecode/crawl4ai:latest   (latest stable)
+  - hanzoai/crawl:1.2.3    (exact version)
+  - hanzoai/crawl:1.2      (minor version)
+  - hanzoai/crawl:1        (major version)
+  - hanzoai/crawl:latest   (latest stable)
 ```
 
 **Tag Strategy**:
@@ -340,7 +340,7 @@ For each tag:
     Push image to Docker Hub
 
 Create manifest list:
-  Manifest: unclecode/crawl4ai:1.2.3
+  Manifest: hanzoai/crawl:1.2.3
     ├─ linux/amd64: sha256:abc...
     └─ linux/arm64: sha256:def...
 
@@ -349,7 +349,7 @@ Docker CLI automatically selects correct platform on pull
 
 #### Output
 - **Docker Images**: 4 tags × 2 platforms = 8 image variants + 4 manifests
-- **Docker Hub**: https://hub.docker.com/r/unclecode/crawl4ai/tags
+- **Docker Hub**: https://hub.docker.com/r/hanzoai/crawl/tags
 
 #### Timeline
 
@@ -391,7 +391,7 @@ Docker CLI automatically selects correct platform on pull
 Developer
   │
   ▼
-crawl4ai/__version__.py
+crawl/__version__.py
   __version__ = "1.2.3"
   │
   ├─► Git Tag
@@ -404,7 +404,7 @@ crawl4ai/__version__.py
   │       │     ✓ Match
   │       │
   │       ├─► PyPI Package
-  │       │     crawl4ai==1.2.3
+  │       │     crawl==1.2.3
   │       │
   │       └─► GitHub Release
   │             v1.2.3
@@ -469,21 +469,21 @@ Source Code
   │     ▼
   │   python -m build
   │     │
-  │     ├─► crawl4ai-1.2.3.tar.gz
+  │     ├─► crawl-1.2.3.tar.gz
   │     │     │
   │     │     ▼
   │     │   PyPI Storage
   │     │     │
   │     │     ▼
-  │     │   pip install crawl4ai
+  │     │   pip install crawl
   │     │
-  │     └─► crawl4ai-1.2.3-py3-none-any.whl
+  │     └─► crawl-1.2.3-py3-none-any.whl
   │           │
   │           ▼
   │         PyPI Storage
   │           │
   │           ▼
-  │         pip install crawl4ai
+  │         pip install crawl
   │
   └─► docker-release.yml
         │
@@ -493,12 +493,12 @@ Source Code
         ├─► Image: linux/amd64
         │     │
         │     └─► Docker Hub
-        │           unclecode/crawl4ai:1.2.3-amd64
+        │           hanzoai/crawl:1.2.3-amd64
         │
         └─► Image: linux/arm64
               │
               └─► Docker Hub
-                    unclecode/crawl4ai:1.2.3-arm64
+                    hanzoai/crawl:1.2.3-arm64
 ```
 
 ---
@@ -615,7 +615,7 @@ Source Code
 
 2. **Unauthorized Package Upload**
    - Mitigation: Scoped PyPI tokens
-   - Evidence: Token limited to `crawl4ai` project
+   - Evidence: Token limited to `crawl` project
 
 3. **Man-in-the-Middle**
    - Mitigation: HTTPS for all API calls
@@ -745,11 +745,11 @@ def estimate_build_time(changes):
 
 #### Horizontal Scaling (Multiple Repos)
 ```
-crawl4ai (main)
+crawl (main)
   ├─ release.yml
   └─ docker-release.yml
 
-crawl4ai-plugins (separate)
+crawl-plugins (separate)
   ├─ release.yml
   └─ docker-release.yml
 

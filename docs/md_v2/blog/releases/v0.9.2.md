@@ -1,10 +1,10 @@
-# Crawl4AI v0.9.2: Maintenance Bug Fixes
+# Crawl v0.9.2: Maintenance Bug Fixes
 
 *July 2026 - 2 min read*
 
 ---
 
-I'm releasing Crawl4AI v0.9.2, a small maintenance patch that cleans up a dispatcher resource leak and fixes a handful of Docker and GPU build issues. No new features, no breaking changes.
+I'm releasing Crawl v0.9.2, a small maintenance patch that cleans up a dispatcher resource leak and fixes a handful of Docker and GPU build issues. No new features, no breaking changes.
 
 If you're on v0.9.1, upgrade freely.
 
@@ -44,8 +44,8 @@ None.
 ## Upgrade
 
 ```bash
-pip install -U crawl4ai
-crawl4ai-doctor  # verify installation
+pip install -U crawl
+crawl-doctor  # verify installation
 ```
 
 Docker users: pull the latest image once the Docker release workflow finishes.
@@ -62,6 +62,6 @@ Thanks to the community contributors who made this release possible: @reallav0 (
 
 ## Support & Resources
 
-- [Documentation](https://docs.crawl4ai.com)
-- [GitHub Issues](https://github.com/unclecode/crawl4ai/issues)
-- [Discord Community](https://discord.gg/crawl4ai)
+- [Documentation](https://docs.hanzo.ai)
+- [GitHub Issues](https://github.com/hanzoai/crawl/issues)
+- [Discord Community](https://discord.gg/crawl)

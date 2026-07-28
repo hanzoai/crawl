@@ -5,7 +5,7 @@ Concurrent crawling of multiple URLs with intelligent resource management, rate 
 ### Basic Multi-URL Crawling
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 # Batch processing (default) - get all results at once
 async def batch_crawl():
@@ -49,7 +49,7 @@ async def streaming_crawl():
 ### Memory-Adaptive Dispatching
 
 ```python
-from crawl4ai import AsyncWebCrawler, MemoryAdaptiveDispatcher, CrawlerMonitor, DisplayMode
+from crawl import AsyncWebCrawler, MemoryAdaptiveDispatcher, CrawlerMonitor, DisplayMode
 
 # Automatically manages concurrency based on system memory
 async def memory_adaptive_crawl():
@@ -83,7 +83,7 @@ async def memory_adaptive_crawl():
 ### Rate-Limited Crawling
 
 ```python
-from crawl4ai import RateLimiter, SemaphoreDispatcher
+from crawl import RateLimiter, SemaphoreDispatcher
 
 # Control request pacing and handle server rate limits
 async def rate_limited_crawl():
@@ -116,7 +116,7 @@ async def rate_limited_crawl():
 ### Real-Time Monitoring
 
 ```python
-from crawl4ai import CrawlerMonitor, DisplayMode
+from crawl import CrawlerMonitor, DisplayMode
 
 # Monitor crawling progress in real-time
 async def monitored_crawl():
@@ -336,4 +336,4 @@ async def robust_multi_crawl():
             print(f"  {failure['url']}: {failure['error']}")
 ```
 
-**📖 Learn more:** [Advanced Multi-URL Crawling](https://docs.crawl4ai.com/advanced/multi-url-crawling/), [Crawl Dispatcher](https://docs.crawl4ai.com/advanced/crawl-dispatcher/), [arun_many() API Reference](https://docs.crawl4ai.com/api/arun_many/)
+**📖 Learn more:** [Advanced Multi-URL Crawling](https://docs.hanzo.ai/advanced/multi-url-crawling/), [Crawl Dispatcher](https://docs.hanzo.ai/advanced/crawl-dispatcher/), [arun_many() API Reference](https://docs.hanzo.ai/api/arun_many/)

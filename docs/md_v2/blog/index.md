@@ -1,6 +1,6 @@
-# Crawl4AI Blog
+# Crawl Blog
 
-Welcome to the Crawl4AI blog! Here you'll find detailed release notes, technical insights, and updates about the project. Whether you're looking for the latest improvements or want to dive deep into web crawling techniques, this is the place.
+Welcome to the Crawl blog! Here you'll find detailed release notes, technical insights, and updates about the project. Whether you're looking for the latest improvements or want to dive deep into web crawling techniques, this is the place.
 
 ## Featured Articles
 
@@ -20,10 +20,10 @@ Ever wondered why your AI coding assistant struggles with your library despite c
 
 ## Latest Release
 
-### [Crawl4AI v0.9.2 – Maintenance Bug Fixes](../blog/release-v0.9.2.md)
+### [Crawl v0.9.2 – Maintenance Bug Fixes](../blog/release-v0.9.2.md)
 *July 2026*
 
-Crawl4AI v0.9.2 is a maintenance patch release with bug fixes across the dispatcher, Docker, and GPU builds.
+Crawl v0.9.2 is a maintenance patch release with bug fixes across the dispatcher, Docker, and GPU builds.
 
 Key highlights:
 - **🧹 Dispatcher Cleanup**: `MemoryAdaptiveDispatcher` no longer leaks crawl tasks and browser pages when a streaming crawl is closed
@@ -34,10 +34,10 @@ Key highlights:
 
 ## Recent Releases
 
-### [Crawl4AI v0.9.1 – Bug Fixes & PruningContentFilter Whitelist](../blog/release-v0.9.1.md)
+### [Crawl v0.9.1 – Bug Fixes & PruningContentFilter Whitelist](../blog/release-v0.9.1.md)
 *July 2026*
 
-Crawl4AI v0.9.1 is a patch release with 12 bug fixes and a new `preserve_classes`/`preserve_tags` whitelist for PruningContentFilter.
+Crawl v0.9.1 is a patch release with 12 bug fixes and a new `preserve_classes`/`preserve_tags` whitelist for PruningContentFilter.
 
 Key highlights:
 - **🏷️ PruningContentFilter Whitelist**: Protect specific CSS classes or HTML tags from density-based pruning
@@ -46,17 +46,17 @@ Key highlights:
 
 [Read full release notes →](../blog/release-v0.9.1.md)
 
-### [Crawl4AI v0.8.5 – Anti-Bot Detection, Shadow DOM & 60+ Bug Fixes](../blog/release-v0.8.5.md)
+### [Crawl v0.8.5 – Anti-Bot Detection, Shadow DOM & 60+ Bug Fixes](../blog/release-v0.8.5.md)
 *March 2026*
 
-Crawl4AI v0.8.5 is the biggest release since v0.8.0, bringing automatic anti-bot detection with proxy escalation, Shadow DOM flattening, deep crawl cancellation, and over 60 bug fixes.
+Crawl v0.8.5 is the biggest release since v0.8.0, bringing automatic anti-bot detection with proxy escalation, Shadow DOM flattening, deep crawl cancellation, and over 60 bug fixes.
 
 [Read full release notes →](../blog/release-v0.8.5.md)
 
-### [Crawl4AI v0.8.0 – Crash Recovery & Prefetch Mode](../blog/release-v0.8.0.md)
+### [Crawl v0.8.0 – Crash Recovery & Prefetch Mode](../blog/release-v0.8.0.md)
 *January 2026*
 
-Crawl4AI v0.8.0 introduces crash recovery for deep crawls, a new prefetch mode for fast URL discovery, and critical security fixes for Docker deployments.
+Crawl v0.8.0 introduces crash recovery for deep crawls, a new prefetch mode for fast URL discovery, and critical security fixes for Docker deployments.
 
 Key highlights:
 - **🔄 Deep Crawl Crash Recovery**: `on_state_change` callback for real-time state persistence, `resume_state` to continue from checkpoints
@@ -65,10 +65,10 @@ Key highlights:
 
 [Read full release notes →](../blog/release-v0.8.0.md)
 
-### [Crawl4AI v0.7.8 – Stability & Bug Fix Release](../blog/release-v0.7.8.md)
+### [Crawl v0.7.8 – Stability & Bug Fix Release](../blog/release-v0.7.8.md)
 *December 2025*
 
-Crawl4AI v0.7.8 is a focused stability release addressing 11 bugs reported by the community. Fixes for Docker deployments, LLM extraction, URL handling, and dependency compatibility.
+Crawl v0.7.8 is a focused stability release addressing 11 bugs reported by the community. Fixes for Docker deployments, LLM extraction, URL handling, and dependency compatibility.
 
 Key highlights:
 - **🐳 Docker API Fixes**: ContentRelevanceFilter deserialization, ProxyConfig serialization, cache folder permissions
@@ -93,10 +93,10 @@ Key highlights:
 
 ## Project History
 
-Curious about how Crawl4AI has evolved? Check out our [complete changelog](https://github.com/unclecode/crawl4ai/blob/main/CHANGELOG.md) for a detailed history of all versions and updates.
+Curious about how Crawl has evolved? Check out our [complete changelog](https://github.com/hanzoai/crawl/blob/main/CHANGELOG.md) for a detailed history of all versions and updates.
 
 ## Stay Updated
 
-- Star us on [GitHub](https://github.com/unclecode/crawl4ai)
+- Star us on [GitHub](https://github.com/hanzoai/crawl)
 - Follow [@unclecode](https://twitter.com/unclecode) on Twitter
 - Join our community discussions on GitHub

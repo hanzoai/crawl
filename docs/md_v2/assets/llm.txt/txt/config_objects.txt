@@ -5,7 +5,7 @@ Core configuration classes for controlling browser behavior, crawl operations, L
 ### BrowserConfig - Browser Environment Setup
 
 ```python
-from crawl4ai import BrowserConfig, AsyncWebCrawler
+from crawl import BrowserConfig, AsyncWebCrawler
 
 # Basic browser configuration
 browser_config = BrowserConfig(
@@ -38,9 +38,9 @@ async with AsyncWebCrawler(config=browser_config) as crawler:
 ### CrawlerRunConfig - Crawl Operation Control
 
 ```python
-from crawl4ai import CrawlerRunConfig, CacheMode
-from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
-from crawl4ai.content_filter_strategy import PruningContentFilter
+from crawl import CrawlerRunConfig, CacheMode
+from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
+from crawl.content_filter_strategy import PruningContentFilter
 
 # Basic crawl configuration
 run_config = CrawlerRunConfig(
@@ -156,7 +156,7 @@ config = CrawlerRunConfig(
 ### LLMConfig - Language Model Setup
 
 ```python
-from crawl4ai import LLMConfig
+from crawl import LLMConfig
 
 # OpenAI configuration
 llm_config = LLMConfig(
@@ -196,7 +196,7 @@ llm_config = LLMConfig(
 ### CrawlResult - Understanding Output
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async with AsyncWebCrawler() as crawler:
     result = await crawler.arun("https://example.com", config=run_config)
@@ -351,7 +351,7 @@ stealth_config = CrawlerRunConfig(
 #### User Agent Management & Bot Detection Avoidance
 
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # Random user agent generation
 config = CrawlerRunConfig(
@@ -385,7 +385,7 @@ stealth_config = CrawlerRunConfig(
 #### Proxy Configuration with ProxyConfig
 
 ```python
-from crawl4ai import CrawlerRunConfig, ProxyConfig, ProxyRotationStrategy
+from crawl import CrawlerRunConfig, ProxyConfig, ProxyRotationStrategy
 
 # Single proxy configuration
 proxy_config = ProxyConfig(
@@ -421,7 +421,7 @@ proxies_from_env = ProxyConfig.from_env("MY_PROXIES")  # comma-separated proxy s
 #### Content Selection: css_selector vs target_elements
 
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # css_selector: Extracts HTML at top level, affects entire processing
 config = CrawlerRunConfig(
@@ -455,7 +455,7 @@ config = CrawlerRunConfig(
 #### Advanced wait_for Conditions
 
 ```python
-from crawl4ai import CrawlerRunConfig
+from crawl import CrawlerRunConfig
 
 # CSS selector waiting
 config = CrawlerRunConfig(
@@ -488,7 +488,7 @@ config = CrawlerRunConfig(
 #### Session Management for Multi-Step Crawling
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, CacheMode
+from crawl import AsyncWebCrawler, CrawlerRunConfig, CacheMode
 
 # Persistent session across multiple arun() calls
 async def multi_step_crawling():
@@ -542,7 +542,7 @@ async def session_with_shared_data():
 #### Identity-Based Crawling Parameters
 
 ```python
-from crawl4ai import CrawlerRunConfig, GeolocationConfig
+from crawl import CrawlerRunConfig, GeolocationConfig
 
 # Locale and timezone simulation
 config = CrawlerRunConfig(
@@ -594,8 +594,8 @@ identity_config = CrawlerRunConfig(
 #### Simplified Import Pattern
 
 ```python
-# Almost everything from crawl4ai main package
-from crawl4ai import (
+# Almost everything from crawl main package
+from crawl import (
     AsyncWebCrawler,
     BrowserConfig, 
     CrawlerRunConfig,
@@ -605,8 +605,8 @@ from crawl4ai import (
     GeolocationConfig
 )
 
-# Specialized strategies (still from crawl4ai)
-from crawl4ai import (
+# Specialized strategies (still from crawl)
+from crawl import (
     JsonCssExtractionStrategy,
     LLMExtractionStrategy,
     DefaultMarkdownGenerator,
@@ -640,7 +640,7 @@ Comprehensive guide to advanced crawling capabilities including file handling, a
 ### File Download Handling
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 import os
 
 # Enable downloads with custom path
@@ -678,7 +678,7 @@ async def download_files():
 ### Hooks & Authentication
 
 ```python
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 from playwright.async_api import Page, BrowserContext
 
 async def advanced_crawler_with_hooks():
@@ -1166,6 +1166,6 @@ async def performance_optimized_crawling():
 ```
 
 
-**📖 Learn more:** [Complete Parameter Reference](https://docs.crawl4ai.com/api/parameters/), [Content Filtering](https://docs.crawl4ai.com/core/markdown-generation/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Network Capture](https://docs.crawl4ai.com/advanced/network-console-capture/)
+**📖 Learn more:** [Complete Parameter Reference](https://docs.hanzo.ai/api/parameters/), [Content Filtering](https://docs.hanzo.ai/core/markdown-generation/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Network Capture](https://docs.hanzo.ai/advanced/network-console-capture/)
 
-**📖 Learn more:** [Hooks & Authentication](https://docs.crawl4ai.com/advanced/hooks-auth/), [Session Management](https://docs.crawl4ai.com/advanced/session-management/), [Network Monitoring](https://docs.crawl4ai.com/advanced/network-console-capture/), [Page Interaction](https://docs.crawl4ai.com/core/page-interaction/), [File Downloads](https://docs.crawl4ai.com/advanced/file-downloading/)
+**📖 Learn more:** [Hooks & Authentication](https://docs.hanzo.ai/advanced/hooks-auth/), [Session Management](https://docs.hanzo.ai/advanced/session-management/), [Network Monitoring](https://docs.hanzo.ai/advanced/network-console-capture/), [Page Interaction](https://docs.hanzo.ai/core/page-interaction/), [File Downloads](https://docs.hanzo.ai/advanced/file-downloading/)

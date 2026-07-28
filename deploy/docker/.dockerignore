@@ -2,7 +2,7 @@
 *
 
 # Allow specific files and directories when using local installation
-!crawl4ai/
+!crawl/
 !docs/
 !deploy/docker/
 !setup.py

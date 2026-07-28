@@ -1,5 +1,5 @@
 """
-Webhook delivery service for Crawl4AI.
+Webhook delivery service for Crawl.
 
 This module provides webhook notification functionality with exponential backoff retry logic.
 """

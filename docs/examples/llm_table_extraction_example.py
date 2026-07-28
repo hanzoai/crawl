@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Example demonstrating LLM-based table extraction in Crawl4AI.
+Example demonstrating LLM-based table extraction in Crawl.
 
 This example shows how to use the LLMTableExtraction strategy to extract
 complex tables from web pages, including handling rowspan, colspan, and nested tables.
@@ -17,7 +17,7 @@ __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file
 
 
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     LLMConfig,
@@ -215,7 +215,7 @@ async def compare_strategies():
     
     async with AsyncWebCrawler() as crawler:
         # Test with default extraction
-        from crawl4ai import DefaultTableExtraction
+        from crawl import DefaultTableExtraction
         
         default_strategy = DefaultTableExtraction(
             table_score_threshold=3,

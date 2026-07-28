@@ -3,15 +3,15 @@
 Test script for Link Extractor functionality
 """
 
-from crawl4ai.models import Link
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai import LinkPreviewConfig
+from crawl.models import Link
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl import LinkPreviewConfig
 import asyncio
 import sys
 import os
 
-# Add the crawl4ai directory to the path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'crawl4ai'))
+# Add the crawl directory to the path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'crawl'))
 
 
 async def test_link_extractor():
@@ -237,7 +237,7 @@ def test_config_examples():
             print(f"     {key}: {value}")
 
         print("   Usage:")
-        print("     from crawl4ai import LinkPreviewConfig")
+        print("     from crawl import LinkPreviewConfig")
         print("     config = CrawlerRunConfig(")
         print("         link_preview_config=LinkPreviewConfig(")
         for key, value in config_dict.items():

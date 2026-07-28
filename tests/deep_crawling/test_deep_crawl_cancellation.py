@@ -16,7 +16,7 @@ import asyncio
 from typing import Dict, Any, List
 from unittest.mock import MagicMock
 
-from crawl4ai.deep_crawling import (
+from crawl.deep_crawling import (
     BFSDeepCrawlStrategy,
     DFSDeepCrawlStrategy,
     BestFirstCrawlingStrategy,

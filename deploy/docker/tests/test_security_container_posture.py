@@ -54,8 +54,8 @@ class TestDockerfile:
         assert "chmod -R a-w ${APP_HOME}" in dockerfile
 
     def test_artifact_dir_created_0700(self, dockerfile):
-        assert "/var/lib/crawl4ai/outputs" in dockerfile
-        assert "chmod 700 /var/lib/crawl4ai/outputs" in dockerfile
+        assert "/var/lib/crawl/outputs" in dockerfile
+        assert "chmod 700 /var/lib/crawl/outputs" in dockerfile
 
     def test_playwright_headless_shell_is_copied_to_runtime_cache(self, dockerfile):
         # Playwright launches chromium_headless_shell for headless crawls. The
@@ -108,8 +108,8 @@ class TestCompose:
 
     def test_read_only_runtime_tmpfs_are_appuser_owned(self, compose):
         assert "/var/lib/redis:uid=999,gid=999,mode=0700" in compose
-        assert "/var/lib/crawl4ai/outputs:uid=999,gid=999,mode=0700" in compose
-        assert "/home/appuser/.crawl4ai:uid=999,gid=999,mode=0700" in compose
+        assert "/var/lib/crawl/outputs:uid=999,gid=999,mode=0700" in compose
+        assert "/home/appuser/.crawl:uid=999,gid=999,mode=0700" in compose
         assert "/home/appuser/.gunicorn:uid=999,gid=999,mode=0700" in compose
 
     def test_playwright_cache_is_not_shadowed(self, compose):
@@ -130,7 +130,7 @@ class TestSandboxOptOut:
         assert "--no-sandbox" in server_module._browser_extra_args()
 
     def test_opt_in_drops_no_sandbox(self, server_module, monkeypatch):
-        # CRAWL4AI_CHROMIUM_SANDBOX=true -> run the renderer sandboxed.
+        # CRAWL_CHROMIUM_SANDBOX=true -> run the renderer sandboxed.
         monkeypatch.setattr(server_module, "CHROMIUM_SANDBOX", True)
         assert "--no-sandbox" not in server_module._browser_extra_args()
         # other flags are preserved

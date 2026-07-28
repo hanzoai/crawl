@@ -1,10 +1,10 @@
-# Crawl4AI v0.7.8: Stability & Bug Fix Release
+# Crawl v0.7.8: Stability & Bug Fix Release
 
 *December 2025*
 
 ---
 
-I'm releasing Crawl4AI v0.7.8—a focused stability release that addresses 11 bugs reported by the community. While there are no new features in this release, these fixes resolve important issues affecting Docker deployments, LLM extraction, URL handling, and dependency compatibility.
+I'm releasing Crawl v0.7.8—a focused stability release that addresses 11 bugs reported by the community. While there are no new features in this release, these fixes resolve important issues affecting Docker deployments, LLM extraction, URL handling, and dependency compatibility.
 
 ## What's Fixed at a Glance
 
@@ -57,8 +57,8 @@ async with httpx.AsyncClient() as client:
 **The Fix:** `ProxyConfig.to_dict()` is now called during serialization.
 
 ```python
-from crawl4ai import BrowserConfig
-from crawl4ai.async_configs import ProxyConfig
+from crawl import BrowserConfig
+from crawl.async_configs import ProxyConfig
 
 proxy = ProxyConfig(
     server="http://proxy.example.com:8080",
@@ -84,7 +84,7 @@ json.dumps(config_dict)  # Valid JSON
 docker run -d -p 11235:11235 \
     --shm-size=1g \
     -v ./my-cache:/app/.cache \
-    unclecode/crawl4ai:0.7.8
+    hanzoai/crawl:0.7.8
 ```
 
 ---
@@ -98,7 +98,7 @@ docker run -d -p 11235:11235 \
 **The Fix:** `LLMConfig` now accepts three new parameters for complete control over retry behavior.
 
 ```python
-from crawl4ai import LLMConfig
+from crawl import LLMConfig
 
 # Default behavior (unchanged)
 default_config = LLMConfig(provider="openai/gpt-4o-mini")
@@ -122,7 +122,7 @@ custom_config = LLMConfig(
 **The Fix:** Added `input_format` parameter supporting `"markdown"`, `"html"`, `"fit_markdown"`, `"cleaned_html"`, and `"fit_html"`.
 
 ```python
-from crawl4ai import LLMExtractionStrategy, LLMConfig
+from crawl import LLMExtractionStrategy, LLMConfig
 
 # Default: markdown input (unchanged)
 markdown_strategy = LLMExtractionStrategy(
@@ -152,7 +152,7 @@ fit_strategy = LLMExtractionStrategy(
 **The Fix:** The URL is now correctly set to `"Raw HTML"` for raw HTML inputs.
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 html = "<html><body><h1>Test</h1></body></html>"
 
@@ -175,7 +175,7 @@ async with AsyncWebCrawler() as crawler:
 **The Fix:** `redirected_url` now captures the actual page URL after all JavaScript execution completes.
 
 ```python
-from crawl4ai import AsyncWebCrawler
+from crawl import AsyncWebCrawler
 
 async with AsyncWebCrawler() as crawler:
     # Page at /old-page redirects via JS to /new-page
@@ -201,7 +201,7 @@ async with AsyncWebCrawler() as crawler:
 
 ```python
 # Installation (unchanged)
-pip install crawl4ai[pdf]
+pip install crawl[pdf]
 
 # The PDF processor now uses pypdf internally
 # No code changes required - API remains the same
@@ -214,9 +214,9 @@ pip install crawl4ai[pdf]
 **The Fix:** Migrated to `model_config = ConfigDict(...)` syntax.
 
 ```python
-# No more deprecation warnings when importing crawl4ai models
-from crawl4ai.models import CrawlResult
-from crawl4ai import CrawlerRunConfig, BrowserConfig
+# No more deprecation warnings when importing crawl models
+from crawl.models import CrawlResult
+from crawl import CrawlerRunConfig, BrowserConfig
 
 # All models are now Pydantic v2 compatible
 ```
@@ -274,19 +274,19 @@ from crawl4ai import CrawlerRunConfig, BrowserConfig
 ### Python Package
 
 ```bash
-pip install --upgrade crawl4ai
+pip install --upgrade crawl
 # or
-pip install crawl4ai==0.7.8
+pip install crawl==0.7.8
 ```
 
 ### Docker
 
 ```bash
 # Pull the latest version
-docker pull unclecode/crawl4ai:0.7.8
+docker pull hanzoai/crawl:0.7.8
 
 # Run
-docker run -d -p 11235:11235 --shm-size=1g unclecode/crawl4ai:0.7.8
+docker run -d -p 11235:11235 --shm-size=1g hanzoai/crawl:0.7.8
 ```
 
 ---
@@ -305,7 +305,7 @@ This runs actual tests that verify each bug fix is properly implemented.
 
 ## Acknowledgments
 
-Thank you to everyone who reported these issues and provided detailed reproduction steps. Your bug reports make Crawl4AI better for everyone.
+Thank you to everyone who reported these issues and provided detailed reproduction steps. Your bug reports make Crawl better for everyone.
 
 Issues fixed: #1642, #1638, #1629, #1621, #1412, #1269, #1268, #1181, #1178, #1116, #678
 
@@ -313,14 +313,14 @@ Issues fixed: #1642, #1638, #1629, #1621, #1412, #1269, #1268, #1181, #1178, #11
 
 ## Support & Resources
 
-- **Documentation**: [docs.crawl4ai.com](https://docs.crawl4ai.com)
-- **GitHub**: [github.com/unclecode/crawl4ai](https://github.com/unclecode/crawl4ai)
-- **Discord**: [discord.gg/crawl4ai](https://discord.gg/jP8KfhDhyN)
+- **Documentation**: [docs.hanzo.ai](https://docs.hanzo.ai)
+- **GitHub**: [github.com/hanzoai/crawl](https://github.com/hanzoai/crawl)
+- **Discord**: [discord.gg/crawl](https://discord.gg/jP8KfhDhyN)
 - **Twitter**: [@unclecode](https://x.com/unclecode)
 
 ---
 
-**This stability release ensures Crawl4AI works reliably across Docker deployments, LLM extraction workflows, and various edge cases. Thank you for your continued support and feedback!**
+**This stability release ensures Crawl works reliably across Docker deployments, LLM extraction workflows, and various edge cases. Thank you for your continued support and feedback!**
 
 **Happy crawling!**
 

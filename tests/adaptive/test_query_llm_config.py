@@ -15,8 +15,8 @@ import numpy as np
 
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from crawl4ai import AdaptiveConfig, LLMConfig
-from crawl4ai.adaptive_crawler import EmbeddingStrategy, AdaptiveCrawler
+from crawl import AdaptiveConfig, LLMConfig
+from crawl.adaptive_crawler import EmbeddingStrategy, AdaptiveCrawler
 
 
 # ---------------------------------------------------------------------------
@@ -32,7 +32,7 @@ def test_config_plumbing():
     )
 
     # Simulate what AdaptiveCrawler.__init__ does
-    with patch("crawl4ai.adaptive_crawler.AsyncWebCrawler"):
+    with patch("crawl.adaptive_crawler.AsyncWebCrawler"):
         crawler_mock = MagicMock()
         adaptive = AdaptiveCrawler(crawler=crawler_mock, config=config)
 
@@ -162,7 +162,7 @@ async def test_map_query_uses_query_config():
     # Also mock _get_embeddings to avoid real embedding calls
     fake_embeddings = np.random.rand(11, 384).astype(np.float32)
 
-    with patch("crawl4ai.utils.perform_completion_with_backoff", side_effect=mock_completion):
+    with patch("crawl.utils.perform_completion_with_backoff", side_effect=mock_completion):
         with patch.object(strategy, "_get_embeddings", new_callable=AsyncMock, return_value=fake_embeddings):
             await strategy.map_query_semantic_space("test query", n_synthetic=10)
 
@@ -222,7 +222,7 @@ async def test_legacy_single_config_for_query():
 
     fake_embeddings = np.random.rand(11, 384).astype(np.float32)
 
-    with patch("crawl4ai.utils.perform_completion_with_backoff", side_effect=mock_completion):
+    with patch("crawl.utils.perform_completion_with_backoff", side_effect=mock_completion):
         with patch.object(strategy, "_get_embeddings", new_callable=AsyncMock, return_value=fake_embeddings):
             await strategy.map_query_semantic_space("test query", n_synthetic=10)
 

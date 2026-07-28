@@ -14,8 +14,8 @@ Deep crawling is perfect when you need:
 ```python
 # Deep crawling example: Explore a website dynamically
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 async def deep_crawl_example():
     # Configure a 2-level deep crawl
@@ -48,7 +48,7 @@ URL seeding shines when you want:
 
 ```python
 # URL seeding example: Analyze all documentation
-from crawl4ai import AsyncUrlSeeder, SeedingConfig
+from crawl import AsyncUrlSeeder, SeedingConfig
 
 seeder = AsyncUrlSeeder()
 config = SeedingConfig(
@@ -94,7 +94,7 @@ Let's see the magic in action. We'll discover blog posts about Python, filter fo
 
 ```python
 import asyncio
-from crawl4ai import AsyncUrlSeeder, AsyncWebCrawler, SeedingConfig, CrawlerRunConfig
+from crawl import AsyncUrlSeeder, AsyncWebCrawler, SeedingConfig, CrawlerRunConfig
 
 async def smart_blog_crawler():
     # Step 1: Create our URL discoverer
@@ -172,7 +172,7 @@ Now that you've seen the magic, let's understand how it works.
 Creating a URL seeder is simple:
 
 ```python
-from crawl4ai import AsyncUrlSeeder
+from crawl import AsyncUrlSeeder
 
 # Method 1: Manual cleanup
 seeder = AsyncUrlSeeder()
@@ -764,7 +764,7 @@ Here's a complete example that discovers, scores, filters, and crawls intelligen
 ```python
 import asyncio
 from datetime import datetime
-from crawl4ai import AsyncUrlSeeder, AsyncWebCrawler, SeedingConfig, CrawlerRunConfig
+from crawl import AsyncUrlSeeder, AsyncWebCrawler, SeedingConfig, CrawlerRunConfig
 
 class ResearchAssistant:
     def __init__(self):
@@ -969,8 +969,8 @@ config = SeedingConfig(
 
 The seeder automatically caches results to speed up repeated operations:
 
-- **Common Crawl cache**: `~/.crawl4ai/seeder_cache/[index]_[domain]_[hash].jsonl`
-- **Sitemap cache**: `~/.crawl4ai/seeder_cache/sitemap_[domain]_[hash].json`
+- **Common Crawl cache**: `~/.crawl/seeder_cache/[index]_[domain]_[hash].jsonl`
+- **Sitemap cache**: `~/.crawl/seeder_cache/sitemap_[domain]_[hash].json`
 - **HEAD data cache**: `~/.cache/url_seeder/head/[hash].json`
 
 #### Smart TTL Cache for Sitemaps

@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 # Import configuration (will exit if .env not found or invalid)
 from config import Config
 
-app = FastAPI(title="Crawl4AI Marketplace API")
+app = FastAPI(title="Crawl Marketplace API")
 router = APIRouter(prefix="/marketplace/api")
 
 # Security setup
@@ -479,7 +479,7 @@ BUILD_DATE = "2025-10-26"
 async def root():
     """API info"""
     return {
-        "name": "Crawl4AI Marketplace API",
+        "name": "Crawl Marketplace API",
         "version": VERSION,
         "build_date": BUILD_DATE,
         "endpoints": [

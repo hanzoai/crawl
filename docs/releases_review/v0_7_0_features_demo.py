@@ -1,5 +1,5 @@
 """
-🚀 Crawl4AI v0.7.0 Feature Demo
+🚀 Crawl v0.7.0 Feature Demo
 ================================
 This file demonstrates the major features introduced in v0.7.0 with practical examples.
 """
@@ -7,7 +7,7 @@ This file demonstrates the major features introduced in v0.7.0 with practical ex
 import asyncio
 import json
 from pathlib import Path
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler,
     CrawlerRunConfig,
     BrowserConfig,
@@ -246,7 +246,7 @@ IF (EXISTS `.price-filter`) THEN CLICK `input[data-max-price="100"]`
 
 async def main():
     """Run all demos"""
-    print("\n🚀 Crawl4AI v0.7.0 Feature Demonstrations")
+    print("\n🚀 Crawl v0.7.0 Feature Demonstrations")
     print("=" * 60)
     
     demos = [

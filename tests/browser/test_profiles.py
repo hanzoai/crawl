@@ -10,15 +10,15 @@ import sys
 import uuid
 import shutil
 
-from crawl4ai import BrowserProfiler
-from crawl4ai.browser_manager import BrowserManager
+from crawl import BrowserProfiler
+from crawl.browser_manager import BrowserManager
 
 # Add the project root to Python path if running directly
 if __name__ == "__main__":
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_logger import AsyncLogger
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_logger import AsyncLogger
 
 # Create a logger for clear terminal output
 logger = AsyncLogger(verbose=True, log_file=None)

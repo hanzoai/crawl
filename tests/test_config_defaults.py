@@ -1,7 +1,7 @@
 """Tests for BrowserConfig.set_defaults / CrawlerRunConfig.set_defaults."""
 
 import pytest
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
 
 
 @pytest.fixture(autouse=True)
@@ -177,7 +177,7 @@ class TestSpecialProcessing:
             proxy_config={"server": "http://proxy:8080"}
         )
         cfg = CrawlerRunConfig()
-        from crawl4ai.async_configs import ProxyConfig
+        from crawl.async_configs import ProxyConfig
         assert isinstance(cfg.proxy_config, ProxyConfig)
 
 

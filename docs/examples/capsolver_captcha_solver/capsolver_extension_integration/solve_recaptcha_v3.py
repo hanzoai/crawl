@@ -1,6 +1,6 @@
 import time
 import asyncio
-from crawl4ai import *
+from crawl import *
 
 
 # TODO: the user data directory that includes the capsolver extension

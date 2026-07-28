@@ -1,5 +1,5 @@
 import json
-from crawl4ai import (
+from crawl import (
     CrawlerRunConfig,
     DefaultMarkdownGenerator,
     RegexChunking,
@@ -7,10 +7,10 @@ from crawl4ai import (
     BM25ContentFilter,
     CacheMode
 )
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
-from crawl4ai.deep_crawling.filters import FastFilterChain
-from crawl4ai.deep_crawling.filters import FastContentTypeFilter, FastDomainFilter
-from crawl4ai.deep_crawling.scorers import FastKeywordRelevanceScorer
+from crawl.deep_crawling import BFSDeepCrawlStrategy
+from crawl.deep_crawling.filters import FastFilterChain
+from crawl.deep_crawling.filters import FastContentTypeFilter, FastDomainFilter
+from crawl.deep_crawling.scorers import FastKeywordRelevanceScorer
 
 def create_test_config() -> CrawlerRunConfig:
     # Set up content filtering and markdown generation

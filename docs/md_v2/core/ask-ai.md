@@ -1,5 +1,5 @@
 <div class="ask-ai-container">
-<iframe id="ask-ai-frame" src="../../ask_ai/index.html" width="100%" style="border:none; display: block;" title="Crawl4AI Assistant"></iframe>
+<iframe id="ask-ai-frame" src="../../ask_ai/index.html" width="100%" style="border:none; display: block;" title="Crawl Assistant"></iframe>
 </div>
 
 <script>

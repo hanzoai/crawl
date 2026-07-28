@@ -4,13 +4,13 @@ Tests the difference between regular and undetected modes on a Cloudflare-protec
 """
 
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler, 
     BrowserConfig, 
     CrawlerRunConfig,
     UndetectedAdapter
 )
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 # Test URL with Cloudflare protection
 TEST_URL = "https://nowsecure.nl"
@@ -132,7 +132,7 @@ async def test_undetected_browser():
 
 async def main():
     """Compare regular vs undetected browser"""
-    print("🤖 Crawl4AI - Cloudflare Bypass Test")
+    print("🤖 Crawl - Cloudflare Bypass Test")
     print(f"Testing URL: {TEST_URL}\n")
     
     # Test regular browser

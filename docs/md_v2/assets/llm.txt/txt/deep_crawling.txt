@@ -5,9 +5,9 @@ Multi-level website exploration with intelligent filtering, scoring, and priorit
 ### Basic Deep Crawl Setup
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
 
 # Basic breadth-first deep crawling
 async def basic_deep_crawl():
@@ -21,7 +21,7 @@ async def basic_deep_crawl():
     )
     
     async with AsyncWebCrawler() as crawler:
-        results = await crawler.arun("https://docs.crawl4ai.com", config=config)
+        results = await crawler.arun("https://docs.hanzo.ai", config=config)
         
         # Group results by depth
         pages_by_depth = {}
@@ -39,8 +39,8 @@ async def basic_deep_crawl():
 ### Deep Crawl Strategies
 
 ```python
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy, DFSDeepCrawlStrategy, BestFirstCrawlingStrategy
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling import BFSDeepCrawlStrategy, DFSDeepCrawlStrategy, BestFirstCrawlingStrategy
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 # Breadth-First Search - explores all links at one depth before going deeper
 bfs_strategy = BFSDeepCrawlStrategy(
@@ -111,7 +111,7 @@ async def streaming_deep_crawl():
 ### Filtering with Filter Chains
 
 ```python
-from crawl4ai.deep_crawling.filters import (
+from crawl.deep_crawling.filters import (
     FilterChain,
     URLPatternFilter,
     DomainFilter,
@@ -168,7 +168,7 @@ config = CrawlerRunConfig(
 ### Intelligent Crawling with Scorers
 
 ```python
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 # Keyword relevance scoring
 async def scored_deep_crawl():
@@ -188,7 +188,7 @@ async def scored_deep_crawl():
     )
     
     async with AsyncWebCrawler() as crawler:
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=config):
             score = result.metadata.get("score", 0)
             depth = result.metadata.get("depth", 0)
             print(f"Depth: {depth} | Score: {score:.2f} | {result.url}")
@@ -230,7 +230,7 @@ async def limited_crawls():
     
     async with AsyncWebCrawler() as crawler:
         # Use any of the configs
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=bf_config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=bf_config):
             score = result.metadata.get("score", 0)
             print(f"Score: {score:.2f} | {result.url}")
 ```
@@ -242,8 +242,8 @@ async def comprehensive_deep_crawl():
     # Sophisticated filter chain
     filter_chain = FilterChain([
         DomainFilter(
-            allowed_domains=["docs.crawl4ai.com"],
-            blocked_domains=["old.docs.crawl4ai.com"]
+            allowed_domains=["docs.hanzo.ai"],
+            blocked_domains=["old.docs.hanzo.ai"]
         ),
         URLPatternFilter(patterns=["*core*", "*advanced*", "*blog*"]),
         ContentTypeFilter(allowed_types=["text/html"]),
@@ -276,7 +276,7 @@ async def comprehensive_deep_crawl():
     start_time = time.time()
     
     async with AsyncWebCrawler() as crawler:
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=config):
             results.append(result)
             score = result.metadata.get("score", 0)
             depth = result.metadata.get("depth", 0)
@@ -317,7 +317,7 @@ async def robust_deep_crawl():
     failed_pages = []
     
     async with AsyncWebCrawler() as crawler:
-        async for result in await crawler.arun("https://docs.crawl4ai.com", config=config):
+        async for result in await crawler.arun("https://docs.hanzo.ai", config=config):
             if result.success:
                 successful_pages.append(result)
                 depth = result.metadata.get("depth", 0)
@@ -345,4 +345,4 @@ async def robust_deep_crawl():
             print(f"   Depth {depth}: {count} failures")
 ```
 
-**📖 Learn more:** [Deep Crawling Guide](https://docs.crawl4ai.com/core/deep-crawling/), [Filter Documentation](https://docs.crawl4ai.com/core/content-selection/), [Scoring Strategies](https://docs.crawl4ai.com/advanced/advanced-features/)
+**📖 Learn more:** [Deep Crawling Guide](https://docs.hanzo.ai/core/deep-crawling/), [Filter Documentation](https://docs.hanzo.ai/core/content-selection/), [Scoring Strategies](https://docs.hanzo.ai/advanced/advanced-features/)

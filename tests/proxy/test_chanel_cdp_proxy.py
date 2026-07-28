@@ -1,5 +1,5 @@
 """
-Test: Chanel.com anti-bot bypass via crawl4ai
+Test: Chanel.com anti-bot bypass via crawl
 
 Requires env vars:
   MASSIVE_USERNAME  — Massive residential proxy username
@@ -22,8 +22,8 @@ import sys
 import re
 import tempfile
 import shutil
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_configs import ProxyConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.async_configs import ProxyConfig
 
 URL = "https://www.chanel.com/us/fashion/handbags/c/1x1x1/"
 

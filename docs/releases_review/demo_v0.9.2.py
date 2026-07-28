@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI v0.9.2 Release Demo - Fix Verification Tests
+Crawl v0.9.2 Release Demo - Fix Verification Tests
 ======================================================
 
 This demo ACTUALLY RUNS and VERIFIES the key changes in v0.9.2.
@@ -63,7 +63,7 @@ async def test_dispatcher_stream_cleanup():
     per-URL tasks, drain queued URLs, and restore concurrent_sessions."""
     print_test("Dispatcher stream-close cleanup", "MemoryAdaptiveDispatcher #2071")
 
-    from crawl4ai import CrawlerRunConfig, MemoryAdaptiveDispatcher
+    from crawl import CrawlerRunConfig, MemoryAdaptiveDispatcher
 
     class BlockingCrawler:
         """Return one result immediately; block all other URLs forever."""
@@ -137,7 +137,7 @@ async def test_basic_crawl_smoke():
     markdown. Skips gracefully if no browser/network is available."""
     print_test("Basic crawl smoke test", "arun end-to-end")
 
-    from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+    from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
     try:
         async with AsyncWebCrawler(config=BrowserConfig(headless=True)) as crawler:
@@ -165,7 +165,7 @@ async def test_basic_crawl_smoke():
 # ── Main ──────────────────────────────────────────────────────────────
 
 async def main():
-    print_header("Crawl4AI v0.9.2 Release Verification")
+    print_header("Crawl v0.9.2 Release Verification")
 
     await test_dispatcher_stream_cleanup()
     await test_basic_crawl_smoke()

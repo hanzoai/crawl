@@ -4,8 +4,8 @@ from pathlib import Path
 from unittest.mock import patch
 import json
 import yaml
-from crawl4ai.cli import cli, load_config_file, parse_key_values
-from crawl4ai.models import CrawlResult, MarkdownGenerationResult
+from crawl.cli import cli, load_config_file, parse_key_values
+from crawl.models import CrawlResult, MarkdownGenerationResult
 import tempfile
 import os
 import click
@@ -64,7 +64,7 @@ class TestCLIBasics:
     def test_help(self, runner):
         result = runner.invoke(cli, ['--help'])
         assert result.exit_code == 0
-        assert 'Crawl4AI CLI' in result.output
+        assert 'Crawl CLI' in result.output
 
     def test_examples(self, runner):
         result = runner.invoke(cli, ['--example'])
@@ -161,7 +161,7 @@ class TestDeepCrawlOutput:
 
     def test_deep_crawl_markdown_output_includes_all_pages(self, runner, mock_crawl_results):
         """Test that deep crawl with markdown output includes all pages, not just the first"""
-        with patch('crawl4ai.cli.anyio.run') as mock_anyio_run:
+        with patch('crawl.cli.anyio.run') as mock_anyio_run:
             # Return list of results (simulating deep crawl)
             mock_anyio_run.return_value = mock_crawl_results
 
@@ -184,7 +184,7 @@ class TestDeepCrawlOutput:
 
     def test_deep_crawl_markdown_fit_output_includes_all_pages(self, runner, mock_crawl_results):
         """Test that deep crawl with markdown-fit output includes all pages"""
-        with patch('crawl4ai.cli.anyio.run') as mock_anyio_run:
+        with patch('crawl.cli.anyio.run') as mock_anyio_run:
             mock_anyio_run.return_value = mock_crawl_results
 
             result = runner.invoke(cli, [
@@ -205,7 +205,7 @@ class TestDeepCrawlOutput:
         """Test that deep crawl with file output includes all pages"""
         output_file = tmp_path / "output.md"
 
-        with patch('crawl4ai.cli.anyio.run') as mock_anyio_run:
+        with patch('crawl.cli.anyio.run') as mock_anyio_run:
             mock_anyio_run.return_value = mock_crawl_results
 
             result = runner.invoke(cli, [
@@ -238,7 +238,7 @@ class TestDeepCrawlOutput:
         )
         single_result._markdown = markdown
 
-        with patch('crawl4ai.cli.anyio.run') as mock_anyio_run:
+        with patch('crawl.cli.anyio.run') as mock_anyio_run:
             # Return single result (not a list)
             mock_anyio_run.return_value = single_result
 

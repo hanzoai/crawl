@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const repoLinkElement = headerContainer.querySelector('a[href*="github.com/"]'); // Find the existing GitHub link
-    let repoUrl = 'https://github.com/unclecode/crawl4ai';
+    let repoUrl = 'https://github.com/hanzoai/crawl';
     // if (repoLinkElement) {
     //     repoUrl = repoLinkElement.href;
     // } else {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- Get Version (Attempt to extract from site title) ---
     let version = '';
     const siteTitleElement = headerContainer.querySelector('.terminal-title, .site-title'); // Adjust selector based on theme's title element
-    // Example title: "Crawl4AI Documentation (v0.5.x)"
+    // Example title: "Crawl Documentation (v0.5.x)"
     if (siteTitleElement) {
          const match = siteTitleElement.textContent.match(/\((v?[^)]+)\)/); // Look for text in parentheses starting with 'v' (optional)
          if (match && match[1]) {

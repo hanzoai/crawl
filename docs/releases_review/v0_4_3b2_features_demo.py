@@ -31,7 +31,7 @@ import re
 import random
 from typing import Optional, Dict
 from dotenv import load_dotenv
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler, 
     BrowserConfig,
     CrawlerRunConfig,

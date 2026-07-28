@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test client for demonstrating user-provided hooks in Crawl4AI Docker API
+Test client for demonstrating user-provided hooks in Crawl Docker API
 """
 
 import requests
@@ -62,7 +62,7 @@ async def hook(page, context, url, **kwargs):
     print(f"Hook: About to navigate to {url}")
     # Add custom headers
     await page.set_extra_http_headers({
-        'X-Test-Header': 'crawl4ai-hooks-test'
+        'X-Test-Header': 'crawl-hooks-test'
     })
     return page
 """
@@ -342,7 +342,7 @@ def test_basic_without_hooks():
 
 def main():
     """Run all tests"""
-    print("🔧 Crawl4AI Docker API - Hooks Testing")
+    print("🔧 Crawl Docker API - Hooks Testing")
     print("=" * 70)
     
     # Test 1: Get hooks information

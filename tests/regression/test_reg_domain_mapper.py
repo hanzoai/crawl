@@ -1,5 +1,5 @@
 """
-Crawl4AI Regression Tests - DomainMapper
+Crawl Regression Tests - DomainMapper
 
 Tests DomainMapper functionality: host discovery, soft-404 detection,
 multi-source scanning, post-processing, and crawler integration.
@@ -9,7 +9,7 @@ All network tests use real endpoints.
 
 import pytest
 import pytest_asyncio
-from crawl4ai import DomainMapper, DomainMapperConfig, AsyncWebCrawler
+from crawl import DomainMapper, DomainMapperConfig, AsyncWebCrawler
 
 
 # ---------------------------------------------------------------------------
@@ -35,7 +35,7 @@ async def test_basic_scan(mapper):
         extract_head=False,
         verbose=False,
     )
-    results = await mapper.scan("docs.crawl4ai.com", config)
+    results = await mapper.scan("docs.hanzo.ai", config)
     assert len(results) >= 1, "Should find at least 1 URL from sitemap"
     assert all("url" in r for r in results)
     assert all("host" in r for r in results)
@@ -52,7 +52,7 @@ async def test_scan_with_head_extraction(mapper):
         max_urls=3,
         verbose=False,
     )
-    results = await mapper.scan("docs.crawl4ai.com", config)
+    results = await mapper.scan("docs.hanzo.ai", config)
     assert len(results) >= 1
     has_title = any(r.get("head_data", {}).get("title") for r in results)
     assert has_title, "At least one result should have a title"
@@ -80,9 +80,9 @@ async def test_crt_subdomain_discovery(mapper):
 @pytest.mark.network
 async def test_dns_subdomain_guessing(mapper):
     """DNS guessing should find common subdomains."""
-    hosts = await mapper._guess_subdomains("crawl4ai.com", ["docs", "www", "api"], DomainMapperConfig())
-    # docs.crawl4ai.com should resolve
-    assert "docs.crawl4ai.com" in hosts
+    hosts = await mapper._guess_subdomains("crawl.hanzo.ai", ["docs", "www", "api"], DomainMapperConfig())
+    # docs.hanzo.ai should resolve
+    assert "docs.hanzo.ai" in hosts
 
 
 # ---------------------------------------------------------------------------
@@ -127,7 +127,7 @@ async def test_sitemap_only_no_cross_contamination(mapper):
         extract_head=False,
         verbose=False,
     )
-    results = await mapper.scan("docs.crawl4ai.com", config)
+    results = await mapper.scan("docs.hanzo.ai", config)
     for r in results:
         for part in r["source"].split("+"):
             assert part == "sitemap", f"Unexpected source: {part}"
@@ -142,7 +142,7 @@ async def test_probe_only(mapper):
         extract_head=False,
         verbose=False,
     )
-    results = await mapper.scan("docs.crawl4ai.com", config)
+    results = await mapper.scan("docs.hanzo.ai", config)
     assert isinstance(results, list)
     assert len(results) >= 1
 
@@ -161,7 +161,7 @@ async def test_max_urls_respected(mapper):
         max_urls=5,
         verbose=False,
     )
-    results = await mapper.scan("docs.crawl4ai.com", config)
+    results = await mapper.scan("docs.hanzo.ai", config)
     assert len(results) <= 5
 
 
@@ -175,7 +175,7 @@ async def test_nonsense_filter_removes_assets(mapper):
         filter_nonsense_urls=True,
         verbose=False,
     )
-    results = await mapper.scan("docs.crawl4ai.com", config)
+    results = await mapper.scan("docs.hanzo.ai", config)
     for r in results:
         url = r["url"].lower()
         assert not url.endswith(".js"), f"JS file should be filtered: {url}"
@@ -217,7 +217,7 @@ async def test_domain_with_scheme_stripped(mapper):
         max_urls=3,
         verbose=False,
     )
-    results = await mapper.scan("https://docs.crawl4ai.com", config)
+    results = await mapper.scan("https://docs.hanzo.ai", config)
     assert len(results) >= 1
 
 
@@ -231,7 +231,7 @@ async def test_amap_domain_on_crawler():
     """AsyncWebCrawler.amap_domain() should work end-to-end."""
     async with AsyncWebCrawler() as crawler:
         results = await crawler.amap_domain(
-            "docs.crawl4ai.com",
+            "docs.hanzo.ai",
             DomainMapperConfig(
                 source="sitemap",
                 extract_head=False,

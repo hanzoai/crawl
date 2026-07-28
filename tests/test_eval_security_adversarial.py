@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Adversarial security tests for all eval/exec paths in crawl4ai.
+Adversarial security tests for all eval/exec paths in crawl.
 
 Tests three attack surfaces:
 1. _compute_field expression path (extraction_strategy.py) - MUST be fully disabled
@@ -16,7 +16,7 @@ import os
 import unittest
 import logging
 
-# Ensure crawl4ai is importable
+# Ensure crawl is importable
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "deploy", "docker"))
 
@@ -31,7 +31,7 @@ class TestComputeFieldExpressionKilled(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
         schema = {"baseSelector": "div", "fields": [
             {"name": "x", "selector": "span", "type": "text"}
         ]}
@@ -183,8 +183,8 @@ class TestSafeEvalConfigAdversarial(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        import crawl4ai as _c4
-        from crawl4ai import CrawlerRunConfig, BrowserConfig
+        import crawl as _c4
+        from crawl import CrawlerRunConfig, BrowserConfig
 
         _SAFE_CONFIG_ALLOWED_NAMES = {
             "CrawlerRunConfig", "BrowserConfig", "HTTPCrawlerConfig",
@@ -386,7 +386,7 @@ class TestSafeEvalExpressionDeleted(unittest.TestCase):
 
     def test_function_not_importable(self):
         """_safe_eval_expression must not exist in extraction_strategy."""
-        from crawl4ai import extraction_strategy
+        from crawl import extraction_strategy
         self.assertFalse(
             hasattr(extraction_strategy, '_safe_eval_expression'),
             "_safe_eval_expression should be deleted - dead security code is a liability"
@@ -394,7 +394,7 @@ class TestSafeEvalExpressionDeleted(unittest.TestCase):
 
     def test_safe_eval_builtins_not_importable(self):
         """_SAFE_EVAL_BUILTINS must not exist in extraction_strategy."""
-        from crawl4ai import extraction_strategy
+        from crawl import extraction_strategy
         self.assertFalse(
             hasattr(extraction_strategy, '_SAFE_EVAL_BUILTINS'),
             "_SAFE_EVAL_BUILTINS should be deleted along with _safe_eval_expression"
@@ -740,7 +740,7 @@ class TestEndToEndExploit(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
         schema = {"baseSelector": "div", "fields": [
             {"name": "x", "selector": "span", "type": "text"}
         ]}
@@ -811,7 +811,7 @@ class TestEndToEndExploit(unittest.TestCase):
 
     def test_exploit_via_json_schema(self):
         """Simulate how the exploit arrives: embedded in extraction schema."""
-        from crawl4ai.extraction_strategy import JsonCssExtractionStrategy
+        from crawl.extraction_strategy import JsonCssExtractionStrategy
 
         malicious_schema = {
             "name": "pwned",
@@ -832,7 +832,7 @@ class TestEndToEndExploit(unittest.TestCase):
 
 if __name__ == "__main__":
     print("=" * 70)
-    print("Crawl4AI Adversarial Security Tests")
+    print("Crawl Adversarial Security Tests")
     print("=" * 70)
     print()
     unittest.main(verbosity=2)

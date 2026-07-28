@@ -11,8 +11,8 @@ import asyncio
 import json
 from typing import Dict, Any, List
 
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 
 class TestBFSResumeIntegration:

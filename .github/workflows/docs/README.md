@@ -101,10 +101,10 @@ v1.2.3 → 1.2.3
 ```
 
 ##### 2. Version Consistency Check
-Validates that the git tag matches `crawl4ai/__version__.py`:
+Validates that the git tag matches `crawl/__version__.py`:
 
 ```python
-# crawl4ai/__version__.py must contain:
+# crawl/__version__.py must contain:
 __version__ = "1.2.3"  # Must match tag v1.2.3
 ```
 
@@ -112,7 +112,7 @@ __version__ = "1.2.3"  # Must match tag v1.2.3
 ```
 Tag version: 1.2.3
 Package version: 1.2.2
-❌ Version mismatch! Please update crawl4ai/__version__.py
+❌ Version mismatch! Please update crawl/__version__.py
 ```
 
 ##### 3. Package Build
@@ -123,7 +123,7 @@ Package version: 1.2.2
 ##### 4. PyPI Upload
 ```bash
 twine upload dist/*
-# Uploads to: https://pypi.org/project/crawl4ai/
+# Uploads to: https://pypi.org/project/crawl/
 ```
 
 **Environment Variables**:
@@ -149,7 +149,7 @@ Generates a GitHub Actions summary with:
 
 | Artifact | Location | Time |
 |----------|----------|------|
-| PyPI Package | https://pypi.org/project/crawl4ai/ | ~2-3 min |
+| PyPI Package | https://pypi.org/project/crawl/ | ~2-3 min |
 | GitHub Release | Repository releases page | ~2-3 min |
 
 ---
@@ -220,10 +220,10 @@ password: ${{ secrets.DOCKER_TOKEN }}
 
 **Docker Tags Created**:
 ```
-unclecode/crawl4ai:1.2.3    # Exact version
-unclecode/crawl4ai:1.2      # Minor version
-unclecode/crawl4ai:1        # Major version
-unclecode/crawl4ai:latest   # Latest stable
+hanzoai/crawl:1.2.3    # Exact version
+hanzoai/crawl:1.2      # Minor version
+hanzoai/crawl:1        # Major version
+hanzoai/crawl:latest   # Latest stable
 ```
 
 **Platforms**:
@@ -294,7 +294,7 @@ Cached: Base image, system packages
 |----------|----------|------|------|
 | Docker Images | Docker Hub | 4 tags | 1-15 min |
 
-**Docker Hub URL**: https://hub.docker.com/r/unclecode/crawl4ai
+**Docker Hub URL**: https://hub.docker.com/r/hanzoai/crawl
 
 ---
 
@@ -304,7 +304,7 @@ Cached: Base image, system packages
 
 #### Step 1: Update Version
 
-Edit `crawl4ai/__version__.py`:
+Edit `crawl/__version__.py`:
 ```python
 __version__ = "1.2.3"
 ```
@@ -312,7 +312,7 @@ __version__ = "1.2.3"
 #### Step 2: Commit and Tag
 
 ```bash
-git add crawl4ai/__version__.py
+git add crawl/__version__.py
 git commit -m "chore: bump version to 1.2.3"
 git tag v1.2.3
 git push origin main
@@ -340,11 +340,11 @@ git push origin v1.2.3
 
 ```bash
 # Check PyPI
-pip install crawl4ai==1.2.3
+pip install crawl==1.2.3
 
 # Check Docker
-docker pull unclecode/crawl4ai:1.2.3
-docker run unclecode/crawl4ai:1.2.3 --version
+docker pull hanzoai/crawl:1.2.3
+docker run hanzoai/crawl:1.2.3 --version
 ```
 
 ### Manual Docker Rebuild
@@ -407,7 +407,7 @@ Configure these in: **Repository Settings → Secrets and variables → Actions*
 
 **How to Create**:
 1. Go to https://pypi.org/manage/account/token/
-2. Create token with scope: "Entire account" or "Project: crawl4ai"
+2. Create token with scope: "Entire account" or "Project: crawl"
 3. Copy token (starts with `pypi-`)
 4. Add to GitHub secrets as `PYPI_TOKEN`
 
@@ -429,7 +429,7 @@ pypi-AgEIcHlwaS5vcmcCJGQ4M2Y5YTM5LWRjMzUtNGY3MS04ZmMwLWVhNzA5MjkzMjk5YQACKl...
 **How to Create**:
 1. Go to https://hub.docker.com/settings/security
 2. Click "New Access Token"
-3. Name: `github-actions-crawl4ai`
+3. Name: `github-actions-crawl`
 4. Permissions: Read, Write, Delete
 5. Copy token
 6. Add to GitHub secrets as `DOCKER_TOKEN`
@@ -462,16 +462,16 @@ permissions:
 **Error**:
 ```
 ❌ Version mismatch! Tag: 1.2.3, Package: 1.2.2
-Please update crawl4ai/__version__.py to match the tag version
+Please update crawl/__version__.py to match the tag version
 ```
 
-**Cause**: Git tag doesn't match `__version__` in `crawl4ai/__version__.py`
+**Cause**: Git tag doesn't match `__version__` in `crawl/__version__.py`
 
 **Fix**:
 ```bash
 # Option 1: Update __version__.py and re-tag
-vim crawl4ai/__version__.py  # Change to 1.2.3
-git add crawl4ai/__version__.py
+vim crawl/__version__.py  # Change to 1.2.3
+git add crawl/__version__.py
 git commit -m "fix: update version to 1.2.3"
 git tag -d v1.2.3                    # Delete local tag
 git push --delete origin v1.2.3      # Delete remote tag
@@ -506,7 +506,7 @@ HTTPError: 403 Forbidden
    - Increment version number and retry
 
 3. **Package Name Conflict**:
-   - Ensure you own the `crawl4ai` package on PyPI
+   - Ensure you own the `crawl` package on PyPI
    - Check token scope includes this project
 
 ### Docker Build Failure
@@ -525,7 +525,7 @@ failed to solve: process "/bin/sh -c ..." did not complete successfully
 
 2. **Test Locally**:
    ```bash
-   docker build -t crawl4ai:test .
+   docker build -t crawl:test .
    ```
 
 3. **Common Issues**:
@@ -655,13 +655,13 @@ docker buildx build --platform linux/amd64,linux/arm64 ...
 **Pull Behavior**:
 ```bash
 # Docker automatically selects correct platform
-docker pull unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
 
 # On M1 Mac: Pulls arm64 variant
 # On Intel Linux: Pulls amd64 variant
 
 # Force specific platform
-docker pull --platform linux/amd64 unclecode/crawl4ai:latest
+docker pull --platform linux/amd64 hanzoai/crawl:latest
 ```
 
 ### Semantic Versioning Strategy
@@ -706,16 +706,16 @@ Tags: 2.0.0, 2.0, 2, latest
 
 ```bash
 # Maximum stability (never updates)
-docker pull unclecode/crawl4ai:1.2.3
+docker pull hanzoai/crawl:1.2.3
 
 # Get patch updates only
-docker pull unclecode/crawl4ai:1.2
+docker pull hanzoai/crawl:1.2
 
 # Get minor updates (features, bug fixes)
-docker pull unclecode/crawl4ai:1
+docker pull hanzoai/crawl:1
 
 # Always get latest (potentially breaking)
-docker pull unclecode/crawl4ai:latest
+docker pull hanzoai/crawl:latest
 ```
 
 ### Cache Optimization Strategies
@@ -835,7 +835,7 @@ uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
 #### 4. Token Scoping
 
 **PyPI Token**:
-- Scope: Project-specific (`crawl4ai` only)
+- Scope: Project-specific (`crawl` only)
 - Not: Account-wide access
 
 **Docker Token**:
@@ -901,8 +901,8 @@ git commit -m "backup: workflow before modification"
 
 **Steps**:
 1. **Identify what succeeded**:
-   - Check PyPI: `pip search crawl4ai`
-   - Check Docker Hub: https://hub.docker.com/r/unclecode/crawl4ai/tags
+   - Check PyPI: `pip search crawl`
+   - Check Docker Hub: https://hub.docker.com/r/hanzoai/crawl/tags
    - Check GitHub Releases
 
 2. **Clean up partial release**:
@@ -933,7 +933,7 @@ Add pre-commit hook:
 ```bash
 # .git/hooks/pre-commit
 #!/bin/bash
-VERSION_FILE="crawl4ai/__version__.py"
+VERSION_FILE="crawl/__version__.py"
 VERSION=$(python -c "exec(open('$VERSION_FILE').read()); print(__version__)")
 echo "Current version: $VERSION"
 ```
@@ -979,15 +979,15 @@ Create issue template:
 ```markdown
 ## Release Checklist
 
-- [ ] Update version in `crawl4ai/__version__.py`
+- [ ] Update version in `crawl/__version__.py`
 - [ ] Update CHANGELOG.md
 - [ ] Run tests locally: `pytest`
 - [ ] Build package locally: `python -m build`
 - [ ] Create and push tag: `git tag v1.2.3 && git push origin v1.2.3`
 - [ ] Monitor Release Pipeline workflow
 - [ ] Monitor Docker Release workflow
-- [ ] Verify PyPI: `pip install crawl4ai==1.2.3`
-- [ ] Verify Docker: `docker pull unclecode/crawl4ai:1.2.3`
+- [ ] Verify PyPI: `pip install crawl==1.2.3`
+- [ ] Verify Docker: `docker pull hanzoai/crawl:1.2.3`
 - [ ] Announce release
 ```
 
@@ -1026,4 +1026,4 @@ For issues or questions:
 ---
 
 **Last Updated**: 2025-01-21
-**Maintainer**: Crawl4AI Team
+**Maintainer**: Crawl Team

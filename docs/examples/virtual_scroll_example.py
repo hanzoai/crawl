@@ -12,7 +12,7 @@ import http.server
 import socketserver
 import threading
 from pathlib import Path
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig, CacheMode, BrowserConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, VirtualScrollConfig, CacheMode, BrowserConfig
 
 # Get the assets directory path
 ASSETS_DIR = Path(__file__).parent / "assets"
@@ -344,7 +344,7 @@ async def compare_with_without_virtual_scroll():
 if __name__ == "__main__":
     print("""
 ╔════════════════════════════════════════════════════════════╗
-║           Virtual Scroll Examples for Crawl4AI             ║
+║           Virtual Scroll Examples for Crawl             ║
 ╚════════════════════════════════════════════════════════════╝
 
 These examples demonstrate different virtual scroll scenarios:

@@ -6,8 +6,8 @@ Smart URL discovery for efficient large-scale crawling. Discover thousands of UR
 
 ```python
 # Deep Crawling: Real-time discovery (page by page)
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 async def deep_crawl_example():
     config = CrawlerRunConfig(
@@ -23,7 +23,7 @@ async def deep_crawl_example():
         print(f"Discovered {len(results)} pages dynamically")
 
 # URL Seeding: Bulk discovery (thousands instantly)
-from crawl4ai import AsyncUrlSeeder, SeedingConfig
+from crawl import AsyncUrlSeeder, SeedingConfig
 
 async def url_seeding_example():
     config = SeedingConfig(
@@ -45,7 +45,7 @@ async def url_seeding_example():
 
 ```python
 import asyncio
-from crawl4ai import AsyncUrlSeeder, SeedingConfig
+from crawl import AsyncUrlSeeder, SeedingConfig
 
 async def basic_discovery():
     # Context manager handles cleanup automatically
@@ -115,7 +115,7 @@ async def pattern_filtering():
 ### SeedingConfig Parameters
 
 ```python
-from crawl4ai import SeedingConfig
+from crawl import SeedingConfig
 
 # Comprehensive configuration
 config = SeedingConfig(
@@ -480,7 +480,7 @@ async def smart_research_pipeline():
             print(f"  {i}. [{score:.2f}] {title}")
     
     # Step 4: Crawl selected articles
-    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+    from crawl import AsyncWebCrawler, CrawlerRunConfig
     
     print(f"\n🕷️ Crawling {len(top_articles)} articles...")
     
@@ -652,4 +652,4 @@ best_practices = """
 """
 ```
 
-**📖 Learn more:** [Complete URL Seeding Guide](https://docs.crawl4ai.com/core/url-seeding/), [SeedingConfig Reference](https://docs.crawl4ai.com/api/parameters/), [Multi-URL Crawling](https://docs.crawl4ai.com/advanced/multi-url-crawling/)
+**📖 Learn more:** [Complete URL Seeding Guide](https://docs.hanzo.ai/core/url-seeding/), [SeedingConfig Reference](https://docs.hanzo.ai/api/parameters/), [Multi-URL Crawling](https://docs.hanzo.ai/advanced/multi-url-crawling/)

@@ -1,6 +1,6 @@
 # Deep Crawling
 
-One of Crawl4AI's most powerful features is its ability to perform **configurable deep crawling** that can explore websites beyond a single page. With fine-tuned control over crawl depth, domain boundaries, and content filtering, Crawl4AI gives you the tools to extract precisely the content you need.
+One of Crawl's most powerful features is its ability to perform **configurable deep crawling** that can explore websites beyond a single page. With fine-tuned control over crawl depth, domain boundaries, and content filtering, Crawl gives you the tools to extract precisely the content you need.
 
 In this tutorial, you'll learn:
 
@@ -24,9 +24,9 @@ Here's a minimal code snippet that implements a basic deep crawl using the **BFS
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
 
 async def main():
     # Configure a 2-level deep crawl
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 ```
 
 **What's happening?**  
-- `BFSDeepCrawlStrategy(max_depth=2, include_external=False)` instructs Crawl4AI to:
+- `BFSDeepCrawlStrategy(max_depth=2, include_external=False)` instructs Crawl to:
   - Crawl the starting page (depth 0) plus 2 more levels
   - Stay within the same domain (don't follow external links)
 - Each result contains metadata like the crawl depth
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 The **BFSDeepCrawlStrategy** uses a breadth-first approach, exploring all links at one depth before moving deeper:
 
 ```python
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 # Basic configuration
 strategy = BFSDeepCrawlStrategy(
@@ -93,7 +93,7 @@ strategy = BFSDeepCrawlStrategy(
 The **DFSDeepCrawlStrategy** uses a depth-first approach, explores as far down a branch as possible before backtracking.
 
 ```python
-from crawl4ai.deep_crawling import DFSDeepCrawlStrategy
+from crawl.deep_crawling import DFSDeepCrawlStrategy
 
 # Basic configuration
 strategy = DFSDeepCrawlStrategy(
@@ -117,8 +117,8 @@ strategy = DFSDeepCrawlStrategy(
 For more intelligent crawling, use **BestFirstCrawlingStrategy** with scorers to prioritize the most relevant pages:
 
 ```python
-from crawl4ai.deep_crawling import BestFirstCrawlingStrategy
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling import BestFirstCrawlingStrategy
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 # Create a scorer
 scorer = KeywordRelevanceScorer(
@@ -146,7 +146,7 @@ This crawling approach:
 
 ## 3. Streaming vs. Non-Streaming Results
 
-Crawl4AI can return results in two modes:
+Crawl can return results in two modes:
 
 ### 3.1 Non-Streaming Mode (Default)
 
@@ -199,7 +199,7 @@ Filters help you narrow down which pages to crawl. Combine multiple filters usin
 ### 4.1 Basic URL Pattern Filter
 
 ```python
-from crawl4ai.deep_crawling.filters import FilterChain, URLPatternFilter
+from crawl.deep_crawling.filters import FilterChain, URLPatternFilter
 
 # Only follow URLs containing "blog" or "docs"
 url_filter = URLPatternFilter(patterns=["*blog*", "*docs*"])
@@ -215,7 +215,7 @@ config = CrawlerRunConfig(
 ### 4.2 Combining Multiple Filters
 
 ```python
-from crawl4ai.deep_crawling.filters import (
+from crawl.deep_crawling.filters import (
     FilterChain,
     URLPatternFilter,
     DomainFilter,
@@ -247,7 +247,7 @@ config = CrawlerRunConfig(
 
 ### 4.3 Available Filter Types
 
-Crawl4AI includes several specialized filters:
+Crawl includes several specialized filters:
 
 - **`URLPatternFilter`**: Matches URL patterns using wildcard syntax
 - **`DomainFilter`**: Controls which domains to include or exclude
@@ -264,8 +264,8 @@ Scorers assign priority values to discovered URLs, helping the crawler focus on 
 ### 5.1 KeywordRelevanceScorer
 
 ```python
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
-from crawl4ai.deep_crawling import BestFirstCrawlingStrategy
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling import BestFirstCrawlingStrategy
 
 # Create a keyword relevance scorer
 keyword_scorer = KeywordRelevanceScorer(
@@ -302,7 +302,7 @@ async with AsyncWebCrawler() as crawler:
 The **SEOFilter** helps you identify pages with strong SEO characteristics:
 
 ```python
-from crawl4ai.deep_crawling.filters import FilterChain, SEOFilter
+from crawl.deep_crawling.filters import FilterChain, SEOFilter
 
 # Create an SEO filter that looks for specific keywords in page metadata
 seo_filter = SEOFilter(
@@ -323,7 +323,7 @@ config = CrawlerRunConfig(
 The **ContentRelevanceFilter** analyzes the actual content of pages:
 
 ```python
-from crawl4ai.deep_crawling.filters import FilterChain, ContentRelevanceFilter
+from crawl.deep_crawling.filters import FilterChain, ContentRelevanceFilter
 
 # Create a content relevance filter
 relevance_filter = ContentRelevanceFilter(
@@ -351,16 +351,16 @@ This example combines multiple techniques for a sophisticated crawl:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
-from crawl4ai.deep_crawling import BestFirstCrawlingStrategy
-from crawl4ai.deep_crawling.filters import (
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl.deep_crawling import BestFirstCrawlingStrategy
+from crawl.deep_crawling.filters import (
     FilterChain,
     DomainFilter,
     URLPatternFilter,
     ContentTypeFilter
 )
-from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
+from crawl.deep_crawling.scorers import KeywordRelevanceScorer
 
 async def run_advanced_crawler():
     # Create a sophisticated filter chain
@@ -489,7 +489,7 @@ This is especially useful for security-conscious crawling or when dealing with s
 
 ## 10. Crash Recovery for Long-Running Crawls
 
-For production deployments, especially in cloud environments where instances can be terminated unexpectedly, Crawl4AI provides built-in crash recovery support for all deep crawl strategies.
+For production deployments, especially in cloud environments where instances can be terminated unexpectedly, Crawl provides built-in crash recovery support for all deep crawl strategies.
 
 ### 10.1 Enabling State Persistence
 
@@ -499,7 +499,7 @@ All deep crawl strategies (BFS, DFS, Best-First) support two optional parameters
 - **`on_state_change`**: Async callback fired after each URL is processed
 
 ```python
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 import json
 
 # Callback to save state after each URL
@@ -530,8 +530,8 @@ The state dictionary is JSON-serializable and contains:
 
 ```python
 import json
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 # Load saved state (e.g., from Redis, database, or file)
 saved_state = json.loads(await redis.get("crawl_state"))
@@ -586,10 +586,10 @@ if state:
 import asyncio
 import json
 import redis.asyncio as redis
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
-REDIS_KEY = "crawl4ai:crawl_state"
+REDIS_KEY = "crawl:crawl_state"
 
 async def main():
     redis_client = redis.Redis(host='localhost', port=6379, db=0)
@@ -637,7 +637,7 @@ When `resume_state=None` and `on_state_change=None` (the defaults), there is no 
 
 ## 11. Cancellation Support for Deep Crawls
 
-For production environments like cloud platforms, you often need to stop a running crawl mid-execution—whether the user changed their mind, specified the wrong URL, or wants to control costs. Crawl4AI provides built-in cancellation support for all deep crawl strategies.
+For production environments like cloud platforms, you often need to stop a running crawl mid-execution—whether the user changed their mind, specified the wrong URL, or wants to control costs. Crawl provides built-in cancellation support for all deep crawl strategies.
 
 ### 11.1 Two Ways to Cancel
 
@@ -646,7 +646,7 @@ For production environments like cloud platforms, you often need to stop a runni
 Use `should_cancel` to check an external source (Redis, database, API) before each URL:
 
 ```python
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 async def check_if_cancelled():
     # Check Redis, database, or any external source
@@ -720,8 +720,8 @@ strategy = BFSDeepCrawlStrategy(
 import asyncio
 import json
 import redis.asyncio as redis
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-from crawl4ai.deep_crawling import BFSDeepCrawlStrategy
+from crawl import AsyncWebCrawler, CrawlerRunConfig
+from crawl.deep_crawling import BFSDeepCrawlStrategy
 
 async def run_cancellable_crawl(job_id: str, start_url: str):
     redis_client = redis.Redis(host='localhost', port=6379, db=0)
@@ -803,7 +803,7 @@ When you need to quickly discover URLs without full page processing, use **prefe
 ### 12.1 Enabling Prefetch Mode
 
 ```python
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 config = CrawlerRunConfig(prefetch=True)
 
@@ -841,7 +841,7 @@ The most common use case is two-phase crawling:
 
 ```python
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 async def two_phase_crawl(start_url: str):
     async with AsyncWebCrawler() as crawler:
@@ -892,7 +892,7 @@ if __name__ == "__main__":
 
 ## 13. Summary & Next Steps
 
-In this **Deep Crawling with Crawl4AI** tutorial, you learned to:
+In this **Deep Crawling with Crawl** tutorial, you learned to:
 
 - Configure **BFSDeepCrawlStrategy**, **DFSDeepCrawlStrategy**, and **BestFirstCrawlingStrategy**
 - Process results in streaming or non-streaming mode

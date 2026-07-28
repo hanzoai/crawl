@@ -1,15 +1,15 @@
-# Tutorial: Clicking Buttons to Load More Content with Crawl4AI
+# Tutorial: Clicking Buttons to Load More Content with Crawl
 
 ## Introduction
 
-When scraping dynamic websites, it’s common to encounter “Load More” or “Next” buttons that must be clicked to reveal new content. Crawl4AI provides a straightforward way to handle these situations using JavaScript execution and waiting conditions. In this tutorial, we’ll cover two approaches:
+When scraping dynamic websites, it’s common to encounter “Load More” or “Next” buttons that must be clicked to reveal new content. Crawl provides a straightforward way to handle these situations using JavaScript execution and waiting conditions. In this tutorial, we’ll cover two approaches:
 
 1. **Step-by-step (Session-based) Approach:** Multiple calls to `arun()` to progressively load more content.
 2. **Single-call Approach:** Execute a more complex JavaScript snippet inside a single `arun()` call to handle all clicks at once before the extraction.
 
 ## Prerequisites
 
-- A working installation of Crawl4AI
+- A working installation of Crawl
 - Basic familiarity with Python’s `async`/`await` syntax
 
 ## Step-by-Step Approach
@@ -17,7 +17,7 @@ When scraping dynamic websites, it’s common to encounter “Load More” or �
 Use a session ID to maintain state across multiple `arun()` calls:
 
 ```python
-from crawl4ai import AsyncWebCrawler, CacheMode
+from crawl import AsyncWebCrawler, CacheMode
 
 js_code = [
     # This JS finds the “Next” button and clicks it
@@ -61,12 +61,12 @@ If the page allows it, you can run a single `arun()` call with a more elaborate 
 - Iterates over all the modules or "Next" buttons
 - Clicks them one by one
 - Waits for content updates between each click
-- Once done, returns control to Crawl4AI for extraction.
+- Once done, returns control to Crawl for extraction.
 
 Example snippet:
 
 ```python
-from crawl4ai import AsyncWebCrawler, CacheMode
+from crawl import AsyncWebCrawler, CacheMode
 
 js_code = [
     # Example JS that clicks multiple modules:
@@ -110,7 +110,7 @@ async with AsyncWebCrawler(headless=True, verbose=True) as crawler:
 
 ## Conclusion
 
-Crawl4AI makes it easy to handle dynamic content:
+Crawl makes it easy to handle dynamic content:
 - Use session IDs and multiple `arun()` calls for stepwise crawling.
 - Or pack all actions into one `arun()` call if the interactions are well-defined upfront.
 

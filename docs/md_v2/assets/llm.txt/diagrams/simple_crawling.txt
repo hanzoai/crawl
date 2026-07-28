@@ -408,4 +408,4 @@ flowchart TD
     style I fill:#c8e6c9
 ```
 
-**📖 Learn more:** [Simple Crawling Guide](https://docs.crawl4ai.com/core/simple-crawling/), [Configuration Options](https://docs.crawl4ai.com/core/browser-crawler-config/), [Result Processing](https://docs.crawl4ai.com/core/crawler-result/), [Table Extraction](https://docs.crawl4ai.com/extraction/no-llm-strategies/)
+**📖 Learn more:** [Simple Crawling Guide](https://docs.hanzo.ai/core/simple-crawling/), [Configuration Options](https://docs.hanzo.ai/core/browser-crawler-config/), [Result Processing](https://docs.hanzo.ai/core/crawler-result/), [Table Extraction](https://docs.hanzo.ai/extraction/no-llm-strategies/)

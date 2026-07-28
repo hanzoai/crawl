@@ -2,10 +2,10 @@
 
 import pytest
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 
-# Use crawl4ai docs as test domain
-TEST_DOMAIN = "https://docs.crawl4ai.com"
+# Use crawl docs as test domain
+TEST_DOMAIN = "https://docs.hanzo.ai"
 
 
 class TestPrefetchModeIntegration:
@@ -55,7 +55,7 @@ class TestPrefetchModeIntegration:
     @pytest.mark.asyncio
     async def test_prefetch_with_deep_crawl(self):
         """Test prefetch mode with deep crawl strategy."""
-        from crawl4ai import BFSDeepCrawlStrategy
+        from crawl import BFSDeepCrawlStrategy
 
         async with AsyncWebCrawler() as crawler:
             config = CrawlerRunConfig(

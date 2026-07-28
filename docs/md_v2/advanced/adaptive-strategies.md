@@ -290,7 +290,7 @@ with open("crawl_analysis.json", "w") as f:
 ### Implementing a Custom Strategy
 
 ```python
-from crawl4ai.adaptive_crawler import CrawlStrategy
+from crawl.adaptive_crawler import CrawlStrategy
 
 class DomainSpecificStrategy(CrawlStrategy):
     def calculate_coverage(self, state: CrawlState) -> float:

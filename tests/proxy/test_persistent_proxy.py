@@ -2,12 +2,12 @@ import asyncio
 import os
 import shutil
 import uuid
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_configs import ProxyConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.async_configs import ProxyConfig
 
 
 async def crawl_chanel(url: str):
-    profile_dir = os.path.expanduser(f"~/.crawl4ai/chanel_{uuid.uuid4().hex[:8]}")
+    profile_dir = os.path.expanduser(f"~/.crawl/chanel_{uuid.uuid4().hex[:8]}")
     os.makedirs(profile_dir, exist_ok=True)
 
     browser_config = BrowserConfig(

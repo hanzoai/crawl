@@ -1,5 +1,5 @@
 """
-Stealth Mode Example with Crawl4AI
+Stealth Mode Example with Crawl
 
 This example demonstrates how to use the stealth mode feature to bypass basic bot detection.
 The stealth mode uses playwright-stealth to modify browser fingerprints and behaviors
@@ -17,8 +17,8 @@ import json
 from typing import Dict, Any
 from colorama import Fore, Style, init
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_logger import AsyncLogger
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.async_logger import AsyncLogger
 
 # Initialize colorama for colored output
 init()
@@ -291,7 +291,7 @@ async def compare_results():
     """Run all tests with and without stealth mode and compare results"""
     
     print(f"\n{Fore.CYAN}{'='*60}{Style.RESET_ALL}")
-    print(f"{Fore.CYAN}Crawl4AI Stealth Mode Comparison{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}Crawl Stealth Mode Comparison{Style.RESET_ALL}")
     print(f"{Fore.CYAN}{'='*60}{Style.RESET_ALL}\n")
     
     # Test 1: Bot Detection
@@ -444,7 +444,7 @@ async def stealth_best_practices():
     print(f"\n{Fore.YELLOW}2. Use Realistic Viewport and User Agent:{Style.RESET_ALL}")
     
     # Get a realistic user agent
-    from crawl4ai.user_agent_generator import UserAgentGenerator
+    from crawl.user_agent_generator import UserAgentGenerator
     ua_generator = UserAgentGenerator()
     
     browser_config = BrowserConfig(

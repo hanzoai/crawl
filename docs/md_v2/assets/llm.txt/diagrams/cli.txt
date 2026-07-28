@@ -211,7 +211,7 @@ graph TB
         I[Manual Browser Control] --> H
         J[DevTools Interface] --> H
         K[External Automation] --> H
-        L[Crawl4AI Crawler] --> H
+        L[Crawl Crawler] --> H
     end
     
     subgraph "Profile Data"
@@ -235,7 +235,7 @@ graph TB
 ```mermaid
 graph TD
     subgraph "Global Configuration"
-        A[~/.crawl4ai/config.yml] --> B[Default Settings]
+        A[~/.crawl/config.yml] --> B[Default Settings]
         B --> C[LLM Providers]
         B --> D[Browser Defaults]
         B --> E[Output Preferences]
@@ -342,8 +342,8 @@ timeline
     title CLI Workflow Evolution
     
     section Setup Phase
-        Installation : pip install crawl4ai
-                    : crawl4ai-setup
+        Installation : pip install crawl
+                    : crawl-setup
         Basic Test   : crwl https://example.com
         Config Setup : crwl config set defaults
     
@@ -422,4 +422,4 @@ graph LR
     style D1 fill:#fff3e0
 ```
 
-**📖 Learn more:** [CLI Reference](https://docs.crawl4ai.com/core/cli/), [Identity-Based Crawling](https://docs.crawl4ai.com/advanced/identity-based-crawling/), [Profile Management](https://docs.crawl4ai.com/advanced/session-management/), [Authentication Strategies](https://docs.crawl4ai.com/advanced/hooks-auth/)
+**📖 Learn more:** [CLI Reference](https://docs.hanzo.ai/core/cli/), [Identity-Based Crawling](https://docs.hanzo.ai/advanced/identity-based-crawling/), [Profile Management](https://docs.hanzo.ai/advanced/session-management/), [Authentication Strategies](https://docs.hanzo.ai/advanced/hooks-auth/)

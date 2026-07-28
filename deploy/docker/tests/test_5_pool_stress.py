@@ -14,8 +14,8 @@ from threading import Thread, Event
 import random
 
 # Config
-IMAGE = "crawl4ai-local:latest"
-CONTAINER_NAME = "crawl4ai-test"
+IMAGE = "crawl-local:latest"
+CONTAINER_NAME = "crawl-test"
 PORT = 11235
 REQUESTS_PER_CONFIG = 5  # 5 requests per config variant
 

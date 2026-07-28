@@ -1,4 +1,4 @@
-// Main content script for Crawl4AI Assistant
+// Main content script for Crawl Assistant
 // Coordinates between Click2Crawl, ScriptBuilder, and MarkdownExtraction
 
 let activeBuilder = null;
@@ -75,4 +75,4 @@ window.addEventListener('beforeunload', () => {
   }
 });
 
-console.log('Crawl4AI Assistant content script loaded');
+console.log('Crawl Assistant content script loaded');

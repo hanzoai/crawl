@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI v0.7.8 Release Demo - Verification Tests
+Crawl v0.7.8 Release Demo - Verification Tests
 ==================================================
 
 This demo ACTUALLY RUNS and VERIFIES the bug fixes in v0.7.8.
@@ -23,7 +23,7 @@ Usage:
     python docs/releases_review/demo_v0.7.8.py
 
 For Docker tests:
-    docker run -d -p 11235:11235 --shm-size=1g unclecode/crawl4ai:0.7.8
+    docker run -d -p 11235:11235 --shm-size=1g hanzoai/crawl:0.7.8
     python docs/releases_review/demo_v0.7.8.py
 """
 
@@ -83,8 +83,8 @@ async def test_proxy_config_serialization():
     print_test("ProxyConfig JSON Serialization", "#1629")
 
     try:
-        from crawl4ai import BrowserConfig
-        from crawl4ai.async_configs import ProxyConfig
+        from crawl import BrowserConfig
+        from crawl.async_configs import ProxyConfig
 
         # Create config with ProxyConfig
         proxy = ProxyConfig(
@@ -138,7 +138,7 @@ async def test_configurable_backoff():
     print_test("Configurable Backoff Parameters", "#1269")
 
     try:
-        from crawl4ai import LLMConfig
+        from crawl import LLMConfig
 
         # Test 1: Default values
         default_config = LLMConfig(provider="openai/gpt-4o-mini")
@@ -208,7 +208,7 @@ async def test_llm_input_format():
     print_test("LLM Strategy Input Format", "#1178")
 
     try:
-        from crawl4ai import LLMExtractionStrategy, LLMConfig
+        from crawl import LLMExtractionStrategy, LLMConfig
 
         llm_config = LLMConfig(provider="openai/gpt-4o-mini")
 
@@ -267,8 +267,8 @@ async def test_raw_html_url_variable():
     print_test("Raw HTML URL Variable", "#1116")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-        from crawl4ai.extraction_strategy import ExtractionStrategy
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
+        from crawl.extraction_strategy import ExtractionStrategy
 
         # Custom strategy to capture what URL is passed
         class URLCapturingStrategy(ExtractionStrategy):
@@ -326,7 +326,7 @@ async def test_redirect_url_handling():
     print_test("Relative URLs After Redirects", "#1268")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         # Test with a URL that we know the final state of
         # We'll use httpbin which doesn't redirect, but verify the mechanism works
@@ -393,10 +393,10 @@ async def test_pypdf_migration():
             pypdf_available = False
             pypdf_version = None
 
-        # Test 2: PyPDF2 should NOT be imported by crawl4ai
+        # Test 2: PyPDF2 should NOT be imported by crawl
         # Check if the processor uses pypdf
         try:
-            from crawl4ai.processors.pdf import processor
+            from crawl.processors.pdf import processor
             processor_source = open(processor.__file__).read()
 
             uses_pypdf = 'from pypdf' in processor_source or 'import pypdf' in processor_source
@@ -451,8 +451,8 @@ async def test_pydantic_configdict():
             warnings.simplefilter("always", DeprecationWarning)
 
             # Import models that might have Config classes
-            from crawl4ai.models import CrawlResult, MarkdownGenerationResult
-            from crawl4ai.async_configs import CrawlerRunConfig, BrowserConfig
+            from crawl.models import CrawlResult, MarkdownGenerationResult
+            from crawl.async_configs import CrawlerRunConfig, BrowserConfig
 
             # Filter for Pydantic-related deprecation warnings
             pydantic_warnings = [
@@ -497,8 +497,8 @@ async def test_docker_content_filter():
 
     # First verify the fix in local code
     try:
-        # Test 1: ContentRelevanceFilter should be importable from crawl4ai
-        from crawl4ai import ContentRelevanceFilter
+        # Test 1: ContentRelevanceFilter should be importable from crawl
+        from crawl import ContentRelevanceFilter
 
         # Test 2: Should be instantiable
         filter_instance = ContentRelevanceFilter(
@@ -642,7 +642,7 @@ async def test_adaptive_crawler_embedding():
 
     try:
         # Read the source file to verify the fix
-        import crawl4ai.adaptive_crawler as adaptive_module
+        import crawl.adaptive_crawler as adaptive_module
         source_file = adaptive_module.__file__
 
         with open(source_file, 'r') as f:
@@ -709,7 +709,7 @@ async def test_import_formatting():
     print_test("Import Statement Formatting", "#1181")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig
 
         # Create HTML with code containing imports
         html_with_code = """
@@ -784,7 +784,7 @@ async def test_comprehensive_crawl():
     print_test("Comprehensive Crawl Test", "Overall")
 
     try:
-        from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+        from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
 
         async with AsyncWebCrawler(config=BrowserConfig(headless=True)) as crawler:
             result = await crawler.arun(
@@ -859,7 +859,7 @@ def print_summary():
 
 async def main():
     """Run all verification tests"""
-    print_header("Crawl4AI v0.7.8 - Bug Fix Verification Tests")
+    print_header("Crawl v0.7.8 - Bug Fix Verification Tests")
     print("Running actual tests to verify bug fixes...")
 
     # Run all tests

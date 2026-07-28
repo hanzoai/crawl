@@ -14,9 +14,9 @@ import os
 # Add parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
-from crawl4ai import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
-from crawl4ai.adaptive_crawler import EmbeddingStrategy, CrawlState
-from crawl4ai.models import CrawlResult
+from crawl import AsyncWebCrawler, AdaptiveCrawler, AdaptiveConfig
+from crawl.adaptive_crawler import EmbeddingStrategy, CrawlState
+from crawl.models import CrawlResult
 
 
 class PerformanceMetrics:
@@ -189,7 +189,7 @@ async def test_embedding_performance():
         print(f"   Iteration {i+1}: {val_score:.3f} ({(time.perf_counter() - start)*1000:.1f} ms)")
     
     # 6. Create mock links for ranking
-    from crawl4ai.models import Link
+    from crawl.models import Link
     mock_links = []
     for i in range(n_links):
         link = Link(

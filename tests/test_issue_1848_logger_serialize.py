@@ -11,12 +11,12 @@ and from_serializable_dict returns None for unknown types instead of raising.
 
 import logging
 import pytest
-from crawl4ai.async_configs import (
+from crawl.async_configs import (
     to_serializable_dict,
     from_serializable_dict,
     ALLOWED_DESERIALIZE_TYPES,
 )
-from crawl4ai import (
+from crawl import (
     BFSDeepCrawlStrategy,
     DFSDeepCrawlStrategy,
     CrawlerRunConfig,
@@ -75,7 +75,7 @@ class TestDeserializationSkipsUnknown:
         """The exact payload from the bug report should not raise."""
         data = {
             "type": "Logger",
-            "params": {"name": "crawl4ai.deep_crawling.bfs_strategy"}
+            "params": {"name": "crawl.deep_crawling.bfs_strategy"}
         }
         result = from_serializable_dict(data)
         assert result is None
@@ -161,7 +161,7 @@ class TestReporterScenario:
                         "logger": {
                             "type": "Logger",
                             "params": {
-                                "name": "crawl4ai.deep_crawling.bfs_strategy"
+                                "name": "crawl.deep_crawling.bfs_strategy"
                             }
                         }
                     }
@@ -196,7 +196,7 @@ class TestReporterScenario:
                         "logger": {
                             "type": "Logger",
                             "params": {
-                                "name": "crawl4ai.deep_crawling.bfs_strategy"
+                                "name": "crawl.deep_crawling.bfs_strategy"
                             }
                         }
                     }

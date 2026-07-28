@@ -21,7 +21,7 @@ except ImportError:
                 return fn
 
 import asyncio
-from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
+from crawl import AsyncWebCrawler, CrawlerRunConfig
 
 
 # ============================================================================

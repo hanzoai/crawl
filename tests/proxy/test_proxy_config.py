@@ -14,9 +14,9 @@ import pytest
 import tempfile
 from unittest.mock import patch
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig
-from crawl4ai.async_configs import CrawlerRunConfig, ProxyConfig
-from crawl4ai.cache_context import CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig
+from crawl.async_configs import CrawlerRunConfig, ProxyConfig
+from crawl.cache_context import CacheMode
 
 
 class TestProxyConfig:

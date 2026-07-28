@@ -11,8 +11,8 @@ import asyncio
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from crawl4ai.browser_manager import BrowserManager
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.browser_manager import BrowserManager
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
 
 
 @pytest.fixture

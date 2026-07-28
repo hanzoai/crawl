@@ -1,4 +1,4 @@
-// Crawl4AI LLM Context Builder JavaScript
+// Crawl LLM Context Builder JavaScript
 
 // Component definitions - order matters
 const components = [
@@ -410,7 +410,7 @@ async function handleDownload() {
         const contents = await fetchFiles(files);
         const combined = combineContents(contents);
         
-        downloadFile(combined, 'crawl4ai_custom_context.md');
+        downloadFile(combined, 'crawl_custom_context.md');
         
         statusEl.textContent = 'Download complete!';
         statusEl.className = 'status success';
@@ -488,7 +488,7 @@ function combineContents(fileContents) {
         totalTokens += estimateTokens(content);
     });
     
-    const header = `# Crawl4AI Custom LLM Context
+    const header = `# Crawl Custom LLM Context
 Generated on: ${new Date().toISOString()}
 Total files: ${fileContents.length}
 Estimated tokens: ${totalTokens.toLocaleString()}

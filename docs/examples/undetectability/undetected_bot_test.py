@@ -4,14 +4,14 @@ Tests browser fingerprinting differences at bot.sannysoft.com
 """
 
 import asyncio
-from crawl4ai import (
+from crawl import (
     AsyncWebCrawler, 
     BrowserConfig, 
     CrawlerRunConfig,
     UndetectedAdapter,
     CrawlResult
 )
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
 
 # Bot detection test site
 TEST_URL = "https://bot.sannysoft.com"
@@ -113,7 +113,7 @@ async def test_browser_mode(adapter_name: str, adapter=None):
 
 async def main():
     """Run the comparison"""
-    print("🤖 Crawl4AI - Bot Detection Test")
+    print("🤖 Crawl - Bot Detection Test")
     print(f"Testing at: {TEST_URL}")
     print("This site runs various browser fingerprinting tests\n")
     

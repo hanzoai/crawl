@@ -11,13 +11,13 @@ Usage:
 Examples:
     python domain_mapper_demo.py superdesign.dev
     python domain_mapper_demo.py example.com --source sitemap+crt+probe
-    python domain_mapper_demo.py docs.crawl4ai.com --query "extraction tutorial"
+    python domain_mapper_demo.py docs.hanzo.ai --query "extraction tutorial"
 """
 
 import asyncio
 import argparse
 from collections import defaultdict
-from crawl4ai import DomainMapper, DomainMapperConfig
+from crawl import DomainMapper, DomainMapperConfig
 
 
 async def main():

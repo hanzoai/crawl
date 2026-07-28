@@ -13,9 +13,9 @@ import asyncio
 import time
 import pytest
 
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.browser_manager import _CDPConnectionCache, BrowserManager
+from crawl import AsyncWebCrawler
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.browser_manager import _CDPConnectionCache, BrowserManager
 
 CDP_URL = "http://localhost:9222"
 TEST_URL = "https://example.com"

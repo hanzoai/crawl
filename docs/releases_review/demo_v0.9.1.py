@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Crawl4AI v0.9.1 Release Demo - Feature Verification Tests
+Crawl v0.9.1 Release Demo - Feature Verification Tests
 ==========================================================
 
 This demo ACTUALLY RUNS and VERIFIES the key changes in v0.9.1.
@@ -57,9 +57,9 @@ async def test_preserve_whitelist():
     """Verify that whitelisted classes/tags survive pruning."""
     print_test("PruningContentFilter Whitelist", "preserve_classes / preserve_tags")
 
-    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
-    from crawl4ai.content_filter_strategy import PruningContentFilter
-    from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+    from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+    from crawl.content_filter_strategy import PruningContentFilter
+    from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
     # HTML where short metadata elements would normally be pruned
     html = """
@@ -119,8 +119,8 @@ async def test_channel_chromium_skipped():
     """Verify that the default 'chromium' channel is not passed to launch args."""
     print_test("Channel Chromium Skip", "Windows TargetClosedError fix")
 
-    from crawl4ai.browser_manager import BrowserManager
-    from crawl4ai.async_configs import BrowserConfig
+    from crawl.browser_manager import BrowserManager
+    from crawl.async_configs import BrowserConfig
 
     config = BrowserConfig()  # default chrome_channel='chromium'
     mgr = BrowserManager(config)
@@ -152,7 +152,7 @@ async def test_page_timeout_conversion():
     """Verify page_timeout is converted from ms to seconds for aiohttp."""
     print_test("HTTP Timeout Conversion", "page_timeout ms to seconds")
 
-    from crawl4ai.async_configs import CrawlerRunConfig
+    from crawl.async_configs import CrawlerRunConfig
 
     config = CrawlerRunConfig()
 
@@ -174,8 +174,8 @@ async def test_bypass_tables_attributes():
     """Verify table tag attributes are preserved when bypass_tables is enabled."""
     print_test("Table Attribute Preservation", "html2text bypass_tables fix")
 
-    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
-    from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
+    from crawl import AsyncWebCrawler, CrawlerRunConfig, BrowserConfig
+    from crawl.markdown_generation_strategy import DefaultMarkdownGenerator
 
     html = """
     <html><body>
@@ -211,7 +211,7 @@ async def test_bestfirst_ordering():
     """Verify best-first scorer produces deterministic ordering."""
     print_test("Best-First Ordering", "Stable batch ordering fix")
 
-    from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer, CompositeScorer
+    from crawl.deep_crawling.scorers import KeywordRelevanceScorer, CompositeScorer
 
     scorer = CompositeScorer([
         KeywordRelevanceScorer(["python", "crawl"], weight=1.0),
@@ -240,7 +240,7 @@ async def test_bestfirst_ordering():
 # ── Main ──────────────────────────────────────────────────────────────
 
 async def main():
-    print_header("Crawl4AI v0.9.1 Release Verification")
+    print_header("Crawl v0.9.1 Release Verification")
 
     await test_preserve_whitelist()
     await test_channel_chromium_skipped()

@@ -2,7 +2,7 @@ import warnings
 
 import pytest
 
-from crawl4ai.async_configs import BrowserConfig, ProxyConfig
+from crawl.async_configs import BrowserConfig, ProxyConfig
 
 
 def test_browser_config_proxy_string_emits_deprecation_and_autoconverts():

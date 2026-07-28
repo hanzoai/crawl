@@ -16,6 +16,6 @@
     <path d="M18 17.5 L27 17.5" stroke="#111" stroke-width="2"/>
     <circle cx="22.5" cy="17.5" r="2" fill="#111"/>
     
-    <text x="40" y="23" fill="#111" font-family="Arial, sans-serif" font-weight="500" font-size="14">Crawl4AI</text>
+    <text x="40" y="23" fill="#111" font-family="Arial, sans-serif" font-weight="500" font-size="14">Crawl</text>
   </g>
 </svg>

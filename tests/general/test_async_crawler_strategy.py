@@ -5,15 +5,15 @@ from typing import Dict, Any
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 import os
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig
-from crawl4ai.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
-from crawl4ai.models import AsyncCrawlResponse
-from crawl4ai.async_logger import AsyncLogger, LogLevel
+from crawl.async_configs import BrowserConfig, CrawlerRunConfig
+from crawl.async_crawler_strategy import AsyncPlaywrightCrawlerStrategy
+from crawl.models import AsyncCrawlResponse
+from crawl.async_logger import AsyncLogger, LogLevel
 
-CRAWL4AI_HOME_DIR = Path(os.path.expanduser("~")).joinpath(".crawl4ai")
+CRAWL_HOME_DIR = Path(os.path.expanduser("~")).joinpath(".crawl")
 
-if not CRAWL4AI_HOME_DIR.joinpath("profiles", "test_profile").exists():
-    CRAWL4AI_HOME_DIR.joinpath("profiles", "test_profile").mkdir(parents=True)
+if not CRAWL_HOME_DIR.joinpath("profiles", "test_profile").exists():
+    CRAWL_HOME_DIR.joinpath("profiles", "test_profile").mkdir(parents=True)
 
 @pytest.fixture
 def basic_html():
@@ -48,7 +48,7 @@ def advanced_browser_config():
         browser_type="chromium", 
         headless=True,
         use_managed_browser=True,
-        user_data_dir=CRAWL4AI_HOME_DIR.joinpath("profiles", "test_profile"),
+        user_data_dir=CRAWL_HOME_DIR.joinpath("profiles", "test_profile"),
         # proxy="http://localhost:8080",
         viewport_width=1920,
         viewport_height=1080,

@@ -1,5 +1,5 @@
 """
-Crawl4AI Regression Tests - Core Crawling Functionality
+Crawl Regression Tests - Core Crawling Functionality
 
 Tests core crawling features including basic crawls, raw HTML, multiple URLs,
 screenshots, JavaScript execution, caching, sessions, hooks, network capture,
@@ -12,8 +12,8 @@ import asyncio
 import base64
 import pytest
 
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-from crawl4ai.cache_context import CacheMode
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl.cache_context import CacheMode
 
 
 # ---------------------------------------------------------------------------

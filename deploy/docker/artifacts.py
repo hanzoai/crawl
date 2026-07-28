@@ -21,10 +21,10 @@ import time
 import uuid
 from typing import Dict, Tuple
 
-ARTIFACT_DIR = os.environ.get("CRAWL4AI_ARTIFACT_DIR", "/var/lib/crawl4ai/outputs")
-MAX_ARTIFACT_BYTES = int(os.environ.get("CRAWL4AI_MAX_ARTIFACT_BYTES", str(50 * 1024 * 1024)))
-ARTIFACT_QUOTA_BYTES = int(os.environ.get("CRAWL4AI_ARTIFACT_QUOTA_BYTES", str(2 * 1024 * 1024 * 1024)))
-ARTIFACT_TTL_SECONDS = int(os.environ.get("CRAWL4AI_ARTIFACT_TTL_SECONDS", "3600"))
+ARTIFACT_DIR = os.environ.get("CRAWL_ARTIFACT_DIR", "/var/lib/crawl/outputs")
+MAX_ARTIFACT_BYTES = int(os.environ.get("CRAWL_MAX_ARTIFACT_BYTES", str(50 * 1024 * 1024)))
+ARTIFACT_QUOTA_BYTES = int(os.environ.get("CRAWL_ARTIFACT_QUOTA_BYTES", str(2 * 1024 * 1024 * 1024)))
+ARTIFACT_TTL_SECONDS = int(os.environ.get("CRAWL_ARTIFACT_TTL_SECONDS", "3600"))
 
 _HEX32 = re.compile(r"^[0-9a-f]{32}$")
 _KIND = {

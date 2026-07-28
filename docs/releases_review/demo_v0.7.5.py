@@ -1,5 +1,5 @@
 """
-🚀 Crawl4AI v0.7.5 Release Demo - Working Examples
+🚀 Crawl v0.7.5 Release Demo - Working Examples
 ==================================================
 This demo showcases key features introduced in v0.7.5 with real, executable examples.
 
@@ -9,8 +9,8 @@ Featured Demos:
 3. ✅ HTTPS Preservation - Live crawling with HTTPS maintenance
 
 Requirements:
-- crawl4ai v0.7.5 installed
-- Docker running with crawl4ai image (optional for Docker demos)
+- crawl v0.7.5 installed
+- Docker running with crawl image (optional for Docker demos)
 - Valid API keys for LLM demos (optional)
 """
 
@@ -19,10 +19,10 @@ import requests
 import time
 import sys
 
-from crawl4ai import (AsyncWebCrawler, CrawlerRunConfig, BrowserConfig,
+from crawl import (AsyncWebCrawler, CrawlerRunConfig, BrowserConfig,
                       CacheMode, FilterChain, URLPatternFilter, BFSDeepCrawlStrategy,
                       hooks_to_string)
-from crawl4ai.docker_client import Crawl4aiDockerClient
+from crawl.docker_client import Crawl4aiDockerClient
     
 
 def print_section(title: str, description: str = ""):
@@ -55,7 +55,7 @@ async def demo_1_docker_hooks_system():
     if not docker_running:
         print("⚠️  Docker service not running on localhost:11235")
         print("To test Docker hooks:")
-        print("1. Run: docker run -p 11235:11235 unclecode/crawl4ai:latest")
+        print("1. Run: docker run -p 11235:11235 hanzoai/crawl:latest")
         print("2. Wait for service to start")
         print("3. Re-run this demo\n")
         return
@@ -129,7 +129,7 @@ async def hook(page, context, **kwargs):
         """Add custom headers before navigation"""
         print(f"[Function Hook] About to navigate to {url}")
         await page.set_extra_http_headers({
-            'X-Crawl4AI': 'v0.7.5-function-hooks',
+            'X-Crawl': 'v0.7.5-function-hooks',
             'X-Test-Header': 'demo'
         })
         return page
@@ -267,7 +267,7 @@ async def demo_3_https_preservation():
 async def main():
     """Run all demos"""
     print("\n" + "=" * 60)
-    print("🚀 Crawl4AI v0.7.5 Working Demo")
+    print("🚀 Crawl v0.7.5 Working Demo")
     print("=" * 60)
 
     # Check system requirements
@@ -308,7 +308,7 @@ async def main():
     print("\n" + "=" * 60)
     print("🎉 Demo Complete!")
     print("=" * 60)
-    print("You've experienced the power of Crawl4AI v0.7.5!")
+    print("You've experienced the power of Crawl v0.7.5!")
     print("")
     print("Key Features Demonstrated:")
     print("🔧 Docker Hooks - String-based & function-based (NEW!)")
@@ -320,19 +320,19 @@ async def main():
     print("")
     print("Ready to build something amazing? 🚀")
     print("")
-    print("📖 Docs: https://docs.crawl4ai.com/")
-    print("🐙 GitHub: https://github.com/unclecode/crawl4ai")
+    print("📖 Docs: https://docs.hanzo.ai/")
+    print("🐙 GitHub: https://github.com/hanzoai/crawl")
     print("=" * 60)
 
 
 if __name__ == "__main__":
-    print("🚀 Crawl4AI v0.7.5 Live Demo Starting...")
+    print("🚀 Crawl v0.7.5 Live Demo Starting...")
     print("Press Ctrl+C anytime to exit\n")
 
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n👋 Demo stopped by user. Thanks for trying Crawl4AI v0.7.5!")
+        print("\n👋 Demo stopped by user. Thanks for trying Crawl v0.7.5!")
     except Exception as e:
         print(f"\n❌ Demo error: {str(e)}")
         print("Make sure you have the required dependencies installed.")

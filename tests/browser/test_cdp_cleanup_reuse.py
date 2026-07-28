@@ -22,7 +22,7 @@ import asyncio
 import os
 import pytest
 import requests
-from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
+from crawl import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
 # Configuration
 CDP_SERVICE_URL = os.getenv("CDP_SERVICE_URL", "http://localhost:11235")

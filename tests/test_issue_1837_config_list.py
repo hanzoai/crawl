@@ -8,7 +8,7 @@ is correctly passed through to arun_many().
 
 import pytest
 from unittest.mock import AsyncMock, patch, MagicMock
-from crawl4ai import CrawlerRunConfig, CacheMode
+from crawl import CrawlerRunConfig, CacheMode
 
 
 # -- Schema tests --

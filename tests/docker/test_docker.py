@@ -3,14 +3,14 @@ import time
 import httpx
 import asyncio
 from typing import Dict, Any
-from crawl4ai import (
+from crawl import (
     BrowserConfig, CrawlerRunConfig, DefaultMarkdownGenerator,
     PruningContentFilter, JsonCssExtractionStrategy, LLMContentFilter, CacheMode
 )
-from crawl4ai import LLMConfig
-from crawl4ai.docker_client import Crawl4aiDockerClient
+from crawl import LLMConfig
+from crawl.docker_client import Crawl4aiDockerClient
 
-class Crawl4AiTester:
+class CrawlTester:
     def __init__(self, base_url: str = "http://localhost:11235"):
         self.base_url = base_url
 
@@ -126,7 +126,7 @@ async def test_direct_api():
     #     print("Retrieved schemas for:", list(schemas.keys()))
 
 async def test_with_client():
-    """Test using the Crawl4AI Docker client SDK"""
+    """Test using the Crawl Docker client SDK"""
     print("\n=== Testing Client SDK ===")
     
     async with Crawl4aiDockerClient(base_url="http://localhost:11235", verbose=True) as client:

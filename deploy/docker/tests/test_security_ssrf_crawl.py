@@ -4,7 +4,7 @@ Adversarial tests for SSRF protection on crawl/md/llm URL entry points.
 Reported by secsys_codex (2026-04-18).
 
 Tests that validate_url_destination() blocks internal IPs on all crawl paths,
-and that CRAWL4AI_ALLOW_INTERNAL_URLS=true bypasses the check.
+and that CRAWL_ALLOW_INTERNAL_URLS=true bypasses the check.
 """
 
 import os
@@ -259,10 +259,10 @@ class TestSSRFSourceCoverage(unittest.TestCase):
                 f"{handler} must call enforce_egress on its fetch config")
 
     def test_utils_has_allow_internal_flag(self):
-        """utils.py must have CRAWL4AI_ALLOW_INTERNAL_URLS env var."""
+        """utils.py must have CRAWL_ALLOW_INTERNAL_URLS env var."""
         with open(os.path.join(DEPLOY_DIR, "utils.py")) as f:
             source = f.read()
-        self.assertIn("CRAWL4AI_ALLOW_INTERNAL_URLS", source)
+        self.assertIn("CRAWL_ALLOW_INTERNAL_URLS", source)
         self.assertIn("ALLOW_INTERNAL_URLS", source)
 
     def test_validate_url_destination_skips_raw(self):
@@ -308,7 +308,7 @@ class TestStreamCrawlSSRFBehavioral:
 
 if __name__ == "__main__":
     print("=" * 70)
-    print("Crawl4AI SSRF Tests - Crawl/MD/LLM Endpoints (secsys_codex)")
+    print("Crawl SSRF Tests - Crawl/MD/LLM Endpoints (secsys_codex)")
     print("=" * 70)
     print()
     unittest.main(verbosity=2)

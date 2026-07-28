@@ -210,8 +210,8 @@ class MarketplaceUI {
             container.innerHTML = `
                 <div class="sponsor-card">
                     <h4>Become a Sponsor</h4>
-                    <p>Reach thousands of developers using Crawl4AI</p>
-                    <a href="mailto:sponsors@crawl4ai.com">Contact Us →</a>
+                    <p>Reach thousands of developers using Crawl</p>
+                    <a href="mailto:sponsors@crawl.hanzo.ai">Contact Us →</a>
                 </div>
             `;
             return;

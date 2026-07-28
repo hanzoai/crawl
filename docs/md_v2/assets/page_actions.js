@@ -4,10 +4,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Configuration
     const config = {
-        githubRepo: 'unclecode/crawl4ai',
+        githubRepo: 'hanzoai/crawl',
         githubBranch: 'main',
         docsPath: 'docs/md_v2',
-        excludePaths: ['/apps/c4a-script/', '/apps/llmtxt/', '/apps/crawl4ai-assistant/', '/core/ask-ai/'], // Don't show on app pages
+        excludePaths: ['/apps/c4a-script/', '/apps/llmtxt/', '/apps/crawl-assistant/', '/core/ask-ai/'], // Don't show on app pages
     };
 
     let cachedMarkdown = null;

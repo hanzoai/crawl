@@ -195,7 +195,7 @@ crwl https://company-intranet.com -p work-profile \
 ```python
 # Create profiles via Python API
 import asyncio
-from crawl4ai import BrowserProfiler
+from crawl import BrowserProfiler
 
 async def create_auth_profile():
     profiler = BrowserProfiler()
@@ -210,7 +210,7 @@ async def create_auth_profile():
         print(f"Profile: {profile['name']} at {profile['path']}")
     
     # Use profile for crawling
-    from crawl4ai import AsyncWebCrawler, BrowserConfig
+    from crawl import AsyncWebCrawler, BrowserConfig
     
     browser_config = BrowserConfig(
         headless=True,
@@ -292,4 +292,4 @@ crwl https://research-platform.com/data -p research-profile \
     -o json
 ```
 
-**📖 Learn more:** [Identity-Based Crawling Documentation](https://docs.crawl4ai.com/advanced/identity-based-crawling/), [Browser Profile Management](https://docs.crawl4ai.com/advanced/session-management/), [CLI Examples](https://docs.crawl4ai.com/core/cli/)
+**📖 Learn more:** [Identity-Based Crawling Documentation](https://docs.hanzo.ai/advanced/identity-based-crawling/), [Browser Profile Management](https://docs.hanzo.ai/advanced/session-management/), [CLI Examples](https://docs.hanzo.ai/core/cli/)
