@@ -1,0 +1,24 @@
+# Hanzo Crawl — the Python crawler. Published to PyPI; the container is built by
+# the native builder already in this repo (.hanzo/workflows/deploy.yml →
+# ghcr.io/hanzoai/crawl), so `images:` here would push a second copy of the same
+# commit.
+#
+# Gate: the declared dependency set resolves and the package imports. That is the
+# assertion this repo has never had, and it is the one that breaks in practice —
+# a pin that no longer solves, or a module moved without updating __init__.py,
+# both of which are invisible until an install fails on a user's machine. The
+# suites under tests/ drive a real browser (playwright) against live sites, so
+# they are a harness, not a push gate.
+test:
+  - name: install-and-import
+    run: |
+      set -euo pipefail
+      command -v uv > /dev/null 2>&1 || {
+        curl -fsSL https://astral.sh/uv/install.sh | sh
+        export PATH="$HOME/.local/bin:$PATH"
+      }
+      uv venv .venv
+      . .venv/bin/activate
+      uv pip install -e .
+      python -c 'import crawl; print("crawl imports:", crawl.AsyncWebCrawler.__name__)'
+      python -m compileall -q crawl
