@@ -1,6 +1,6 @@
 module github.com/hanzoai/crawl
 
-go 1.26.5
+go 1.27.1
 
 require (
 	github.com/zap-proto/zip v1.36.44
